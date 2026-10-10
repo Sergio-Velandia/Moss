@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'motion/react'
 import { labEntries } from '../lib/lab'
+import { useDocumentTitle } from '../lib/useDocumentTitle'
 
 const ALL = 'Todas'
 
@@ -24,8 +25,8 @@ function Chips({
           key={o}
           onClick={() => onChange(o)}
           aria-pressed={value === o}
-          className={`rounded-full px-3 py-1 text-xs transition ${
-            value === o ? 'bg-sage-deep text-white' : 'bg-white/60 text-ink-soft hover:bg-sage/20'
+          className={`rounded-full px-3 py-1 pointer-coarse:py-2 text-xs transition ${
+            value === o ? 'bg-accent text-on-accent' : 'bg-surface/60 text-ink-soft hover:bg-sage/20'
           }`}
         >
           {o}
@@ -36,6 +37,7 @@ function Chips({
 }
 
 export default function Lab() {
+  useDocumentTitle('El Laboratorio')
   const [tech, setTech] = useState(ALL)
   const [category, setCategory] = useState(ALL)
 
@@ -71,10 +73,10 @@ export default function Lab() {
             >
               <Link
                 to={`/laboratorio/${e.slug}`}
-                className="flex h-full flex-col rounded-2xl border border-white/70 bg-white/50 p-5 shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:shadow-md"
+                className="flex h-full flex-col rounded-2xl border border-surface/70 bg-surface/50 p-5 shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:shadow-md"
               >
-                <div className="flex min-h-36 items-center justify-center overflow-hidden rounded-xl bg-cream-deep/60 p-3">
-                  <div className="pointer-events-none origin-center scale-[0.7]" aria-hidden>
+                <div className="flex h-56 items-center justify-center overflow-hidden rounded-xl bg-cream-deep/60 p-3">
+                  <div className="pointer-events-none origin-center scale-[0.7]" aria-hidden inert>
                     <e.Demo />
                   </div>
                 </div>

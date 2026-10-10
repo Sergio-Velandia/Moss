@@ -14,7 +14,7 @@ export default function Related({ ids }: { ids: string[] }) {
           <li key={i.id}>
             <Link
               to={i.url}
-              className="block rounded-2xl border border-white/70 bg-white/50 p-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+              className="block rounded-2xl border border-surface/70 bg-surface/50 p-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
             >
               <span className="rounded-full bg-lavender/50 px-2 py-0.5 text-xs text-lavender-deep">
                 {typeLabel[i.type]}

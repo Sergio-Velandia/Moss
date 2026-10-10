@@ -30,8 +30,25 @@ Ese valor se multiplica por el ángulo máximo. Normalizar hace que el efecto fu
 
 ## 3. Respetar el movimiento reducido
 
-Hay personas a las que este tipo de movimiento les provoca malestar. En Tailwind basta con `motion-reduce:transform-none` para desactivar la inclinación cuando el sistema lo pide.
+Hay personas a las que este tipo de movimiento les provoca malestar, y el sistema operativo tiene un ajuste para pedirlo (`prefers-reduced-motion`).
+
+Mi primera versión usaba la clase `motion-reduce:transform-none` de Tailwind y **no funcionaba**: la inclinación se aplica con un `style` en línea, y un estilo en línea siempre gana a una clase. Lo descubrí al probarlo en un navegador real con el movimiento reducido activado: la tarjeta seguía inclinándose. La solución es comprobar la preferencia en JavaScript:
+
+```tsx
+import { useReducedMotion } from 'motion/react'
+
+const reduceMotion = useReducedMotion()
+
+const onMove = (e: React.PointerEvent) => {
+  if (reduceMotion || e.pointerType !== 'mouse') return
+  // ...calcular la inclinación
+}
+```
+
+## 4. En el móvil no hay "hover"
+
+Al tocar una pantalla, el navegador simula un movimiento de ratón. Con eventos de ratón (`onMouseMove`), un toque dejaba la tarjeta inclinada hasta que se tocaba otra cosa. Con eventos de puntero (`onPointerMove`) puedo mirar `pointerType` y reaccionar solo al ratón.
 
 ## Lo que aprendí
 
-Un efecto decorativo también necesita decisiones de accesibilidad. Dejarlo preparado desde la primera versión es más barato que arreglarlo después.
+Un efecto decorativo también necesita decisiones de accesibilidad, y hay que probarlas en un navegador de verdad: la primera versión parecía correcta en el código y fallaba en dos casos (movimiento reducido y pantallas táctiles).

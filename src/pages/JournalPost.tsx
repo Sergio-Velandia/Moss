@@ -4,16 +4,18 @@ import MarkdownView from '../components/content/MarkdownView'
 import Related from '../components/content/Related'
 import { getJournalPost, journalPosts } from '../lib/content'
 import { formatDate } from '../lib/format'
+import { useDocumentTitle } from '../lib/useDocumentTitle'
 
 export default function JournalPost() {
   const { slug = '' } = useParams()
   const post = getJournalPost(slug)
+  useDocumentTitle(post?.title ?? 'No encontrado')
 
   if (!post) {
     return (
       <section>
         <p className="text-ink-soft">No encontré ese artículo.</p>
-        <Link to="/bitacora" className="mt-3 inline-block text-sage-deep underline">
+        <Link to="/bitacora" className="mt-3 inline-flex min-h-11 items-center text-sage-deep underline">
           Volver a la Bitácora
         </Link>
       </section>
@@ -27,7 +29,7 @@ export default function JournalPost() {
 
   return (
     <article className="mx-auto max-w-2xl">
-      <Link to="/bitacora" className="inline-flex items-center gap-1 text-sm text-ink-soft hover:text-sage-deep">
+      <Link to="/bitacora" className="inline-flex min-h-8 items-center gap-1 text-sm text-ink-soft hover:text-sage-deep">
         <ArrowLeft size={14} aria-hidden /> Bitácora
       </Link>
 
@@ -46,7 +48,7 @@ export default function JournalPost() {
 
       <nav aria-label="Más artículos" className="mt-12 grid gap-3 sm:grid-cols-2">
         {older ? (
-          <Link to={older.url} className="rounded-2xl border border-white/70 bg-white/50 p-4 text-sm transition hover:shadow-md">
+          <Link to={older.url} className="rounded-2xl border border-surface/70 bg-surface/50 p-4 text-sm transition hover:shadow-md">
             <span className="flex items-center gap-1 text-xs text-ink-soft">
               <ArrowLeft size={12} aria-hidden /> Anterior
             </span>
@@ -58,7 +60,7 @@ export default function JournalPost() {
         {newer && (
           <Link
             to={newer.url}
-            className="rounded-2xl border border-white/70 bg-white/50 p-4 text-right text-sm transition hover:shadow-md"
+            className="rounded-2xl border border-surface/70 bg-surface/50 p-4 text-right text-sm transition hover:shadow-md"
           >
             <span className="flex items-center justify-end gap-1 text-xs text-ink-soft">
               Siguiente <ArrowRight size={12} aria-hidden />

@@ -6,7 +6,7 @@ let highlighter: Promise<HighlighterCore> | null = null
 // Solo cargamos los lenguajes que Moss usa. Para añadir uno nuevo, agrega su import aquí.
 const getHighlighter = () =>
   (highlighter ??= createHighlighterCore({
-    themes: [import('shiki/themes/github-light.mjs')],
+    themes: [import('shiki/themes/github-light.mjs'), import('shiki/themes/github-dark.mjs')],
     langs: [
       import('shiki/langs/tsx.mjs'),
       import('shiki/langs/typescript.mjs'),
@@ -23,5 +23,10 @@ const getHighlighter = () =>
 
 export async function highlight(code: string, lang: string): Promise<string> {
   const h = await getHighlighter()
-  return h.codeToHtml(code, { lang, theme: 'github-light' })
+  // Genera variables CSS para los dos temas (--shiki-light / --shiki-dark); index.css elige según el tema activo
+  return h.codeToHtml(code, {
+    lang,
+    themes: { light: 'github-light', dark: 'github-dark' },
+    defaultColor: false,
+  })
 }

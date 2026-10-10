@@ -42,12 +42,12 @@ export default function CodeBlock({ code, lang = 'tsx', collapsedLines = 14 }: P
   }
 
   return (
-    <div className="not-prose overflow-hidden rounded-2xl border border-white/70 bg-white/70 shadow-sm">
+    <div className="not-prose overflow-hidden rounded-2xl border border-surface/70 bg-surface/70 shadow-sm">
       <div className="flex items-center justify-between border-b border-cream-deep px-4 py-2 text-xs text-ink-soft">
         <span className="font-mono uppercase tracking-wide">{lang}</span>
         <button
           onClick={copy}
-          className="inline-flex items-center gap-1.5 rounded-lg px-2 py-1 transition hover:bg-sage/20 active:scale-95"
+          className="inline-flex items-center gap-1.5 rounded-lg px-2 py-1 pointer-coarse:py-2 transition hover:bg-sage/20 active:scale-95"
           aria-live="polite"
         >
           {copied ? <Check size={14} aria-hidden /> : <Copy size={14} aria-hidden />}

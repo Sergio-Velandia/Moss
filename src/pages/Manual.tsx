@@ -2,10 +2,12 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { manualCategories, manualDocs } from '../lib/content'
 import { formatDate } from '../lib/format'
+import { useDocumentTitle } from '../lib/useDocumentTitle'
 
 const ALL = 'todas'
 
 export default function Manual() {
+  useDocumentTitle('El Manual')
   const [category, setCategory] = useState(ALL)
   const docs = manualDocs.filter((d) => category === ALL || d.category === category)
 
@@ -22,8 +24,8 @@ export default function Manual() {
             key={c}
             onClick={() => setCategory(c)}
             aria-pressed={category === c}
-            className={`rounded-full px-3 py-1 text-xs capitalize transition ${
-              category === c ? 'bg-sage-deep text-white' : 'bg-white/60 text-ink-soft hover:bg-sage/20'
+            className={`rounded-full px-3 py-1 pointer-coarse:py-2 text-xs capitalize transition ${
+              category === c ? 'bg-accent text-on-accent' : 'bg-surface/60 text-ink-soft hover:bg-sage/20'
             }`}
           >
             {c}
@@ -39,7 +41,7 @@ export default function Manual() {
             <li key={d.id}>
               <Link
                 to={d.url}
-                className="flex h-full flex-col rounded-2xl border border-white/70 bg-white/50 p-5 shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:shadow-md"
+                className="flex h-full flex-col rounded-2xl border border-surface/70 bg-surface/50 p-5 shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:shadow-md"
               >
                 <span className="w-fit rounded-full bg-sage/30 px-2 py-0.5 text-xs capitalize text-sage-deep">
                   {d.category}

@@ -31,7 +31,7 @@ export default function StatefulButton() {
     <button
       onClick={click}
       disabled={status === 'loading'}
-      className="inline-flex items-center gap-2 rounded-xl bg-sage-deep px-5 py-2.5 text-sm font-medium text-white shadow-sm transition hover:brightness-110 active:scale-95 disabled:opacity-70"
+      className="inline-flex items-center gap-2 rounded-xl bg-accent px-5 py-2.5 text-sm font-medium text-on-accent shadow-sm transition hover:brightness-110 active:scale-95 disabled:opacity-70"
     >
       {status === 'loading' && <Loader2 size={16} className="animate-spin" aria-hidden />}
       {status === 'done' && <Check size={16} aria-hidden />}

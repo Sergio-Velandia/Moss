@@ -2,16 +2,18 @@ import { Link, useParams } from 'react-router-dom'
 import { ArrowLeft } from 'lucide-react'
 import CodeBlock from '../components/code/CodeBlock'
 import { getLabEntry } from '../lib/lab'
+import { useDocumentTitle } from '../lib/useDocumentTitle'
 
 export default function LabDetail() {
   const { slug = '' } = useParams()
   const entry = getLabEntry(slug)
+  useDocumentTitle(entry?.title ?? 'No encontrado')
 
   if (!entry) {
     return (
       <section>
         <p className="text-ink-soft">No encontré esa entrada.</p>
-        <Link to="/laboratorio" className="mt-3 inline-block text-sage-deep underline">
+        <Link to="/laboratorio" className="mt-3 inline-flex min-h-11 items-center text-sage-deep underline">
           Volver al Laboratorio
         </Link>
       </section>
@@ -20,7 +22,7 @@ export default function LabDetail() {
 
   return (
     <article>
-      <Link to="/laboratorio" className="inline-flex items-center gap-1 text-sm text-ink-soft hover:text-sage-deep">
+      <Link to="/laboratorio" className="inline-flex min-h-8 items-center gap-1 text-sm text-ink-soft hover:text-sage-deep">
         <ArrowLeft size={14} aria-hidden /> Laboratorio
       </Link>
 
@@ -31,14 +33,14 @@ export default function LabDetail() {
         <span className="rounded-full bg-lavender/50 px-2 py-0.5 text-lavender-deep">{entry.technology}</span>
         <span className="rounded-full bg-sage/30 px-2 py-0.5 text-sage-deep">{entry.category}</span>
         {entry.tags.map((t) => (
-          <span key={t} className="rounded-full bg-white/60 px-2 py-0.5 text-ink-soft">
+          <span key={t} className="rounded-full bg-surface/60 px-2 py-0.5 text-ink-soft">
             #{t}
           </span>
         ))}
       </div>
 
       <h2 className="mt-8 text-sm font-medium uppercase tracking-wide text-ink-soft">Vista previa</h2>
-      <div className="mt-2 flex min-h-48 items-center justify-center rounded-2xl border border-white/70 bg-cream-deep/60 p-8">
+      <div className="mt-2 flex min-h-48 items-center justify-center rounded-2xl border border-surface/70 bg-cream-deep/60 p-8">
         <entry.Demo />
       </div>
 
@@ -53,7 +55,7 @@ export default function LabDetail() {
       {entry.dependencies && (
         <p className="mt-4 text-sm text-ink-soft">
           Dependencias: {entry.dependencies.map((d) => (
-            <code key={d} className="mr-1 rounded bg-white/60 px-1.5 py-0.5 font-mono text-xs">{d}</code>
+            <code key={d} className="mr-1 rounded bg-surface/60 px-1.5 py-0.5 font-mono text-xs">{d}</code>
           ))}
         </p>
       )}

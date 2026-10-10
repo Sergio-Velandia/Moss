@@ -30,7 +30,7 @@ export default function FadeInList() {
             initial={reduceMotion ? false : { opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.08, duration: 0.35 }}
-            className="rounded-xl bg-white/70 px-4 py-2 text-sm shadow-sm"
+            className="rounded-xl bg-surface/70 px-4 py-2 text-sm shadow-sm"
           >
             {text}
           </motion.li>
@@ -38,7 +38,7 @@ export default function FadeInList() {
       </ul>
       <button
         onClick={() => setRun((n) => n + 1)}
-        className="mt-3 inline-flex items-center gap-1.5 text-xs text-ink-soft transition hover:text-sage-deep"
+        className="mt-2 inline-flex min-h-8 items-center gap-1.5 px-1 text-xs text-ink-soft transition hover:text-sage-deep"
       >
         <RotateCcw size={12} aria-hidden /> Repetir
       </button>

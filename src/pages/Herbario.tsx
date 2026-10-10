@@ -1,14 +1,15 @@
-import { useMemo } from 'react'
+import { useEffect, useMemo, useRef } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { Search } from 'lucide-react'
 import { knowledgeItems, typeLabel, type ItemType } from '../lib/knowledge'
 import { search } from '../lib/search'
+import { useDocumentTitle } from '../lib/useDocumentTitle'
 
 const TYPES: ItemType[] = ['lab', 'manual', 'journal']
 
 function chipClass(active: boolean) {
-  return `rounded-full px-3 py-1 text-xs transition ${
-    active ? 'bg-sage-deep text-white' : 'bg-white/60 text-ink-soft hover:bg-sage/20'
+  return `rounded-full px-3 py-1 pointer-coarse:py-2 text-xs transition ${
+    active ? 'bg-accent text-on-accent' : 'bg-surface/60 text-ink-soft hover:bg-sage/20'
   }`
 }
 
@@ -17,6 +18,7 @@ export default function Herbario() {
   const q = params.get('q') ?? ''
   const type = params.get('tipo') ?? ''
   const tech = params.get('tec') ?? ''
+  useDocumentTitle(q.trim() ? `Buscar: ${q.trim()}` : 'El Herbario')
 
   const setParam = (key: string, value: string) => {
     const next = new URLSearchParams(params)
@@ -26,6 +28,13 @@ export default function Herbario() {
   }
 
   // Sin búsqueda se muestra todo el jardín, lo más reciente primero
+  const inputRef = useRef<HTMLInputElement>(null)
+  // Solo enfocamos el buscador con ratón/teclado: en móvil el teclado en pantalla taparía los resultados
+  useEffect(() => {
+    if (!q && window.matchMedia('(hover: hover) and (pointer: fine)').matches) inputRef.current?.focus()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   const base = useMemo(() => (q.trim() ? search(q) : knowledgeItems), [q])
 
   const technologies = useMemo(() => [...new Set(base.flatMap((i) => i.technologies))].sort(), [base])
@@ -44,16 +53,16 @@ export default function Herbario() {
 
       <div
         role="search"
-        className="mt-6 flex max-w-xl items-center gap-2 rounded-2xl border border-white/70 bg-white/60 px-4 py-2.5 shadow-sm backdrop-blur focus-within:ring-2 focus-within:ring-sage"
+        className="mt-6 flex max-w-xl items-center gap-2 rounded-2xl border border-surface/70 bg-surface/60 px-4 shadow-sm backdrop-blur focus-within:ring-2 focus-within:ring-sage-deep"
       >
         <Search size={18} className="text-ink-soft" aria-hidden />
         <input
-          autoFocus
+          ref={inputRef}
           value={q}
           onChange={(e) => setParam('q', e.target.value)}
-          placeholder="animación de entrada, consulta SQL para agrupar, webhook de n8n…"
+          placeholder="animación, consulta SQL, webhook…"
           aria-label="Buscar en el jardín"
-          className="w-full bg-transparent text-sm outline-none placeholder:text-ink-soft/70"
+          className="w-full bg-transparent py-3 text-sm outline-none placeholder:text-ink-soft"
         />
       </div>
 
@@ -92,7 +101,7 @@ export default function Herbario() {
               <button
                 key={t}
                 onClick={() => setParam('q', t)}
-                className="rounded-full bg-white/60 px-2.5 py-0.5 text-xs text-ink-soft transition hover:bg-sage/20"
+                className="rounded-full bg-surface/60 px-2.5 py-0.5 pointer-coarse:py-1.5 text-xs text-ink-soft transition hover:bg-sage/20"
               >
                 #{t}
               </button>
@@ -117,7 +126,7 @@ export default function Herbario() {
             return (
               <div key={t}>
                 <h2 className="text-sm font-medium uppercase tracking-wide text-ink-soft">{typeLabel[t]}</h2>
-                <ul className="mt-2 divide-y divide-cream-deep rounded-2xl border border-white/70 bg-white/50">
+                <ul className="mt-2 divide-y divide-cream-deep rounded-2xl border border-surface/70 bg-surface/50">
                   {group.map((i) => (
                     <li key={i.id}>
                       <Link to={i.url} className="block px-5 py-4 transition hover:bg-sage/10">

@@ -5,16 +5,18 @@ import Related from '../components/content/Related'
 import Toc from '../components/content/Toc'
 import { getManualDoc } from '../lib/content'
 import { formatDate } from '../lib/format'
+import { useDocumentTitle } from '../lib/useDocumentTitle'
 
 export default function ManualDoc() {
   const { category = '', slug = '' } = useParams()
   const doc = getManualDoc(category, slug)
+  useDocumentTitle(doc?.title ?? 'No encontrado')
 
   if (!doc) {
     return (
       <section>
         <p className="text-ink-soft">No encontré ese documento.</p>
-        <Link to="/manual" className="mt-3 inline-block text-sage-deep underline">
+        <Link to="/manual" className="mt-3 inline-flex min-h-11 items-center text-sage-deep underline">
           Volver al Manual
         </Link>
       </section>
@@ -23,7 +25,7 @@ export default function ManualDoc() {
 
   return (
     <article>
-      <Link to="/manual" className="inline-flex items-center gap-1 text-sm text-ink-soft hover:text-sage-deep">
+      <Link to="/manual" className="inline-flex min-h-8 items-center gap-1 text-sm text-ink-soft hover:text-sage-deep">
         <ArrowLeft size={14} aria-hidden /> Manual
       </Link>
 
@@ -32,13 +34,13 @@ export default function ManualDoc() {
 
       <div className="mt-3 flex flex-wrap items-center gap-1.5 text-xs">
         <span className="rounded-full bg-sage/30 px-2 py-0.5 capitalize text-sage-deep">{doc.category}</span>
-        {doc.technologies.map((t) => (
+        {doc.technologies.filter((t) => t.toLowerCase() !== doc.category.toLowerCase()).map((t) => (
           <span key={t} className="rounded-full bg-lavender/50 px-2 py-0.5 text-lavender-deep">
             {t}
           </span>
         ))}
         {doc.tags.map((t) => (
-          <span key={t} className="rounded-full bg-white/60 px-2 py-0.5 text-ink-soft">
+          <span key={t} className="rounded-full bg-surface/60 px-2 py-0.5 text-ink-soft">
             #{t}
           </span>
         ))}

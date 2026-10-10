@@ -1,36 +1,118 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
-/* Moss — design tokens (sage / cream / lavender, pastel) */
-@theme {
-  --color-cream: #faf7ef;
-  --color-cream-deep: #f1ecdd;
-  --color-sage: #9caf88;
-  --color-sage-deep: #5f7a52;
-  --color-lavender: #c8bfe7;
-  --color-lavender-deep: #7a6aa8;
-  --color-warm: #e8c9a8;
-  --color-ink: #2f3a2c;
-  --color-ink-soft: #5b6657;
+/* Moss — design tokens (salvia / crema / lavanda, pastel).
+   Los valores cambian según el tema; las utilidades de Tailwind leen estas variables. */
+:root {
+  color-scheme: light;
+  --c-bg: #faf7ef;
+  --c-bg-deep: #f1ecdd;
+  --c-surface: #ffffff;
+  --c-ink: #2f3a2c;
+  --c-ink-soft: #5b6657;
+  --c-sage: #9caf88;
+  --c-sage-deep: #476140;
+  --c-lavender: #c8bfe7;
+  --c-lavender-deep: #5d4d8f;
+  --c-accent: #4f6b42;
+  --c-on-accent: #ffffff;
+  --glow-1: rgb(156 175 136 / 0.25);
+  --glow-2: rgb(200 191 231 / 0.3);
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --c-bg: #141a13;
+  --c-bg-deep: #1d251b;
+  --c-surface: #222b20;
+  --c-ink: #e9efe0;
+  --c-ink-soft: #a9b5a2;
+  --c-sage: #6f8a5c;
+  --c-sage-deep: #a9c795;
+  --c-lavender: #6a5c9c;
+  --c-lavender-deep: #d3c9f5;
+  --c-accent: #7fa06b;
+  --c-on-accent: #0f160e;
+  --glow-1: rgb(111 138 92 / 0.18);
+  --glow-2: rgb(106 92 156 / 0.22);
+}
+
+@theme inline {
+  --color-cream: var(--c-bg);
+  --color-cream-deep: var(--c-bg-deep);
+  --color-surface: var(--c-surface);
+  --color-ink: var(--c-ink);
+  --color-ink-soft: var(--c-ink-soft);
+  --color-sage: var(--c-sage);
+  --color-sage-deep: var(--c-sage-deep);
+  --color-lavender: var(--c-lavender);
+  --color-lavender-deep: var(--c-lavender-deep);
+  --color-accent: var(--c-accent);
+  --color-on-accent: var(--c-on-accent);
 
   --font-sans: "Inter", system-ui, "Segoe UI", Roboto, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
 }
 
 html {
-  background: var(--color-cream);
-  color: var(--color-ink);
+  background: var(--c-bg);
+  color: var(--c-ink);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
   min-height: 100vh;
   background:
-    radial-gradient(60rem 30rem at 10% -10%, rgb(156 175 136 / 0.25), transparent),
-    radial-gradient(50rem 28rem at 100% 0%, rgb(200 191 231 / 0.3), transparent),
-    var(--color-cream);
+    radial-gradient(60rem 30rem at 10% -10%, var(--glow-1), transparent),
+    radial-gradient(50rem 28rem at 100% 0%, var(--glow-2), transparent),
+    var(--c-bg);
+}
+
+/* Foco visible y consistente para quien navega con teclado */
+:focus-visible {
+  outline: 2px solid var(--c-sage-deep);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* El texto seleccionado mantiene buen contraste en ambos temas */
+::selection {
+  background: var(--c-sage);
+  color: var(--c-bg);
+}
+
+/* Colores del contenido Markdown (@tailwindcss/typography) según el tema */
+.prose {
+  --tw-prose-body: var(--c-ink);
+  --tw-prose-headings: var(--c-ink);
+  --tw-prose-lead: var(--c-ink-soft);
+  --tw-prose-links: var(--c-sage-deep);
+  --tw-prose-bold: var(--c-ink);
+  --tw-prose-counters: var(--c-ink-soft);
+  --tw-prose-bullets: var(--c-ink-soft);
+  --tw-prose-hr: var(--c-bg-deep);
+  --tw-prose-quotes: var(--c-ink);
+  --tw-prose-quote-borders: var(--c-sage);
+  --tw-prose-captions: var(--c-ink-soft);
+  --tw-prose-code: var(--c-ink);
+  --tw-prose-th-borders: var(--c-sage);
+  --tw-prose-td-borders: var(--c-bg-deep);
+}
+
+/* Resaltado de código: shiki genera variables para cada tema */
+.shiki,
+.shiki span {
+  color: var(--shiki-light);
+}
+:root[data-theme="dark"] .shiki,
+:root[data-theme="dark"] .shiki span {
+  color: var(--shiki-dark);
+}
+.shiki {
+  background-color: transparent !important;
 }
 
 /* Respeta la preferencia de movimiento reducido */

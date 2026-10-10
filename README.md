@@ -27,6 +27,7 @@ npm run dev      # servidor de desarrollo
 npm run build    # comprobación de tipos + build de producción
 npm run test     # pruebas (búsqueda y contenido)
 npm run lint
+npm run check:publish   # falla si site.ts aún tiene datos sin rellenar
 ```
 
 ## Cómo añadir contenido
@@ -87,16 +88,37 @@ Los ids de `related` son `lab/<archivo>`, `manual/<categoría>/<archivo>` o `jou
 
 El Herbario indexa título, descripción, etiquetas, tecnologías y contenido completo (incluido el código de las demos). Ignora tildes y palabras vacías ("de", "para"…), tolera pequeñas erratas y exige todas las palabras de la consulta; si no hay resultados, acepta cualquiera. El índice se construye en el navegador la primera vez que se busca.
 
+## Tema claro y oscuro
+
+El botón de la cabecera alterna entre los dos temas. Sin elección manual, Moss sigue el tema del sistema; la elección se guarda en el navegador (`moss-theme`) y se aplica antes de pintar para evitar el parpadeo. Los colores son tokens en `src/index.css`: para cambiar la paleta basta con editar las variables de `:root` y `:root[data-theme="dark"]`.
+
+## Accesibilidad y móvil
+
+- Navegación por teclado completa, enlace "Saltar al contenido", foco visible y foco movido al contenido al cambiar de página.
+- Menú móvil con `aria-expanded`, cierre con Escape y botones de al menos 44 px en pantallas táctiles.
+- Cada página fija su propio título.
+- Respeta `prefers-reduced-motion` (animaciones de entrada y tarjeta tilt).
+- Contraste de colores comprobado contra WCAG 2.2 AA en ambos temas.
+- El contenido Markdown no ejecuta HTML crudo.
+
+## Páginas legales
+
+`/terminos`, `/privacidad` y `/proteccion-de-datos` se escriben en `content/legal/*.md` y leen sus datos de `src/data/site.ts` (nombre, correo, dominio, país).
+
+> ⚠️ **Antes de publicar:** completa `src/data/site.ts` y ejecuta `npm run check:publish`. Los textos son un borrador base redactado a partir de lo que Moss hace hoy (sin cuentas, formularios, cookies ni analítica); **no son asesoría legal**, conviene que los revise un profesional. Si añades analítica, cookies o formularios, actualiza antes la política de privacidad.
+
 ## Estructura
 
 ```
 content/
 ├── manual/<categoría>/*.md
-└── journal/*.md
+├── journal/*.md
+└── legal/*.md
 src/
 ├── components/   # layout, code, content
 ├── lab/entries/  # demos del Laboratorio
-├── lib/          # lab, content, knowledge, search, frontmatter
+├── data/         # site.ts: datos del sitio para las páginas legales
+├── lib/          # lab, content, knowledge, search, frontmatter, theme, legal
 └── pages/
 ```
 
@@ -106,4 +128,4 @@ Este repositorio es público. No se guardan claves reales: usa variables de ento
 
 ## Estado
 
-🚧 En construcción. Hecho: fundamentos, Laboratorio, Manual, Bitácora y Herbario. Pendiente: pulido de animaciones y accesibilidad, capturas y despliegue.
+🚧 En construcción. Hecho: fundamentos, Laboratorio, Manual, Bitácora, Herbario, tema claro/oscuro, accesibilidad, pruebas en móvil y páginas legales. Pendiente: capturas y despliegue.

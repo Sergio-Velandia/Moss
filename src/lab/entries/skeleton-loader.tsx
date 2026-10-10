@@ -14,7 +14,7 @@ export const meta: LabMeta = {
 export default function SkeletonCard() {
   return (
     <div
-      className="w-64 rounded-2xl border border-white/70 bg-white/60 p-4 shadow-sm"
+      className="w-64 rounded-2xl border border-surface/70 bg-surface/60 p-4 shadow-sm"
       role="status"
       aria-label="Cargando contenido"
     >

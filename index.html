@@ -1,13 +1,28 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>moss</title>
+    <meta name="description" content="Moss — Digital Garden: mi biblioteca personal de componentes, documentación y aprendizajes técnicos." />
+    <meta name="theme-color" content="#faf7ef" />
+    <title>Moss — Digital Garden</title>
+    <!-- Aplica el tema antes de pintar para evitar el parpadeo claro → oscuro -->
+    <script>
+      try {
+        var t = localStorage.getItem('moss-theme')
+        if (t !== 'light' && t !== 'dark') {
+          t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+        }
+        document.documentElement.dataset.theme = t
+        var m = document.querySelector('meta[name="theme-color"]')
+        if (m) m.setAttribute('content', t === 'dark' ? '#141a13' : '#faf7ef')
+      } catch (e) {}
+    </script>
   </head>
   <body>
     <div id="root"></div>
+    <noscript><p style="padding:1rem;font-family:system-ui,sans-serif">Moss necesita JavaScript activado para funcionar.</p></noscript>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

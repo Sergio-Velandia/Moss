@@ -8,7 +8,8 @@
     "build": "tsc -b && vite build",
     "lint": "oxlint",
     "preview": "vite preview",
-    "test": "vitest run"
+    "test": "vitest run",
+    "check:publish": "node scripts/check-site.mjs"
   },
   "dependencies": {
     "github-slugger": "^2.0.0",

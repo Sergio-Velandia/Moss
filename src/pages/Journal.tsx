@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom'
 import { journalPosts } from '../lib/content'
 import { formatDate } from '../lib/format'
+import { useDocumentTitle } from '../lib/useDocumentTitle'
 
 export default function Journal() {
+  useDocumentTitle('La Bitácora')
   return (
     <section>
       <h1 className="text-3xl font-semibold tracking-tight">La Bitácora</h1>
@@ -13,7 +15,7 @@ export default function Journal() {
       {journalPosts.length === 0 ? (
         <p className="mt-10 text-sm text-ink-soft">Todavía no hay artículos. 🌱</p>
       ) : (
-        <ul className="mt-8 divide-y divide-cream-deep rounded-2xl border border-white/70 bg-white/50">
+        <ul className="mt-8 divide-y divide-cream-deep rounded-2xl border border-surface/70 bg-surface/50">
           {journalPosts.map((p) => (
             <li key={p.id}>
               <Link to={p.url} className="block px-6 py-5 transition hover:bg-sage/10">

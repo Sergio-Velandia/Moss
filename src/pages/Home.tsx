@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { motion } from 'motion/react'
 import { BookOpen, FlaskConical, Feather, Search } from 'lucide-react'
 import { knowledgeItems, typeLabel } from '../lib/knowledge'
+import { useDocumentTitle } from '../lib/useDocumentTitle'
 
 const pillars = [
   { to: '/laboratorio', title: 'El Laboratorio', desc: 'Componentes y snippets con vista previa en vivo.', Icon: FlaskConical },
@@ -12,6 +13,7 @@ const pillars = [
 ]
 
 export default function Home() {
+  useDocumentTitle()
   const [q, setQ] = useState('')
   const navigate = useNavigate()
   const recent = knowledgeItems.slice(0, 5)
@@ -28,14 +30,14 @@ export default function Home() {
         Planta, documenta, conecta, prueba y reutiliza. El conocimiento técnico no debería quedarse enterrado.
       </p>
 
-      <form onSubmit={submit} role="search" className="mt-6 flex max-w-xl items-center gap-2 rounded-2xl border border-white/70 bg-white/60 px-4 py-2.5 shadow-sm backdrop-blur focus-within:ring-2 focus-within:ring-sage">
+      <form onSubmit={submit} role="search" className="mt-6 flex max-w-xl items-center gap-2 rounded-2xl border border-surface/70 bg-surface/60 px-4 shadow-sm backdrop-blur focus-within:ring-2 focus-within:ring-sage-deep">
         <Search size={18} className="text-ink-soft" aria-hidden />
         <input
           value={q}
           onChange={(e) => setQ(e.target.value)}
-          placeholder="Busca una animación, una consulta SQL, un webhook…"
+          placeholder="Busca animaciones, SQL, webhooks…"
           aria-label="Buscar en el jardín"
-          className="w-full bg-transparent text-sm outline-none placeholder:text-ink-soft/70"
+          className="w-full bg-transparent py-3 text-sm outline-none placeholder:text-ink-soft"
         />
       </form>
 
@@ -49,7 +51,7 @@ export default function Home() {
           >
             <Link
               to={to}
-              className="block rounded-2xl border border-white/70 bg-white/50 p-5 shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:shadow-md"
+              className="block rounded-2xl border border-surface/70 bg-surface/50 p-5 shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:shadow-md"
             >
               <Icon className="text-sage-deep" size={22} aria-hidden />
               <h2 className="mt-3 font-medium">{title}</h2>
@@ -60,7 +62,7 @@ export default function Home() {
       </div>
 
       <h2 className="mt-12 text-sm font-medium uppercase tracking-wide text-ink-soft">Recién plantado</h2>
-      <ul className="mt-3 divide-y divide-cream-deep rounded-2xl border border-white/70 bg-white/50">
+      <ul className="mt-3 divide-y divide-cream-deep rounded-2xl border border-surface/70 bg-surface/50">
         {recent.map((e) => (
           <li key={e.id}>
             <Link
