@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+/* Moss — design tokens (sage / cream / lavender, pastel) */
+@theme {
+  --color-cream: #faf7ef;
+  --color-cream-deep: #f1ecdd;
+  --color-sage: #9caf88;
+  --color-sage-deep: #5f7a52;
+  --color-lavender: #c8bfe7;
+  --color-lavender-deep: #7a6aa8;
+  --color-warm: #e8c9a8;
+  --color-ink: #2f3a2c;
+  --color-ink-soft: #5b6657;
+
+  --font-sans: "Inter", system-ui, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+}
+
+html {
+  background: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(60rem 30rem at 10% -10%, rgb(156 175 136 / 0.25), transparent),
+    radial-gradient(50rem 28rem at 100% 0%, rgb(200 191 231 / 0.3), transparent),
+    var(--color-cream);
+}
+
+/* Respeta la preferencia de movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
