@@ -134,6 +134,14 @@ export default function Layout() {
           >
             Código en GitHub<span className="sr-only"> (se abre en una pestaña nueva)</span>
           </a>
+          <a
+            href={site.portfolioUrl}
+            target="_blank"
+            rel="noreferrer noopener"
+            className="inline-block py-1.5 underline-offset-2 hover:text-sage-deep hover:underline"
+          >
+            Mi portafolio<span className="sr-only"> (se abre en una pestaña nueva)</span>
+          </a>
         </nav>
       </footer>
     </div>

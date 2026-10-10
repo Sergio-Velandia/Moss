@@ -103,7 +103,7 @@ El botón de la cabecera alterna entre los dos temas. Sin elección manual, Moss
 
 ## Páginas legales
 
-`/terminos`, `/privacidad` y `/proteccion-de-datos` se escriben en `content/legal/*.md` y leen sus datos de `src/data/site.ts` (nombre, correo, dominio, país).
+`/terminos`, `/privacidad` y `/proteccion-de-datos` se escriben en `content/legal/*.md` y leen sus datos de `src/data/site.ts` (nombre, correo, portafolio, país).
 
 > ⚠️ **Antes de publicar:** completa `src/data/site.ts` y ejecuta `npm run check:publish`. Los textos son un borrador base redactado a partir de lo que Moss hace hoy (sin cuentas, formularios, cookies ni analítica); **no son asesoría legal**, conviene que los revise un profesional. Si añades analítica, cookies o formularios, actualiza antes la política de privacidad.
 

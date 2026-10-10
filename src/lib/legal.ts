@@ -15,11 +15,11 @@ const files = import.meta.glob('/content/legal/*.md', {
   import: 'default',
 }) as Record<string, string>
 
-// Variables disponibles en los textos legales: {{owner}}, {{email}}, {{site}}, {{repo}}, {{country}}
+// Variables disponibles en los textos legales: {{owner}}, {{email}}, {{portfolio}}, {{repo}}, {{country}}
 const values: Record<string, string> = {
   owner: site.ownerName,
   email: site.contactEmail,
-  site: site.siteUrl,
+  portfolio: site.portfolioUrl,
   repo: site.repoUrl,
   country: site.country,
 }

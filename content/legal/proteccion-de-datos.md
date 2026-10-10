@@ -11,7 +11,7 @@ En Colombia, el tratamiento de datos personales está regulado por la Ley 1581 d
 
 ## Responsable del tratamiento
 
-{{owner}}, con contacto en {{email}}. Sitio: {{site}}.
+{{owner}}, con contacto en {{email}}. Portafolio: {{portfolio}}.
 
 ## Datos que se tratan y para qué
 

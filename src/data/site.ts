@@ -1,13 +1,12 @@
 /**
- * Datos del sitio. Las páginas legales leen estos valores.
- * ANTES DE PUBLICAR: reemplaza ownerName, contactEmail y siteUrl (los textos entre corchetes son marcadores).
+ * Datos del sitio. Las páginas legales y el pie de página leen estos valores.
  */
 export const site = {
   name: 'Moss — Digital Garden',
-  siteUrl: '[https://tu-dominio.example]',
+  portfolioUrl: 'https://sergio-velandia.github.io/mi-portafolio/',
   repoUrl: 'https://github.com/Sergio-Velandia/Moss',
-  ownerName: '[Tu nombre completo]',
-  contactEmail: '[tu-correo@ejemplo.com]',
+  ownerName: 'Sergio Andres Ramirez Velandia',
+  contactEmail: 'sergio.velandiar.z@gmail.com',
   country: 'Colombia',
   legalUpdatedAt: '2026-10-10',
 }
