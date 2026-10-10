@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { motion } from 'motion/react'
 import { BookOpen, FlaskConical, Feather, Search } from 'lucide-react'
-import { labEntries } from '../lib/lab'
+import { knowledgeItems, typeLabel } from '../lib/knowledge'
 
 const pillars = [
   { to: '/laboratorio', title: 'El Laboratorio', desc: 'Componentes y snippets con vista previa en vivo.', Icon: FlaskConical },
@@ -14,7 +14,7 @@ const pillars = [
 export default function Home() {
   const [q, setQ] = useState('')
   const navigate = useNavigate()
-  const recent = labEntries.slice(0, 3)
+  const recent = knowledgeItems.slice(0, 5)
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -62,16 +62,16 @@ export default function Home() {
       <h2 className="mt-12 text-sm font-medium uppercase tracking-wide text-ink-soft">Recién plantado</h2>
       <ul className="mt-3 divide-y divide-cream-deep rounded-2xl border border-white/70 bg-white/50">
         {recent.map((e) => (
-          <li key={e.slug}>
+          <li key={e.id}>
             <Link
-              to={`/laboratorio/${e.slug}`}
+              to={e.url}
               className="flex items-center justify-between gap-4 px-5 py-3 transition hover:bg-sage/10"
             >
               <span>
                 <span className="font-medium">{e.title}</span>
                 <span className="ml-2 text-sm text-ink-soft">{e.category}</span>
               </span>
-              <span className="rounded-full bg-lavender/50 px-2 py-0.5 text-xs text-lavender-deep">{e.technology}</span>
+              <span className="rounded-full bg-lavender/50 px-2 py-0.5 text-xs text-lavender-deep">{typeLabel[e.type]}</span>
             </Link>
           </li>
         ))}

@@ -42,7 +42,7 @@ export default function CodeBlock({ code, lang = 'tsx', collapsedLines = 14 }: P
   }
 
   return (
-    <div className="overflow-hidden rounded-2xl border border-white/70 bg-white/70 shadow-sm">
+    <div className="not-prose overflow-hidden rounded-2xl border border-white/70 bg-white/70 shadow-sm">
       <div className="flex items-center justify-between border-b border-cream-deep px-4 py-2 text-xs text-ink-soft">
         <span className="font-mono uppercase tracking-wide">{lang}</span>
         <button

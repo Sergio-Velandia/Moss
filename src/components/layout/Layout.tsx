@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import { NavLink, Outlet } from 'react-router-dom'
 import { Sprout } from 'lucide-react'
 
@@ -36,7 +37,9 @@ export default function Layout() {
       </header>
 
       <main className="flex-1 py-10">
-        <Outlet />
+        <Suspense fallback={<p className="text-sm text-ink-soft">Cargando…</p>}>
+          <Outlet />
+        </Suspense>
       </main>
 
       <footer className="py-6 text-center text-xs text-ink-soft">
