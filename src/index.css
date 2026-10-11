@@ -90,6 +90,10 @@ body {
   outline-offset: 2px;
   border-radius: 6px;
 }
+/* Los buscadores ya marcan el foco con el anillo de su contenedor (focus-within): sin esto se veían dos */
+[role="search"] input:focus-visible {
+  outline: none;
+}
 
 /* El texto seleccionado mantiene buen contraste en ambos temas */
 ::selection {
@@ -128,6 +132,162 @@ body {
   background-color: transparent !important;
 }
 
+/* ——— Diagramas del Manual (```flow y ```mindmap) ——— */
+
+/* Se revelan una vez al entrar en pantalla, nodo a nodo. Solo opacity y transform. */
+.diagram [data-reveal] {
+  opacity: 0;
+  transform: translateY(6px);
+  transition:
+    opacity 0.4s ease-out,
+    transform 0.4s ease-out;
+  transition-delay: calc(var(--i, 0) * 70ms);
+}
+.diagram.is-visible [data-reveal] {
+  opacity: 1;
+  transform: none;
+}
+
+/* Flujo: conexión con punta de flecha. Vertical en móvil, horizontal en .flow-h desde md */
+.flow-link {
+  position: relative;
+  align-self: center;
+  flex: none;
+  width: 1.5px;
+  height: 1.25rem;
+  margin: 2px 0 6px;
+  background: var(--c-sage-deep);
+}
+.flow-link::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -5px;
+  translate: -50% 0;
+  border: 4px solid transparent;
+  border-top: 5px solid var(--c-sage-deep);
+  border-bottom-width: 0;
+}
+@media (min-width: 48rem) {
+  .flow-h .flow-link {
+    width: 1.25rem;
+    height: 1.5px;
+    margin: 0 8px 0 4px;
+  }
+  .flow-h .flow-link::after {
+    left: auto;
+    right: -5px;
+    bottom: auto;
+    top: 50%;
+    translate: 0 -50%;
+    border: 4px solid transparent;
+    border-left: 5px solid var(--c-sage-deep);
+    border-right-width: 0;
+  }
+}
+
+/* Mapa conceptual: un raíl une el centro con cada rama.
+   Móvil: raíl vertical a la izquierda. Desde md: árbol con raíl horizontal. */
+/* flex evita el hueco de línea bajo el nodo central, que cortaría el raíl */
+.mm-center-wrap {
+  display: flex;
+}
+.mm-branches {
+  --rail: 1.5px solid var(--c-sage-deep);
+  --gap: 0.75rem;
+  --stub: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+  margin-left: 0.75rem;
+  padding-left: 1.25rem;
+}
+.mm-branch {
+  position: relative;
+}
+.mm-branch::before,
+.mm-branch::after {
+  content: "";
+  position: absolute;
+}
+.mm-branch::before {
+  left: -1.25rem;
+  top: calc(var(--gap) * -1);
+  bottom: 0;
+  border-left: var(--rail);
+}
+.mm-branch:first-child::before {
+  top: 0;
+}
+.mm-branch:last-child::before {
+  bottom: auto;
+  height: calc(var(--gap) + var(--stub));
+}
+.mm-branch:first-child:last-child::before {
+  height: var(--stub);
+}
+.mm-branch::after {
+  left: -1.25rem;
+  top: var(--stub);
+  width: 1.25rem;
+  border-top: var(--rail);
+}
+@media (min-width: 48rem) {
+  .mm-center-wrap {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 0.75rem;
+  }
+  .mm-center-wrap::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    height: 0.75rem;
+    border-left: 1.5px solid var(--c-sage-deep);
+  }
+  .mm-branches {
+    flex-direction: row;
+    margin-left: 0;
+    padding-left: 0;
+    padding-top: 0.75rem;
+  }
+  .mm-branch {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+  /* Tramo del raíl horizontal: cubre la mitad del hueco a cada lado para que el raíl sea continuo */
+  .mm-branch::before,
+  .mm-branch:first-child::before,
+  .mm-branch:last-child::before {
+    top: -0.75rem;
+    bottom: auto;
+    height: 0;
+    left: calc(var(--gap) / -2);
+    right: calc(var(--gap) / -2);
+    border-left: 0;
+    border-top: var(--rail);
+  }
+  .mm-branch:first-child::before {
+    left: 50%;
+  }
+  .mm-branch:last-child::before {
+    right: 50%;
+  }
+  .mm-branch:first-child:last-child::before {
+    display: none;
+  }
+  .mm-branch::after {
+    top: -0.75rem;
+    left: 50%;
+    width: 0;
+    height: 0.75rem;
+    border-top: 0;
+    border-left: var(--rail);
+  }
+}
+
 /* Respeta la preferencia de movimiento reducido */
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -137,5 +297,10 @@ body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+  /* La regla anterior no anula los retrasos: sin esto, los nodos aparecerían uno a uno igualmente */
+  .diagram [data-reveal] {
+    transition-delay: 0s !important;
+    transform: none !important;
   }
 }

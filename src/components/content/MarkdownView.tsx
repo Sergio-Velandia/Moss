@@ -2,7 +2,9 @@ import ReactMarkdown, { type Components } from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import rehypeSlug from 'rehype-slug'
 import { Link } from 'react-router-dom'
+import { isDiagramLanguage } from '../../lib/diagram'
 import CodeBlock from '../code/CodeBlock'
+import Diagram from './Diagram'
 
 const components: Components = {
   // CodeBlock ya renderiza su propio <pre>
@@ -10,6 +12,8 @@ const components: Components = {
   code: ({ className, children }) => {
     const text = String(children ?? '')
     const lang = /language-([\w-]+)/.exec(className ?? '')?.[1]
+    // ```flow y ```mindmap se dibujan como diagramas en vez de mostrarse como código
+    if (isDiagramLanguage(lang)) return <Diagram lang={lang} source={text} />
     if (lang || text.includes('\n')) {
       return (
         <div className="my-5">

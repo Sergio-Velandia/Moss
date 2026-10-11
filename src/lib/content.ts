@@ -9,6 +9,12 @@ export interface Heading {
   level: 2 | 3
 }
 
+/** Enlace a documentación oficial: en el frontmatter, `references: [Título | https://…, …]` */
+export interface Reference {
+  title: string
+  url: string
+}
+
 export interface Doc {
   /** Identificador único: manual/<categoría>/<slug> o journal/<slug> */
   id: string
@@ -24,6 +30,7 @@ export interface Doc {
   draft: boolean
   /** Ids de contenido relacionado: lab/<slug>, manual/<cat>/<slug>, journal/<slug> */
   related: string[]
+  references: Reference[]
   body: string
   readingMinutes: number
   headings: Heading[]
@@ -55,6 +62,21 @@ function extractHeadings(body: string): Heading[] {
     headings.push({ id: slugger.slug(text), text, level: m[1].length as 2 | 3 })
   }
   return headings
+}
+
+/** "Título | https://…" → { title, url }. Se descartan las entradas sin un enlace https válido. */
+export function parseReferences(entries: string[]): Reference[] {
+  return entries.flatMap((entry) => {
+    const sep = entry.lastIndexOf('|')
+    if (sep < 1) return []
+    const title = entry.slice(0, sep).trim()
+    const url = entry.slice(sep + 1).trim()
+    try {
+      return title && new URL(url).protocol === 'https:' ? [{ title, url }] : []
+    } catch {
+      return []
+    }
+  })
 }
 
 function parseDoc(path: string, raw: string): Doc | null {
@@ -98,6 +120,7 @@ function parseDoc(path: string, raw: string): Doc | null {
     updatedAt: asString(data.updatedAt) || undefined,
     draft: data.draft === true,
     related: asStringArray(data.related),
+    references: parseReferences(asStringArray(data.references)),
     body,
     readingMinutes: Math.max(1, Math.round(words / 200)),
     headings: extractHeadings(body),
