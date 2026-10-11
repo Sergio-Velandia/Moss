@@ -18,12 +18,6 @@ export interface KnowledgeItem {
   body: string
 }
 
-export const typeLabel: Record<ItemType, string> = {
-  lab: 'Laboratorio',
-  manual: 'Manual',
-  journal: 'Bitácora',
-}
-
 export const knowledgeItems: KnowledgeItem[] = [
   ...labEntries.map<KnowledgeItem>((e) => ({
     id: `lab/${e.slug}`,
