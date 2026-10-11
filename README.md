@@ -6,7 +6,7 @@ Mi "segundo cerebro" técnico: una biblioteca personal y visual donde guardo, do
 
 **Autor:** Sergio Andres Ramirez Velandia · [Portafolio](https://sergio-velandia.github.io/mi-portafolio/) · [sergio.velandiar.z@gmail.com](mailto:sergio.velandiar.z@gmail.com)
 
-**Preview** https://sergio-velandia.github.io/Moss/
+**View** https://sergio-velandia.github.io/Moss/
 
 ## Los cuatro pilares
 
