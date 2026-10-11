@@ -122,16 +122,45 @@ createdAt: 2026-10-10
 updatedAt: 2026-10-10   # opcional
 draft: true             # opcional: oculto en la web publicada, visible en desarrollo
 related: [lab/tilt-card, manual/sql/agrupar-con-group-by, journal/mi-articulo]
+references: [Nodo Webhook | https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.webhook/]
 ---
 ```
 
 Los ids de `related` son `lab/<archivo>`, `manual/<categoría>/<archivo>` o `journal/<archivo>`. Una prueba automática avisa si alguno apunta a algo que no existe.
 
+`references` llena el cuadro **"Leer la documentación oficial"** al final de cada guía del Manual: cada elemento es `Título | https://…` (solo se aceptan enlaces https, y el título no puede llevar comas). Una prueba exige que todas las guías del Manual tengan al menos una referencia.
+
+### Diagramas dentro del Markdown
+
+Un bloque de código con el lenguaje `flow` o `mindmap` se dibuja como diagrama (HTML y CSS con los colores del tema, sin librerías) en lugar de mostrarse como código. Para un lector de pantalla son listas: pasos en orden o ramas con sus hijos.
+
+```flow
+# Título opcional
+Webhook :: recibe el POST
+? ¿Válido?
++ Responder 201 | ! Responder 400
+```
+
+- Una línea por paso; `|` separa ramas paralelas del mismo paso (máximo 3). Con 5 pasos o menos el flujo va en horizontal desde 768 px; en móvil, siempre en vertical.
+- `::` separa el título del detalle. Los prefijos `? `, `+ ` y `! ` marcan un nodo como decisión, resultado correcto o error.
+
+```mindmap
+Debounce y throttle
+- Debounce :: espera a que paren los eventos
+  - Buscador
+  - Autoguardado
+- Throttle :: como mucho una vez cada X ms
+```
+
+- La primera línea es el centro; `- ` son ramas (de 2 a 4) y `  - ` (con sangría) sus hijos.
+
+Los nodos aparecen uno tras otro la primera vez que el diagrama entra en pantalla, y de golpe si el sistema pide menos movimiento. Una prueba exige al menos un diagrama por guía del Manual.
+
 > El parser de frontmatter es mínimo a propósito: admite texto, `true/false` y listas en una línea `[a, b]`. No admite listas multilínea ni comas dentro de un elemento de la lista.
 
 ## Búsqueda
 
-El Herbario indexa título, descripción, etiquetas, tecnologías y contenido completo (incluido el código de las demos). Ignora tildes y palabras vacías ("de", "para"…), tolera pequeñas erratas y exige todas las palabras de la consulta; si no hay resultados, acepta cualquiera. El índice se construye en el navegador la primera vez que se busca. Los filtros viven en la URL (`?q=…&tipo=…&tec=…`), así que una búsqueda se puede compartir.
+El Herbario indexa título, descripción, etiquetas, tecnologías y contenido completo (incluido el código de las demos). "Explorar por etiqueta" muestra primero las 16 etiquetas más usadas, con cuántos elementos tiene cada una, y el resto se despliega con "Ver todas". Ignora tildes y palabras vacías ("de", "para"…), tolera pequeñas erratas y exige todas las palabras de la consulta; si no hay resultados, acepta cualquiera. El índice se construye en el navegador la primera vez que se busca. Los filtros viven en la URL (`?q=…&tipo=…&tec=…`), así que una búsqueda se puede compartir.
 
 ## Dashboard del Inicio
 
@@ -142,6 +171,13 @@ La columna "Signos vitales del jardín" del Inicio resume el contenido en tres g
 - **Datos de ejemplo.** Con menos de `MIN_REAL_ITEMS` (10) elementos reales, el tablero muestra `MOCK_ITEMS` y una nota que lo indica. Se editan en `mockSeed`: cada fila es `[meses atrás, día, tipo, título, tecnologías]`, así que el ejemplo siempre termina en el mes actual.
 - **Colores.** Las series usan los tokens `--c-chart-1`, `--c-chart-2` y `--c-chart-3` de `src/index.css` (contraste ≥ 3:1 en ambos temas).
 - **Accesibilidad.** Cada tarjeta es una `<figure>` con su frase resumen y un desplegable "Ver datos como tabla". Las barras y el radar se recorren con el teclado (Tab y flechas).
+
+## Idioma
+
+El selector **ES / EN** de la cabecera cambia la interfaz entre español (por defecto) e inglés. La elección se guarda en el navegador (`moss-lang`), `?lang=en` en la URL abre la página directamente en inglés (útil para compartir) y `<html lang>` se actualiza para lectores de pantalla.
+
+- Se traduce la **interfaz**: navegación, páginas, filtros, el tablero del Inicio, los avisos y las etiquetas de accesibilidad. El contenido (Markdown, demos y textos legales) sigue en español; en inglés, las páginas de contenido muestran el aviso "This content is written in Spanish" y ese contenido va marcado con `lang="es"`.
+- Sin librerías: `src/lib/i18n.ts` guarda el idioma igual que `theme.ts` guarda el tema. Cada componente tiene su objeto `TEXT = { es: {...}, en: {...} }` y lo lee con `const t = useT(TEXT)`.
 
 ## Tema claro y oscuro
 
@@ -218,6 +254,7 @@ Ideas para seguir creciendo:
 
 - Estado de error en el botón con estados.
 - Más categorías en el Manual (Git, CSS, despliegue).
+- Traducir también el contenido al inglés (por ejemplo, con archivos `.en.md` junto a los originales).
 - Feed RSS de la Bitácora.
 - Capturas de pantalla en este README.
 
