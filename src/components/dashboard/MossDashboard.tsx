@@ -30,6 +30,7 @@ import {
   type TechnologyStat,
   type TypeStat,
 } from '../../lib/dashboard'
+import { sectionNames, useLang, useT, type Lang } from '../../lib/i18n'
 import { dashboardGridClass } from './cards'
 import { ChartCard } from './ChartCard'
 
@@ -44,19 +45,67 @@ const typeSwatch: Record<GardenType, string> = {
   laboratorio: 'bg-chart-2',
   bitacora: 'bg-chart-3',
 }
-const typeWithArticle: Record<GardenType, string> = {
-  laboratorio: 'El Laboratorio',
-  manual: 'El Manual',
-  bitacora: 'La Bitácora',
-}
+const typeSection = { laboratorio: 'lab', manual: 'manual', bitacora: 'journal' } as const
 
 const plural = (n: number, one: string, many: string) => `${n} ${n === 1 ? one : many}`
 const capitalize = (s: string) => s.charAt(0).toUpperCase() + s.slice(1)
 
+const TEXT = {
+  es: {
+    sprouts: (n: number) => plural(n, 'brote nuevo', 'brotes nuevos'),
+    items: (n: number) => plural(n, 'elemento', 'elementos'),
+    noSprouts: 'todavía sin brotes nuevos',
+    inMonths: (total: number, months: number) => ` · ${total} en ${plural(months, 'mes', 'meses')}`,
+    nothing: 'Aún no hay nada plantado.',
+    table: 'Ver datos como tabla',
+    currentMonth: ' (mes actual)',
+    growthCaption: 'Elementos plantados por mes',
+    growthHeaders: ['Mes', 'Elementos'] as [string, string],
+    topTech: (tech: string, count: number, total: number) => `${tech} aparece en ${count} de ${plural(total, 'elemento', 'elementos')}`,
+    noTechs: 'Aún no hay tecnologías registradas.',
+    fewTechs: 'Hacen falta al menos tres tecnologías para dibujar la huella.',
+    techCaption: 'Elementos que mencionan cada tecnología',
+    techHeaders: ['Tecnología', 'Elementos'] as [string, string],
+    typeCaption: 'Elementos por sección',
+    typeHeaders: ['Sección', 'Elementos'] as [string, string],
+    legend: 'Leyenda',
+    withArticle: { laboratorio: 'El Laboratorio', manual: 'El Manual', bitacora: 'La Bitácora' } as Record<GardenType, string>,
+    even: 'El jardín está repartido a partes iguales.',
+    leader: (who: string, pct: number) => `${who} reúne el ${pct} % del jardín`,
+    // Solo el artículo va en minúscula: "El Laboratorio y el Manual"
+    tie: (a: string, b: string, pct: number) => `${a} y ${b.replace(/^(El|La) /, (x) => x.toLowerCase())} reúnen el ${pct} % cada uno`,
+  },
+  en: {
+    sprouts: (n: number) => plural(n, 'new sprout', 'new sprouts'),
+    items: (n: number) => plural(n, 'item', 'items'),
+    noSprouts: 'no new sprouts yet',
+    inMonths: (total: number, months: number) => ` · ${total} in ${plural(months, 'month', 'months')}`,
+    nothing: 'Nothing has been planted yet.',
+    table: 'View data as a table',
+    currentMonth: ' (current month)',
+    growthCaption: 'Items planted per month',
+    growthHeaders: ['Month', 'Items'] as [string, string],
+    topTech: (tech: string, count: number, total: number) => `${tech} appears in ${count} of ${plural(total, 'item', 'items')}`,
+    noTechs: 'No technologies recorded yet.',
+    fewTechs: 'At least three technologies are needed to draw the footprint.',
+    techCaption: 'Items that mention each technology',
+    techHeaders: ['Technology', 'Items'] as [string, string],
+    typeCaption: 'Items per section',
+    typeHeaders: ['Section', 'Items'] as [string, string],
+    legend: 'Legend',
+    withArticle: { laboratorio: 'The Lab', manual: 'The Manual', bitacora: 'The Journal' } as Record<GardenType, string>,
+    even: 'The garden is split evenly.',
+    leader: (who: string, pct: number) => `${who} holds ${pct}% of the garden`,
+    tie: (a: string, b: string, pct: number) => `${a} and ${b.replace(/^The /, 'the ')} hold ${pct}% each`,
+  },
+}
+type Text = (typeof TEXT)[Lang]
+
 export default function MossDashboard({ items }: { items: GardenItem[] }) {
   // Si el sistema pide menos movimiento, recharts tampoco anima
   const animate = !useReducedMotion()
-  const months = useMemo(() => byMonth(items), [items])
+  const lang = useLang()
+  const months = useMemo(() => byMonth(items, undefined, 12, lang), [items, lang])
   const technologies = useMemo(() => byTechnology(items), [items])
   const types = useMemo(() => byType(items), [items])
 
@@ -88,25 +137,15 @@ function tooltipFor<T>(render: (datum: T) => ReactNode) {
   }
 }
 
-const growthTooltip = tooltipFor<MonthStat>((m) => (
-  <TooltipCard title={capitalize(m.fullLabel)}>{plural(m.count, 'brote nuevo', 'brotes nuevos')}</TooltipCard>
-))
-const ecosystemTooltip = tooltipFor<TechnologyStat>((t) => (
-  <TooltipCard title={t.technology}>{plural(t.count, 'elemento', 'elementos')}</TooltipCard>
-))
-const distributionTooltip = tooltipFor<TypeStat>((t) => (
-  <TooltipCard title={t.label}>
-    {plural(t.count, 'elemento', 'elementos')} · {t.percent} %
-  </TooltipCard>
-))
 
 // ——— Tabla alternativa ———
 
 function DataTable({ caption, headers, rows }: { caption: string; headers: [string, string]; rows: [string, string][] }) {
+  const t = useT(TEXT)
   return (
     <details className="text-xs">
       <summary className="inline-flex min-h-11 cursor-pointer items-center rounded-lg text-ink-soft transition hover:text-sage-deep">
-        Ver datos como tabla
+        {t.table}
       </summary>
       <table className="mt-1 w-full text-left">
         <caption className="sr-only">{caption}</caption>
@@ -132,17 +171,21 @@ function DataTable({ caption, headers, rows }: { caption: string; headers: [stri
 // ——— 1. Barras: el ritmo de crecimiento ———
 
 function GrowthCard({ months, animate }: { months: MonthStat[]; animate: boolean }) {
+  const t = useT(TEXT)
   const current = months.at(-1)
   const total = months.reduce((sum, m) => sum + m.count, 0)
+  const tooltip = useMemo(
+    () => tooltipFor<MonthStat>((m) => <TooltipCard title={capitalize(m.fullLabel)}>{t.sprouts(m.count)}</TooltipCard>),
+    [t],
+  )
 
   const summary = current ? (
     <p>
-      {capitalize(current.fullLabel)}:{' '}
-      {current.count === 0 ? 'todavía sin brotes nuevos' : plural(current.count, 'brote nuevo', 'brotes nuevos')}
-      {months.length > 1 && ` · ${total} en ${plural(months.length, 'mes', 'meses')}`}
+      {capitalize(current.fullLabel)}: {current.count === 0 ? t.noSprouts : t.sprouts(current.count)}
+      {months.length > 1 && t.inMonths(total, months.length)}
     </p>
   ) : (
-    <p>Aún no hay nada plantado.</p>
+    <p>{t.nothing}</p>
   )
 
   return (
@@ -152,9 +195,9 @@ function GrowthCard({ months, animate }: { months: MonthStat[]; animate: boolean
       summary={summary}
       footer={
         <DataTable
-          caption="Elementos plantados por mes"
-          headers={['Mes', 'Elementos']}
-          rows={months.map((m) => [`${capitalize(m.fullLabel)}${m.isCurrent ? ' (mes actual)' : ''}`, String(m.count)])}
+          caption={t.growthCaption}
+          headers={t.growthHeaders}
+          rows={months.map((m) => [`${capitalize(m.fullLabel)}${m.isCurrent ? t.currentMonth : ''}`, String(m.count)])}
         />
       }
     >
@@ -169,7 +212,7 @@ function GrowthCard({ months, animate }: { months: MonthStat[]; animate: boolean
           />
           <YAxis hide allowDecimals={false} />
           <Tooltip
-            content={growthTooltip}
+            content={tooltip}
             cursor={{ fill: 'var(--c-sage)', fillOpacity: 0.14, radius: 10 }}
             wrapperStyle={{ outline: 'none' }}
           />
@@ -218,25 +261,28 @@ function monthTick(months: MonthStat[]) {
 // ——— 2. Radar: el ecosistema ———
 
 function EcosystemCard({ technologies, total, animate }: { technologies: TechnologyStat[]; total: number; animate: boolean }) {
+  const t = useT(TEXT)
   const top = technologies[0]
+  const tooltip = useMemo(
+    () => tooltipFor<TechnologyStat>((x) => <TooltipCard title={x.technology}>{t.items(x.count)}</TooltipCard>),
+    [t],
+  )
   return (
     <ChartCard
       id="ecosystem"
       index={1}
       summary={
         top ? (
-          <p>
-            {top.technology} aparece en {top.count} de {plural(total, 'elemento', 'elementos')}
-          </p>
+          <p>{t.topTech(top.technology, top.count, total)}</p>
         ) : (
-          <p>Aún no hay tecnologías registradas.</p>
+          <p>{t.noTechs}</p>
         )
       }
       footer={
         <DataTable
-          caption="Elementos que mencionan cada tecnología"
-          headers={['Tecnología', 'Elementos']}
-          rows={technologies.map((t) => [t.technology, String(t.count)])}
+          caption={t.techCaption}
+          headers={t.techHeaders}
+          rows={technologies.map((x) => [x.technology, String(x.count)])}
         />
       }
     >
@@ -247,7 +293,7 @@ function EcosystemCard({ technologies, total, animate }: { technologies: Technol
             <PolarGrid stroke="var(--c-sage)" strokeOpacity={0.35} />
             <PolarAngleAxis dataKey="technology" tick={{ fill: 'var(--c-ink-soft)', fontSize: 12 }} />
             <PolarRadiusAxis domain={[0, 100]} tick={false} axisLine={false} />
-            <Tooltip content={ecosystemTooltip} cursor={false} wrapperStyle={{ outline: 'none' }} />
+            <Tooltip content={tooltip} cursor={false} wrapperStyle={{ outline: 'none' }} />
             <Radar
               dataKey="value"
               name="Presencia"
@@ -263,7 +309,7 @@ function EcosystemCard({ technologies, total, animate }: { technologies: Technol
         </ResponsiveContainer>
       ) : (
         <p className="flex h-full items-center justify-center text-center text-sm text-ink-soft">
-          Hacen falta al menos tres tecnologías para dibujar la huella.
+          {t.fewTechs}
         </p>
       )}
     </ChartCard>
@@ -273,28 +319,39 @@ function EcosystemCard({ technologies, total, animate }: { technologies: Technol
 // ——— 3. Dona: la distribución del jardín ———
 
 /** Frase de la dona. Con empates nombra a todas las secciones empatadas, para no favorecer a ninguna. */
-function distributionSummary(types: TypeStat[], total: number) {
-  if (total === 0) return 'Aún no hay nada plantado.'
-  const max = Math.max(...types.map((t) => t.count))
-  const leaders = types.filter((t) => t.count === max)
-  if (leaders.length === types.length) return 'El jardín está repartido a partes iguales.'
-  if (leaders.length === 1) return `${typeWithArticle[leaders[0].type]} reúne el ${leaders[0].percent} % del jardín`
-  const [first, second] = leaders.map((t) => typeWithArticle[t.type])
-  // Solo el artículo va en minúscula: "El Laboratorio y el Manual"
-  return `${first} y ${second.replace(/^(El|La) /, (a) => a.toLowerCase())} reúnen el ${leaders[0].percent} % cada uno`
+function distributionSummary(types: TypeStat[], total: number, t: Text) {
+  if (total === 0) return t.nothing
+  const max = Math.max(...types.map((x) => x.count))
+  const leaders = types.filter((x) => x.count === max)
+  if (leaders.length === types.length) return t.even
+  if (leaders.length === 1) return t.leader(t.withArticle[leaders[0].type], leaders[0].percent)
+  const [first, second] = leaders.map((x) => t.withArticle[x.type])
+  return t.tie(first, second, leaders[0].percent)
 }
 
 function DistributionCard({ types, total, animate }: { types: TypeStat[]; total: number; animate: boolean }) {
+  const lang = useLang()
+  const t = useT(TEXT)
+  const name = (type: GardenType) => sectionNames[lang][typeSection[type]]
+  const tooltip = useMemo(
+    () =>
+      tooltipFor<TypeStat>((x) => (
+        <TooltipCard title={sectionNames[lang][typeSection[x.type]]}>
+          {t.items(x.count)} · {x.percent} %
+        </TooltipCard>
+      )),
+    [t, lang],
+  )
   return (
     <ChartCard
       id="distribution"
       index={2}
-      summary={<p>{distributionSummary(types, total)}</p>}
+      summary={<p>{distributionSummary(types, total, t)}</p>}
       footer={
         <DataTable
-          caption="Elementos por sección"
-          headers={['Sección', 'Elementos']}
-          rows={types.map((t) => [t.label, `${t.count} (${t.percent} %)`])}
+          caption={t.typeCaption}
+          headers={t.typeHeaders}
+          rows={types.map((x) => [name(x.type), `${x.count} (${x.percent} %)`])}
         />
       }
     >
@@ -304,7 +361,7 @@ function DistributionCard({ types, total, animate }: { types: TypeStat[]; total:
             {/* Sin capa de teclado: la dona no tiene eje que recorrer; la leyenda y la tabla dan los mismos datos */}
             <PieChart accessibilityLayer={false}>
               {/* Por encima del total central, que es un elemento HTML superpuesto */}
-              <Tooltip content={distributionTooltip} wrapperStyle={{ outline: 'none', zIndex: 10 }} />
+              <Tooltip content={tooltip} wrapperStyle={{ outline: 'none', zIndex: 10 }} />
               <Pie
                 data={types}
                 dataKey="count"
@@ -325,17 +382,17 @@ function DistributionCard({ types, total, animate }: { types: TypeStat[]; total:
           </ResponsiveContainer>
           <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center" aria-hidden>
             <span className="text-2xl font-semibold tabular-nums">{total}</span>
-            <span className="text-xs text-ink-soft">{total === 1 ? 'elemento' : 'elementos'}</span>
+            <span className="text-xs text-ink-soft">{t.items(total).replace(/^\d+ /, '')}</span>
           </div>
         </div>
 
-        <ul className="mt-2 space-y-0.5 text-sm" aria-label="Leyenda">
-          {types.map((t) => (
-            <li key={t.type} className="flex h-7 items-center gap-2">
-              <span className={`size-3 shrink-0 rounded-full ${typeSwatch[t.type]}`} aria-hidden />
-              <span className="flex-1">{t.label}</span>
+        <ul className="mt-2 space-y-0.5 text-sm" aria-label={t.legend}>
+          {types.map((x) => (
+            <li key={x.type} className="flex h-7 items-center gap-2">
+              <span className={`size-3 shrink-0 rounded-full ${typeSwatch[x.type]}`} aria-hidden />
+              <span className="flex-1">{name(x.type)}</span>
               <span className="tabular-nums text-ink-soft">
-                {t.count} · {t.percent} %
+                {x.count} · {x.percent} %
               </span>
             </li>
           ))}

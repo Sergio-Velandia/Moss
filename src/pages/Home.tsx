@@ -4,22 +4,54 @@ import { motion } from 'motion/react'
 import { BookOpen, FlaskConical, Feather, Search } from 'lucide-react'
 import { DashboardSkeleton } from '../components/dashboard/ChartCard'
 import { getGardenItems, selectItems } from '../lib/dashboard'
-import { knowledgeItems, typeLabel } from '../lib/knowledge'
+import { sectionNames, useLang, useT } from '../lib/i18n'
+import { knowledgeItems } from '../lib/knowledge'
 import { useDocumentTitle } from '../lib/useDocumentTitle'
 
 // recharts pesa: el tablero se descarga aparte, sin retrasar el resto del Inicio
 const MossDashboard = lazy(() => import('../components/dashboard/MossDashboard'))
 const garden = selectItems(getGardenItems())
 
-const pillars = [
-  { to: '/laboratorio', title: 'El Laboratorio', desc: 'Componentes y snippets con vista previa en vivo.', Icon: FlaskConical },
-  { to: '/manual', title: 'El Manual', desc: 'Documentación y lógica que cuesta reconstruir.', Icon: BookOpen },
-  { to: '/bitacora', title: 'La Bitácora', desc: 'Aprendizajes, decisiones y reflexiones técnicas.', Icon: Feather },
-  { to: '/herbario', title: 'El Herbario', desc: 'Búsqueda global para encontrarlo todo rápido.', Icon: Search },
-]
+const pillarIcons = { lab: FlaskConical, manual: BookOpen, journal: Feather, herbario: Search }
+const pillarRoutes = { lab: '/laboratorio', manual: '/manual', journal: '/bitacora', herbario: '/herbario' }
+
+const TEXT = {
+  es: {
+    title: 'Tu jardín digital de código',
+    intro: 'Planta, documenta, conecta, prueba y reutiliza. El conocimiento técnico no debería quedarse enterrado.',
+    placeholder: 'Busca animaciones, SQL, webhooks…',
+    searchLabel: 'Buscar en el jardín',
+    pillars: {
+      lab: ['El Laboratorio', 'Componentes y snippets con vista previa en vivo.'],
+      manual: ['El Manual', 'Documentación y lógica que cuesta reconstruir.'],
+      journal: ['La Bitácora', 'Aprendizajes, decisiones y reflexiones técnicas.'],
+      herbario: ['El Herbario', 'Búsqueda global para encontrarlo todo rápido.'],
+    },
+    recent: 'Recién plantado',
+    vitals: 'Signos vitales del jardín',
+    mockNote: 'Datos de ejemplo hasta que haya más contenido',
+  },
+  en: {
+    title: 'Your digital code garden',
+    intro: 'Plant, document, connect, test and reuse. Technical knowledge shouldn’t stay buried.',
+    placeholder: 'Search animations, SQL, webhooks…',
+    searchLabel: 'Search the garden',
+    pillars: {
+      lab: ['The Lab', 'Components and snippets with a live preview.'],
+      manual: ['The Manual', 'Documentation and logic that’s hard to rebuild.'],
+      journal: ['The Journal', 'Learnings, decisions and technical reflections.'],
+      herbario: ['The Herbarium', 'Global search to find everything fast.'],
+    },
+    recent: 'Recently planted',
+    vitals: 'Garden vital signs',
+    mockNote: 'Sample data until there is more content',
+  },
+}
 
 export default function Home() {
   useDocumentTitle()
+  const lang = useLang()
+  const t = useT(TEXT)
   const [q, setQ] = useState('')
   const navigate = useNavigate()
   const recent = knowledgeItems.slice(0, 5)
@@ -32,9 +64,9 @@ export default function Home() {
   return (
     <section className="lg:grid lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-start lg:gap-8">
       <div className="min-w-0">
-        <h1 className="text-4xl font-semibold tracking-tight">Tu jardín digital de código</h1>
+        <h1 className="text-4xl font-semibold tracking-tight">{t.title}</h1>
         <p className="mt-3 max-w-xl text-ink-soft">
-          Planta, documenta, conecta, prueba y reutiliza. El conocimiento técnico no debería quedarse enterrado.
+          {t.intro}
         </p>
 
         <form onSubmit={submit} role="search" className="mt-6 flex max-w-xl items-center gap-2 rounded-2xl border border-surface/70 bg-surface/60 px-4 shadow-sm backdrop-blur focus-within:ring-2 focus-within:ring-sage-deep">
@@ -42,22 +74,25 @@ export default function Home() {
           <input
             value={q}
             onChange={(e) => setQ(e.target.value)}
-            placeholder="Busca animaciones, SQL, webhooks…"
-            aria-label="Buscar en el jardín"
+            placeholder={t.placeholder}
+            aria-label={t.searchLabel}
             className="w-full bg-transparent py-3 text-sm outline-none placeholder:text-ink-soft"
           />
         </form>
 
         <div className="mt-10 grid gap-4 sm:grid-cols-2">
-          {pillars.map(({ to, title, desc, Icon }, i) => (
+          {(Object.keys(pillarRoutes) as (keyof typeof pillarRoutes)[]).map((id, i) => {
+            const [title, desc] = t.pillars[id]
+            const Icon = pillarIcons[id]
+            return (
             <motion.div
-              key={to}
+              key={id}
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.06, duration: 0.3 }}
             >
               <Link
-                to={to}
+                to={pillarRoutes[id]}
                 className="block rounded-2xl border border-surface/70 bg-surface/50 p-5 shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:shadow-md"
               >
                 <Icon className="text-sage-deep" size={22} aria-hidden />
@@ -65,10 +100,11 @@ export default function Home() {
                 <p className="mt-1 text-sm text-ink-soft">{desc}</p>
               </Link>
             </motion.div>
-          ))}
+            )
+          })}
         </div>
 
-        <h2 className="mt-12 text-sm font-medium uppercase tracking-wide text-ink-soft">Recién plantado</h2>
+        <h2 className="mt-12 text-sm font-medium uppercase tracking-wide text-ink-soft">{t.recent}</h2>
         <ul className="mt-3 divide-y divide-cream-deep rounded-2xl border border-surface/70 bg-surface/50">
           {recent.map((e) => (
             <li key={e.id}>
@@ -76,11 +112,11 @@ export default function Home() {
                 to={e.url}
                 className="flex items-center justify-between gap-4 px-5 py-3 transition hover:bg-sage/10"
               >
-                <span>
+                <span lang="es">
                   <span className="font-medium">{e.title}</span>
                   <span className="ml-2 text-sm text-ink-soft">{e.category}</span>
                 </span>
-                <span className="rounded-full bg-lavender/50 px-2 py-0.5 text-xs text-lavender-deep">{typeLabel[e.type]}</span>
+                <span className="rounded-full bg-lavender/50 px-2 py-0.5 text-xs text-lavender-deep">{sectionNames[lang][e.type]}</span>
               </Link>
             </li>
           ))}
@@ -89,9 +125,9 @@ export default function Home() {
 
       <aside aria-labelledby="vitals-title" className="mt-12 lg:mt-0">
         <h2 id="vitals-title" className="text-sm font-medium uppercase tracking-wide text-ink-soft">
-          Signos vitales del jardín
+          {t.vitals}
         </h2>
-        {garden.isMock && <p className="mt-1 text-xs text-ink-soft">Datos de ejemplo hasta que haya más contenido</p>}
+        {garden.isMock && <p className="mt-1 text-xs text-ink-soft">{t.mockNote}</p>}
         <div className="mt-3">
           <Suspense fallback={<DashboardSkeleton />}>
             <MossDashboard items={garden.items} />

@@ -1,5 +1,11 @@
 import { useEffect, useState } from 'react'
 import { Check, ChevronDown, ChevronUp, Copy } from 'lucide-react'
+import { useT } from '../../lib/i18n'
+
+const TEXT = {
+  es: { copy: 'Copiar', copied: '¡Copiado!', collapse: 'Contraer', expand: (n: number) => `Ver todo (${n} líneas)` },
+  en: { copy: 'Copy', copied: 'Copied!', collapse: 'Collapse', expand: (n: number) => `Show all (${n} lines)` },
+}
 interface Props {
   code: string
   lang?: string
@@ -8,6 +14,7 @@ interface Props {
 }
 
 export default function CodeBlock({ code, lang = 'tsx', collapsedLines = 14 }: Props) {
+  const t = useT(TEXT)
   const [html, setHtml] = useState<string | null>(null)
   const [copied, setCopied] = useState(false)
   const [expanded, setExpanded] = useState(false)
@@ -51,7 +58,7 @@ export default function CodeBlock({ code, lang = 'tsx', collapsedLines = 14 }: P
           aria-live="polite"
         >
           {copied ? <Check size={14} aria-hidden /> : <Copy size={14} aria-hidden />}
-          {copied ? '¡Copiado!' : 'Copiar'}
+          {copied ? t.copied : t.copy}
         </button>
       </div>
 
@@ -72,7 +79,7 @@ export default function CodeBlock({ code, lang = 'tsx', collapsedLines = 14 }: P
           className="flex w-full items-center justify-center gap-1 border-t border-cream-deep py-2 text-xs text-ink-soft transition hover:bg-sage/10"
         >
           {expanded ? <ChevronUp size={14} aria-hidden /> : <ChevronDown size={14} aria-hidden />}
-          {expanded ? 'Contraer' : `Ver todo (${lineCount} líneas)`}
+          {expanded ? t.collapse : t.expand(lineCount)}
         </button>
       )}
     </div>

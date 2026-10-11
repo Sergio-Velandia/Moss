@@ -70,6 +70,11 @@ describe('byMonth', () => {
     expect(byMonth([item('2026-11-02'), item('sin fecha')], oct15)).toEqual([])
   })
 
+  it('traduce las etiquetas al inglés', () => {
+    const [month] = byMonth([item('2026-10-03')], oct15, 12, 'en')
+    expect(month).toMatchObject({ label: 'Oct', fullLabel: 'October 2026' })
+  })
+
   it('con la lista vacía no devuelve meses', () => {
     expect(byMonth([], oct15)).toEqual([])
   })

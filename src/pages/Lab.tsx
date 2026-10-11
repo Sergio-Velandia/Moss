@@ -1,18 +1,41 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'motion/react'
+import { useT } from '../lib/i18n'
 import { labEntries } from '../lib/lab'
 import { useDocumentTitle } from '../lib/useDocumentTitle'
 
-const ALL = 'Todas'
+/** Valor interno de "sin filtro"; el texto visible depende del idioma */
+const ALL = ''
+
+const TEXT = {
+  es: {
+    title: 'El Laboratorio',
+    intro: 'Componentes y snippets listos para probar, copiar y reutilizar.',
+    tech: 'Tecnología',
+    category: 'Categoría',
+    all: 'Todas',
+    empty: 'No hay entradas con esos filtros todavía. 🌱',
+  },
+  en: {
+    title: 'The Lab',
+    intro: 'Components and snippets ready to try, copy and reuse.',
+    tech: 'Technology',
+    category: 'Category',
+    all: 'All',
+    empty: 'No entries match those filters yet. 🌱',
+  },
+}
 
 function Chips({
   label,
   options,
   value,
   onChange,
+  allLabel,
 }: {
   label: string
+  allLabel: string
   options: string[]
   value: string
   onChange: (v: string) => void
@@ -29,7 +52,7 @@ function Chips({
             value === o ? 'bg-accent text-on-accent' : 'bg-surface/60 text-ink-soft hover:bg-sage/20'
           }`}
         >
-          {o}
+          {o === ALL ? allLabel : o}
         </button>
       ))}
     </div>
@@ -37,7 +60,8 @@ function Chips({
 }
 
 export default function Lab() {
-  useDocumentTitle('El Laboratorio')
+  const t = useT(TEXT)
+  useDocumentTitle(t.title)
   const [tech, setTech] = useState(ALL)
   const [category, setCategory] = useState(ALL)
 
@@ -50,18 +74,16 @@ export default function Lab() {
 
   return (
     <section>
-      <h1 className="text-3xl font-semibold tracking-tight">El Laboratorio</h1>
-      <p className="mt-3 max-w-xl text-ink-soft">
-        Componentes y snippets listos para probar, copiar y reutilizar.
-      </p>
+      <h1 className="text-3xl font-semibold tracking-tight">{t.title}</h1>
+      <p className="mt-3 max-w-xl text-ink-soft">{t.intro}</p>
 
       <div className="mt-6 space-y-2">
-        <Chips label="Tecnología" options={techs} value={tech} onChange={setTech} />
-        <Chips label="Categoría" options={categories} value={category} onChange={setCategory} />
+        <Chips label={t.tech} allLabel={t.all} options={techs} value={tech} onChange={setTech} />
+        <Chips label={t.category} allLabel={t.all} options={categories} value={category} onChange={setCategory} />
       </div>
 
       {visible.length === 0 ? (
-        <p className="mt-10 text-sm text-ink-soft">No hay entradas con esos filtros todavía. 🌱</p>
+        <p className="mt-10 text-sm text-ink-soft">{t.empty}</p>
       ) : (
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {visible.map((e, i) => (
@@ -80,8 +102,8 @@ export default function Lab() {
                     <e.Demo />
                   </div>
                 </div>
-                <h2 className="mt-4 font-medium">{e.title}</h2>
-                <p className="mt-1 text-sm text-ink-soft">{e.description}</p>
+                <h2 className="mt-4 font-medium" lang="es">{e.title}</h2>
+                <p className="mt-1 text-sm text-ink-soft" lang="es">{e.description}</p>
                 <div className="mt-3 flex flex-wrap gap-1.5 text-xs">
                   <span className="rounded-full bg-lavender/50 px-2 py-0.5 text-lavender-deep">{e.technology}</span>
                   <span className="rounded-full bg-sage/30 px-2 py-0.5 text-sage-deep">{e.category}</span>

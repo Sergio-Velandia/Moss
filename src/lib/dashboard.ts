@@ -1,4 +1,5 @@
 import { journalPosts, manualDocs } from './content'
+import type { Lang } from './i18n'
 import { labEntries } from './lab'
 
 /**
@@ -119,11 +120,21 @@ export function monthKey(iso: string): number | null {
   return Number(m[1]) * 12 + month - 1
 }
 
-const monthShort = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic']
-const monthLong = [
-  'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
-  'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre',
-]
+// Listas propias en vez de Intl: según la versión de ICU, "es" abrevia septiembre como "sep" o "sept"
+const monthShort: Record<Lang, string[]> = {
+  es: ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'],
+  en: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+}
+const monthLong: Record<Lang, string[]> = {
+  es: [
+    'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
+    'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre',
+  ],
+  en: [
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December',
+  ],
+}
 
 // ——— Agregaciones ———
 
@@ -192,9 +203,9 @@ export function byTechnology(items: readonly GardenItem[], limit = 7): Technolog
 export interface MonthStat {
   /** YYYY-MM */
   key: string
-  /** "oct" */
+  /** "oct" (en inglés, "Oct") */
   label: string
-  /** "octubre de 2026" */
+  /** "octubre de 2026" (en inglés, "October 2026") */
   fullLabel: string
   count: number
   isCurrent: boolean
@@ -204,7 +215,7 @@ export interface MonthStat {
  * Elementos plantados por mes, desde el primero hasta el actual (como mucho los últimos `maxMonths`).
  * Los meses sin contenido aparecen con 0: así la constancia se ve tal como es.
  */
-export function byMonth(items: readonly GardenItem[], now = new Date(), maxMonths = 12): MonthStat[] {
+export function byMonth(items: readonly GardenItem[], now = new Date(), maxMonths = 12, lang: Lang = 'es'): MonthStat[] {
   const currentKey = now.getFullYear() * 12 + now.getMonth()
   const counts = new Map<number, number>()
   let first = Infinity
@@ -225,8 +236,8 @@ export function byMonth(items: readonly GardenItem[], now = new Date(), maxMonth
     const month = key % 12
     months.push({
       key: `${year}-${pad(month + 1)}`,
-      label: monthShort[month],
-      fullLabel: `${monthLong[month]} de ${year}`,
+      label: monthShort[lang][month],
+      fullLabel: lang === 'es' ? `${monthLong.es[month]} de ${year}` : `${monthLong.en[month]} ${year}`,
       count: counts.get(key) ?? 0,
       isCurrent: key === currentKey,
     })

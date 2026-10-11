@@ -4,17 +4,17 @@
  */
 export const dashboardCards = {
   growth: {
-    title: 'El ritmo de crecimiento',
+    title: { es: 'El ritmo de crecimiento', en: 'The growth rhythm' },
     className: 'md:col-span-2 lg:col-span-1',
     chartClass: 'h-[260px] lg:h-[200px]',
   },
   ecosystem: {
-    title: 'El ecosistema',
+    title: { es: 'El ecosistema', en: 'The ecosystem' },
     className: '',
     chartClass: 'h-[260px] lg:h-[210px]',
   },
   distribution: {
-    title: 'La distribución del jardín',
+    title: { es: 'La distribución del jardín', en: 'How the garden is spread' },
     className: '',
     chartClass: 'h-[260px] lg:h-[236px]',
   },

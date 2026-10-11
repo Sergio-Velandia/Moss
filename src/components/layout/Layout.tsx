@@ -3,18 +3,54 @@ import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
 import { motion } from 'motion/react'
 import { Menu, Sprout, X } from 'lucide-react'
 import { site } from '../../data/site'
+import { sectionNames, useLang, useT } from '../../lib/i18n'
 import { legalLinks } from '../../lib/legal'
+import LanguageToggle from './LanguageToggle'
 import ThemeToggle from './ThemeToggle'
 
-const links = [
-  { to: '/', label: 'Inicio', end: true },
-  { to: '/laboratorio', label: 'Laboratorio' },
-  { to: '/manual', label: 'Manual' },
-  { to: '/bitacora', label: 'Bitácora' },
-  { to: '/herbario', label: 'Herbario' },
-]
+const TEXT = {
+  es: {
+    home: 'Inicio',
+    skip: 'Saltar al contenido',
+    nav: 'Principal',
+    openMenu: 'Abrir menú',
+    closeMenu: 'Cerrar menú',
+    loading: 'Cargando…',
+    tagline: 'Moss — Digital Garden · conocimiento que crece contigo',
+    legal: 'Información legal',
+    code: 'Código en GitHub',
+    portfolio: 'Mi portafolio',
+    newTab: ' (se abre en una pestaña nueva)',
+    legalTitles: {} as Record<string, string>,
+  },
+  en: {
+    home: 'Home',
+    skip: 'Skip to content',
+    nav: 'Main',
+    openMenu: 'Open menu',
+    closeMenu: 'Close menu',
+    loading: 'Loading…',
+    tagline: 'Moss — Digital Garden · knowledge that grows with you',
+    legal: 'Legal information',
+    code: 'Code on GitHub',
+    portfolio: 'My portfolio',
+    newTab: ' (opens in a new tab)',
+    // Los textos legales están en español; en inglés solo se traduce el nombre del enlace
+    legalTitles: { terminos: 'Terms and conditions', privacidad: 'Privacy policy', 'proteccion-de-datos': 'Data protection' } as Record<string, string>,
+  },
+}
 
 export default function Layout() {
+  const lang = useLang()
+  const t = useT(TEXT)
+  const sections = sectionNames[lang]
+  const links = [
+    { to: '/', label: t.home, end: true },
+    { to: '/laboratorio', label: sections.lab },
+    { to: '/manual', label: sections.manual },
+    { to: '/bitacora', label: sections.journal },
+    { to: '/herbario', label: sections.herbario },
+  ]
   const { pathname } = useLocation()
   const [menuOpen, setMenuOpen] = useState(false)
   const mainRef = useRef<HTMLElement>(null)
@@ -55,7 +91,7 @@ export default function Layout() {
         href="#contenido"
         className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-accent focus:px-4 focus:py-2 focus:text-on-accent"
       >
-        Saltar al contenido
+        {t.skip}
       </a>
 
       <header className="sticky top-3 z-20 mt-3 rounded-2xl border border-surface/60 bg-surface/70 shadow-sm backdrop-blur-md">
@@ -66,13 +102,14 @@ export default function Layout() {
           </NavLink>
 
           <div className="flex items-center gap-1">
-            <nav aria-label="Principal" className="hidden gap-1 text-sm md:flex">
+            <nav aria-label={t.nav} className="hidden gap-1 text-sm md:flex">
               {links.map((l) => (
                 <NavLink key={l.to} to={l.to} end={l.end} className={linkClass}>
                   {l.label}
                 </NavLink>
               ))}
             </nav>
+            <LanguageToggle />
             <ThemeToggle />
             <button
               type="button"
@@ -80,7 +117,7 @@ export default function Layout() {
               onClick={() => setMenuOpen((v) => !v)}
               aria-expanded={menuOpen}
               aria-controls="menu-movil"
-              aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'}
+              aria-label={menuOpen ? t.closeMenu : t.openMenu}
               className="inline-flex h-11 w-11 items-center justify-center rounded-xl text-ink-soft transition hover:bg-sage/20 hover:text-ink md:hidden"
             >
               {menuOpen ? <X size={20} aria-hidden /> : <Menu size={20} aria-hidden />}
@@ -89,7 +126,7 @@ export default function Layout() {
         </div>
 
         {menuOpen && (
-          <nav id="menu-movil" aria-label="Principal" className="flex flex-col gap-1 border-t border-cream-deep p-2 text-base md:hidden">
+          <nav id="menu-movil" aria-label={t.nav} className="flex flex-col gap-1 border-t border-cream-deep p-2 text-base md:hidden">
             {links.map((l) => (
               <NavLink
                 key={l.to}
@@ -106,7 +143,7 @@ export default function Layout() {
       </header>
 
       <main id="contenido" ref={mainRef} tabIndex={-1} className="flex-1 break-words py-10 outline-none">
-        <Suspense fallback={<p className="text-sm text-ink-soft">Cargando…</p>}>
+        <Suspense fallback={<p className="text-sm text-ink-soft">{t.loading}</p>}>
           <motion.div
             key={pathname}
             initial={{ opacity: 0, y: 8 }}
@@ -119,11 +156,11 @@ export default function Layout() {
       </main>
 
       <footer className="border-t border-cream-deep py-6 text-xs text-ink-soft">
-        <p className="text-center">Moss — Digital Garden · conocimiento que crece contigo</p>
-        <nav aria-label="Información legal" className="mt-2 flex flex-wrap justify-center gap-x-4">
+        <p className="text-center">{t.tagline}</p>
+        <nav aria-label={t.legal} className="mt-2 flex flex-wrap justify-center gap-x-4">
           {legalLinks.map((p) => (
             <Link key={p.slug} to={p.route} className="inline-block py-1.5 underline-offset-2 hover:text-sage-deep hover:underline">
-              {p.title}
+              {t.legalTitles[p.slug] ?? p.title}
             </Link>
           ))}
           <a
@@ -132,7 +169,7 @@ export default function Layout() {
             rel="noreferrer noopener"
             className="inline-block py-1.5 underline-offset-2 hover:text-sage-deep hover:underline"
           >
-            Código en GitHub<span className="sr-only"> (se abre en una pestaña nueva)</span>
+            {t.code}<span className="sr-only">{t.newTab}</span>
           </a>
           <a
             href={site.portfolioUrl}
@@ -140,7 +177,7 @@ export default function Layout() {
             rel="noreferrer noopener"
             className="inline-block py-1.5 underline-offset-2 hover:text-sage-deep hover:underline"
           >
-            Mi portafolio<span className="sr-only"> (se abre en una pestaña nueva)</span>
+            {t.portfolio}<span className="sr-only">{t.newTab}</span>
           </a>
         </nav>
       </footer>
