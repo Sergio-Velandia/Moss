@@ -6,6 +6,7 @@ tags: [errores, resiliencia, reintentos, alertas, discord, telegram, orquestaci�
 technologies: [n8n]
 createdAt: 2026-10-11
 related: [manual/n8n/entender-webhooks-y-triggers, lab/n8n-flow-simulator, journal/migrando-scripts-a-n8n]
+references: [Manejo de errores en n8n | https://docs.n8n.io/flow-logic/error-handling/, Nodo Error Trigger | https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.errortrigger/, Nodo Stop and Error | https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.stopanderror/, Nodo Wait | https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.wait/, Nodo Discord | https://docs.n8n.io/integrations/builtin/app-nodes/n8n-nodes-base.discord/, Nodo Telegram | https://docs.n8n.io/integrations/builtin/app-nodes/n8n-nodes-base.telegram/, Discord: webhooks | https://discord.com/developers/docs/resources/webhook, Telegram: tutorial de bots | https://core.telegram.org/bots/tutorial]
 ---
 
 ## Problema que resuelve
@@ -19,6 +20,15 @@ La resiliencia en n8n se construye en tres capas, de la más cercana al fallo a 
 | **Reintentos** | Ajustes de cada nodo | Superar fallos pasajeros sin intervención. |
 | **Ramas de error** | Ajustes de cada nodo (*On Error*) | Reaccionar dentro del mismo flujo a un fallo esperado. |
 | **Flujo de errores** | Ajustes del flujo + nodo *Error Trigger* | Enterarse de cualquier fallo no controlado y avisar. |
+
+```flow
+# El recorrido de un fallo
+! Un nodo falla :: por ejemplo, una API responde 503
+Reintentos :: Retry On Fail vuelve a intentarlo
+Rama de error :: maneja los fallos esperados
+Error workflow :: Error Trigger recibe el resto
++ Alerta :: Discord y Telegram con el enlace a la ejecución
+```
 
 ## Capa 1: reintentos automáticos
 

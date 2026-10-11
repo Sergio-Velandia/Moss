@@ -6,6 +6,7 @@ tags: [webhook, automatización, http]
 technologies: [n8n]
 createdAt: 2026-10-08
 updatedAt: 2026-10-08
+references: [Nodo Webhook | https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.webhook/, Nodo Respond to Webhook | https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.respondtowebhook/]
 ---
 
 ## Problema que resuelve
@@ -18,6 +19,14 @@ Quiero que una aplicación externa (un formulario, otro servicio, un script) dis
 2. Elige el método HTTP (por ejemplo `POST`) y un *path*, como `nuevo-contacto`.
 3. En **Respond** decide cómo contestar: de inmediato, al terminar el flujo o con un nodo *Respond to Webhook*.
 4. Conecta los nodos que procesarán los datos.
+
+```flow
+# Del emisor a tu flujo
+Aplicación externa :: envía un POST con JSON
+Webhook :: Test URL o Production URL
+Tus nodos :: leen los datos en $json.body
++ Respuesta :: según la opción Respond
+```
 
 ## Test URL vs Production URL
 

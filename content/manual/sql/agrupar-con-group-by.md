@@ -6,6 +6,7 @@ tags: [group by, agregación, consultas, mysql]
 technologies: [SQL, MySQL]
 createdAt: 2026-10-09
 updatedAt: 2026-10-09
+references: [MySQL: cómo maneja GROUP BY | https://dev.mysql.com/doc/refman/8.4/en/group-by-handling.html, MySQL: funciones de agregación | https://dev.mysql.com/doc/refman/8.4/en/aggregate-functions.html, MySQL: sentencia SELECT | https://dev.mysql.com/doc/refman/8.4/en/select.html]
 ---
 
 ## Problema que resuelve
@@ -37,6 +38,15 @@ Cada fila del resultado es un grupo (un cliente). `COUNT` y `SUM` se calculan po
 ## Filtrar grupos con HAVING
 
 `WHERE` filtra filas **antes** de agrupar; `HAVING` filtra grupos **después**.
+
+```flow
+# Orden en que la base de datos evalúa la consulta
+FROM :: toma las filas de pedidos
+WHERE :: descarta filas
+GROUP BY :: forma un grupo por cliente
+HAVING :: descarta grupos
+SELECT y ORDER BY :: calcula y ordena el resultado
+```
 
 ```sql
 SELECT cliente, SUM(total) AS gastado

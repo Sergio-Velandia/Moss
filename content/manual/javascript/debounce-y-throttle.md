@@ -6,6 +6,7 @@ tags: [debounce, throttle, rendimiento, eventos, búsqueda]
 technologies: [JavaScript, TypeScript, React]
 createdAt: 2026-10-10
 related: [journal/como-funciona-la-busqueda-del-herbario]
+references: [MDN: Debounce | https://developer.mozilla.org/en-US/docs/Glossary/Debounce, MDN: Throttle | https://developer.mozilla.org/en-US/docs/Glossary/Throttle, MDN: setTimeout() | https://developer.mozilla.org/en-US/docs/Web/API/Window/setTimeout, React: useEffect | https://react.dev/reference/react/useEffect]
 ---
 
 ## Problema que resuelve
@@ -23,6 +24,19 @@ Algunos eventos se disparan decenas de veces por segundo: escribir en un buscado
 | Autoguardado de un formulario | Debounce |
 | Posición del scroll, barra de progreso | Throttle |
 | Arrastrar un elemento, `mousemove` | Throttle |
+
+```mindmap
+Limitar eventos frecuentes
+- Debounce :: una vez, cuando el evento deja de ocurrir
+  - Buscador con API
+  - Autoguardado
+- Throttle :: como máximo una vez cada X ms
+  - Scroll
+  - mousemove
+- En React :: retrasar el valor, no la función
+  - useDebouncedValue
+  - limpiar el temporizador
+```
 
 ## Debounce
 

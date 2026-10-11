@@ -6,6 +6,7 @@ tags: [webhook, trigger, http, seguridad, validación, automatización]
 technologies: [n8n, JavaScript]
 createdAt: 2026-10-11
 related: [manual/n8n/webhook-basico, lab/n8n-payload-builder, manual/n8n/orquestacion-y-manejo-de-errores]
+references: [Nodo Webhook | https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.webhook/, Nodo Respond to Webhook | https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.respondtowebhook/, Nodo Code | https://docs.n8n.io/code/code-node/, Configurar la URL del webhook | https://docs.n8n.io/hosting/configuration/configuration-examples/webhook-url/, Variables de entorno de endpoints | https://docs.n8n.io/hosting/configuration/environment-variables/endpoints/]
 ---
 
 ## Problema que resuelve
@@ -60,6 +61,19 @@ Cada petición se convierte en un item con esta forma:
   "query": {},
   "body": {}
 }
+```
+
+```mindmap
+Lo que trae cada petición
+- headers :: encabezados
+  - content-type
+  - x-api-key
+- query :: parámetros de la URL (GET)
+  - ?token=abc123
+- body :: cuerpo de la petición (POST)
+  - $json.body.correo
+- params :: partes de la ruta
+  - pedidos/:id
 ```
 
 ### GET: los datos van en la URL
@@ -132,6 +146,15 @@ Ideas que hay detrás:
 - **Valores por defecto explícitos.** Un plan desconocido se convierte en `free` en lugar de propagarse.
 
 Después, un nodo **If** sobre `{{ $json.valido }}` separa el camino feliz del de error.
+
+```flow
+# Validar antes de confiar
+Petición POST :: desde la aplicación externa
+Webhook :: Header Auth rechaza a quien no trae la clave
+Code :: valida y deja solo los campos esperados
+? If :: ¿valido es true?
++ Respond 201 :: sigue el flujo | ! Respond 400 :: devuelve los errores
+```
 
 ## Responder al emisor
 

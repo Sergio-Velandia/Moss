@@ -3,10 +3,11 @@ title: Conectar la API de Gemini de forma segura
 description: Llamar a Gemini desde un servidor con la clave en una variable de entorno, sin exponerla en el navegador ni en GitHub.
 type: manual
 tags: [gemini, ia, api, variables de entorno, seguridad]
-technologies: [Gemini, Node, JavaScript]
+technologies: [Gemini, Node.js, JavaScript]
 createdAt: 2026-10-10
 updatedAt: 2026-10-10
 related: [manual/react/estructura-de-proyecto]
+references: [Documentación de la API de Gemini | https://ai.google.dev/gemini-api/docs, Crear y usar claves de API | https://ai.google.dev/gemini-api/docs/api-key, Modelos disponibles | https://ai.google.dev/gemini-api/docs/models, Variables de entorno en Vite | https://vite.dev/guide/env-and-mode]
 ---
 
 ## Problema que resuelve
@@ -16,6 +17,14 @@ Quiero usar un modelo de Gemini en un proyecto sin filtrar la clave de API. Este
 ## Regla de oro
 
 En Vite, cualquier variable que empiece por `VITE_` se incluye en el código que se descarga en el navegador. Si pones la clave ahí, cualquiera puede verla. La llamada a Gemini debe hacerse desde un **servidor o una función serverless**, y el navegador llama a tu servidor.
+
+```flow
+# Por dónde viaja la clave (y por dónde no)
+Navegador :: tu app React, sin ninguna clave
+Tu servidor :: lee GEMINI_API_KEY de .env
+API de Gemini :: recibe la clave en x-goog-api-key
++ Respuesta :: el servidor devuelve solo el texto al navegador
+```
 
 ## Paso 1: guardar la clave en `.env`
 

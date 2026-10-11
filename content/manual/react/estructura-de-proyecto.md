@@ -7,6 +7,7 @@ technologies: [React, Vite, TypeScript]
 createdAt: 2026-10-10
 updatedAt: 2026-10-10
 related: [journal/por-que-moss-no-usa-base-de-datos]
+references: [Guía de Vite | https://vite.dev/guide/, Variables de entorno en Vite | https://vite.dev/guide/env-and-mode, Pensar en React | https://react.dev/learn/thinking-in-react]
 ---
 
 ## Problema que resuelve
@@ -33,6 +34,14 @@ mi-app/
 ```
 
 ## Reglas que sigo
+
+```flow
+# Quién importa a quién: las flechas van en una sola dirección
+main.tsx :: monta la app
+App.tsx :: define las rutas
+pages/ :: una por ruta
+components/ :: UI que no conoce las rutas | lib/ :: lógica sin UI
+```
 
 - **`components/` no conoce las rutas.** Si un componente necesita saber en qué página está, probablemente es una página.
 - **La lógica sin UI va en `lib/`.** Así se puede probar y reutilizar sin montar React.

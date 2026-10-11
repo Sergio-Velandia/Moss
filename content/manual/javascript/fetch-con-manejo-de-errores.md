@@ -6,6 +6,7 @@ tags: [fetch, http, errores, abortcontroller, timeout, async]
 technologies: [JavaScript, TypeScript]
 createdAt: 2026-10-10
 related: [manual/apis/conectar-gemini, lab/button-states]
+references: [MDN: Usar Fetch | https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch, MDN: Response.ok | https://developer.mozilla.org/en-US/docs/Web/API/Response/ok, MDN: AbortSignal.timeout() | https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal/timeout_static, MDN: AbortController | https://developer.mozilla.org/en-US/docs/Web/API/AbortController]
 ---
 
 ## Problema que resuelve
@@ -37,6 +38,14 @@ export async function fetchJson<T>(url: string, options: RequestInit & { timeout
   if (!res.ok) throw new HttpError(res.status, await res.text())
   return res.json() as Promise<T>
 }
+```
+
+```mindmap
+Los cuatro finales de una petición
+- + 2xx :: res.ok es true y devuelve el JSON
+- ! 4xx o 5xx :: lanza HttpError con el status
+- ! TimeoutError :: el servidor tardó más del límite
+- AbortError :: se canceló a propósito; no es un fallo
 ```
 
 ## Cómo usarla
