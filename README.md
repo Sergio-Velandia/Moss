@@ -153,24 +153,23 @@ El botón de la cabecera alterna entre los dos temas. Sin elección manual, Moss
 
 ## Despliegue en GitHub Pages
 
-Moss es una SPA estática: basta con publicar la carpeta `dist/`. Como GitHub Pages sirve el proyecto en una subruta (`https://sergio-velandia.github.io/Moss/`) y no conoce las rutas de React Router, hay que ajustar tres cosas antes del primer despliegue:
+🌐 **En línea:** https://sergio-velandia.github.io/Moss/
 
-1. **Ruta base de Vite.** En `vite.config.ts`, añade `base: '/Moss/'` (el nombre exacto del repositorio, con mayúsculas).
-2. **Ruta base del router.** En `src/App.tsx`, usa `<BrowserRouter basename={import.meta.env.BASE_URL}>`. Sin esto, ninguna ruta coincide y todo muestra la página 404 de Moss.
-3. **Recarga en rutas internas.** Al recargar `/Moss/manual/...`, GitHub Pages busca un archivo que no existe. La solución habitual es copiar `index.html` como `404.html` después del build:
+El despliegue es automático: cada push a `main` ejecuta el workflow [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml), que comprueba `site.ts`, pasa las pruebas y el lint, genera el build y lo publica en GitHub Pages. También se puede lanzar a mano desde la pestaña **Actions** (*Run workflow*). Si algún paso falla, no se publica nada y la versión anterior sigue en línea.
 
-   ```bash
-   npm run build && cp dist/index.html dist/404.html
-   ```
+**Configuración única en GitHub:** *Settings → Pages → Build and deployment → Source: **GitHub Actions***.
 
-   La alternativa es cambiar a `HashRouter` (las URLs quedan como `/#/manual/...`).
+Cómo está preparado el proyecto para vivir en la subruta `/Moss/`:
 
-Además, los recursos de `public/` referenciados con ruta absoluta (como `/favicon.svg` en `index.html`) los reescribe Vite al aplicar `base`; los que estén escritos a mano dentro de componentes deben usar `import.meta.env.BASE_URL`.
+- **`vite.config.ts`** usa `base: '/Moss/'` al hacer el build (en desarrollo sigue en la raíz `/`). Si renombras el repositorio, cambia este valor.
+- **`src/App.tsx`** pasa `basename={import.meta.env.BASE_URL}` al `BrowserRouter`, así que las rutas y los enlaces internos (también los de Markdown) incluyen la subruta solos.
+- **`index.html`** referencia los archivos de `public/` con `%BASE_URL%` (por ejemplo `%BASE_URL%favicon.svg`). Haz lo mismo con cualquier recurso nuevo de `public/`; dentro de componentes usa `import.meta.env.BASE_URL`.
+- **Recargar una ruta interna** (`/Moss/manual/...`) funciona porque el workflow copia `index.html` como `404.html`: GitHub Pages lo sirve y React Router resuelve la ruta en el navegador. Esas páginas responden con código HTTP 404 aunque se vean bien.
 
-Antes de publicar, ejecuta la comprobación completa:
+Para revisar el build igual que en producción:
 
 ```bash
-npm run check:publish && npm run test && npm run lint && npm run build
+npm run build && npm run preview   # abre http://localhost:4173/Moss/
 ```
 
 ## Estructura

@@ -19,7 +19,7 @@ export default function App() {
   return (
     // reducedMotion="user": si el sistema pide menos movimiento, se omiten las animaciones de desplazamiento
     <MotionConfig reducedMotion="user">
-      <BrowserRouter>
+      <BrowserRouter basename={import.meta.env.BASE_URL}>
         <Routes>
           <Route element={<Layout />}>
             <Route index element={<Home />} />
