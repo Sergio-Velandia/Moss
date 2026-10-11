@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { journalPosts, manualDocs } from './content'
+import { journalPosts, manualDocs, parseReferences } from './content'
 import { parseFrontmatter } from './frontmatter'
 import { knowledgeItems } from './knowledge'
 
@@ -12,6 +12,18 @@ describe('frontmatter', () => {
 
   it('devuelve el texto intacto si no hay frontmatter', () => {
     expect(parseFrontmatter('solo texto')).toEqual({ data: {}, body: 'solo texto' })
+  })
+})
+
+describe('referencias oficiales', () => {
+  it('separa título y enlace y descarta lo que no es https', () => {
+    expect(
+      parseReferences(['Docs de n8n | https://docs.n8n.io/', 'Sin enlace', 'Inseguro | http://example.com', 'Roto | https://']),
+    ).toEqual([{ title: 'Docs de n8n', url: 'https://docs.n8n.io/' }])
+  })
+
+  it('todas las guías del Manual enlazan su documentación oficial', () => {
+    for (const d of manualDocs) expect(d.references.length, d.id).toBeGreaterThan(0)
   })
 })
 
