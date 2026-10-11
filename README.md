@@ -57,7 +57,7 @@ Mi "segundo cerebro" técnico: una biblioteca personal y visual donde guardo, do
 
 ## Stack
 
-React 19 · Vite · TypeScript · Tailwind CSS 4 · React Router · Motion · Lucide · react-markdown · Shiki · MiniSearch · Vitest · oxlint.
+React 19 · Vite · TypeScript · Tailwind CSS 4 · React Router · Motion · Recharts · Lucide · react-markdown · Shiki · MiniSearch · Vitest · oxlint.
 
 El contenido vive en archivos del repositorio, versionados con Git. Sin base de datos ni backend.
 
@@ -133,6 +133,16 @@ Los ids de `related` son `lab/<archivo>`, `manual/<categoría>/<archivo>` o `jou
 
 El Herbario indexa título, descripción, etiquetas, tecnologías y contenido completo (incluido el código de las demos). Ignora tildes y palabras vacías ("de", "para"…), tolera pequeñas erratas y exige todas las palabras de la consulta; si no hay resultados, acepta cualquiera. El índice se construye en el navegador la primera vez que se busca. Los filtros viven en la URL (`?q=…&tipo=…&tec=…`), así que una búsqueda se puede compartir.
 
+## Dashboard del Inicio
+
+La columna "Signos vitales del jardín" del Inicio resume el contenido en tres gráficos: el ritmo de crecimiento (elementos por mes, con los meses vacíos a 0 y como mucho los últimos 12), el ecosistema (las 7 tecnologías más mencionadas) y la distribución entre Laboratorio, Manual y Bitácora.
+
+- **De dónde salen los datos.** `getGardenItems()` en `src/lib/dashboard.ts` reúne las demos (`technology` de su `meta`) y los documentos (`technologies` y `createdAt` del frontmatter), sin borradores en la web publicada. Las agregaciones (`byMonth`, `byTechnology`, `byType`) son funciones puras con pruebas en `dashboard.test.ts`; todas las cifras de las tarjetas salen de ellas.
+- **Añadir o unificar tecnologías.** No hay que registrar nada: basta con escribirla en el frontmatter. Si aparece con varios nombres (`react`, `React.js`), añade el alias en `technologyAliases` (clave en minúsculas → nombre visible).
+- **Datos de ejemplo.** Con menos de `MIN_REAL_ITEMS` (10) elementos reales, el tablero muestra `MOCK_ITEMS` y una nota que lo indica. Se editan en `mockSeed`: cada fila es `[meses atrás, día, tipo, título, tecnologías]`, así que el ejemplo siempre termina en el mes actual.
+- **Colores.** Las series usan los tokens `--c-chart-1`, `--c-chart-2` y `--c-chart-3` de `src/index.css` (contraste ≥ 3:1 en ambos temas).
+- **Accesibilidad.** Cada tarjeta es una `<figure>` con su frase resumen y un desplegable "Ver datos como tabla". Las barras y el radar se recorren con el teclado (Tab y flechas).
+
 ## Tema claro y oscuro
 
 El botón de la cabecera alterna entre los dos temas. Sin elección manual, Moss sigue el tema del sistema; la elección se guarda en el navegador (`moss-theme`) y se aplica antes de pintar para evitar el parpadeo. Los colores son tokens en `src/index.css`: para cambiar la paleta basta con editar las variables de `:root` y `:root[data-theme="dark"]`.
@@ -149,6 +159,7 @@ El botón de la cabecera alterna entre los dos temas. Sin elección manual, Moss
 ## Rendimiento
 
 - El Herbario, los artículos y las páginas legales se cargan bajo demanda (lazy loading): el renderizador de Markdown y el buscador solo se descargan al visitarlas.
+- El dashboard del Inicio (Recharts) va en su propio chunk y se carga con un esqueleto de las mismas medidas.
 - El resaltado de código con Shiki carga cada lenguaje por separado.
 
 ## Páginas legales
