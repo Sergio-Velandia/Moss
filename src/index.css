@@ -17,6 +17,10 @@
   --c-accent: #4f6b42;
   --c-on-accent: #ffffff;
   --c-danger: #a8372c;
+  /* Series de los gráficos: tonos medios con contraste ≥ 3:1 contra el fondo */
+  --c-chart-1: #6b8c5a;
+  --c-chart-2: #8676c2;
+  --c-chart-3: #b5704a;
   --glow-1: rgb(156 175 136 / 0.25);
   --glow-2: rgb(200 191 231 / 0.3);
 }
@@ -35,6 +39,9 @@
   --c-accent: #7fa06b;
   --c-on-accent: #0f160e;
   --c-danger: #f2a093;
+  --c-chart-1: #8fb079;
+  --c-chart-2: #a898e0;
+  --c-chart-3: #dc9a72;
   --glow-1: rgb(111 138 92 / 0.18);
   --glow-2: rgb(106 92 156 / 0.22);
 }
@@ -52,6 +59,9 @@
   --color-accent: var(--c-accent);
   --color-on-accent: var(--c-on-accent);
   --color-danger: var(--c-danger);
+  --color-chart-1: var(--c-chart-1);
+  --color-chart-2: var(--c-chart-2);
+  --color-chart-3: var(--c-chart-3);
 
   --font-sans: "Inter", system-ui, "Segoe UI", Roboto, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
