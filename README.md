@@ -17,7 +17,7 @@ Mi "segundo cerebro" técnico: una biblioteca personal y visual donde guardo, do
 
 ## Qué hay dentro
 
-**Laboratorio (6 demos)**
+**Laboratorio (8 demos)**
 
 | Demo | Categoría |
 | --- | --- |
@@ -27,8 +27,10 @@ Mi "segundo cerebro" técnico: una biblioteca personal y visual donde guardo, do
 | Animación de entrada escalonada | Animaciones |
 | Skeleton loader | Loaders |
 | Tarjeta tilt 3D | Animaciones |
+| Generador de payloads para n8n | Automatización |
+| Simulador de flujo n8n | Automatización |
 
-**Manual (6 guías)**
+**Manual (8 guías)**
 
 | Categoría | Guía |
 | --- | --- |
@@ -36,10 +38,12 @@ Mi "segundo cerebro" técnico: una biblioteca personal y visual donde guardo, do
 | JavaScript | Debounce y throttle |
 | JavaScript | Fetch con manejo de errores y tiempo límite |
 | n8n | Webhook básico |
+| n8n | Entender webhooks y triggers |
+| n8n | Orquestación y manejo de errores |
 | React | Estructura de proyecto |
 | SQL | Agrupar con GROUP BY |
 
-**Bitácora (5 artículos)**
+**Bitácora (7 artículos)**
 
 | Artículo | Categoría |
 | --- | --- |
@@ -48,6 +52,8 @@ Mi "segundo cerebro" técnico: una biblioteca personal y visual donde guardo, do
 | La accesibilidad que no se ve | Aprendizajes |
 | Un botón también tiene estados | Aprendizajes |
 | Apuntes sobre la tarjeta tilt 3D | Aprendizajes |
+| La naturaleza de Moss | Filosofía |
+| Migrando scripts sueltos a flujos de n8n | Arquitectura |
 
 ## Stack
 
