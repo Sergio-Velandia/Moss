@@ -89,6 +89,8 @@ export default function Lab() {
           {visible.map((e, i) => (
             <motion.div
               key={e.slug}
+              // min-w-0: sin él, una demo ancha (una línea larga de código) ensancha toda la columna del grid
+              className="min-w-0"
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.05, duration: 0.3 }}
