@@ -5,7 +5,7 @@ type: manual
 tags: [fetch, http, errores, abortcontroller, timeout, async]
 technologies: [JavaScript, TypeScript]
 createdAt: 2026-10-10
-related: [manual/apis/conectar-gemini, lab/button-states]
+related: [manual/apis/conectar-gemini, manual/apis/paginacion-y-limites-de-tasa, lab/button-states]
 references: [MDN: Usar Fetch | https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch, MDN: Response.ok | https://developer.mozilla.org/en-US/docs/Web/API/Response/ok, MDN: AbortSignal.timeout() | https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal/timeout_static, MDN: AbortController | https://developer.mozilla.org/en-US/docs/Web/API/AbortController]
 ---
 

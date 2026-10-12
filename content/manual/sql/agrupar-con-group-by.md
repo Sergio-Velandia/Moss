@@ -7,6 +7,7 @@ technologies: [SQL, MySQL]
 createdAt: 2026-10-09
 updatedAt: 2026-10-09
 references: [MySQL: cómo maneja GROUP BY | https://dev.mysql.com/doc/refman/8.4/en/group-by-handling.html, MySQL: funciones de agregación | https://dev.mysql.com/doc/refman/8.4/en/aggregate-functions.html, MySQL: sentencia SELECT | https://dev.mysql.com/doc/refman/8.4/en/select.html]
+related: [manual/sql/reporte-mensual-con-variacion, manual/sql/detectar-y-fusionar-clientes-duplicados]
 ---
 
 ## Problema que resuelve

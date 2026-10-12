@@ -7,6 +7,7 @@ technologies: [n8n]
 createdAt: 2026-10-08
 updatedAt: 2026-10-08
 references: [Nodo Webhook | https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.webhook/, Nodo Respond to Webhook | https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.respondtowebhook/]
+related: [manual/n8n/entender-webhooks-y-triggers, manual/apis/idempotencia-en-pagos-y-webhooks, manual/n8n/sincronizar-formulario-con-crm]
 ---
 
 ## Problema que resuelve

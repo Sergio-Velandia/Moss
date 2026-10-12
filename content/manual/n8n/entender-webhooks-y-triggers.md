@@ -5,7 +5,7 @@ type: manual
 tags: [webhook, trigger, http, seguridad, validación, automatización]
 technologies: [n8n, JavaScript]
 createdAt: 2026-10-11
-related: [manual/n8n/webhook-basico, lab/n8n-payload-builder, manual/n8n/orquestacion-y-manejo-de-errores]
+related: [manual/n8n/webhook-basico, lab/n8n-payload-builder, manual/n8n/orquestacion-y-manejo-de-errores, manual/apis/idempotencia-en-pagos-y-webhooks]
 references: [Nodo Webhook | https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.webhook/, Nodo Respond to Webhook | https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.respondtowebhook/, Nodo Code | https://docs.n8n.io/code/code-node/, Configurar la URL del webhook | https://docs.n8n.io/hosting/configuration/configuration-examples/webhook-url/, Variables de entorno de endpoints | https://docs.n8n.io/hosting/configuration/environment-variables/endpoints/]
 ---
 
