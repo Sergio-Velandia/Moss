@@ -19,7 +19,7 @@ Mi "segundo cerebro" técnico: una biblioteca personal y visual donde guardo, do
 
 ## Qué hay dentro
 
-**Laboratorio (8 demos)**
+**Laboratorio (11 demos)**
 
 | Demo | Categoría |
 | --- | --- |
@@ -31,21 +31,34 @@ Mi "segundo cerebro" técnico: una biblioteca personal y visual donde guardo, do
 | Tarjeta tilt 3D | Animaciones |
 | Generador de payloads para n8n | Automatización |
 | Simulador de flujo n8n | Automatización |
+| Reintentos con backoff y jitter | Automatización |
+| Resumen de factura con IVA | Facturación |
+| Exportar a CSV que Excel abre bien | Datos |
 
-**Manual (8 guías)**
+**Manual (16 guías)**
+
+Las guías marcadas con ★ parten de un problema real de empresa: duplicados en el CRM, reportes que nadie quiere hacer, cobros dobles, exportaciones que Excel rompe…
 
 | Categoría | Guía |
 | --- | --- |
 | APIs | Conectar la API de Gemini de forma segura |
+| APIs | ★ Idempotencia en pagos y webhooks |
+| APIs | ★ Paginación y límites de tasa en APIs de terceros |
 | JavaScript | Debounce y throttle |
 | JavaScript | Fetch con manejo de errores y tiempo límite |
+| JavaScript | ★ Exportar CSV que Excel abre bien |
+| JavaScript | ★ Dinero y fechas sin errores con Intl |
 | n8n | Webhook básico |
 | n8n | Entender webhooks y triggers |
 | n8n | Orquestación y manejo de errores |
+| n8n | ★ Reporte diario automático por correo o Slack |
+| n8n | ★ Sincronizar un formulario con el CRM sin duplicados |
 | React | Estructura de proyecto |
 | SQL | Agrupar con GROUP BY |
+| SQL | ★ Detectar y fusionar clientes duplicados |
+| SQL | ★ Reporte de ventas mensual con variación |
 
-**Bitácora (7 artículos)**
+**Bitácora (10 artículos)**
 
 | Artículo | Categoría |
 | --- | --- |
@@ -56,6 +69,9 @@ Mi "segundo cerebro" técnico: una biblioteca personal y visual donde guardo, do
 | Apuntes sobre la tarjeta tilt 3D | Aprendizajes |
 | La naturaleza de Moss | Filosofía |
 | Migrando scripts sueltos a flujos de n8n | Arquitectura |
+| El reporte que nadie quería hacer | Aprendizajes |
+| Datos sucios, el problema silencioso | Arquitectura |
+| Cuando un webhook llega dos veces | Arquitectura |
 
 ## Stack
 
