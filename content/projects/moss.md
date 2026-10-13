@@ -73,6 +73,14 @@ Todo lo que el sitio sabe se decide al compilar. Vite lee los archivos con `impo
 - **Decisión:** el tablero del Inicio calcula sus cifras con funciones puras y carga los gráficos en un chunk aparte. **En vez de:** calcular dentro de los componentes y cargar la librería de gráficos con el resto del sitio. **Porque:** las agregaciones se prueban sin navegador y quien no visita el Inicio no descarga los gráficos.
 - **Decisión:** rutas limpias con `BrowserRouter`, un `404.html` que es la misma app y copias estáticas de las rutas que se comparten. **En vez de:** `HashRouter` (`/#/manual/...`). **Porque:** las URL se leen y se comparten mejor, y las rutas pensadas para compartirse responden con código 200.
 
+## Lecciones
+
+- **La versión decía una cosa y el código otra.** El README anunciaba la versión 1.0 mientras `package.json` seguía en 0.0.0 y no había CHANGELOG; tuve que reconstruir el historial a partir de git. Hoy versionaría desde el primer commit.
+- **El build es la prueba que más importa.** Una prueba nueva usaba APIs de Node y rompió `npm run build`, porque `tsc -b` también revisa los tipos de las pruebas. Ahora corro test, lint y build antes de cada commit.
+- **"Funciona en mi equipo" no es "funciona en Pages".** `vite preview` no servía el sitio bajo `/Moss/` como en producción, y el favicon apunta a un archivo que cambió de carpeta: en producción responde 404. Probaría el build en las mismas condiciones que Pages desde el principio.
+- **Las pruebas de contenido atrapan lo que no se ve a ojo.** Que cada `related` exista, que cada guía tenga diagrama y referencias, que un CSV escape bien sus comillas: varias fallaron antes de publicar algo roto.
+- **Lo que haría distinto:** cargar el texto de cada documento bajo demanda desde el principio; hoy todo el contenido viaja en el JavaScript inicial y crece con cada guía.
+
 ## Roadmap
 
 Sin fechas; en el orden en que me parecen más útiles:

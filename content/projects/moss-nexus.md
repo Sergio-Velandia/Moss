@@ -80,6 +80,13 @@ El índice se arma solo: agregar una plantilla es agregar una carpeta, sin tocar
 - **Decisión:** el sello «Probado» es opcional y solo se añade con la fecha y la versión de n8n de una prueba real. **En vez de:** presentar todas las plantillas como probadas. **Porque:** el sitio no debe prometer más de lo verificado; por eso hoy las 14 aparecen como «Sin probar».
 - **Decisión:** un `index.html` por ruta y por plantilla, con su título y descripción, más un `sitemap.xml`. **En vez de:** depender solo del `404.html` de GitHub Pages. **Porque:** así cada página responde 200, se puede indexar y se ve bien al compartirla.
 
+## Lecciones
+
+- **No prometer en la interfaz lo que los datos no respaldan.** Los primeros textos decían que todas las plantillas estaban probadas, y no era así. Ahora el sello solo aparece con fecha y versión reales, y las cifras se calculan desde los datos.
+- **El mapa hay que diseñarlo para el flujo más largo y para el móvil.** Las etiquetas se salían, el mapa se encogía hasta quedar ilegible y los caminos en paralelo no cabían en pantallas angostas.
+- **Las rutas de una SPA en Pages responden 404.** Generar una página por ruta debería haber estado desde la primera fase.
+- **Lo que haría distinto:** validar `diagram.json` contra `workflow.json`, que son dos descripciones del mismo flujo escritas por separado.
+
 ## Roadmap
 
 Sin fechas:

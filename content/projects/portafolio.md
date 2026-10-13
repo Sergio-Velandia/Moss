@@ -68,6 +68,12 @@ El idioma vive en un solo lugar y baja por contexto: cambiarlo actualiza a la ve
 - **Decisión:** el flujo de n8n se recrea en HTML y CSS y "se ejecuta" una vez al entrar en pantalla, mostrando cuántos items pasan entre nodos. **En vez de:** una captura estática del editor. **Porque:** cuenta la automatización mejor que una imagen, y su texto se traduce y lo leen los lectores de pantalla.
 - **Decisión:** cada push a `main` construye el sitio con GitHub Actions y lo publica en la rama `gh-pages`. **En vez de:** publicar a mano desde el equipo. **Porque:** lo publicado siempre corresponde a lo que está en el repositorio.
 
+## Lecciones
+
+- **Que el código exista no significa que funcione.** La entrada del encabezado y la barra de progreso estaban programadas, pero nunca se activaban porque faltaba su marcado.
+- **Las capturas reales encuentran lo que el código esconde:** el scroll horizontal en móvil, miniaturas gigantes por un atributo `height` y una nota de configuración visible para los visitantes.
+- **Lo que haría distinto:** añadir pruebas automáticas y un CHANGELOG desde el inicio; hoy no tiene ninguno de los dos.
+
 ## Roadmap
 
 Pendientes visibles hoy en el código, sin fechas:
