@@ -192,10 +192,13 @@ body {
 }
 
 /* En una capa, como en Nexus: así las utilidades de Tailwind pueden sobrescribirlas */
+/* Fuera de @layer a propósito: la regla global :focus-visible no está en ninguna capa y, si no, le ganaría */
+.nexus :focus-visible,
+.nexus:focus-visible {
+  outline-color: var(--nx-coral);
+}
+
 @layer components {
-  .nexus :focus-visible {
-    outline-color: var(--nx-coral);
-  }
   /* Superficie de vidrio */
   .nx-glass {
     background: color-mix(in oklab, var(--nx-surface) 72%, transparent);
@@ -215,6 +218,178 @@ body {
     background-clip: text;
     color: transparent;
   }
+}
+
+/* ——— Identidad de cada proyecto (/proyectos) ———
+   Cada proyecto se ve con su propia paleta: Moss (salvia), Moss Nexus (musgo y coral, sus tokens --nx-*)
+   y el portafolio (grafito cálido con un único acento dorado, tomado de mi-portafolio/src/App.css).
+   Solo lo usan las tarjetas del índice y los botones de la ficha; el resto de Moss no cambia. */
+.pt-moss {
+  --pt-bg: color-mix(in oklab, var(--c-surface) 55%, transparent);
+  --pt-ink: var(--c-ink);
+  --pt-ink-soft: var(--c-ink-soft);
+  --pt-accent: var(--c-sage-deep);
+  --pt-border: color-mix(in oklab, var(--c-surface) 70%, transparent);
+  --pt-border-hover: color-mix(in oklab, var(--c-sage-deep) 55%, transparent);
+  --pt-glow: var(--glow-1);
+  --pt-chip-bg: color-mix(in oklab, var(--c-sage) 30%, transparent);
+  --pt-chip-ink: var(--c-sage-deep);
+  --pt-radius-btn: 0.75rem;
+  /* Botón principal: relleno salvia */
+  --pt-btn-bg: var(--c-accent);
+  --pt-btn-ink: var(--c-on-accent);
+  --pt-btn-border: transparent;
+  --pt-btn-bg-hover: var(--c-sage-deep);
+  --pt-btn-ink-hover: var(--c-on-accent);
+  --pt-btn-border-hover: transparent;
+  --pt-btn-shadow: none;
+  /* Botón secundario */
+  --pt-btn2-bg: color-mix(in oklab, var(--c-surface) 70%, transparent);
+  --pt-btn2-ink: var(--c-ink);
+  --pt-btn2-border: color-mix(in oklab, var(--c-sage) 45%, transparent);
+  --pt-btn2-border-hover: var(--c-sage-deep);
+  --pt-btn2-ink-hover: var(--c-sage-deep);
+}
+/* Nexus reutiliza sus tokens (.nexus): el elemento lleva las dos clases */
+.pt-nexus {
+  --pt-bg: color-mix(in oklab, var(--nx-surface) 72%, transparent);
+  --pt-ink: var(--nx-ink);
+  --pt-ink-soft: var(--nx-ink-soft);
+  --pt-accent: var(--nx-coral);
+  --pt-border: var(--nx-line-strong);
+  --pt-border-hover: color-mix(in oklab, var(--nx-coral) 55%, transparent);
+  --pt-glow: var(--nx-glow-coral);
+  --pt-chip-bg: color-mix(in oklab, var(--nx-moss) 16%, transparent);
+  --pt-chip-ink: var(--nx-moss);
+  --pt-radius-btn: 0.75rem;
+  /* Botón principal: relleno coral con resplandor, como en Nexus */
+  --pt-btn-bg: var(--nx-coral);
+  --pt-btn-ink: var(--nx-on-accent);
+  --pt-btn-border: transparent;
+  --pt-btn-bg-hover: var(--nx-coral);
+  --pt-btn-ink-hover: var(--nx-on-accent);
+  --pt-btn-border-hover: transparent;
+  --pt-btn-shadow: 0 8px 30px -8px var(--nx-coral);
+  /* Botón secundario: vidrio */
+  --pt-btn2-bg: color-mix(in oklab, var(--nx-surface) 72%, transparent);
+  --pt-btn2-ink: var(--nx-ink);
+  --pt-btn2-border: var(--nx-line-strong);
+  --pt-btn2-border-hover: var(--nx-moss);
+  --pt-btn2-ink-hover: var(--nx-moss);
+}
+/* El portafolio es oscuro en ambos temas: es su identidad. Oro solo en bordes, texto y acentos, nunca de relleno. */
+.pt-portafolio {
+  --pt-bg: #101009;
+  --pt-ink: #f5f2ec;
+  --pt-ink-soft: #a8a49a;
+  --pt-accent: #c9a96e;
+  --pt-border: rgb(240 237 232 / 0.08);
+  --pt-border-hover: rgb(201 169 110 / 0.35);
+  --pt-glow: rgb(201 169 110 / 0.12);
+  --pt-chip-bg: transparent;
+  --pt-chip-ink: #c9a96e;
+  --pt-radius-btn: 6px;
+  /* Botón principal: contorno que se vuelve dorado */
+  --pt-btn-bg: #0a0a09;
+  --pt-btn-ink: #f5f2ec;
+  --pt-btn-border: rgb(240 237 232 / 0.18);
+  --pt-btn-bg-hover: #0a0a09;
+  --pt-btn-ink-hover: #e0c490;
+  --pt-btn-border-hover: #c9a96e;
+  --pt-btn-shadow: none;
+  /* Botón secundario: fantasma */
+  --pt-btn2-bg: #0a0a09;
+  --pt-btn2-ink: #a8a49a;
+  --pt-btn2-border: rgb(240 237 232 / 0.08);
+  --pt-btn2-border-hover: rgb(240 237 232 / 0.18);
+  --pt-btn2-ink-hover: #f5f2ec;
+  color-scheme: dark;
+}
+
+@layer components {
+  /* Tarjeta del índice. El hover no la levanta: tiñe el borde, enciende un resplandor del color del proyecto
+     y señala la acción (el botón), como hacen las tarjetas del portafolio. */
+  .pt-card {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    background: var(--pt-bg);
+    color: var(--pt-ink);
+    border: 1px solid var(--pt-border);
+    transition: border-color 0.22s ease;
+  }
+  .pt-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: radial-gradient(28rem 14rem at 85% -10%, var(--pt-glow), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .pt-card:is(:hover, :focus-visible) {
+    border-color: var(--pt-border-hover);
+  }
+  .pt-card:is(:hover, :focus-visible)::before {
+    opacity: 1;
+  }
+  .pt-mark {
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .pt-card:is(:hover, :focus-visible) .pt-mark {
+    transform: scale(1.08) rotate(-4deg);
+  }
+  .pt-chip {
+    background: var(--pt-chip-bg);
+    color: var(--pt-chip-ink);
+  }
+  .pt-portafolio .pt-chip {
+    border: 1px solid rgb(201 169 110 / 0.35);
+  }
+
+  /* Botones con la paleta del proyecto */
+  .pt-btn,
+  .pt-btn-2 {
+    border: 1px solid;
+    border-radius: var(--pt-radius-btn);
+    transition:
+      background-color 0.22s ease,
+      border-color 0.22s ease,
+      color 0.22s ease,
+      transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .pt-btn {
+    background: var(--pt-btn-bg);
+    color: var(--pt-btn-ink);
+    border-color: var(--pt-btn-border);
+    box-shadow: var(--pt-btn-shadow);
+  }
+  .pt-btn-2 {
+    background: var(--pt-btn2-bg);
+    color: var(--pt-btn2-ink);
+    border-color: var(--pt-btn2-border);
+  }
+  /* En la tarjeta, el botón reacciona al hover de toda la tarjeta */
+  :is(.pt-btn:hover, .pt-btn:focus-visible, .pt-card:hover .pt-btn, .pt-card:focus-visible .pt-btn) {
+    background: var(--pt-btn-bg-hover);
+    color: var(--pt-btn-ink-hover);
+    border-color: var(--pt-btn-border-hover);
+    transform: translateY(-1px);
+  }
+  :is(.pt-btn-2:hover, .pt-btn-2:focus-visible) {
+    color: var(--pt-btn2-ink-hover);
+    border-color: var(--pt-btn2-border-hover);
+    transform: translateY(-1px);
+  }
+  :is(.pt-btn, .pt-btn-2):active {
+    transform: scale(0.97);
+  }
+}
+
+/* Foco con el color de cada proyecto (fuera de @layer por la misma razón que en .nexus) */
+.pt-portafolio:focus-visible,
+.pt-portafolio :focus-visible {
+  outline-color: #c9a96e;
 }
 
 /* ——— Diagramas del Manual (```flow y ```mindmap) ——— */
