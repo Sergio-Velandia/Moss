@@ -19,7 +19,7 @@ export default function ProjectMark({ theme, size = 44 }: { theme: string; size?
         aria-hidden
         translate="no"
         style={{ width: size, height: size }}
-        className="pt-mark inline-grid shrink-0 place-items-center rounded-[6px] border border-[#c9a96e]/35 bg-[#0a0a09] text-sm font-extrabold tracking-wide text-[#c9a96e]"
+        className="pt-mark pt-display inline-grid shrink-0 place-items-center rounded-[6px] border border-[#c9a96e]/35 bg-[#0a0a09] text-sm font-extrabold tracking-wide text-[#c9a96e]"
       >
         SV
       </span>

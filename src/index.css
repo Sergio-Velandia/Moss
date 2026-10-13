@@ -262,6 +262,8 @@ body {
   --pt-chip-bg: color-mix(in oklab, var(--nx-moss) 16%, transparent);
   --pt-chip-ink: var(--nx-moss);
   --pt-radius-btn: 0.75rem;
+  --pt-font-display: "Inter Variable", "Inter", system-ui, sans-serif;
+  --pt-font-body: "Inter Variable", "Inter", system-ui, sans-serif;
   /* Botón principal: relleno coral con resplandor, como en Nexus */
   --pt-btn-bg: var(--nx-coral);
   --pt-btn-ink: var(--nx-on-accent);
@@ -291,6 +293,8 @@ body {
   --pt-chip-bg: transparent;
   --pt-chip-ink: #c9a96e;
   --pt-radius-btn: 6px;
+  --pt-font-display: "Syne Variable", "Syne", system-ui, sans-serif;
+  --pt-font-body: "DM Sans Variable", "DM Sans", system-ui, sans-serif;
   /* Botón principal: contorno que se vuelve dorado */
   --pt-btn-bg: #0a0a09;
   --pt-btn-ink: #f5f2ec;
@@ -311,12 +315,14 @@ body {
 @layer components {
   /* Tarjeta del índice. El hover no la levanta: tiñe el borde, enciende un resplandor del color del proyecto
      y señala la acción (el botón), como hacen las tarjetas del portafolio. */
+  /* Sin --pt-font-* (Moss) se hereda la tipografía del sitio */
   .pt-card {
     position: relative;
     isolation: isolate;
     overflow: hidden;
     background: var(--pt-bg);
     color: var(--pt-ink);
+    font-family: var(--pt-font-body, inherit);
     border: 1px solid var(--pt-border);
     transition: border-color 0.22s ease;
   }
@@ -341,6 +347,9 @@ body {
   .pt-card:is(:hover, :focus-visible) .pt-mark {
     transform: scale(1.08) rotate(-4deg);
   }
+  .pt-display {
+    font-family: var(--pt-font-display, inherit);
+  }
   .pt-chip {
     background: var(--pt-chip-bg);
     color: var(--pt-chip-ink);
@@ -361,12 +370,14 @@ body {
       transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
   }
   .pt-btn {
+    font-family: var(--pt-font-display, inherit);
     background: var(--pt-btn-bg);
     color: var(--pt-btn-ink);
     border-color: var(--pt-btn-border);
     box-shadow: var(--pt-btn-shadow);
   }
   .pt-btn-2 {
+    font-family: var(--pt-font-body, inherit);
     background: var(--pt-btn2-bg);
     color: var(--pt-btn2-ink);
     border-color: var(--pt-btn2-border);

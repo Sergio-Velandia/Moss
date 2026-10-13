@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import ProjectMark from '../components/content/ProjectMark'
+import '../lib/projectFonts'
 import { projectDocs } from '../lib/content'
 import { useLang, useT } from '../lib/i18n'
 import { statusLabels } from '../lib/projects'
@@ -61,7 +62,7 @@ export default function Projects() {
                       </p>
                     )}
                   </div>
-                  <h2 className="mt-4 text-lg font-semibold tracking-tight" lang="es">{d.title}</h2>
+                  <h2 className="pt-display mt-4 text-lg font-semibold tracking-tight" lang="es">{d.title}</h2>
                   <p className="mt-1 flex-1 text-sm text-(--pt-ink-soft)" lang="es">{d.description}</p>
                   <ul className="mt-4 flex flex-wrap gap-1.5 text-xs" aria-label={t.techs}>
                     {d.technologies.map((x) => (
