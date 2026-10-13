@@ -78,8 +78,11 @@ describe('validateProject', () => {
   })
 
   it('exige al menos cuatro decisiones con su formato y un diagrama por sección', () => {
-    const decisions = sectionBody(base.body, 'Decisiones')
-    const fewer = { ...base, body: base.body.replace(decisions, '\n- **Decisión:** a **En vez de:** b **Porque:** c\n') }
+    // Finales de línea normalizados: en Windows, Git puede entregar los .md con CRLF
+    const body = base.body.replace(/\r\n/g, '\n')
+    const decisions = sectionBody(body, 'Decisiones')
+    expect(decisions.length).toBeGreaterThan(0)
+    const fewer = { ...base, body: body.replace(decisions, '\n- **Decisión:** a **En vez de:** b **Porque:** c\n') }
     expect(validateProject(fewer).join()).toMatch(/Decisiones/)
     const noDiagram = { ...base, body: base.body.replace(/```mindmap/g, '```text') }
     expect(validateProject(noDiagram).join()).toMatch(/Arquitectura/)
