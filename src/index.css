@@ -63,6 +63,22 @@
   --color-chart-2: var(--c-chart-2);
   --color-chart-3: var(--c-chart-3);
 
+  /* Moss Nexus: solo tienen valor dentro de .nexus (ver más abajo) */
+  --color-nx-bg: var(--nx-bg);
+  --color-nx-surface: var(--nx-surface);
+  --color-nx-surface-2: var(--nx-surface-2);
+  --color-nx-line: var(--nx-line);
+  --color-nx-line-strong: var(--nx-line-strong);
+  --color-nx-ink: var(--nx-ink);
+  --color-nx-ink-soft: var(--nx-ink-soft);
+  --color-nx-faint: var(--nx-faint);
+  --color-nx-moss: var(--nx-moss);
+  --color-nx-coral: var(--nx-coral);
+  --color-nx-amber: var(--nx-amber);
+  --color-nx-on-accent: var(--nx-on-accent);
+  --font-nexus: "Inter Variable", "Inter", system-ui, "Segoe UI", Roboto, sans-serif;
+  --font-nexus-mono: "JetBrains Mono Variable", "JetBrains Mono", ui-monospace, Consolas, monospace;
+
   --font-sans: "Inter", system-ui, "Segoe UI", Roboto, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
 }
@@ -130,6 +146,75 @@ body {
 }
 .shiki {
   background-color: transparent !important;
+}
+
+/* ——— Moss Nexus ———
+   Tokens del sitio hermano, copiados de Moss-Nexus/src/index.css (v0.7.0). Solo existen dentro de .nexus
+   (la página /nexus y su acceso en la cabecera): el resto de Moss no los ve ni cambia.
+   Siguen el tema elegido en Moss con la paleta clara u oscura de Nexus.
+   Contraste comprobado contra los fondos de Moss: todo texto ≥ 4.5:1, salvo --nx-faint sobre superficies
+   (≈ 4.2:1), que por eso solo se usa sobre el fondo de la página. */
+.nexus {
+  --nx-bg: #faf7ef;
+  --nx-surface: #ffffff;
+  --nx-surface-2: #f6f2e7;
+  --nx-line: rgb(47 58 44 / 0.1);
+  --nx-line-strong: rgb(47 58 44 / 0.18);
+  --nx-ink: #2f3a2c;
+  --nx-ink-soft: #5b6657;
+  --nx-faint: #646f60;
+  --nx-moss: #476140;
+  --nx-coral: #c2364f;
+  --nx-amber: #8f5b12;
+  --nx-on-accent: #ffffff;
+  --nx-dot: rgb(47 58 44 / 0.09);
+  --nx-glow-moss: rgb(156 175 136 / 0.28);
+  --nx-glow-coral: rgb(242 100 122 / 0.12);
+  --nx-shadow-card: 0 10px 30px -14px rgb(47 58 44 / 0.25);
+}
+:root[data-theme="dark"] .nexus {
+  --nx-bg: #0e130e;
+  --nx-surface: #1a2219;
+  --nx-surface-2: #222c20;
+  --nx-line: rgb(233 239 224 / 0.09);
+  --nx-line-strong: rgb(233 239 224 / 0.16);
+  --nx-ink: #e9efe0;
+  --nx-ink-soft: #a9b5a2;
+  --nx-faint: #808d7a;
+  --nx-moss: #8fb079;
+  --nx-coral: #f2647a;
+  --nx-amber: #e0a458;
+  --nx-on-accent: #0e130e;
+  --nx-dot: rgb(233 239 224 / 0.07);
+  --nx-glow-moss: rgb(111 138 92 / 0.2);
+  --nx-glow-coral: rgb(242 100 122 / 0.13);
+  --nx-shadow-card: 0 1px 0 rgb(255 255 255 / 0.04) inset, 0 10px 30px -12px rgb(0 0 0 / 0.6);
+}
+
+/* En una capa, como en Nexus: así las utilidades de Tailwind pueden sobrescribirlas */
+@layer components {
+  .nexus :focus-visible {
+    outline-color: var(--nx-coral);
+  }
+  /* Superficie de vidrio */
+  .nx-glass {
+    background: color-mix(in oklab, var(--nx-surface) 72%, transparent);
+    border: 1px solid var(--nx-line);
+    box-shadow: var(--nx-shadow-card);
+    backdrop-filter: blur(14px);
+  }
+  /* Rejilla de puntos tipo lienzo de n8n */
+  .nx-dot-grid {
+    background-image: radial-gradient(var(--nx-dot) 1.2px, transparent 1.2px);
+    background-size: 18px 18px;
+  }
+  /* Degradado musgo → coral para los titulares clave */
+  .nx-text-gradient {
+    background: linear-gradient(100deg, var(--nx-moss) 0%, var(--nx-coral) 85%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
 }
 
 /* ——— Diagramas del Manual (```flow y ```mindmap) ——— */
