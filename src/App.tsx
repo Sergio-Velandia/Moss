@@ -14,6 +14,8 @@ const Herbario = lazy(() => import('./pages/Herbario'))
 const JournalPost = lazy(() => import('./pages/JournalPost'))
 const ManualDoc = lazy(() => import('./pages/ManualDoc'))
 const Legal = lazy(() => import('./pages/Legal'))
+// La página de Nexus trae sus propias fuentes: tampoco entra en el bundle inicial
+const Nexus = lazy(() => import('./pages/Nexus'))
 
 export default function App() {
   return (
@@ -30,6 +32,7 @@ export default function App() {
             <Route path="bitacora" element={<Journal />} />
             <Route path="bitacora/:slug" element={<JournalPost />} />
             <Route path="herbario" element={<Herbario />} />
+            <Route path="nexus" element={<Nexus />} />
             <Route path="terminos" element={<Legal slug="terminos" />} />
             <Route path="privacidad" element={<Legal slug="privacidad" />} />
             <Route path="proteccion-de-datos" element={<Legal slug="proteccion-de-datos" />} />
