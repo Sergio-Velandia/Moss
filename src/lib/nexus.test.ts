@@ -1,5 +1,3 @@
-import { readdirSync, readFileSync, statSync } from 'node:fs'
-import { join } from 'node:path'
 import { createElement } from 'react'
 import { renderToString } from 'react-dom/server'
 import { MemoryRouter } from 'react-router-dom'
@@ -10,20 +8,23 @@ import Nexus from '../pages/Nexus'
 
 const render = (node: React.ReactElement) => renderToString(createElement(MemoryRouter, null, node))
 
-/** Todos los archivos de código de src/, con su contenido. */
-function sourceFiles(dir = 'src'): [string, string][] {
-  return readdirSync(dir).flatMap((name) => {
-    const path = join(dir, name)
-    if (statSync(path).isDirectory()) return sourceFiles(path)
-    return /\.(ts|tsx)$/.test(name) && !name.endsWith('.test.ts') ? [[path, readFileSync(path, 'utf8')]] : []
-  })
-}
+// El código se lee con Vite (?raw), igual que el resto del sitio: sin APIs de Node, que el build no tipa
+const sources = import.meta.glob<string>(['/src/**/*.{ts,tsx}', '!/src/**/*.test.ts'], {
+  eager: true,
+  query: '?raw',
+  import: 'default',
+})
+const appSource = sources['/src/App.tsx']
+const viteConfig = import.meta.glob<string>('/vite.config.ts', { eager: true, query: '?raw', import: 'default' })[
+  '/vite.config.ts'
+]
 
 describe('Moss Nexus', () => {
   it('la URL vive en una sola constante, con https', () => {
     expect(site.nexusUrl).toMatch(/^https:\/\/.+\/$/)
-    const repeated = sourceFiles()
-      .filter(([path, code]) => !path.endsWith(join('data', 'site.ts')) && code.includes('Moss-Nexus'))
+    expect(Object.keys(sources).length).toBeGreaterThan(20)
+    const repeated = Object.entries(sources)
+      .filter(([path, code]) => path !== '/src/data/site.ts' && code.includes('Moss-Nexus'))
       .map(([path]) => path)
     expect(repeated).toEqual([])
   })
@@ -49,10 +50,8 @@ describe('Moss Nexus', () => {
   })
 
   it('cada ruta estática del build existe en el router', () => {
-    const config = readFileSync('vite.config.ts', 'utf8')
-    const routes = JSON.parse((/STATIC_ROUTES = (\[[^\]]*\])/.exec(config)?.[1] ?? '[]').replaceAll("'", '"')) as string[]
-    const app = readFileSync('src/App.tsx', 'utf8')
+    const routes = JSON.parse((/STATIC_ROUTES = (\[[^\]]*\])/.exec(viteConfig)?.[1] ?? '[]').replaceAll("'", '"')) as string[]
     expect(routes).toContain('nexus')
-    for (const route of routes) expect(app, route).toContain(`path="${route}"`)
+    for (const route of routes) expect(appSource, route).toContain(`path="${route}"`)
   })
 })
