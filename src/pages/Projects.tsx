@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import ProjectMark from '../components/content/ProjectMark'
 import { projectDocs } from '../lib/content'
 import { useLang, useT } from '../lib/i18n'
 import { statusLabels } from '../lib/projects'
@@ -10,12 +11,16 @@ const TEXT = {
     intro: 'Cómo están armados mis proyectos por dentro: arquitectura, flujo de datos, las decisiones que tomé y lo que aprendí.',
     empty: 'Aún no hay proyectos documentados.',
     version: (v: string) => `v${v}`,
+    action: 'Ver cómo está hecho',
+    techs: 'Tecnologías',
   },
   en: {
     title: 'Projects',
     intro: 'How my projects are built inside: architecture, data flow, the decisions I made and what I learned.',
     empty: 'No projects documented yet.',
     version: (v: string) => `v${v}`,
+    action: 'See how it’s built',
+    techs: 'Technologies',
   },
 }
 
@@ -33,32 +38,44 @@ export default function Projects() {
         <p className="mt-10 text-sm text-ink-soft">{t.empty}</p>
       ) : (
         <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {projectDocs.map((d) => (
-            <li key={d.id}>
-              <Link
-                to={d.url}
-                className="flex h-full flex-col rounded-2xl border border-surface/70 bg-surface/50 p-5 shadow-sm backdrop-blur transition hover:shadow-md"
-              >
-                <h2 className="font-medium" lang="es">{d.title}</h2>
-                <p className="mt-1 flex-1 text-sm text-ink-soft" lang="es">{d.description}</p>
-                {d.project && (
-                  <p className="mt-4 flex flex-wrap items-center gap-2 text-xs">
-                    <span className="rounded-full bg-sage/30 px-2 py-0.5 text-sage-deep">{statusLabels[lang][d.project.status] ?? d.project.status}</span>
-                    <span className="font-mono tabular-nums text-ink-soft" translate="no">
-                      {t.version(d.project.version)}
-                    </span>
-                  </p>
-                )}
-                <div className="mt-3 flex flex-wrap gap-1.5 text-xs">
-                  {d.technologies.map((x) => (
-                    <span key={x} className="rounded-full bg-lavender/50 px-2 py-0.5 text-lavender-deep">
-                      {x}
-                    </span>
-                  ))}
-                </div>
-              </Link>
-            </li>
-          ))}
+          {projectDocs.map((d) => {
+            const theme = d.project?.theme ?? 'moss'
+            return (
+              <li key={d.id}>
+                {/* Cada tarjeta con la paleta de su proyecto: .pt-<tema> (y .nexus para los tokens de Nexus) */}
+                <Link
+                  to={d.url}
+                  className={`pt-card pt-${theme} ${theme === 'nexus' ? 'nexus rounded-3xl' : 'rounded-2xl'} flex h-full flex-col p-5 shadow-sm`}
+                >
+                  <div className="flex items-start justify-between gap-3">
+                    <ProjectMark theme={theme} />
+                    {d.project && (
+                      <p className="flex flex-col items-end gap-1 text-xs">
+                        <span className="inline-flex items-center gap-1.5 text-(--pt-ink-soft)">
+                          <span aria-hidden className="size-1.5 rounded-full bg-(--pt-accent)" />
+                          {statusLabels[lang][d.project.status] ?? d.project.status}
+                        </span>
+                        <span className="font-mono tabular-nums text-(--pt-ink-soft)" translate="no">
+                          {t.version(d.project.version)}
+                        </span>
+                      </p>
+                    )}
+                  </div>
+                  <h2 className="mt-4 text-lg font-semibold tracking-tight" lang="es">{d.title}</h2>
+                  <p className="mt-1 flex-1 text-sm text-(--pt-ink-soft)" lang="es">{d.description}</p>
+                  <ul className="mt-4 flex flex-wrap gap-1.5 text-xs" aria-label={t.techs}>
+                    {d.technologies.map((x) => (
+                      <li key={x} className="pt-chip rounded-full px-2 py-0.5">
+                        {x}
+                      </li>
+                    ))}
+                  </ul>
+                  {/* Señala la acción de la tarjeta: reacciona al hover de toda la tarjeta */}
+                  <span className="pt-btn mt-5 inline-flex min-h-10 w-fit items-center px-4 text-sm font-semibold">{t.action}</span>
+                </Link>
+              </li>
+            )
+          })}
         </ul>
       )}
     </section>
