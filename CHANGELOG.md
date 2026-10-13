@@ -12,6 +12,10 @@ El campo `version` de `package.json` siempre coincide con la última versión pu
 
 ## [Sin publicar]
 
+## [1.5.0] - 2026-10-12
+
+Moss Nexus: página de presentación y acceso desde la navegación.
+
 ### Añadido
 - Página **Moss Nexus** (`/nexus`), que presenta el sitio hermano con los flujos de n8n listos para copiar: qué es y para quién, el problema que resuelve, cómo funciona en tres pasos (explora, entiende, copia y pega), el acceso «Ir a Moss Nexus» y el aviso de que es un proyecto independiente, sin relación oficial con n8n GmbH. En español e inglés.
 - Acceso a Nexus en la cabecera y en el menú móvil, con su marca. Entre 768 y 1024 px muestra solo la marca para que la cabecera quepa.
@@ -19,7 +23,7 @@ El campo `version` de `package.json` siempre coincide con la última versión pu
 - Fuentes Inter y JetBrains Mono de Nexus, cargadas solo al abrir `/nexus`.
 - En el build, `nexus/index.html`, para que GitHub Pages responda 200 en esa ruta en lugar de 404 (lista `STATIC_ROUTES` en `vite.config.ts`).
 - La URL de Nexus vive en una sola constante (`site.nexusUrl`), con una prueba que impide repetirla en el código.
-- Este `CHANGELOG.md`.
+- Este `CHANGELOG.md`, con el historial reconstruido desde 1.0.0, y la sección de versionado del README.
 
 ## [1.4.0] - 2026-10-12
 
@@ -91,7 +95,8 @@ Primera versión completa.
 - Páginas legales: términos, privacidad y protección de datos.
 - Despliegue automático en GitHub Pages con cada push a `main`.
 
-[Sin publicar]: https://github.com/Sergio-Velandia/Moss/compare/v1.4.0...HEAD
+[Sin publicar]: https://github.com/Sergio-Velandia/Moss/compare/v1.5.0...HEAD
+[1.5.0]: https://github.com/Sergio-Velandia/Moss/compare/v1.4.0...v1.5.0
 [1.4.0]: https://github.com/Sergio-Velandia/Moss/compare/v1.3.0...v1.4.0
 [1.3.0]: https://github.com/Sergio-Velandia/Moss/compare/v1.2.0...v1.3.0
 [1.2.0]: https://github.com/Sergio-Velandia/Moss/compare/v1.1.0...v1.2.0
