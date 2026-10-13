@@ -18,8 +18,7 @@ export default function NexusNavLink({ variant, onNavigate }: { variant: 'header
       }
     >
       <NexusMark size={variant === 'header' ? 18 : 20} />
-      {/* En la cabecera, entre md y lg solo cabe la marca: el nombre queda para lectores de pantalla */}
-      <span className={variant === 'header' ? 'sr-only lg:not-sr-only' : ''}>Nexus</span>
+      <span>Nexus</span>
     </NavLink>
   )
 }

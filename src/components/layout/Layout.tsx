@@ -51,6 +51,7 @@ export default function Layout() {
     { to: '/manual', label: sections.manual },
     { to: '/bitacora', label: sections.journal },
     { to: '/herbario', label: sections.herbario },
+    { to: '/proyectos', label: sections.project },
   ]
   const { pathname } = useLocation()
   const [menuOpen, setMenuOpen] = useState(false)
@@ -103,7 +104,7 @@ export default function Layout() {
           </NavLink>
 
           <div className="flex items-center gap-1">
-            <nav aria-label={t.nav} className="hidden items-center gap-1 text-sm md:flex">
+            <nav aria-label={t.nav} className="hidden items-center gap-1 text-sm lg:flex">
               {links.map((l) => (
                 <NavLink key={l.to} to={l.to} end={l.end} className={linkClass}>
                   {l.label}
@@ -120,7 +121,7 @@ export default function Layout() {
               aria-expanded={menuOpen}
               aria-controls="menu-movil"
               aria-label={menuOpen ? t.closeMenu : t.openMenu}
-              className="inline-flex h-11 w-11 items-center justify-center rounded-xl text-ink-soft transition hover:bg-sage/20 hover:text-ink md:hidden"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-xl text-ink-soft transition hover:bg-sage/20 hover:text-ink lg:hidden"
             >
               {menuOpen ? <X size={20} aria-hidden /> : <Menu size={20} aria-hidden />}
             </button>
@@ -128,7 +129,7 @@ export default function Layout() {
         </div>
 
         {menuOpen && (
-          <nav id="menu-movil" aria-label={t.nav} className="flex flex-col gap-1 border-t border-cream-deep p-2 text-base md:hidden">
+          <nav id="menu-movil" aria-label={t.nav} className="flex flex-col gap-1 border-t border-cream-deep p-2 text-base lg:hidden">
             {links.map((l) => (
               <NavLink
                 key={l.to}

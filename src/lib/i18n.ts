@@ -76,9 +76,9 @@ export function useT<T>(text: Record<Lang, T>): T {
 }
 
 /** Nombres de las secciones, compartidos por la navegación, el Herbario y el tablero. */
-export const sectionNames: Record<Lang, { lab: string; manual: string; journal: string; herbario: string }> = {
-  es: { lab: 'Laboratorio', manual: 'Manual', journal: 'Bitácora', herbario: 'Herbario' },
-  en: { lab: 'Lab', manual: 'Manual', journal: 'Journal', herbario: 'Herbarium' },
+export const sectionNames: Record<Lang, { lab: string; manual: string; journal: string; herbario: string; project: string }> = {
+  es: { lab: 'Laboratorio', manual: 'Manual', journal: 'Bitácora', herbario: 'Herbario', project: 'Proyectos' },
+  en: { lab: 'Lab', manual: 'Manual', journal: 'Journal', herbario: 'Herbarium', project: 'Projects' },
 }
 
 /** Aviso para el contenido escrito en español cuando la interfaz está en inglés. */
