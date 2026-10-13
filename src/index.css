@@ -270,6 +270,8 @@ body {
   --pt-btn-ink-hover: var(--nx-on-accent);
   --pt-btn-border-hover: transparent;
   --pt-btn-shadow: 0 8px 30px -8px var(--nx-coral);
+  /* Como en Nexus: el coral se aviva al pasar el cursor */
+  --pt-btn-filter-hover: brightness(1.1);
   /* Botón secundario: vidrio */
   --pt-btn2-bg: color-mix(in oklab, var(--nx-surface) 72%, transparent);
   --pt-btn2-ink: var(--nx-ink);
@@ -374,6 +376,7 @@ body {
     background: var(--pt-btn-bg-hover);
     color: var(--pt-btn-ink-hover);
     border-color: var(--pt-btn-border-hover);
+    filter: var(--pt-btn-filter-hover, none);
     transform: translateY(-1px);
   }
   :is(.pt-btn-2:hover, .pt-btn-2:focus-visible) {
