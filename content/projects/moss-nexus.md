@@ -54,7 +54,7 @@ La lógica no conoce React: el índice, la validación, el layout del mapa y la 
 
 ```flow
 # De la carpeta al índice (al compilar)
-Carpeta :: src/data/templates/<slug>/
+Carpeta :: una por plantilla, con tres archivos
 import.meta.glob :: meta y diagrama en el bundle; el workflow, aparte
 ? validate.ts :: ¿datos válidos?
 + Índice :: las probadas primero | ! Omitida :: aviso en consola y pruebas en rojo
