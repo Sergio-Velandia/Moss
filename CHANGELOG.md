@@ -12,6 +12,14 @@ El campo `version` de `package.json` siempre coincide con la última versión pu
 
 ## [Sin publicar]
 
+## [1.6.1] - 2026-10-12
+
+### Cambiado
+- Página del portafolio en Proyectos: confirmado por el autor que las credenciales de EmailJS están restringidas al dominio del sitio, y la razón de separar el proveedor de idioma ahora cita la regla `react-refresh` de su linter.
+
+### Corregido
+- Una prueba de la plantilla de proyectos fallaba en Windows cuando Git entregaba los `.md` con finales de línea CRLF.
+
 ## [1.6.0] - 2026-10-12
 
 Proyectos: arquitectura, flujos y decisiones de Moss, Moss Nexus y el portafolio.
@@ -109,7 +117,8 @@ Primera versión completa.
 - Páginas legales: términos, privacidad y protección de datos.
 - Despliegue automático en GitHub Pages con cada push a `main`.
 
-[Sin publicar]: https://github.com/Sergio-Velandia/Moss/compare/v1.6.0...HEAD
+[Sin publicar]: https://github.com/Sergio-Velandia/Moss/compare/v1.6.1...HEAD
+[1.6.1]: https://github.com/Sergio-Velandia/Moss/compare/v1.6.0...v1.6.1
 [1.6.0]: https://github.com/Sergio-Velandia/Moss/compare/v1.5.0...v1.6.0
 [1.5.0]: https://github.com/Sergio-Velandia/Moss/compare/v1.4.0...v1.5.0
 [1.4.0]: https://github.com/Sergio-Velandia/Moss/compare/v1.3.0...v1.4.0
