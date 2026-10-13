@@ -33,7 +33,7 @@ export const knowledgeItems: KnowledgeItem[] = [
   })),
   ...[...manualDocs, ...journalPosts].map<KnowledgeItem>((d) => ({
     id: d.id,
-    type: d.type,
+    type: d.type as 'manual' | 'journal',
     title: d.title,
     description: d.description,
     tags: d.tags,

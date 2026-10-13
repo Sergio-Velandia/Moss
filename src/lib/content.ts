@@ -1,7 +1,7 @@
 import GithubSlugger from 'github-slugger'
 import { asString, asStringArray, parseFrontmatter } from './frontmatter'
 
-export type DocType = 'manual' | 'journal'
+export type DocType = 'manual' | 'journal' | 'project'
 
 export interface Heading {
   id: string
@@ -15,8 +15,26 @@ export interface Reference {
   url: string
 }
 
+/** Estados posibles de un proyecto documentado */
+export const PROJECT_STATUSES = ['activo', 'mantenimiento', 'pausado'] as const
+export type ProjectStatus = (typeof PROJECT_STATUSES)[number]
+
+/** Secciones obligatorias de una página de proyecto, en este orden */
+export const PROJECT_SECTIONS = ['Ficha', 'Arquitectura', 'Flujo de datos', 'Decisiones', 'Lecciones', 'Roadmap'] as const
+
+/** Ficha de un proyecto (content/projects/*.md). Se valida con validateProject. */
+export interface ProjectFacts {
+  status: string
+  /** Versión del proyecto que describe la página (semver) */
+  version: string
+  /** Última vez que se contrastó la página con el código (AAAA-MM-DD) */
+  reviewedAt: string
+  repo: string
+  site: string
+}
+
 export interface Doc {
-  /** Identificador único: manual/<categoría>/<slug> o journal/<slug> */
+  /** Identificador único: manual/<categoría>/<slug>, journal/<slug> o project/<slug> */
   id: string
   type: DocType
   slug: string
@@ -35,6 +53,8 @@ export interface Doc {
   readingMinutes: number
   headings: Heading[]
   url: string
+  /** Solo en los proyectos */
+  project?: ProjectFacts
 }
 
 // Todo el contenido editorial vive en /content como archivos Markdown.
@@ -101,6 +121,11 @@ function parseDoc(path: string, raw: string): Doc | null {
     category = asString(data.category, 'General')
     id = `journal/${slug}`
     url = `/bitacora/${slug}`
+  } else if (root === 'projects' && parts.length === 2) {
+    type = 'project'
+    category = 'Proyecto'
+    id = `project/${slug}`
+    url = `/proyectos/${slug}`
   } else {
     return null
   }
@@ -125,7 +150,65 @@ function parseDoc(path: string, raw: string): Doc | null {
     readingMinutes: Math.max(1, Math.round(words / 200)),
     headings: extractHeadings(body),
     url,
+    ...(type === 'project' && {
+      project: {
+        status: asString(data.status),
+        version: asString(data.version),
+        reviewedAt: asString(data.reviewedAt),
+        repo: asString(data.repo),
+        site: asString(data.site),
+      },
+    }),
   }
+}
+
+const isHttps = (url: string) => {
+  try {
+    return new URL(url).protocol === 'https:'
+  } catch {
+    return false
+  }
+}
+
+/** Cuerpo de una sección "## Título" hasta la siguiente sección de nivel 2 */
+export function sectionBody(body: string, title: string): string {
+  const lines = body.replace(/\r\n/g, '\n').split('\n')
+  const start = lines.findIndex((l) => l.trim() === `## ${title}`)
+  if (start === -1) return ''
+  const end = lines.findIndex((l, i) => i > start && /^## /.test(l))
+  return lines.slice(start + 1, end === -1 ? undefined : end).join('\n')
+}
+
+/** Una decisión se escribe como "- **Decisión:** … **En vez de:** … **Porque:** …" */
+const DECISION = /^\s*[-*]\s+\*\*Decisión:\*\*.+\*\*En vez de:\*\*.+\*\*Porque:\*\*.+/
+const DIAGRAM_FENCE = /^```(flow|mindmap)\s*$/m
+
+/**
+ * Reglas de una página de proyecto. Devuelve los problemas en español; lista vacía = válida.
+ * Las pruebas exigen que todos los proyectos pasen, para que la información no caduque ni quede a medias.
+ */
+export function validateProject(doc: Doc): string[] {
+  const errors: string[] = []
+  const p = doc.project
+  if (!p) return ['no es un proyecto']
+  if (!(PROJECT_STATUSES as readonly string[]).includes(p.status)) errors.push(`status: uno de ${PROJECT_STATUSES.join(', ')}`)
+  if (!/^\d+\.\d+\.\d+$/.test(p.version)) errors.push('version: obligatoria, con formato X.Y.Z')
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(p.reviewedAt) || Number.isNaN(Date.parse(p.reviewedAt))) {
+    errors.push('reviewedAt: obligatoria, con formato AAAA-MM-DD')
+  }
+  if (!isHttps(p.repo)) errors.push('repo: enlace https obligatorio')
+  if (!isHttps(p.site)) errors.push('site: enlace https obligatorio')
+
+  const sections = doc.headings.filter((h) => h.level === 2).map((h) => h.text)
+  if (sections.join('|') !== PROJECT_SECTIONS.join('|')) {
+    errors.push(`secciones: deben ser, en orden, ${PROJECT_SECTIONS.join(', ')} (hay: ${sections.join(', ')})`)
+  }
+  for (const title of ['Arquitectura', 'Flujo de datos']) {
+    if (!DIAGRAM_FENCE.test(sectionBody(doc.body, title))) errors.push(`${title}: necesita un diagrama flow o mindmap`)
+  }
+  const decisions = sectionBody(doc.body, 'Decisiones').split('\n').filter((l) => DECISION.test(l)).length
+  if (decisions < 4) errors.push(`Decisiones: mínimo 4 con el formato Decisión / En vez de / Porque (hay ${decisions})`)
+  return errors
 }
 
 const allDocs: Doc[] = Object.entries(files)
@@ -138,7 +221,12 @@ const allDocs: Doc[] = Object.entries(files)
 export const manualDocs = allDocs.filter((d) => d.type === 'manual')
 export const journalPosts = allDocs.filter((d) => d.type === 'journal')
 export const manualCategories = [...new Set(manualDocs.map((d) => d.category))].sort()
+// Los proyectos se listan por nombre: su fecha de creación no dice nada de su importancia
+export const projectDocs = allDocs
+  .filter((d) => d.type === 'project')
+  .sort((a, b) => a.title.localeCompare(b.title, 'es'))
 
 export const getManualDoc = (category: string, slug: string) =>
   manualDocs.find((d) => d.category === category && d.slug === slug)
 export const getJournalPost = (slug: string) => journalPosts.find((d) => d.slug === slug)
+export const getProject = (slug: string) => projectDocs.find((d) => d.slug === slug)
