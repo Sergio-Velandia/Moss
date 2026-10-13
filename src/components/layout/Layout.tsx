@@ -5,6 +5,7 @@ import { Menu, Sprout, X } from 'lucide-react'
 import { site } from '../../data/site'
 import { sectionNames, useLang, useT } from '../../lib/i18n'
 import { legalLinks } from '../../lib/legal'
+import NexusNavLink from '../nexus/NexusNavLink'
 import LanguageToggle from './LanguageToggle'
 import ThemeToggle from './ThemeToggle'
 
@@ -102,12 +103,13 @@ export default function Layout() {
           </NavLink>
 
           <div className="flex items-center gap-1">
-            <nav aria-label={t.nav} className="hidden gap-1 text-sm md:flex">
+            <nav aria-label={t.nav} className="hidden items-center gap-1 text-sm md:flex">
               {links.map((l) => (
                 <NavLink key={l.to} to={l.to} end={l.end} className={linkClass}>
                   {l.label}
                 </NavLink>
               ))}
+              <NexusNavLink variant="header" />
             </nav>
             <LanguageToggle />
             <ThemeToggle />
@@ -138,6 +140,7 @@ export default function Layout() {
                 {l.label}
               </NavLink>
             ))}
+            <NexusNavLink variant="menu" onNavigate={() => setMenuOpen(false)} />
           </nav>
         )}
       </header>
