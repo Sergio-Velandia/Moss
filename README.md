@@ -21,6 +21,8 @@ Mi "segundo cerebro" técnico: una biblioteca personal y visual donde guardo, do
 
 `/proyectos` documenta mis proyectos como un ingeniero explica su trabajo: cómo están armados por dentro, cómo viajan los datos, qué decisiones tomé (con la alternativa descartada) y qué aprendí. No repite los README: los enlaza. Hoy: Moss, Moss Nexus y el portafolio.
 
+Cada proyecto se ve con su propia identidad: Moss en salvia, Moss Nexus en musgo y coral, y el portafolio en grafito con un único acento dorado, tomados de los estilos de cada repositorio. La usan solo las tarjetas del índice y los botones de la ficha (clases `.pt-*` en `src/index.css`); al pasar el cursor, la tarjeta tiñe su borde y enciende un resplandor de su color sin levantarse.
+
 Cada página sigue la misma plantilla, en este orden: **Ficha, Arquitectura, Flujo de datos, Decisiones, Lecciones y Roadmap**, más los relacionados. La ficha muestra «Documentado en vX.Y.Z» y «Última revisión», que salen del frontmatter; si alguno falta, las pruebas fallan.
 
 ## Moss Nexus
@@ -147,6 +149,7 @@ Crea `content/projects/<slug>.md`; la página aparece en `/proyectos/<slug>` y e
 
 ```md
 status: activo          # activo | mantenimiento | pausado
+theme: moss             # moss | nexus | portafolio: paleta de su tarjeta y sus botones
 version: 1.6.0          # versión del proyecto que describe la página
 reviewedAt: 2026-10-12  # última vez que se contrastó con el código
 repo: https://github.com/…
