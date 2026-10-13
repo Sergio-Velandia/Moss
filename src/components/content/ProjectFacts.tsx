@@ -47,7 +47,7 @@ export default function ProjectFacts({ facts }: { facts: Facts }) {
         <div>
           <dt className="text-xs text-ink-soft">{t.documented}</dt>
           <dd className="mt-1 font-mono font-medium tabular-nums" translate="no">
-            v{facts.version}
+            {`v${facts.version}`}
           </dd>
         </div>
         <div>
