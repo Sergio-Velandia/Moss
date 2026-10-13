@@ -6,7 +6,7 @@ import { knowledgeItems, type ItemType } from '../lib/knowledge'
 import { search } from '../lib/search'
 import { useDocumentTitle } from '../lib/useDocumentTitle'
 
-const TYPES: ItemType[] = ['lab', 'manual', 'journal']
+const TYPES: ItemType[] = ['lab', 'manual', 'journal', 'project']
 /** Etiquetas visibles antes de pulsar "Ver todas" */
 const VISIBLE_TAGS = 16
 

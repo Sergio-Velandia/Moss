@@ -25,7 +25,11 @@ export const gardenTypeLabel: Record<GardenType, string> = {
   bitacora: 'Bitácora',
 }
 
-/** Todo el contenido publicado. Los borradores ya los filtra content.ts, igual que en el resto del sitio. */
+/**
+ * Todo el conocimiento publicado. Los borradores ya los filtra content.ts, igual que en el resto del sitio.
+ * Los proyectos no cuentan a propósito: el tablero mide lo plantado (demos, guías y artículos), y las fichas
+ * de proyecto describen repositorios; sumarlas inflaría el radar de tecnologías y el ritmo de crecimiento.
+ */
 export function getGardenItems(): GardenItem[] {
   return [
     ...labEntries.map<GardenItem>((e) => ({
