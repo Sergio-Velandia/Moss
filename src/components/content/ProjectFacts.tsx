@@ -29,17 +29,21 @@ const TEXT = {
 export default function ProjectFacts({ facts }: { facts: Facts }) {
   const lang = useLang()
   const t = useT(TEXT)
-  const linkClass =
-    'inline-flex min-h-11 items-center gap-2 rounded-xl border border-surface/70 bg-surface/70 px-4 text-sm font-medium transition-colors hover:bg-surface hover:text-sage-deep'
+  const linkClass = 'inline-flex min-h-11 items-center gap-2 px-4 text-sm font-semibold'
+  // La ficha toma la paleta de su proyecto (.pt-<tema>; Nexus necesita además sus tokens .nexus)
+  const theme = `pt-${facts.theme}${facts.theme === 'nexus' ? ' nexus' : ''}`
 
   return (
-    <section aria-label={t.label} className="mt-6 rounded-2xl border border-surface/70 bg-surface/50 p-5 shadow-sm backdrop-blur">
+    <section
+      aria-label={t.label}
+      className={`${theme} mt-6 rounded-2xl border border-surface/70 border-t-2 border-t-(--pt-accent) bg-surface/50 p-5 shadow-sm backdrop-blur`}
+    >
       <dl className="grid gap-4 text-sm sm:grid-cols-3">
         <div>
           <dt className="text-xs text-ink-soft">{t.status}</dt>
           <dd className="mt-1 font-medium">
             <span className="inline-flex items-center gap-1.5">
-              <span aria-hidden className={`size-2 rounded-full ${facts.status === 'activo' ? 'bg-sage-deep' : 'bg-lavender-deep'}`} />
+              <span aria-hidden className="size-2 rounded-full bg-(--pt-accent)" />
               {statusLabels[lang][facts.status] ?? facts.status}
             </span>
           </dd>
@@ -58,12 +62,12 @@ export default function ProjectFacts({ facts }: { facts: Facts }) {
         </div>
       </dl>
       <div className="mt-4 flex flex-wrap gap-2">
-        <a href={facts.site} target="_blank" rel="noopener noreferrer" className={linkClass}>
-          <Globe size={16} aria-hidden /> {t.site} <ExternalLink size={14} aria-hidden className="text-ink-soft" />
+        <a href={facts.site} target="_blank" rel="noopener noreferrer" className={`pt-btn ${linkClass}`}>
+          <Globe size={16} aria-hidden /> {t.site} <ExternalLink size={14} aria-hidden className="opacity-70" />
           <span className="sr-only">{t.newTab}</span>
         </a>
-        <a href={facts.repo} target="_blank" rel="noopener noreferrer" className={linkClass}>
-          <GitBranch size={16} aria-hidden /> {t.repo} <ExternalLink size={14} aria-hidden className="text-ink-soft" />
+        <a href={facts.repo} target="_blank" rel="noopener noreferrer" className={`pt-btn-2 ${linkClass}`}>
+          <GitBranch size={16} aria-hidden /> {t.repo} <ExternalLink size={14} aria-hidden className="opacity-70" />
           <span className="sr-only">{t.newTab}</span>
         </a>
       </div>
