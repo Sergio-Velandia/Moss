@@ -19,6 +19,10 @@ export interface Reference {
 export const PROJECT_STATUSES = ['activo', 'mantenimiento', 'pausado'] as const
 export type ProjectStatus = (typeof PROJECT_STATUSES)[number]
 
+/** Identidad visual de la tarjeta y los botones del proyecto (clases .pt-* en index.css) */
+export const PROJECT_THEMES = ['moss', 'nexus', 'portafolio'] as const
+export type ProjectTheme = (typeof PROJECT_THEMES)[number]
+
 /** Secciones obligatorias de una página de proyecto, en este orden */
 export const PROJECT_SECTIONS = ['Ficha', 'Arquitectura', 'Flujo de datos', 'Decisiones', 'Lecciones', 'Roadmap'] as const
 
@@ -31,6 +35,8 @@ export interface ProjectFacts {
   reviewedAt: string
   repo: string
   site: string
+  /** Paleta con la que se muestra; sin indicar, la de Moss */
+  theme: string
 }
 
 export interface Doc {
@@ -157,6 +163,7 @@ function parseDoc(path: string, raw: string): Doc | null {
         reviewedAt: asString(data.reviewedAt),
         repo: asString(data.repo),
         site: asString(data.site),
+        theme: asString(data.theme, 'moss'),
       },
     }),
   }
@@ -198,6 +205,7 @@ export function validateProject(doc: Doc): string[] {
   }
   if (!isHttps(p.repo)) errors.push('repo: enlace https obligatorio')
   if (!isHttps(p.site)) errors.push('site: enlace https obligatorio')
+  if (!(PROJECT_THEMES as readonly string[]).includes(p.theme)) errors.push(`theme: uno de ${PROJECT_THEMES.join(', ')}`)
 
   const sections = doc.headings.filter((h) => h.level === 2).map((h) => h.text)
   if (sections.join('|') !== PROJECT_SECTIONS.join('|')) {

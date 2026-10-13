@@ -12,6 +12,11 @@ const appSource = import.meta.glob<string>('/src/App.tsx', { eager: true, query:
 describe('proyectos documentados', () => {
   it('existen los tres y todos cumplen la plantilla', () => {
     expect(projectDocs.map((p) => p.slug).sort()).toEqual(['moss', 'moss-nexus', 'portafolio'])
+    expect(Object.fromEntries(projectDocs.map((p) => [p.slug, p.project!.theme]))).toEqual({
+      moss: 'moss',
+      'moss-nexus': 'nexus',
+      portafolio: 'portafolio',
+    })
     for (const p of projectDocs) expect(validateProject(p), p.id).toEqual([])
   })
 
@@ -63,8 +68,9 @@ describe('validateProject', () => {
     expect(validateProject(withFacts({ reviewedAt: '12/10/2026' })).join()).toMatch(/reviewedAt/)
   })
 
-  it('exige estado conocido y enlaces https', () => {
+  it('exige estado y tema conocidos, y enlaces https', () => {
     expect(validateProject(withFacts({ status: 'terminado' })).join()).toMatch(/status/)
+    expect(validateProject(withFacts({ theme: 'sandia' })).join()).toMatch(/theme/)
     expect(validateProject(withFacts({ repo: 'http://github.com/x' })).join()).toMatch(/repo/)
     expect(validateProject(withFacts({ site: '' })).join()).toMatch(/site/)
   })

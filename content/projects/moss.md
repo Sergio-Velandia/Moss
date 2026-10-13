@@ -3,6 +3,7 @@ title: Moss
 description: Jardín digital estático donde documento, pruebo y conecto lo que aprendo, sin backend ni base de datos.
 type: project
 status: activo
+theme: moss
 version: 1.6.0
 reviewedAt: 2026-10-12
 repo: https://github.com/Sergio-Velandia/Moss

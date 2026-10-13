@@ -3,6 +3,7 @@ title: Portafolio
 description: Mi portafolio profesional en una sola página, en español e inglés, con animaciones con propósito y un formulario sin backend.
 type: project
 status: activo
+theme: portafolio
 version: 1.0.0
 reviewedAt: 2026-10-12
 repo: https://github.com/Sergio-Velandia/mi-portafolio

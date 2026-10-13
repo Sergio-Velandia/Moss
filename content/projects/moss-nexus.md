@@ -3,6 +3,7 @@ title: Moss Nexus
 description: Librería estática de flujos de n8n ya armados y explicados, con un mapa del flujo y un botón para copiarlo.
 type: project
 status: activo
+theme: nexus
 version: 0.7.0
 reviewedAt: 2026-10-12
 repo: https://github.com/Sergio-Velandia/Moss-Nexus
