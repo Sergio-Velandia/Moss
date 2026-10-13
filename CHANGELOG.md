@@ -12,6 +12,10 @@ El campo `version` de `package.json` siempre coincide con la última versión pu
 
 ## [Sin publicar]
 
+## [1.6.0] - 2026-10-12
+
+Proyectos: arquitectura, flujos y decisiones de Moss, Moss Nexus y el portafolio.
+
 ### Añadido
 - Sección **Proyectos** (`/proyectos`): índice con una tarjeta por proyecto (nombre, frase, estado, versión y tecnologías) y una página por proyecto para Moss, Moss Nexus y el portafolio, con ficha, arquitectura, flujo de datos, decisiones con la alternativa descartada, lecciones y roadmap.
 - Tipo de contenido `content/projects/*.md` con los campos `status`, `version`, `reviewedAt`, `repo` y `site`, validados por `validateProject`.
@@ -105,7 +109,8 @@ Primera versión completa.
 - Páginas legales: términos, privacidad y protección de datos.
 - Despliegue automático en GitHub Pages con cada push a `main`.
 
-[Sin publicar]: https://github.com/Sergio-Velandia/Moss/compare/v1.5.0...HEAD
+[Sin publicar]: https://github.com/Sergio-Velandia/Moss/compare/v1.6.0...HEAD
+[1.6.0]: https://github.com/Sergio-Velandia/Moss/compare/v1.5.0...v1.6.0
 [1.5.0]: https://github.com/Sergio-Velandia/Moss/compare/v1.4.0...v1.5.0
 [1.4.0]: https://github.com/Sergio-Velandia/Moss/compare/v1.3.0...v1.4.0
 [1.3.0]: https://github.com/Sergio-Velandia/Moss/compare/v1.2.0...v1.3.0
