@@ -12,6 +12,16 @@ El campo `version` de `package.json` siempre coincide con la última versión pu
 
 ## [Sin publicar]
 
+### Añadido
+- Sección **Proyectos** (`/proyectos`): índice con una tarjeta por proyecto (nombre, frase, estado, versión y tecnologías) y una página por proyecto para Moss, Moss Nexus y el portafolio, con ficha, arquitectura, flujo de datos, decisiones con la alternativa descartada, lecciones y roadmap.
+- Tipo de contenido `content/projects/*.md` con los campos `status`, `version`, `reviewedAt`, `repo` y `site`, validados por `validateProject`.
+- Cada página muestra «Documentado en vX.Y.Z» y «Última revisión»; las pruebas fallan si falta alguno, si las secciones no siguen la plantilla o si hay menos de cuatro decisiones.
+- Los proyectos aparecen en el Herbario como tipo propio (`?tipo=project`) y en los relacionados. El tablero del Inicio no los cuenta.
+- Las rutas `/proyectos` y `/proyectos/<slug>` responden 200 en GitHub Pages; el build crea una por cada proyecto publicado.
+
+### Cambiado
+- «Proyectos» en la navegación. Con seis secciones, la navegación de escritorio empieza en 1024 px; por debajo se usa el menú.
+
 ## [1.5.0] - 2026-10-12
 
 Moss Nexus: página de presentación y acceso desde la navegación.

@@ -17,6 +17,12 @@ Mi "segundo cerebro" técnico: una biblioteca personal y visual donde guardo, do
 | **La Bitácora** | `/bitacora` | Blog técnico: aprendizajes, decisiones y errores |
 | **El Herbario** | `/herbario` | Búsqueda global sobre todo el contenido |
 
+## Proyectos
+
+`/proyectos` documenta mis proyectos como un ingeniero explica su trabajo: cómo están armados por dentro, cómo viajan los datos, qué decisiones tomé (con la alternativa descartada) y qué aprendí. No repite los README: los enlaza. Hoy: Moss, Moss Nexus y el portafolio.
+
+Cada página sigue la misma plantilla, en este orden: **Ficha, Arquitectura, Flujo de datos, Decisiones, Lecciones y Roadmap**, más los relacionados. La ficha muestra «Documentado en vX.Y.Z» y «Última revisión», que salen del frontmatter; si alguno falta, las pruebas fallan.
+
 ## Moss Nexus
 
 [Moss Nexus](https://sergio-velandia.github.io/Moss-Nexus/) es el sitio hermano: una librería de flujos de n8n ya armados, explicados y listos para copiar. En Moss se aprende el porqué; en Nexus se copia el flujo y se usa.
@@ -135,6 +141,20 @@ Crea `content/manual/<categoría>/<nombre>.md`. La carpeta es la categoría (`re
 
 Crea `content/journal/<nombre>.md`.
 
+### Un proyecto
+
+Crea `content/projects/<slug>.md`; la página aparece en `/proyectos/<slug>` y el build le da una ruta que responde 200. Además del frontmatter común, lleva:
+
+```md
+status: activo          # activo | mantenimiento | pausado
+version: 1.6.0          # versión del proyecto que describe la página
+reviewedAt: 2026-10-12  # última vez que se contrastó con el código
+repo: https://github.com/…
+site: https://…
+```
+
+`validateProject` (`src/lib/content.ts`) exige esos campos, las secciones `## Ficha`, `## Arquitectura`, `## Flujo de datos`, `## Decisiones`, `## Lecciones` y `## Roadmap` en ese orden, un diagrama en Arquitectura y en Flujo de datos, y al menos cuatro decisiones escritas como `- **Decisión:** … **En vez de:** … **Porque:** …`. Al revisar una página contra el código, actualiza `reviewedAt` (y `version` si cambió).
+
 ### Metadatos (frontmatter)
 
 ```md
@@ -193,7 +213,7 @@ El Herbario indexa título, descripción, etiquetas, tecnologías y contenido co
 
 La columna "Signos vitales del jardín" del Inicio resume el contenido en tres gráficos: el ritmo de crecimiento (elementos por mes, con los meses vacíos a 0 y como mucho los últimos 12), el ecosistema (las 7 tecnologías más mencionadas) y la distribución entre Laboratorio, Manual y Bitácora.
 
-- **De dónde salen los datos.** `getGardenItems()` en `src/lib/dashboard.ts` reúne las demos (`technology` de su `meta`) y los documentos (`technologies` y `createdAt` del frontmatter), sin borradores en la web publicada. Las agregaciones (`byMonth`, `byTechnology`, `byType`) son funciones puras con pruebas en `dashboard.test.ts`; todas las cifras de las tarjetas salen de ellas.
+- **De dónde salen los datos.** `getGardenItems()` en `src/lib/dashboard.ts` reúne las demos (`technology` de su `meta`) y los documentos (`technologies` y `createdAt` del frontmatter), sin borradores en la web publicada. Los proyectos no cuentan: el tablero mide lo plantado, y las fichas de proyecto describen repositorios. Las agregaciones (`byMonth`, `byTechnology`, `byType`) son funciones puras con pruebas en `dashboard.test.ts`; todas las cifras de las tarjetas salen de ellas.
 - **Añadir o unificar tecnologías.** No hay que registrar nada: basta con escribirla en el frontmatter. Si aparece con varios nombres (`react`, `React.js`), añade el alias en `technologyAliases` (clave en minúsculas → nombre visible).
 - **Datos de ejemplo.** Con menos de `MIN_REAL_ITEMS` (10) elementos reales, el tablero muestra `MOCK_ITEMS` y una nota que lo indica. Se editan en `mockSeed`: cada fila es `[meses atrás, día, tipo, título, tecnologías]`, así que el ejemplo siempre termina en el mes actual.
 - **Colores.** Las series usan los tokens `--c-chart-1`, `--c-chart-2` y `--c-chart-3` de `src/index.css` (contraste ≥ 3:1 en ambos temas).
@@ -213,7 +233,7 @@ El botón de la cabecera alterna entre los dos temas. Sin elección manual, Moss
 ## Accesibilidad y móvil
 
 - Navegación por teclado completa, enlace "Saltar al contenido", foco visible y foco movido al contenido al cambiar de página.
-- Menú móvil con `aria-expanded`, cierre con Escape y botones de al menos 44 px en pantallas táctiles.
+- Menú con `aria-expanded`, cierre con Escape y botones de al menos 44 px en pantallas táctiles. Se usa por debajo de 1024 px; desde ahí la navegación completa cabe en la cabecera.
 - Cada página fija su propio título.
 - Respeta `prefers-reduced-motion` (animaciones de entrada y tarjeta tilt).
 - Contraste de colores comprobado contra WCAG 2.2 AA en ambos temas.
@@ -246,7 +266,7 @@ Cómo está preparado el proyecto para vivir en la subruta `/Moss/`:
 - **`src/App.tsx`** pasa `basename={import.meta.env.BASE_URL}` al `BrowserRouter`, así que las rutas y los enlaces internos (también los de Markdown) incluyen la subruta solos.
 - **`index.html`** referencia los archivos de `public/` con `%BASE_URL%` (por ejemplo `%BASE_URL%favicon.svg`). Haz lo mismo con cualquier recurso nuevo de `public/`; dentro de componentes usa `import.meta.env.BASE_URL`.
 - **Recargar una ruta interna** (`/Moss/manual/...`) funciona porque el workflow copia `index.html` como `404.html`: GitHub Pages lo sirve y React Router resuelve la ruta en el navegador. Esas páginas responden con código HTTP 404 aunque se vean bien.
-- **Rutas que responden 200.** Las rutas pensadas para compartirse están en `STATIC_ROUTES` (`vite.config.ts`): el build copia `index.html` en `<ruta>/index.html` y GitHub Pages las sirve con código 200. Hoy solo `/nexus`. Una prueba comprueba que cada una exista en el router.
+- **Rutas que responden 200.** Las rutas pensadas para compartirse están en `STATIC_ROUTES` (`vite.config.ts`): el build copia `index.html` en `<ruta>/index.html` y GitHub Pages las sirve con código 200. Hoy `/nexus` y `/proyectos`, más una por cada `content/projects/<slug>.md` publicado, que el build detecta solo. Las pruebas comprueban que existan en el router.
 
 Para revisar el build igual que en producción:
 
@@ -260,6 +280,7 @@ npm run build && npm run preview   # abre http://localhost:4173/Moss/
 content/
 ├── manual/<categoría>/*.md
 ├── journal/*.md
+├── projects/*.md
 └── legal/*.md
 public/            # favicon e imágenes estáticas
 scripts/           # check-site.mjs: comprobación antes de publicar
