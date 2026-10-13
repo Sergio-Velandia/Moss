@@ -17,6 +17,15 @@ Mi "segundo cerebro" técnico: una biblioteca personal y visual donde guardo, do
 | **La Bitácora** | `/bitacora` | Blog técnico: aprendizajes, decisiones y errores |
 | **El Herbario** | `/herbario` | Búsqueda global sobre todo el contenido |
 
+## Moss Nexus
+
+[Moss Nexus](https://sergio-velandia.github.io/Moss-Nexus/) es el sitio hermano: una librería de flujos de n8n ya armados, explicados y listos para copiar. En Moss se aprende el porqué; en Nexus se copia el flujo y se usa.
+
+- La página `/nexus` lo presenta y la cabecera (y el menú móvil) tiene un acceso con su marca.
+- Solo esos dos elementos usan el estilo de Nexus: sus tokens viven aislados en la clase `.nexus` de `src/index.css`, copiados del repositorio de Nexus, y sus fuentes (Inter y JetBrains Mono) se cargan solo en `/nexus`. El resto de Moss no cambia.
+- La URL está en una sola constante, `site.nexusUrl` en `src/data/site.ts`; una prueba impide repetirla en el código.
+- Nexus es un proyecto independiente, sin relación oficial con n8n GmbH.
+
 ## Qué hay dentro
 
 **Laboratorio (11 demos)**
@@ -214,6 +223,7 @@ El botón de la cabecera alterna entre los dos temas. Sin elección manual, Moss
 
 - El Herbario, los artículos y las páginas legales se cargan bajo demanda (lazy loading): el renderizador de Markdown y el buscador solo se descargan al visitarlas.
 - El dashboard del Inicio (Recharts) va en su propio chunk y se carga con un esqueleto de las mismas medidas.
+- La página de Nexus y sus fuentes se descargan solo al visitarla.
 - El resaltado de código con Shiki carga cada lenguaje por separado.
 
 ## Páginas legales
@@ -236,6 +246,7 @@ Cómo está preparado el proyecto para vivir en la subruta `/Moss/`:
 - **`src/App.tsx`** pasa `basename={import.meta.env.BASE_URL}` al `BrowserRouter`, así que las rutas y los enlaces internos (también los de Markdown) incluyen la subruta solos.
 - **`index.html`** referencia los archivos de `public/` con `%BASE_URL%` (por ejemplo `%BASE_URL%favicon.svg`). Haz lo mismo con cualquier recurso nuevo de `public/`; dentro de componentes usa `import.meta.env.BASE_URL`.
 - **Recargar una ruta interna** (`/Moss/manual/...`) funciona porque el workflow copia `index.html` como `404.html`: GitHub Pages lo sirve y React Router resuelve la ruta en el navegador. Esas páginas responden con código HTTP 404 aunque se vean bien.
+- **Rutas que responden 200.** Las rutas pensadas para compartirse están en `STATIC_ROUTES` (`vite.config.ts`): el build copia `index.html` en `<ruta>/index.html` y GitHub Pages las sirve con código 200. Hoy solo `/nexus`. Una prueba comprueba que cada una exista en el router.
 
 Para revisar el build igual que en producción:
 
@@ -253,9 +264,9 @@ content/
 public/            # favicon e imágenes estáticas
 scripts/           # check-site.mjs: comprobación antes de publicar
 src/
-├── components/    # layout, code, content
+├── components/    # layout, code, content, dashboard, nexus
 ├── lab/entries/   # demos del Laboratorio
-├── data/          # site.ts: autor, contacto, portafolio y repositorio
+├── data/          # site.ts: autor, contacto, portafolio, repositorio y URL de Nexus
 ├── lib/           # lab, content, knowledge, search, frontmatter, theme, legal
 └── pages/
 ```
@@ -266,7 +277,9 @@ Este repositorio es público. No se guardan claves reales: usa variables de ento
 
 ## Estado
 
-✅ **Versión 1.0 completa:** Laboratorio, Manual, Bitácora, Herbario, tema claro/oscuro, accesibilidad, adaptación a móvil, páginas legales y pruebas automáticas.
+✅ **Estable desde la versión 1.0:** Laboratorio, Manual, Bitácora, Herbario, tema claro/oscuro, accesibilidad, adaptación a móvil, páginas legales y pruebas automáticas.
+
+El historial de versiones está en [CHANGELOG.md](CHANGELOG.md), con [Versionado Semántico](https://semver.org/lang/es/): MINOR para funciones o lotes de contenido nuevos, PATCH para correcciones y documentación, y MAJOR si cambian rutas existentes. La versión de `package.json` coincide siempre con la última del CHANGELOG, y cada versión se marca con un tag `vX.Y.Z`.
 
 Ideas para seguir creciendo:
 
