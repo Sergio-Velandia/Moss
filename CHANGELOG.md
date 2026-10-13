@@ -12,6 +12,20 @@ El campo `version` de `package.json` siempre coincide con la última versión pu
 
 ## [Sin publicar]
 
+## [1.7.0] - 2026-10-12
+
+Identidad visual de cada proyecto.
+
+### Añadido
+- Las tarjetas de `/proyectos` muestran la marca y la paleta de cada proyecto: Moss (salvia), Moss Nexus (musgo y coral) y el portafolio (grafito con acento dorado, oscuro en ambos temas). Al pasar el cursor o enfocarlas con el teclado, tiñen el borde, encienden un resplandor de su color y su botón de acción reacciona, sin levantar la tarjeta.
+- Los botones «Ver el sitio» y «Ver el repositorio» de la ficha usan el estilo de botón de cada proyecto.
+- Tipografías de cada identidad, cargadas solo en las páginas de Proyectos: Inter para Moss Nexus, y Syne con DM Sans para el portafolio. El resto de Moss conserva la suya.
+- Campo `theme` (`moss`, `nexus` o `portafolio`) en el frontmatter de los proyectos, validado por `validateProject`.
+
+### Corregido
+- El color del foco del teclado en la página de Nexus: la regla global le ganaba y se veía salvia en vez de coral.
+- El favicon respondía 404 en producción: `index.html` apuntaba a `favicon.svg`, pero el archivo está en `public/images/`.
+
 ## [1.6.1] - 2026-10-12
 
 ### Cambiado
@@ -117,7 +131,8 @@ Primera versión completa.
 - Páginas legales: términos, privacidad y protección de datos.
 - Despliegue automático en GitHub Pages con cada push a `main`.
 
-[Sin publicar]: https://github.com/Sergio-Velandia/Moss/compare/v1.6.1...HEAD
+[Sin publicar]: https://github.com/Sergio-Velandia/Moss/compare/v1.7.0...HEAD
+[1.7.0]: https://github.com/Sergio-Velandia/Moss/compare/v1.6.1...v1.7.0
 [1.6.1]: https://github.com/Sergio-Velandia/Moss/compare/v1.6.0...v1.6.1
 [1.6.0]: https://github.com/Sergio-Velandia/Moss/compare/v1.5.0...v1.6.0
 [1.5.0]: https://github.com/Sergio-Velandia/Moss/compare/v1.4.0...v1.5.0
