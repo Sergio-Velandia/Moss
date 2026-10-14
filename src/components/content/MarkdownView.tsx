@@ -3,10 +3,35 @@ import remarkGfm from 'remark-gfm'
 import rehypeSlug from 'rehype-slug'
 import { Link } from 'react-router-dom'
 import { isDiagramLanguage } from '../../lib/diagram'
+import { resolveImage } from '../../lib/images'
 import CodeBlock from '../code/CodeBlock'
 import Diagram from './Diagram'
 
 const components: Components = {
+  // Una imagen sola en su párrafo se dibuja como <figure>; el <p> sobra (una figura no puede ir dentro)
+  p: ({ node, children }) => {
+    const only = node?.children.length === 1 ? node.children[0] : undefined
+    return only?.type === 'element' && only.tagName === 'img' ? <>{children}</> : <p>{children}</p>
+  },
+  img: ({ src = '', alt = '', title }) => {
+    const image = resolveImage(String(src))
+    // Las pruebas impiden publicar imágenes rotas; esto solo se ve escribiendo en desarrollo
+    if (!image) return <span className="text-danger">[Imagen no encontrada: {String(src)}]</span>
+    return (
+      <figure className="not-prose my-8">
+        <img
+          src={image.url}
+          alt={alt}
+          width={image.width}
+          height={image.height}
+          loading="lazy"
+          decoding="async"
+          className="h-auto w-full rounded-xl border border-surface/70 shadow-sm"
+        />
+        {title && <figcaption className="mt-2 text-center text-sm text-ink-soft">{title}</figcaption>}
+      </figure>
+    )
+  },
   // CodeBlock ya renderiza su propio <pre>
   pre: ({ children }) => <>{children}</>,
   code: ({ className, children }) => {
