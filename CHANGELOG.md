@@ -12,6 +12,17 @@ El campo `version` de `package.json` siempre coincide con la última versión pu
 
 ## [Sin publicar]
 
+## [1.8.0] - 2026-10-13
+
+Contenido sobre lo construido en Moss, retos de Tailwind e imágenes.
+
+### Añadido
+- Imágenes en el Markdown: viven en `content/images/`, se citan como `/imagenes/<archivo>-<ancho>x<alto>.webp` y se dibujan como `<figure>` con dimensiones, carga diferida y pie opcional. Las pruebas exigen que existan, tengan texto alternativo y que ninguna quede sin usar.
+- 3 retos del Laboratorio (categoría «Retos Tailwind»), cada uno con un error real y su interruptor «Sin arreglo / Con arreglo»: la tarjeta que rompe la cuadrícula, la cabecera que no cabe (container queries) y una tarjeta con tres identidades (variables CSS).
+- 4 guías del Manual: interfaz bilingüe sin librerías, una SPA en GitHub Pages sin 404, capas CSS y tokens en Tailwind 4, y verificar la interfaz con capturas reales. Categorías nuevas: CSS y Despliegue.
+- 3 artículos de la Bitácora: «Lo que encontraron las capturas», «Versionar después» y «Documentar proyectos sin repetir el README».
+- 4 capturas reales en WebP que ilustran guías y artículos.
+
 ## [1.7.0] - 2026-10-12
 
 Identidad visual de cada proyecto.
@@ -131,7 +142,8 @@ Primera versión completa.
 - Páginas legales: términos, privacidad y protección de datos.
 - Despliegue automático en GitHub Pages con cada push a `main`.
 
-[Sin publicar]: https://github.com/Sergio-Velandia/Moss/compare/v1.7.0...HEAD
+[Sin publicar]: https://github.com/Sergio-Velandia/Moss/compare/v1.8.0...HEAD
+[1.8.0]: https://github.com/Sergio-Velandia/Moss/compare/v1.7.0...v1.8.0
 [1.7.0]: https://github.com/Sergio-Velandia/Moss/compare/v1.6.1...v1.7.0
 [1.6.1]: https://github.com/Sergio-Velandia/Moss/compare/v1.6.0...v1.6.1
 [1.6.0]: https://github.com/Sergio-Velandia/Moss/compare/v1.5.0...v1.6.0
