@@ -36,7 +36,7 @@ Cada página sigue la misma plantilla, en este orden: **Ficha, Arquitectura, Flu
 
 ## Qué hay dentro
 
-**Laboratorio (11 demos)**
+**Laboratorio (14 demos)**
 
 | Demo | Categoría |
 | --- | --- |
@@ -51,13 +51,20 @@ Cada página sigue la misma plantilla, en este orden: **Ficha, Arquitectura, Flu
 | Reintentos con backoff y jitter | Automatización |
 | Resumen de factura con IVA | Facturación |
 | Exportar a CSV que Excel abre bien | Datos |
+| Reto: la tarjeta que rompe la cuadrícula | Retos Tailwind |
+| Reto: la cabecera que no cabe (container queries) | Retos Tailwind |
+| Reto: una tarjeta, tres identidades (variables CSS) | Retos Tailwind |
 
-**Manual (16 guías)**
+Los **retos** reproducen un error real con un interruptor «Sin arreglo / Con arreglo» y explican la causa.
+
+**Manual (20 guías)**
 
 Las guías marcadas con ★ parten de un problema real de empresa: duplicados en el CRM, reportes que nadie quiere hacer, cobros dobles, exportaciones que Excel rompe…
 
 | Categoría | Guía |
 | --- | --- |
+| CSS | Capas CSS y tokens en Tailwind 4 |
+| Despliegue | Una SPA en GitHub Pages sin 404 |
 | APIs | Conectar la API de Gemini de forma segura |
 | APIs | ★ Idempotencia en pagos y webhooks |
 | APIs | ★ Paginación y límites de tasa en APIs de terceros |
@@ -65,17 +72,19 @@ Las guías marcadas con ★ parten de un problema real de empresa: duplicados en
 | JavaScript | Fetch con manejo de errores y tiempo límite |
 | JavaScript | ★ Exportar CSV que Excel abre bien |
 | JavaScript | ★ Dinero y fechas sin errores con Intl |
+| JavaScript | Verificar la interfaz con capturas reales |
 | n8n | Webhook básico |
 | n8n | Entender webhooks y triggers |
 | n8n | Orquestación y manejo de errores |
 | n8n | ★ Reporte diario automático por correo o Slack |
 | n8n | ★ Sincronizar un formulario con el CRM sin duplicados |
 | React | Estructura de proyecto |
+| React | Interfaz bilingüe sin librerías |
 | SQL | Agrupar con GROUP BY |
 | SQL | ★ Detectar y fusionar clientes duplicados |
 | SQL | ★ Reporte de ventas mensual con variación |
 
-**Bitácora (10 artículos)**
+**Bitácora (13 artículos)**
 
 | Artículo | Categoría |
 | --- | --- |
@@ -89,6 +98,9 @@ Las guías marcadas con ★ parten de un problema real de empresa: duplicados en
 | El reporte que nadie quería hacer | Aprendizajes |
 | Datos sucios, el problema silencioso | Arquitectura |
 | Cuando un webhook llega dos veces | Arquitectura |
+| Lo que encontraron las capturas | Aprendizajes |
+| Versionar después | Aprendizajes |
+| Documentar proyectos sin repetir el README | Arquitectura |
 
 ## Stack
 
@@ -179,6 +191,16 @@ references: [Nodo Webhook | https://docs.n8n.io/integrations/builtin/core-nodes/
 Los ids de `related` son `lab/<archivo>`, `manual/<categoría>/<archivo>` o `journal/<archivo>`. Una prueba automática avisa si alguno apunta a algo que no existe.
 
 `references` llena el cuadro **"Leer la documentación oficial"** al final de cada guía del Manual: cada elemento es `Título | https://…` (solo se aceptan enlaces https, y el título no puede llevar comas). Una prueba exige que todas las guías del Manual tengan al menos una referencia.
+
+### Imágenes
+
+Guarda la imagen en `content/images/` con sus dimensiones al final del nombre y cítala desde cualquier documento:
+
+```md
+![Texto alternativo que describe la imagen](/imagenes/tarjetas-de-proyectos-992x312.webp "Pie de foto opcional")
+```
+
+El sufijo `-<ancho>x<alto>` da al `<img>` sus dimensiones, así la página no salta al cargar; se carga de forma diferida y Vite le pone hash. Usa WebP. Las pruebas exigen que cada imagen citada exista, tenga un texto alternativo real y que no queden imágenes sin usar.
 
 ### Diagramas dentro del Markdown
 
@@ -308,7 +330,7 @@ El historial de versiones está en [CHANGELOG.md](CHANGELOG.md), con [Versionado
 Ideas para seguir creciendo:
 
 - Estado de error en el botón con estados.
-- Más categorías en el Manual (Git, CSS, despliegue).
+- Más categorías en el Manual (Git, pruebas).
 - Traducir también el contenido al inglés (por ejemplo, con archivos `.en.md` junto a los originales).
 - Feed RSS de la Bitácora.
 - Capturas de pantalla en este README.
