@@ -17,6 +17,19 @@ Mi "segundo cerebro" técnico: una biblioteca personal y visual donde guardo, do
 | **La Bitácora** | `/bitacora` | Blog técnico: aprendizajes, decisiones y errores |
 | **El Herbario** | `/herbario` | Búsqueda global sobre todo el contenido |
 
+## Rutas
+
+`/rutas` reúne guías, demos, retos y artículos de un mismo tema en un recorrido ordenado, para aprenderlo de principio a fin:
+
+| Ruta | Nivel | Pasos |
+| --- | --- | --- |
+| n8n, de cero a producción | Intermedio | 9, y cierra con la invitación a Moss Nexus |
+| Frontend con React y Tailwind | Intermedio | 7 |
+| Datos y reportes con SQL | Intermedio | 8 |
+| Publicar y mantener un sitio | Inicial | 5 |
+
+Cada paso se marca como hecho y el progreso se guarda **solo en el navegador** (`moss-route-progress`, descrito en la privacidad). Dentro de cada guía o demo que forma parte de una ruta aparece en qué paso estás y cuál viene después. El tiempo estimado suma el tiempo de lectura real de cada documento y 5 minutos por demo.
+
 ## Proyectos
 
 `/proyectos` documenta mis proyectos como un ingeniero explica su trabajo: cómo están armados por dentro, cómo viajan los datos, qué decisiones tomé (con la alternativa descartada) y qué aprendí. No repite los README: los enlaza. Hoy: Moss, Moss Nexus y el portafolio.
@@ -155,6 +168,22 @@ Crea `content/manual/<categoría>/<nombre>.md`. La carpeta es la categoría (`re
 
 Crea `content/journal/<nombre>.md`.
 
+### Una ruta
+
+Crea `content/routes/<slug>.md`; aparece en `/rutas/<slug>` y el build le da una ruta que responde 200:
+
+```md
+title: n8n, de cero a producción
+description: …
+type: route
+level: intermedio      # inicial | intermedio | avanzado
+order: 1               # posición en el índice
+nexus: true            # opcional: cierra con la invitación a Moss Nexus
+steps: [manual/n8n/webhook-basico, lab/n8n-payload-builder, …]
+```
+
+`validateRoute` exige al menos 4 pasos que existan, sin repetir, y que mezclen al menos dos secciones. El cuerpo del Markdown explica para quién es la ruta y qué se sabe hacer al terminar.
+
 ### Un proyecto
 
 Crea `content/projects/<slug>.md`; la página aparece en `/proyectos/<slug>` y el build le da una ruta que responde 200. Además del frontmatter común, lleva:
@@ -291,7 +320,7 @@ Cómo está preparado el proyecto para vivir en la subruta `/Moss/`:
 - **`src/App.tsx`** pasa `basename={import.meta.env.BASE_URL}` al `BrowserRouter`, así que las rutas y los enlaces internos (también los de Markdown) incluyen la subruta solos.
 - **`index.html`** referencia los archivos de `public/` con `%BASE_URL%` (por ejemplo `%BASE_URL%favicon.svg`). Haz lo mismo con cualquier recurso nuevo de `public/`; dentro de componentes usa `import.meta.env.BASE_URL`.
 - **Recargar una ruta interna** (`/Moss/manual/...`) funciona porque el workflow copia `index.html` como `404.html`: GitHub Pages lo sirve y React Router resuelve la ruta en el navegador. Esas páginas responden con código HTTP 404 aunque se vean bien.
-- **Rutas que responden 200.** Las rutas pensadas para compartirse están en `STATIC_ROUTES` (`vite.config.ts`): el build copia `index.html` en `<ruta>/index.html` y GitHub Pages las sirve con código 200. Hoy `/nexus` y `/proyectos`, más una por cada `content/projects/<slug>.md` publicado, que el build detecta solo. Las pruebas comprueban que existan en el router.
+- **Rutas que responden 200.** Las rutas pensadas para compartirse están en `STATIC_ROUTES` (`vite.config.ts`): el build copia `index.html` en `<ruta>/index.html` y GitHub Pages las sirve con código 200. Hoy `/nexus`, `/proyectos` y `/rutas`, más una por cada `content/projects/<slug>.md` y `content/routes/<slug>.md` publicado, que el build detecta solo. Las pruebas comprueban que existan en el router.
 
 Para revisar el build igual que en producción:
 
@@ -306,6 +335,7 @@ content/
 ├── manual/<categoría>/*.md
 ├── journal/*.md
 ├── projects/*.md
+├── routes/*.md
 └── legal/*.md
 public/            # favicon e imágenes estáticas
 scripts/           # check-site.mjs: comprobación antes de publicar
