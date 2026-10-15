@@ -10,5 +10,5 @@ export const site = {
   ownerName: 'Sergio Andres Ramirez Velandia',
   contactEmail: 'sergio.velandiar.z@gmail.com',
   country: 'Colombia',
-  legalUpdatedAt: '2026-10-10',
+  legalUpdatedAt: '2026-10-14',
 }

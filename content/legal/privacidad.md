@@ -17,7 +17,13 @@ Nada se envía a ningún servidor. La búsqueda del Herbario se ejecuta por comp
 
 ### Lo que se guarda en tu dispositivo
 
-Si cambias el tema con el botón de la cabecera, se guarda en el almacenamiento local de tu navegador una sola preferencia, llamada `moss-theme`, con el valor `light` o `dark`. Sirve únicamente para recordar tu elección. No se envía a ningún servidor ni te identifica, y puedes borrarla desde los ajustes de tu navegador. Si no eliges nada, el Sitio sigue el tema de tu sistema.
+El Sitio guarda en el almacenamiento local de tu navegador, como mucho, tres datos, y solo si usas la función correspondiente:
+
+- **`moss-theme`**: el tema que eliges con el botón de la cabecera (`light` o `dark`). Si no eliges nada, el Sitio sigue el tema de tu sistema.
+- **`moss-lang`**: el idioma de la interfaz que eliges con el selector ES/EN (`es` o `en`).
+- **`moss-route-progress`**: los pasos que marcas como hechos en las Rutas de aprendizaje, para que al volver veas por dónde ibas. Contiene solo los identificadores de esos pasos (por ejemplo, `manual/n8n/webhook-basico`).
+
+Sirven únicamente para recordar tus elecciones en ese navegador. No se envían a ningún servidor, no te identifican y no se comparten con nadie. Puedes borrarlos desde los ajustes de tu navegador, y el progreso de cada ruta también con el botón «Reiniciar progreso».
 
 ### Datos técnicos del alojamiento
 
