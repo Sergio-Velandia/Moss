@@ -1,6 +1,7 @@
 import { Link, useParams } from 'react-router-dom'
 import { ArrowLeft } from 'lucide-react'
 import CodeBlock from '../components/code/CodeBlock'
+import RouteNav from '../components/routes/RouteNav'
 import SpanishNote from '../components/content/SpanishNote'
 import { formatDate } from '../lib/format'
 import { sectionNames, useLang, useT } from '../lib/i18n'
@@ -90,6 +91,8 @@ export default function LabDetail() {
       )}
 
       <p className="mt-6 text-xs text-ink-soft">{t.created(formatDate(entry.createdAt, lang))}</p>
+
+      <RouteNav id={`lab/${entry.slug}`} />
     </article>
   )
 }

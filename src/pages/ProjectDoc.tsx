@@ -3,6 +3,7 @@ import { ArrowLeft } from 'lucide-react'
 import MarkdownView from '../components/content/MarkdownView'
 import ProjectFacts from '../components/content/ProjectFacts'
 import Related from '../components/content/Related'
+import RouteNav from '../components/routes/RouteNav'
 import SpanishNote from '../components/content/SpanishNote'
 import Toc from '../components/content/Toc'
 import '../lib/projectFonts'
@@ -62,6 +63,7 @@ export default function ProjectDoc() {
         </div>
       </div>
 
+      <RouteNav id={doc.id} />
       <Related ids={doc.related} />
     </article>
   )

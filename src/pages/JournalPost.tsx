@@ -2,6 +2,7 @@ import { Link, useParams } from 'react-router-dom'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 import MarkdownView from '../components/content/MarkdownView'
 import Related from '../components/content/Related'
+import RouteNav from '../components/routes/RouteNav'
 import SpanishNote from '../components/content/SpanishNote'
 import { getJournalPost, journalPosts } from '../lib/content'
 import { formatDate } from '../lib/format'
@@ -70,6 +71,7 @@ export default function JournalPost() {
         <MarkdownView source={post.body} />
       </div>
 
+      <RouteNav id={post.id} />
       <Related ids={post.related} />
 
       <nav aria-label={t.more} className="mt-12 grid gap-3 sm:grid-cols-2">
