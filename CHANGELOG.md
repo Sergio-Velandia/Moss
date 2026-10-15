@@ -12,6 +12,24 @@ El campo `version` de `package.json` siempre coincide con la última versión pu
 
 ## [Sin publicar]
 
+## [1.9.0] - 2026-10-14
+
+Rutas de aprendizaje.
+
+### Añadido
+- Sección **Rutas** (`/rutas`): recorridos ordenados que juntan guías, demos, retos y artículos de un tema. Cuatro rutas: n8n de cero a producción, Frontend con React y Tailwind, Datos y reportes con SQL, y Publicar y mantener un sitio.
+- Cada ruta muestra sus pasos como un recorrido, con tipo y tiempo estimado, una barra de progreso, «Continuar» y «Reiniciar progreso». El progreso se guarda solo en el navegador.
+- En cada guía, demo o artículo que forma parte de una ruta, un aviso con el paso actual, el anterior, el siguiente y un botón para marcarlo como hecho.
+- La ruta de n8n cierra con una invitación a Moss Nexus en su propio estilo.
+- Las rutas aparecen en el Herbario (`?tipo=route`) y responden con código 200 en GitHub Pages.
+- Tipo de contenido `content/routes/*.md` validado por `validateRoute`, y una prueba que exige que cada clave guardada en el navegador esté descrita en la política de privacidad.
+
+### Cambiado
+- «Rutas» en la navegación, justo después de «Inicio».
+
+### Corregido
+- La política de privacidad no mencionaba el idioma guardado (`moss-lang`) desde la v1.3.0. Ahora describe las tres claves: tema, idioma y progreso de las rutas.
+
 ## [1.8.0] - 2026-10-13
 
 Contenido sobre lo construido en Moss, retos de Tailwind e imágenes.
@@ -142,7 +160,8 @@ Primera versión completa.
 - Páginas legales: términos, privacidad y protección de datos.
 - Despliegue automático en GitHub Pages con cada push a `main`.
 
-[Sin publicar]: https://github.com/Sergio-Velandia/Moss/compare/v1.8.0...HEAD
+[Sin publicar]: https://github.com/Sergio-Velandia/Moss/compare/v1.9.0...HEAD
+[1.9.0]: https://github.com/Sergio-Velandia/Moss/compare/v1.8.0...v1.9.0
 [1.8.0]: https://github.com/Sergio-Velandia/Moss/compare/v1.7.0...v1.8.0
 [1.7.0]: https://github.com/Sergio-Velandia/Moss/compare/v1.6.1...v1.7.0
 [1.6.1]: https://github.com/Sergio-Velandia/Moss/compare/v1.6.0...v1.6.1
