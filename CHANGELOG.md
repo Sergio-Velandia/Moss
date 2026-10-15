@@ -12,6 +12,11 @@ El campo `version` de `package.json` siempre coincide con la última versión pu
 
 ## [Sin publicar]
 
+## [1.9.1] - 2026-10-14
+
+### Añadido
+- Artículo de la Bitácora «Rutas con lo que ya existe»: la decisión de armar las rutas de aprendizaje ordenando el contenido que ya tenía Moss, en lugar de escribir material nuevo, con lo que se gana y lo que se pierde.
+
 ## [1.9.0] - 2026-10-14
 
 Rutas de aprendizaje.
@@ -160,7 +165,8 @@ Primera versión completa.
 - Páginas legales: términos, privacidad y protección de datos.
 - Despliegue automático en GitHub Pages con cada push a `main`.
 
-[Sin publicar]: https://github.com/Sergio-Velandia/Moss/compare/v1.9.0...HEAD
+[Sin publicar]: https://github.com/Sergio-Velandia/Moss/compare/v1.9.1...HEAD
+[1.9.1]: https://github.com/Sergio-Velandia/Moss/compare/v1.9.0...v1.9.1
 [1.9.0]: https://github.com/Sergio-Velandia/Moss/compare/v1.8.0...v1.9.0
 [1.8.0]: https://github.com/Sergio-Velandia/Moss/compare/v1.7.0...v1.8.0
 [1.7.0]: https://github.com/Sergio-Velandia/Moss/compare/v1.6.1...v1.7.0
