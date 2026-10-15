@@ -18,6 +18,8 @@ const Legal = lazy(() => import('./pages/Legal'))
 const Nexus = lazy(() => import('./pages/Nexus'))
 const Projects = lazy(() => import('./pages/Projects'))
 const ProjectDoc = lazy(() => import('./pages/ProjectDoc'))
+const RoutesIndex = lazy(() => import('./pages/Routes'))
+const RouteDoc = lazy(() => import('./pages/RouteDoc'))
 
 export default function App() {
   return (
@@ -35,6 +37,8 @@ export default function App() {
             <Route path="bitacora/:slug" element={<JournalPost />} />
             <Route path="herbario" element={<Herbario />} />
             <Route path="nexus" element={<Nexus />} />
+            <Route path="rutas" element={<RoutesIndex />} />
+            <Route path="rutas/:slug" element={<RouteDoc />} />
             <Route path="proyectos" element={<Projects />} />
             <Route path="proyectos/:slug" element={<ProjectDoc />} />
             <Route path="terminos" element={<Legal slug="terminos" />} />
