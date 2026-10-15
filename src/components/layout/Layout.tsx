@@ -47,6 +47,7 @@ export default function Layout() {
   const sections = sectionNames[lang]
   const links = [
     { to: '/', label: t.home, end: true },
+    { to: '/rutas', label: sections.route },
     { to: '/laboratorio', label: sections.lab },
     { to: '/manual', label: sections.manual },
     { to: '/bitacora', label: sections.journal },
