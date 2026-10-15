@@ -97,7 +97,7 @@ Las guías marcadas con ★ parten de un problema real de empresa: duplicados en
 | SQL | ★ Detectar y fusionar clientes duplicados |
 | SQL | ★ Reporte de ventas mensual con variación |
 
-**Bitácora (13 artículos)**
+**Bitácora (14 artículos)**
 
 | Artículo | Categoría |
 | --- | --- |
@@ -114,6 +114,7 @@ Las guías marcadas con ★ parten de un problema real de empresa: duplicados en
 | Lo que encontraron las capturas | Aprendizajes |
 | Versionar después | Aprendizajes |
 | Documentar proyectos sin repetir el README | Arquitectura |
+| Rutas con lo que ya existe | Arquitectura |
 
 ## Stack
 
