@@ -1,7 +1,7 @@
-import { journalPosts, manualDocs, projectDocs } from './content'
+import { journalPosts, manualDocs, projectDocs, routeDocs } from './content'
 import { labEntries } from './lab'
 
-export type ItemType = 'lab' | 'manual' | 'journal' | 'project'
+export type ItemType = 'lab' | 'manual' | 'journal' | 'project' | 'route'
 
 /** Vista unificada de todo el jardín: sirve para la búsqueda, el inicio y los enlaces relacionados. */
 export interface KnowledgeItem {
@@ -31,7 +31,7 @@ export const knowledgeItems: KnowledgeItem[] = [
     url: `/laboratorio/${e.slug}`,
     body: `${e.usage}\n${e.source}`,
   })),
-  ...[...manualDocs, ...journalPosts, ...projectDocs].map<KnowledgeItem>((d) => ({
+  ...[...manualDocs, ...journalPosts, ...projectDocs, ...routeDocs].map<KnowledgeItem>((d) => ({
     id: d.id,
     type: d.type,
     title: d.title,

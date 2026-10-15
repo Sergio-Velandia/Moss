@@ -1,7 +1,7 @@
 import GithubSlugger from 'github-slugger'
 import { asString, asStringArray, parseFrontmatter } from './frontmatter'
 
-export type DocType = 'manual' | 'journal' | 'project'
+export type DocType = 'manual' | 'journal' | 'project' | 'route'
 
 export interface Heading {
   id: string
@@ -22,6 +22,20 @@ export type ProjectStatus = (typeof PROJECT_STATUSES)[number]
 /** Identidad visual de la tarjeta y los botones del proyecto (clases .pt-* en index.css) */
 export const PROJECT_THEMES = ['moss', 'nexus', 'portafolio'] as const
 export type ProjectTheme = (typeof PROJECT_THEMES)[number]
+
+/** Niveles de una ruta de aprendizaje */
+export const ROUTE_LEVELS = ['inicial', 'intermedio', 'avanzado'] as const
+
+/** Ruta de aprendizaje (content/routes/*.md): pasos en orden que apuntan a contenido existente */
+export interface RouteFacts {
+  level: string
+  /** Ids en orden: manual/<cat>/<slug>, lab/<slug>, journal/<slug> o project/<slug> */
+  steps: string[]
+  /** Posición en el índice de rutas (menor primero) */
+  order: number
+  /** Cierra la ruta con la invitación a Moss Nexus */
+  nexus: boolean
+}
 
 /** Secciones obligatorias de una página de proyecto, en este orden */
 export const PROJECT_SECTIONS = ['Ficha', 'Arquitectura', 'Flujo de datos', 'Decisiones', 'Lecciones', 'Roadmap'] as const
@@ -61,6 +75,8 @@ export interface Doc {
   url: string
   /** Solo en los proyectos */
   project?: ProjectFacts
+  /** Solo en las rutas */
+  route?: RouteFacts
 }
 
 // Todo el contenido editorial vive en /content como archivos Markdown.
@@ -127,6 +143,11 @@ function parseDoc(path: string, raw: string): Doc | null {
     category = asString(data.category, 'General')
     id = `journal/${slug}`
     url = `/bitacora/${slug}`
+  } else if (root === 'routes' && parts.length === 2) {
+    type = 'route'
+    category = 'Ruta'
+    id = `route/${slug}`
+    url = `/rutas/${slug}`
   } else if (root === 'projects' && parts.length === 2) {
     type = 'project'
     category = 'Proyecto'
@@ -156,6 +177,14 @@ function parseDoc(path: string, raw: string): Doc | null {
     readingMinutes: Math.max(1, Math.round(words / 200)),
     headings: extractHeadings(body),
     url,
+    ...(type === 'route' && {
+      route: {
+        level: asString(data.level),
+        steps: asStringArray(data.steps),
+        order: Number(asString(data.order, '99')) || 99,
+        nexus: data.nexus === true,
+      },
+    }),
     ...(type === 'project' && {
       project: {
         status: asString(data.status),
@@ -238,3 +267,29 @@ export const getManualDoc = (category: string, slug: string) =>
   manualDocs.find((d) => d.category === category && d.slug === slug)
 export const getJournalPost = (slug: string) => journalPosts.find((d) => d.slug === slug)
 export const getProject = (slug: string) => projectDocs.find((d) => d.slug === slug)
+
+export const routeDocs = allDocs
+  .filter((d) => d.type === 'route')
+  .sort((a, b) => (a.route?.order ?? 99) - (b.route?.order ?? 99) || a.title.localeCompare(b.title, 'es'))
+export const getRoute = (slug: string) => routeDocs.find((d) => d.slug === slug)
+
+/**
+ * Reglas de una ruta. `existing` son los ids de todo el contenido publicado (knowledgeItems).
+ * Una ruta debe tener al menos 4 pasos que existan, sin repetirse, y cruzar al menos dos secciones.
+ */
+export function validateRoute(doc: Doc, existing: Set<string>): string[] {
+  const r = doc.route
+  if (!r) return ['no es una ruta']
+  const errors: string[] = []
+  if (!(ROUTE_LEVELS as readonly string[]).includes(r.level)) errors.push(`level: uno de ${ROUTE_LEVELS.join(', ')}`)
+  if (r.steps.length < 4) errors.push(`steps: mínimo 4 pasos (hay ${r.steps.length})`)
+  if (new Set(r.steps).size !== r.steps.length) errors.push('steps: hay pasos repetidos')
+  for (const step of r.steps) {
+    if (step.startsWith('route/')) errors.push(`steps: una ruta no puede incluir otra ruta (${step})`)
+    else if (!existing.has(step)) errors.push(`steps: "${step}" no existe`)
+  }
+  const sections = new Set(r.steps.map((s) => s.split('/')[0]))
+  if (sections.size < 2) errors.push('steps: deben mezclar al menos dos secciones (por ejemplo, Manual y Laboratorio)')
+  if (!doc.description) errors.push('description: obligatoria')
+  return errors
+}
