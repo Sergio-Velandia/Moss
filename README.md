@@ -23,7 +23,7 @@ Mi "segundo cerebro" técnico: una biblioteca personal y visual donde guardo, do
 
 | Ruta | Nivel | Pasos |
 | --- | --- | --- |
-| n8n, de cero a producción | Intermedio | 9, y cierra con la invitación a Moss Nexus |
+| n8n, de cero a producción | Intermedio | 10, y cierra con la invitación a Moss Nexus |
 | Frontend con React y Tailwind | Intermedio | 7 |
 | Datos y reportes con SQL | Intermedio | 8 |
 | Publicar y mantener un sitio | Inicial | 5 |
@@ -70,7 +70,7 @@ Cada página sigue la misma plantilla, en este orden: **Ficha, Arquitectura, Flu
 
 Los **retos** reproducen un error real con un interruptor «Sin arreglo / Con arreglo» y explican la causa.
 
-**Manual (20 guías)**
+**Manual (21 guías)**
 
 Las guías marcadas con ★ parten de un problema real de empresa: duplicados en el CRM, reportes que nadie quiere hacer, cobros dobles, exportaciones que Excel rompe…
 
@@ -88,6 +88,7 @@ Las guías marcadas con ★ parten de un problema real de empresa: duplicados en
 | JavaScript | Verificar la interfaz con capturas reales |
 | n8n | Webhook básico |
 | n8n | Entender webhooks y triggers |
+| n8n | Conectar Gmail y Google Calendar a n8n con OAuth2 |
 | n8n | Orquestación y manejo de errores |
 | n8n | ★ Reporte diario automático por correo o Slack |
 | n8n | ★ Sincronizar un formulario con el CRM sin duplicados |

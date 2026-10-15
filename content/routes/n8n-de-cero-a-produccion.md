@@ -8,7 +8,7 @@ nexus: true
 tags: [n8n, automatización, webhooks, ruta]
 technologies: [n8n, JavaScript]
 createdAt: 2026-10-14
-steps: [manual/n8n/webhook-basico, lab/n8n-payload-builder, manual/n8n/entender-webhooks-y-triggers, lab/n8n-flow-simulator, manual/n8n/sincronizar-formulario-con-crm, manual/n8n/reporte-diario-automatico, manual/apis/idempotencia-en-pagos-y-webhooks, lab/retry-backoff, manual/n8n/orquestacion-y-manejo-de-errores]
+steps: [manual/n8n/webhook-basico, lab/n8n-payload-builder, manual/n8n/entender-webhooks-y-triggers, lab/n8n-flow-simulator, manual/n8n/oauth2-de-google-en-n8n, manual/n8n/sincronizar-formulario-con-crm, manual/n8n/reporte-diario-automatico, manual/apis/idempotencia-en-pagos-y-webhooks, lab/retry-backoff, manual/n8n/orquestacion-y-manejo-de-errores]
 ---
 
 ## Para quién es
@@ -23,6 +23,7 @@ Al terminar la ruta
   - Test URL y Production URL
   - validar antes de confiar
 - Automatizar :: flujos de negocio reales
+  - Gmail y Calendar con OAuth2
   - formulario al CRM sin duplicados
   - reporte diario a las 7:00
 - Resistir fallos :: que nada se pierda

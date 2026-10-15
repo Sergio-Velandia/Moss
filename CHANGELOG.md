@@ -12,6 +12,14 @@ El campo `version` de `package.json` siempre coincide con la última versión pu
 
 ## [Sin publicar]
 
+## [1.9.2] - 2026-10-15
+
+### Añadido
+- Guía del Manual «Conectar Gmail y Google Calendar a n8n con OAuth2»: el cliente OAuth de Google Cloud Console paso a paso, con n8n en Docker y en n8n Cloud, la caducidad de siete días del modo *Testing* y los errores frecuentes. Nace de la prueba de la plantilla «Agenda del día por correo» de Moss Nexus.
+
+### Cambiado
+- La ruta «n8n, de cero a producción» suma la guía de OAuth2 como paso 5 y pasa a 10 pasos.
+
 ## [1.9.1] - 2026-10-14
 
 ### Añadido
@@ -165,7 +173,8 @@ Primera versión completa.
 - Páginas legales: términos, privacidad y protección de datos.
 - Despliegue automático en GitHub Pages con cada push a `main`.
 
-[Sin publicar]: https://github.com/Sergio-Velandia/Moss/compare/v1.9.1...HEAD
+[Sin publicar]: https://github.com/Sergio-Velandia/Moss/compare/v1.9.2...HEAD
+[1.9.2]: https://github.com/Sergio-Velandia/Moss/compare/v1.9.1...v1.9.2
 [1.9.1]: https://github.com/Sergio-Velandia/Moss/compare/v1.9.0...v1.9.1
 [1.9.0]: https://github.com/Sergio-Velandia/Moss/compare/v1.8.0...v1.9.0
 [1.8.0]: https://github.com/Sergio-Velandia/Moss/compare/v1.7.0...v1.8.0
