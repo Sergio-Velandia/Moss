@@ -19,6 +19,9 @@ El campo `version` de `package.json` siempre coincide con la última versión pu
 - La guía de OAuth2 de Google cubre también la plantilla «Reporte diario de ventas»: columna propia en las tablas de APIs y credenciales, cómo probarla, y la sección nueva «Pruébalo con un flujo fácil» con las dos plantillas de nivel fácil.
 - Se completan en este archivo los enlaces de comparación de las versiones 1.9.3 y 1.9.4.
 
+### Corregido
+- El índice «En esta página» de las guías y los proyectos ya no queda cortado en pantallas bajas: en escritorio tiene su propio scroll, marca la sección que estás leyendo y la mantiene a la vista mientras bajas.
+
 ## [1.9.4] - 2026-10-15
 
 ### Añadido
