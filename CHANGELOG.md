@@ -12,6 +12,15 @@ El campo `version` de `package.json` siempre coincide con la última versión pu
 
 ## [Sin publicar]
 
+## [1.9.6] - 2026-10-16
+
+### Añadido
+- Guía del Manual «Instalar n8n en tu equipo con Docker o empezar en n8n Cloud»: cómo elegir entre n8n Cloud, Docker y npm (obsoleto desde n8n 3.0), la instalación con Docker Desktop paso a paso con volumen y zona horaria, el comando para Bash y para PowerShell, la cuenta de propietario, una prueba de que la hora y el volumen funcionan, cómo encender, apagar y actualizar, y los errores frecuentes.
+
+### Cambiado
+- La ruta «n8n, de cero a producción» empieza con la guía de instalación como paso 1 y pasa a 11 pasos.
+- Las guías de OAuth2 de Google y de Slack enlazan la guía de instalación en «Antes de empezar».
+
 ## [1.9.5] - 2026-10-16
 
 ### Cambiado
@@ -193,7 +202,8 @@ Primera versión completa.
 - Páginas legales: términos, privacidad y protección de datos.
 - Despliegue automático en GitHub Pages con cada push a `main`.
 
-[Sin publicar]: https://github.com/Sergio-Velandia/Moss/compare/v1.9.5...HEAD
+[Sin publicar]: https://github.com/Sergio-Velandia/Moss/compare/v1.9.6...HEAD
+[1.9.6]: https://github.com/Sergio-Velandia/Moss/compare/v1.9.5...v1.9.6
 [1.9.5]: https://github.com/Sergio-Velandia/Moss/compare/v1.9.4...v1.9.5
 [1.9.4]: https://github.com/Sergio-Velandia/Moss/compare/v1.9.3...v1.9.4
 [1.9.3]: https://github.com/Sergio-Velandia/Moss/compare/v1.9.2...v1.9.3

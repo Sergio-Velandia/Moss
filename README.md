@@ -23,7 +23,7 @@ Mi "segundo cerebro" técnico: una biblioteca personal y visual donde guardo, do
 
 | Ruta | Nivel | Pasos |
 | --- | --- | --- |
-| n8n, de cero a producción | Intermedio | 10, con dos flujos fáciles de Moss Nexus para practicar, y cierra con la invitación a Nexus |
+| n8n, de cero a producción | Intermedio | 11, empieza instalando n8n, con dos flujos fáciles de Moss Nexus para practicar, y cierra con la invitación a Nexus |
 | Frontend con React y Tailwind | Intermedio | 7 |
 | Datos y reportes con SQL | Intermedio | 8 |
 | Publicar y mantener un sitio | Inicial | 5 |
@@ -70,7 +70,7 @@ Cada página sigue la misma plantilla, en este orden: **Ficha, Arquitectura, Flu
 
 Los **retos** reproducen un error real con un interruptor «Sin arreglo / Con arreglo» y explican la causa.
 
-**Manual (22 guías)**
+**Manual (23 guías)**
 
 Las guías marcadas con ★ parten de un problema real de empresa: duplicados en el CRM, reportes que nadie quiere hacer, cobros dobles, exportaciones que Excel rompe…
 
@@ -86,6 +86,7 @@ Las guías marcadas con ★ parten de un problema real de empresa: duplicados en
 | JavaScript | ★ Exportar CSV que Excel abre bien |
 | JavaScript | ★ Dinero y fechas sin errores con Intl |
 | JavaScript | Verificar la interfaz con capturas reales |
+| n8n | Instalar n8n en tu equipo con Docker o empezar en n8n Cloud |
 | n8n | Webhook básico |
 | n8n | Entender webhooks y triggers |
 | n8n | Conectar Gmail, Google Calendar, Google Drive y Google Sheets a n8n con OAuth2 |

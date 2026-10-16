@@ -59,10 +59,13 @@ describe('posición dentro de una ruta', () => {
   it('una pieza puede estar en varias rutas, con su anterior y su siguiente', () => {
     const positions = routesContaining('manual/javascript/verificar-la-interfaz-con-capturas')
     expect(positions.map((p) => p.route.slug).sort()).toEqual(['frontend-con-react-y-tailwind', 'publicar-y-mantener-un-sitio'])
-    const first = routesContaining('manual/n8n/webhook-basico')[0]
+    const first = routesContaining('manual/n8n/instalar-n8n')[0]
     expect(first.index).toBe(0)
     expect(first.previous).toBeUndefined()
-    expect(first.next?.id).toBe('lab/n8n-payload-builder')
+    expect(first.next?.id).toBe('manual/n8n/webhook-basico')
+    const second = routesContaining('manual/n8n/webhook-basico')[0]
+    expect(second.previous?.id).toBe('manual/n8n/instalar-n8n')
+    expect(second.next?.id).toBe('lab/n8n-payload-builder')
     const last = routesContaining('manual/n8n/orquestacion-y-manejo-de-errores')[0]
     expect(last.next).toBeUndefined()
   })

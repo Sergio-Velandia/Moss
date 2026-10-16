@@ -50,7 +50,7 @@ Nodo Slack :: n8n llama a chat.postMessage con el token xoxb-
 ## Antes de empezar
 
 - Un espacio de trabajo de Slack donde puedas instalar apps. Si es de una empresa, puede que un administrador tenga que aprobar la instalación.
-- n8n en marcha, por ejemplo en Docker:
+- n8n en marcha (si aún no lo tienes, sigue [Instalar n8n](/manual/n8n/instalar-n8n)), por ejemplo en Docker:
 
 ```bash
 docker run -it --rm --name n8n -p 5678:5678 \

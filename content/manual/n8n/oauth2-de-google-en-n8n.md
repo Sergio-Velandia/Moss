@@ -59,7 +59,7 @@ Por eso la *OAuth Redirect URL* es lo más delicado: Google solo devuelve el có
 ## Antes de empezar
 
 - Una cuenta de Google (aquí, Gmail personal).
-- n8n en marcha. En Docker, con la zona horaria de tu ciudad: la plantilla de agenda se dispara a las 7:00 y lee los eventos «de hoy», y la de facturas registra la fecha de cada correo.
+- n8n en marcha (si aún no lo tienes, sigue [Instalar n8n](/manual/n8n/instalar-n8n)). En Docker, con la zona horaria de tu ciudad: la plantilla de agenda se dispara a las 7:00 y lee los eventos «de hoy», y la de facturas registra la fecha de cada correo.
 
 ```bash
 docker run -it --rm --name n8n -p 5678:5678 \
