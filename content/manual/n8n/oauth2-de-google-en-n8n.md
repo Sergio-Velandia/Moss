@@ -5,14 +5,14 @@ type: manual
 tags: [oauth2, google cloud, gmail, google calendar, google drive, google sheets, credenciales, docker, seguridad]
 technologies: [n8n, Google Cloud]
 createdAt: 2026-10-15
-updatedAt: 2026-10-15
+updatedAt: 2026-10-16
 related: [route/n8n-de-cero-a-produccion, manual/n8n/reporte-diario-automatico, manual/n8n/orquestacion-y-manejo-de-errores]
 references: [n8n: OAuth2 de Google para un servicio | https://docs.n8n.io/integrations/builtin/credentials/google/oauth-single-service/, n8n: credenciales de Google | https://docs.n8n.io/integrations/builtin/credentials/google/, Google: empezar con Google Auth Platform | https://support.google.com/cloud/answer/15544987, Google: OAuth 2.0 para las APIs de Google | https://developers.google.com/identity/protocols/oauth2, Google: permisos de la API de Gmail | https://developers.google.com/workspace/gmail/api/auth/scopes, Google: permisos de la API de Calendar | https://developers.google.com/workspace/calendar/api/auth, Google: permisos de la API de Drive | https://developers.google.com/workspace/drive/api/guides/api-specific-auth, Google: permisos de la API de Sheets | https://developers.google.com/workspace/sheets/api/scopes]
 ---
 
 ## Problema que resuelve
 
-Copias un flujo de Google de Moss Nexus y sus nodos piden una **credencial**. Puede ser la plantilla [Agenda del día por correo](https://sergio-velandia.github.io/Moss-Nexus/plantillas/agenda-diaria-calendar/), que lee Google Calendar y envía un correo por Gmail, o la plantilla [Facturas de proveedores de Gmail a Google Drive con registro](https://sergio-velandia.github.io/Moss-Nexus/plantillas/facturas-gmail-a-drive/), que guarda adjuntos en Drive y los anota en Google Sheets. n8n habla de *Client ID*, *Client Secret* y *OAuth Redirect URL*; Google Cloud Console, de proyectos, APIs, *Audience* y clientes. Sin saber qué es cada pieza, es fácil perder una tarde con errores que no explican nada.
+Copias un flujo de Google de Moss Nexus y sus nodos piden una **credencial**. Puede ser la plantilla [Agenda del día por correo](https://sergio-velandia.github.io/Moss-Nexus/plantillas/agenda-diaria-calendar/), que lee Google Calendar y envía un correo por Gmail, o la plantilla [Facturas de proveedores de Gmail a Google Drive con registro](https://sergio-velandia.github.io/Moss-Nexus/plantillas/facturas-gmail-a-drive/), que guarda adjuntos en Drive y los anota en Google Sheets, o la plantilla [Reporte diario de ventas](https://sergio-velandia.github.io/Moss-Nexus/plantillas/reporte-diario-ventas/), que lee una hoja de Google Sheets y envía el resumen por Gmail. n8n habla de *Client ID*, *Client Secret* y *OAuth Redirect URL*; Google Cloud Console, de proyectos, APIs, *Audience* y clientes. Sin saber qué es cada pieza, es fácil perder una tarde con errores que no explican nada.
 
 Esta guía conecta **Gmail, Google Calendar, Google Drive y Google Sheets** con una cuenta de **Gmail personal**, primero en **n8n autoalojado con Docker** y después en **n8n Cloud**. Está escrita a partir de pruebas reales de las dos plantillas en una instalación local con Docker; la de facturas se probó en n8n 2.43.5 el 15/10/2026, con datos ficticios.
 
@@ -71,6 +71,7 @@ docker run -it --rm --name n8n -p 5678:5678 \
 - El flujo importado en n8n, para tener a mano los nodos que piden la credencial:
   - **Agenda del día:** «Eventos de hoy» (Google Calendar) y «Enviar por Gmail».
   - **Facturas:** el Gmail Trigger, «Subir a Drive» (Google Drive) y «Registrar factura» (Google Sheets).
+  - **Reporte de ventas:** «Leer ventas» (Google Sheets) y «Enviar reporte» (Gmail).
 
 ## Paso a paso con n8n en Docker
 
@@ -94,12 +95,14 @@ Copia la que veas **en tu panel**, no la de esta guía: si cambiaste el puerto, 
 
 Cada plantilla usa solo las APIs que necesita. Habilita las de tu flujo; puedes volver a este paso cuando importes otro.
 
-| API | Agenda del día | Facturas a Drive |
-| --- | --- | --- |
-| Gmail API | Sí | Sí |
-| Google Calendar API | Sí | — |
-| Google Drive API | — | Sí |
-| Google Sheets API | — | Sí |
+| API | Agenda del día | Facturas a Drive | Reporte de ventas |
+| --- | --- | --- | --- |
+| Gmail API | Sí | Sí | Sí |
+| Google Calendar API | Sí | — | — |
+| Google Drive API | — | Sí | Sí |
+| Google Sheets API | — | Sí | Sí |
+
+El reporte de ventas no tiene nodo de Drive, pero la documentación de n8n pide habilitar la **Google Drive API** en todo flujo que use Google Sheets: el nodo la usa para encontrar las hojas.
 
 1. Ve a **APIs & Services → Library**.
 2. Busca la API (por ejemplo, **Google Drive API**) y pulsa **Enable**.
@@ -136,12 +139,12 @@ Google muestra el **Client ID** y el **Client Secret**. Cópialos en ese momento
 4. Aprueba los permisos. La ventana se cierra y n8n marca la credencial como conectada.
 5. Repite en cada nodo que pida una credencial distinta, **siempre con el mismo Client ID y el mismo Client Secret**:
 
-| Credencial de n8n | Agenda del día | Facturas a Drive |
-| --- | --- | --- |
-| Gmail OAuth2 API | «Enviar por Gmail» | Gmail Trigger |
-| Google Calendar OAuth2 API | «Eventos de hoy» | — |
-| Google Drive OAuth2 API | — | «Subir a Drive» |
-| Google Sheets OAuth2 API | — | «Registrar factura» |
+| Credencial de n8n | Agenda del día | Facturas a Drive | Reporte de ventas |
+| --- | --- | --- | --- |
+| Gmail OAuth2 API | «Enviar por Gmail» | Gmail Trigger | «Enviar reporte» |
+| Google Calendar OAuth2 API | «Eventos de hoy» | — | — |
+| Google Drive OAuth2 API | — | «Subir a Drive» | — |
+| Google Sheets OAuth2 API | — | «Registrar factura» | «Leer ventas» |
 
 El Gmail Trigger usa la misma credencial **Gmail OAuth2 API** que el nodo de Gmail: si ya la creaste para otro flujo, selecciónala en lugar de crear otra.
 
@@ -149,6 +152,16 @@ El Gmail Trigger usa la misma credencial **Gmail OAuth2 API** que el nodo de Gma
 
 - **Agenda del día:** cambia `tu-correo@ejemplo.com` por tu correo en «Enviar por Gmail» y pulsa **Test workflow**. Deberías recibir la agenda de hoy. Si el día no tiene eventos, el correo llega igual y lo dice.
 - **Facturas:** antes, prepara Gmail, Drive y Sheets como se explica en [la sección siguiente](#preparar-gmail-drive-y-sheets-para-las-facturas). Después envíate un correo con un PDF de prueba, etiquétalo `facturas` y pulsa **Test workflow**. El archivo debería aparecer en la carpeta de Drive y en una fila nueva de la hoja.
+- **Reporte de ventas:** prepara una hoja nativa de Google Sheets con la pestaña «Ventas» y las columnas Fecha, Cliente, Producto y Total, pega su URL en «Leer ventas», cambia `tu-correo@ejemplo.com` en «Enviar reporte» y pulsa **Test workflow**. Recibirás el resumen de ayer; si ayer no hubo ventas, el correo llega igual y lo dice.
+
+## Pruébalo con un flujo fácil
+
+Si es tu primer flujo con Google, empieza por uno de **nivel fácil**. En Moss Nexus hay dos listos para copiar, de unos 20 minutos cada uno, que solo necesitan lo que ya hiciste en esta guía:
+
+- **[Agenda del día por correo](https://sergio-velandia.github.io/Moss-Nexus/plantillas/agenda-diaria-calendar/):** Google Calendar y Gmail. Te envía tus eventos cada mañana de lunes a viernes.
+- **[Reporte diario de ventas](https://sergio-velandia.github.io/Moss-Nexus/plantillas/reporte-diario-ventas/):** Google Sheets y Gmail. Te envía cada mañana cuántas ventas hubo ayer, cuánto sumaron y qué se vendió más.
+
+Los dos arrancan con un Schedule Trigger y arman el mensaje en un nodo Code; la guía [Reporte diario automático](/manual/n8n/reporte-diario-automatico) explica esa idea en detalle. Cuando te salgan, la plantilla de facturas es el siguiente escalón: usa un trigger de Gmail, varias credenciales y más preparación.
 
 ## Preparar Gmail, Drive y Sheets para las facturas
 
@@ -246,7 +259,7 @@ Un [flujo de errores](/manual/n8n/orquestacion-y-manejo-de-errores) con Error Tr
 ## Lista de comprobación
 
 - [ ] El selector de Google Cloud muestra el proyecto correcto.
-- [ ] Están habilitadas las APIs de tu plantilla: Calendar y Gmail para la agenda; Gmail, Drive y Sheets para las facturas.
+- [ ] Están habilitadas las APIs de tu plantilla: Calendar y Gmail para la agenda; Gmail, Drive y Sheets para las facturas y para el reporte de ventas.
 - [ ] Audience es *External* y tu correo está en *Test users*.
 - [ ] El cliente es de tipo *Web application*.
 - [ ] La URI de redirección es exactamente la que muestra n8n.

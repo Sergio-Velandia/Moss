@@ -12,6 +12,13 @@ El campo `version` de `package.json` siempre coincide con la última versión pu
 
 ## [Sin publicar]
 
+## [1.9.5] - 2026-10-16
+
+### Cambiado
+- La ruta «n8n, de cero a producción» suma la sección «Practica con dos flujos fáciles»: después del paso 5, la guía de OAuth2 de Google, invita a probar las plantillas «Agenda del día por correo» y «Reporte diario de ventas» de Moss Nexus, con un diagrama del paso a tu primer flujo real.
+- La guía de OAuth2 de Google cubre también la plantilla «Reporte diario de ventas»: columna propia en las tablas de APIs y credenciales, cómo probarla, y la sección nueva «Pruébalo con un flujo fácil» con las dos plantillas de nivel fácil.
+- Se completan en este archivo los enlaces de comparación de las versiones 1.9.3 y 1.9.4.
+
 ## [1.9.4] - 2026-10-15
 
 ### Añadido
@@ -183,7 +190,10 @@ Primera versión completa.
 - Páginas legales: términos, privacidad y protección de datos.
 - Despliegue automático en GitHub Pages con cada push a `main`.
 
-[Sin publicar]: https://github.com/Sergio-Velandia/Moss/compare/v1.9.2...HEAD
+[Sin publicar]: https://github.com/Sergio-Velandia/Moss/compare/v1.9.5...HEAD
+[1.9.5]: https://github.com/Sergio-Velandia/Moss/compare/v1.9.4...v1.9.5
+[1.9.4]: https://github.com/Sergio-Velandia/Moss/compare/v1.9.3...v1.9.4
+[1.9.3]: https://github.com/Sergio-Velandia/Moss/compare/v1.9.2...v1.9.3
 [1.9.2]: https://github.com/Sergio-Velandia/Moss/compare/v1.9.1...v1.9.2
 [1.9.1]: https://github.com/Sergio-Velandia/Moss/compare/v1.9.0...v1.9.1
 [1.9.0]: https://github.com/Sergio-Velandia/Moss/compare/v1.8.0...v1.9.0

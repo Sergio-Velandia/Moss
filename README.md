@@ -23,7 +23,7 @@ Mi "segundo cerebro" técnico: una biblioteca personal y visual donde guardo, do
 
 | Ruta | Nivel | Pasos |
 | --- | --- | --- |
-| n8n, de cero a producción | Intermedio | 10, y cierra con la invitación a Moss Nexus |
+| n8n, de cero a producción | Intermedio | 10, con dos flujos fáciles de Moss Nexus para practicar, y cierra con la invitación a Nexus |
 | Frontend con React y Tailwind | Intermedio | 7 |
 | Datos y reportes con SQL | Intermedio | 8 |
 | Publicar y mantener un sitio | Inicial | 5 |
