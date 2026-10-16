@@ -12,6 +12,11 @@ El campo `version` de `package.json` siempre coincide con la última versión pu
 
 ## [Sin publicar]
 
+## [1.9.3] - 2026-10-15
+
+### Cambiado
+- La guía del Manual de OAuth2 de Google para n8n pasa a llamarse «Conectar Gmail, Google Calendar, Google Drive y Google Sheets a n8n con OAuth2» y cubre también la plantilla «Facturas de proveedores de Gmail a Google Drive con registro» de Moss Nexus: las APIs de Drive y Sheets, sus credenciales y permisos, una sección nueva «Preparar Gmail, Drive y Sheets para las facturas» (etiqueta y filtro de Gmail, carpeta de Drive y hoja de registro), y cuatro errores frecuentes nuevos. Conserva la URL y el ancla `#lista-de-comprobación`.
+
 ## [1.9.2] - 2026-10-15
 
 ### Añadido

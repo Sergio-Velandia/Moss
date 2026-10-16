@@ -88,7 +88,7 @@ Las guías marcadas con ★ parten de un problema real de empresa: duplicados en
 | JavaScript | Verificar la interfaz con capturas reales |
 | n8n | Webhook básico |
 | n8n | Entender webhooks y triggers |
-| n8n | Conectar Gmail y Google Calendar a n8n con OAuth2 |
+| n8n | Conectar Gmail, Google Calendar, Google Drive y Google Sheets a n8n con OAuth2 |
 | n8n | Orquestación y manejo de errores |
 | n8n | ★ Reporte diario automático por correo o Slack |
 | n8n | ★ Sincronizar un formulario con el CRM sin duplicados |
