@@ -70,7 +70,7 @@ Cada página sigue la misma plantilla, en este orden: **Ficha, Arquitectura, Flu
 
 Los **retos** reproducen un error real con un interruptor «Sin arreglo / Con arreglo» y explican la causa.
 
-**Manual (21 guías)**
+**Manual (22 guías)**
 
 Las guías marcadas con ★ parten de un problema real de empresa: duplicados en el CRM, reportes que nadie quiere hacer, cobros dobles, exportaciones que Excel rompe…
 
@@ -90,6 +90,7 @@ Las guías marcadas con ★ parten de un problema real de empresa: duplicados en
 | n8n | Entender webhooks y triggers |
 | n8n | Conectar Gmail, Google Calendar, Google Drive y Google Sheets a n8n con OAuth2 |
 | n8n | Orquestación y manejo de errores |
+| n8n | Conectar Slack a n8n con un bot (token xoxb) |
 | n8n | ★ Reporte diario automático por correo o Slack |
 | n8n | ★ Sincronizar un formulario con el CRM sin duplicados |
 | React | Estructura de proyecto |

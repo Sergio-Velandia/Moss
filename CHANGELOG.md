@@ -12,6 +12,11 @@ El campo `version` de `package.json` siempre coincide con la última versión pu
 
 ## [Sin publicar]
 
+## [1.9.4] - 2026-10-15
+
+### Añadido
+- Guía del Manual «Conectar Slack a n8n con un bot (token xoxb)»: la app de Slack creada desde un manifiesto con solo `chat:write` y `channels:read`, su instalación, la credencial **Slack API** de n8n, la invitación del bot al canal, la seguridad del token y los errores frecuentes (`not_in_channel`, `channel_not_found`, `invalid_auth`, `missing_scope`). Nace de la prueba de la plantilla «Leads del formulario web a Google Sheets con aviso en Slack» de Moss Nexus y sirve para el resto de plantillas de Nexus que usan Slack.
+
 ## [1.9.3] - 2026-10-15
 
 ### Cambiado
