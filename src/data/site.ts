@@ -8,7 +8,7 @@ export const site = {
   /** Sitio hermano con los flujos de n8n listos para copiar. Única fuente de esta URL en Moss. */
   nexusUrl: 'https://sergio-velandia.dev/Moss-Nexus/',
   ownerName: 'Sergio Andres Ramirez Velandia',
-  contactEmail: 'sergio.velandiar.z@gmail.com',
+  contactEmail: 'contacto@sergio-velandia.dev',
   country: 'Colombia',
-  legalUpdatedAt: '2026-10-14',
+  legalUpdatedAt: '2026-10-16',
 }
