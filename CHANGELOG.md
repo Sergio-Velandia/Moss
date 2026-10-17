@@ -12,6 +12,11 @@ El campo `version` de `package.json` siempre coincide con la última versión pu
 
 ## [Sin publicar]
 
+## [1.9.8] - 2026-10-16
+
+### Añadido
+- Guía del Manual «Dominio propio para GitHub Pages con Cloudflare DNS y correo»: el orden correcto (verificar antes de apuntar el DNS), la verificación del dominio desde el perfil de GitHub, el dominio en el repositorio raíz que heredan todos los proyectos, los registros A y CNAME en «DNS only», HTTPS obligatorio en `.dev`, Email Routing para `contacto@` y `contact@`, qué cambia (y qué no) en cada proyecto y los errores frecuentes. Sigue la configuración real de `sergio-velandia.dev`, sin códigos de verificación ni datos privados.
+
 ## [1.9.7] - 2026-10-16
 
 ### Cambiado
@@ -212,7 +217,8 @@ Primera versión completa.
 - Páginas legales: términos, privacidad y protección de datos.
 - Despliegue automático en GitHub Pages con cada push a `main`.
 
-[Sin publicar]: https://github.com/Sergio-Velandia/Moss/compare/v1.9.7...HEAD
+[Sin publicar]: https://github.com/Sergio-Velandia/Moss/compare/v1.9.8...HEAD
+[1.9.8]: https://github.com/Sergio-Velandia/Moss/compare/v1.9.7...v1.9.8
 [1.9.7]: https://github.com/Sergio-Velandia/Moss/compare/v1.9.6...v1.9.7
 [1.9.6]: https://github.com/Sergio-Velandia/Moss/compare/v1.9.5...v1.9.6
 [1.9.5]: https://github.com/Sergio-Velandia/Moss/compare/v1.9.4...v1.9.5

@@ -70,7 +70,7 @@ Cada página sigue la misma plantilla, en este orden: **Ficha, Arquitectura, Flu
 
 Los **retos** reproducen un error real con un interruptor «Sin arreglo / Con arreglo» y explican la causa.
 
-**Manual (23 guías)**
+**Manual (24 guías)**
 
 Las guías marcadas con ★ parten de un problema real de empresa: duplicados en el CRM, reportes que nadie quiere hacer, cobros dobles, exportaciones que Excel rompe…
 
@@ -78,6 +78,7 @@ Las guías marcadas con ★ parten de un problema real de empresa: duplicados en
 | --- | --- |
 | CSS | Capas CSS y tokens en Tailwind 4 |
 | Despliegue | Una SPA en GitHub Pages sin 404 |
+| Despliegue | Dominio propio para GitHub Pages con Cloudflare DNS y correo |
 | APIs | Conectar la API de Gemini de forma segura |
 | APIs | ★ Idempotencia en pagos y webhooks |
 | APIs | ★ Paginación y límites de tasa en APIs de terceros |
