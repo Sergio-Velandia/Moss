@@ -4,9 +4,9 @@ Mi "segundo cerebro" técnico: una biblioteca personal y visual donde guardo, do
 
 > El conocimiento técnico no debería quedarse enterrado; debería ser fácil de encontrar, entender, probar, conectar y reutilizar.
 
-**Autor:** Sergio Andres Ramirez Velandia · [Portafolio](https://sergio-velandia.github.io/mi-portafolio/) · [sergio.velandiar.z@gmail.com](mailto:sergio.velandiar.z@gmail.com)
+**Autor:** Sergio Andres Ramirez Velandia · [Portafolio](https://sergio-velandia.dev/mi-portafolio/) · [contacto@sergio-velandia.dev](mailto:contacto@sergio-velandia.dev)
 
-**View** https://sergio-velandia.github.io/Moss/
+**View** https://sergio-velandia.dev/Moss/
 
 ## Los cuatro pilares
 
@@ -40,7 +40,7 @@ Cada página sigue la misma plantilla, en este orden: **Ficha, Arquitectura, Flu
 
 ## Moss Nexus
 
-[Moss Nexus](https://sergio-velandia.github.io/Moss-Nexus/) es el sitio hermano: una librería de flujos de n8n ya armados, explicados y listos para copiar. En Moss se aprende el porqué; en Nexus se copia el flujo y se usa.
+[Moss Nexus](https://sergio-velandia.dev/Moss-Nexus/) es el sitio hermano: una librería de flujos de n8n ya armados, explicados y listos para copiar. En Moss se aprende el porqué; en Nexus se copia el flujo y se usa.
 
 - La página `/nexus` lo presenta y la cabecera (y el menú móvil) tiene un acceso con su marca.
 - Solo esos dos elementos usan el estilo de Nexus: sus tokens viven aislados en la clase `.nexus` de `src/index.css`, copiados del repositorio de Nexus, y sus fuentes (Inter y JetBrains Mono) se cargan solo en `/nexus`. El resto de Moss no cambia.
@@ -312,7 +312,9 @@ El botón de la cabecera alterna entre los dos temas. Sin elección manual, Moss
 
 ## Despliegue en GitHub Pages
 
-🌐 **En línea:** https://sergio-velandia.github.io/Moss/
+🌐 **En línea:** https://sergio-velandia.dev/Moss/
+
+El sitio usa el dominio propio `sergio-velandia.dev`, configurado en el repositorio raíz `Sergio-Velandia.github.io`: los proyectos lo heredan con su misma ruta, así que el `base` de Vite sigue siendo `/Moss/`. Las direcciones antiguas de `github.io` redirigen solas al dominio nuevo.
 
 El despliegue es automático: cada push a `main` ejecuta el workflow [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml), que comprueba `site.ts`, pasa las pruebas y el lint, genera el build y lo publica en GitHub Pages. También se puede lanzar a mano desde la pestaña **Actions** (*Run workflow*). Si algún paso falla, no se publica nada y la versión anterior sigue en línea.
 
@@ -368,6 +370,7 @@ Ideas para seguir creciendo:
 - Traducir también el contenido al inglés (por ejemplo, con archivos `.en.md` junto a los originales).
 - Feed RSS de la Bitácora.
 - Capturas de pantalla en este README.
+- **Fase futura (MINOR): metadatos para compartir y buscadores.** Ahora que el dominio es fijo: Open Graph y Twitter Card con imagen, `canonical` por página, `robots.txt` y `sitemap.xml`.
 
 ## Licencia
 
