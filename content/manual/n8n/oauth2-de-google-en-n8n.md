@@ -12,7 +12,7 @@ references: [n8n: OAuth2 de Google para un servicio | https://docs.n8n.io/integr
 
 ## Problema que resuelve
 
-Copias un flujo de Google de Moss Nexus y sus nodos piden una **credencial**. Puede ser la plantilla [Agenda del día por correo](https://sergio-velandia.github.io/Moss-Nexus/plantillas/agenda-diaria-calendar/), que lee Google Calendar y envía un correo por Gmail, o la plantilla [Facturas de proveedores de Gmail a Google Drive con registro](https://sergio-velandia.github.io/Moss-Nexus/plantillas/facturas-gmail-a-drive/), que guarda adjuntos en Drive y los anota en Google Sheets, o la plantilla [Reporte diario de ventas](https://sergio-velandia.github.io/Moss-Nexus/plantillas/reporte-diario-ventas/), que lee una hoja de Google Sheets y envía el resumen por Gmail. n8n habla de *Client ID*, *Client Secret* y *OAuth Redirect URL*; Google Cloud Console, de proyectos, APIs, *Audience* y clientes. Sin saber qué es cada pieza, es fácil perder una tarde con errores que no explican nada.
+Copias un flujo de Google de Moss Nexus y sus nodos piden una **credencial**. Puede ser la plantilla [Agenda del día por correo](https://sergio-velandia.dev/Moss-Nexus/plantillas/agenda-diaria-calendar/), que lee Google Calendar y envía un correo por Gmail, o la plantilla [Facturas de proveedores de Gmail a Google Drive con registro](https://sergio-velandia.dev/Moss-Nexus/plantillas/facturas-gmail-a-drive/), que guarda adjuntos en Drive y los anota en Google Sheets, o la plantilla [Reporte diario de ventas](https://sergio-velandia.dev/Moss-Nexus/plantillas/reporte-diario-ventas/), que lee una hoja de Google Sheets y envía el resumen por Gmail. n8n habla de *Client ID*, *Client Secret* y *OAuth Redirect URL*; Google Cloud Console, de proyectos, APIs, *Audience* y clientes. Sin saber qué es cada pieza, es fácil perder una tarde con errores que no explican nada.
 
 Esta guía conecta **Gmail, Google Calendar, Google Drive y Google Sheets** con una cuenta de **Gmail personal**, primero en **n8n autoalojado con Docker** y después en **n8n Cloud**. Está escrita a partir de pruebas reales de las dos plantillas en una instalación local con Docker; la de facturas se probó en n8n 2.43.5 el 15/10/2026, con datos ficticios.
 
@@ -158,14 +158,14 @@ El Gmail Trigger usa la misma credencial **Gmail OAuth2 API** que el nodo de Gma
 
 Si es tu primer flujo con Google, empieza por uno de **nivel fácil**. En Moss Nexus hay dos listos para copiar, de unos 20 minutos cada uno, que solo necesitan lo que ya hiciste en esta guía:
 
-- **[Agenda del día por correo](https://sergio-velandia.github.io/Moss-Nexus/plantillas/agenda-diaria-calendar/):** Google Calendar y Gmail. Te envía tus eventos cada mañana de lunes a viernes.
-- **[Reporte diario de ventas](https://sergio-velandia.github.io/Moss-Nexus/plantillas/reporte-diario-ventas/):** Google Sheets y Gmail. Te envía cada mañana cuántas ventas hubo ayer, cuánto sumaron y qué se vendió más.
+- **[Agenda del día por correo](https://sergio-velandia.dev/Moss-Nexus/plantillas/agenda-diaria-calendar/):** Google Calendar y Gmail. Te envía tus eventos cada mañana de lunes a viernes.
+- **[Reporte diario de ventas](https://sergio-velandia.dev/Moss-Nexus/plantillas/reporte-diario-ventas/):** Google Sheets y Gmail. Te envía cada mañana cuántas ventas hubo ayer, cuánto sumaron y qué se vendió más.
 
 Los dos arrancan con un Schedule Trigger y arman el mensaje en un nodo Code; la guía [Reporte diario automático](/manual/n8n/reporte-diario-automatico) explica esa idea en detalle. Cuando te salgan, la plantilla de facturas es el siguiente escalón: usa un trigger de Gmail, varias credenciales y más preparación.
 
 ## Preparar Gmail, Drive y Sheets para las facturas
 
-La plantilla [Facturas de proveedores de Gmail a Google Drive con registro](https://sergio-velandia.github.io/Moss-Nexus/plantillas/facturas-gmail-a-drive/) no solo necesita las credenciales: también espera encontrar una etiqueta en Gmail, una carpeta en Drive y una hoja con un formato concreto.
+La plantilla [Facturas de proveedores de Gmail a Google Drive con registro](https://sergio-velandia.dev/Moss-Nexus/plantillas/facturas-gmail-a-drive/) no solo necesita las credenciales: también espera encontrar una etiqueta en Gmail, una carpeta en Drive y una hoja con un formato concreto.
 
 ```flow
 # Del correo al registro

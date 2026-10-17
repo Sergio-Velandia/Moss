@@ -3,10 +3,10 @@
  */
 export const site = {
   name: 'Moss — Digital Garden',
-  portfolioUrl: 'https://sergio-velandia.github.io/mi-portafolio/',
+  portfolioUrl: 'https://sergio-velandia.dev/mi-portafolio/',
   repoUrl: 'https://github.com/Sergio-Velandia/Moss',
   /** Sitio hermano con los flujos de n8n listos para copiar. Única fuente de esta URL en Moss. */
-  nexusUrl: 'https://sergio-velandia.github.io/Moss-Nexus/',
+  nexusUrl: 'https://sergio-velandia.dev/Moss-Nexus/',
   ownerName: 'Sergio Andres Ramirez Velandia',
   contactEmail: 'sergio.velandiar.z@gmail.com',
   country: 'Colombia',

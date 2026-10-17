@@ -11,7 +11,7 @@ references: [n8n: credencial de Slack | https://docs.n8n.io/integrations/builtin
 
 ## Problema que resuelve
 
-Muchas plantillas de Moss Nexus terminan con un aviso en Slack: un lead nuevo, un error en un flujo, un ticket de soporte, el resumen de los correos, un cliente que empieza el onboarding o un pago de Stripe. Por ejemplo, la plantilla [Leads del formulario web a Google Sheets con aviso en Slack](https://sergio-velandia.github.io/Moss-Nexus/plantillas/leads-formulario-a-sheets/) guarda cada lead en una hoja y avisa en `#ventas`.
+Muchas plantillas de Moss Nexus terminan con un aviso en Slack: un lead nuevo, un error en un flujo, un ticket de soporte, el resumen de los correos, un cliente que empieza el onboarding o un pago de Stripe. Por ejemplo, la plantilla [Leads del formulario web a Google Sheets con aviso en Slack](https://sergio-velandia.dev/Moss-Nexus/plantillas/leads-formulario-a-sheets/) guarda cada lead en una hoja y avisa en `#ventas`.
 
 El nodo de Slack de n8n pide una credencial **Slack API** con un *Access Token*. Ese token no se crea en n8n: sale de una **app de Slack** que tienes que crear e instalar en tu espacio de trabajo. Si eliges mal el tipo de token o te falta un permiso, Slack responde con errores cortos como `not_in_channel` o `missing_scope` que no dicen qué hacer.
 

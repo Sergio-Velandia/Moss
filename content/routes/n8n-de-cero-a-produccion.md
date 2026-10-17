@@ -44,8 +44,8 @@ La ruta termina donde empieza el trabajo real: en Moss Nexus hay flujos ya armad
 
 Después del paso 6, [Conectar Gmail, Google Calendar, Google Drive y Google Sheets a n8n con OAuth2](/manual/n8n/oauth2-de-google-en-n8n), ya tienes lo necesario para correr un flujo real. Si quieres probar uno de **nivel fácil** antes de seguir, en Moss Nexus hay dos listos para copiar y pegar en n8n, de unos 20 minutos cada uno:
 
-- **[Agenda del día por correo](https://sergio-velandia.github.io/Moss-Nexus/plantillas/agenda-diaria-calendar/):** cada mañana de lunes a viernes lee tus eventos de Google Calendar y te los envía por Gmail. Usa las credenciales de Google Calendar y Gmail de la guía.
-- **[Reporte diario de ventas](https://sergio-velandia.github.io/Moss-Nexus/plantillas/reporte-diario-ventas/):** lee una hoja de Google Sheets y te envía por Gmail el resumen de las ventas de ayer. Además de Gmail, pide una credencial de Google Sheets: la misma guía explica qué APIs habilitar y cómo preparar la hoja.
+- **[Agenda del día por correo](https://sergio-velandia.dev/Moss-Nexus/plantillas/agenda-diaria-calendar/):** cada mañana de lunes a viernes lee tus eventos de Google Calendar y te los envía por Gmail. Usa las credenciales de Google Calendar y Gmail de la guía.
+- **[Reporte diario de ventas](https://sergio-velandia.dev/Moss-Nexus/plantillas/reporte-diario-ventas/):** lee una hoja de Google Sheets y te envía por Gmail el resumen de las ventas de ayer. Además de Gmail, pide una credencial de Google Sheets: la misma guía explica qué APIs habilitar y cómo preparar la hoja.
 
 ```flow
 # Del paso 6 a tu primer flujo real

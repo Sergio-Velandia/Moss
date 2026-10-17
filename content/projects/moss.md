@@ -7,7 +7,7 @@ theme: moss
 version: 1.6.0
 reviewedAt: 2026-10-12
 repo: https://github.com/Sergio-Velandia/Moss
-site: https://sergio-velandia.github.io/Moss/
+site: https://sergio-velandia.dev/Moss/
 tags: [arquitectura, jardín-digital, decisiones, sin backend, sitio estático]
 technologies: [React, TypeScript, Vite, Markdown]
 createdAt: 2026-10-12

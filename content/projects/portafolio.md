@@ -7,7 +7,7 @@ theme: portafolio
 version: 1.0.0
 reviewedAt: 2026-10-12
 repo: https://github.com/Sergio-Velandia/mi-portafolio
-site: https://sergio-velandia.github.io/mi-portafolio/
+site: https://sergio-velandia.dev/mi-portafolio/
 tags: [arquitectura, portafolio, i18n, animación, decisiones, sitio estático]
 technologies: [React, JavaScript, Vite, EmailJS]
 createdAt: 2026-10-12

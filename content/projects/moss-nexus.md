@@ -7,7 +7,7 @@ theme: nexus
 version: 0.7.0
 reviewedAt: 2026-10-12
 repo: https://github.com/Sergio-Velandia/Moss-Nexus
-site: https://sergio-velandia.github.io/Moss-Nexus/
+site: https://sergio-velandia.dev/Moss-Nexus/
 tags: [arquitectura, n8n, plantillas, decisiones, sin backend, sitio estático]
 technologies: [React, TypeScript, Vite, n8n]
 createdAt: 2026-10-12
@@ -18,7 +18,7 @@ related: [manual/n8n/entender-webhooks-y-triggers, manual/n8n/orquestacion-y-man
 
 Moss Nexus es el sitio hermano de Moss: una galería de plantillas de n8n que se buscan, se entienden con un mapa del flujo y se copian a n8n con un clic. En Moss se aprende el porqué; en Nexus se copia el flujo y se usa.
 
-**Problema que resuelve:** mucha gente sabe qué quiere automatizar, pero se paraliza con webhooks, JSON, tokens y credenciales antes de terminar su primer flujo. Nexus entrega el flujo completo, qué hace cada paso y qué se necesita antes de empezar. La lista de plantillas y cómo se usa el sitio están en el [README](https://github.com/Sergio-Velandia/Moss-Nexus#readme) y en el propio [sitio](https://sergio-velandia.github.io/Moss-Nexus/).
+**Problema que resuelve:** mucha gente sabe qué quiere automatizar, pero se paraliza con webhooks, JSON, tokens y credenciales antes de terminar su primer flujo. Nexus entrega el flujo completo, qué hace cada paso y qué se necesita antes de empezar. La lista de plantillas y cómo se usa el sitio están en el [README](https://github.com/Sergio-Velandia/Moss-Nexus#readme) y en el propio [sitio](https://sergio-velandia.dev/Moss-Nexus/).
 
 **Estado real (v0.7.0):** terminadas las fases de estructura, primeros flujos, catálogo de 14 plantillas, legal y repaso. Desde aquí la librería solo se actualiza con plantillas sueltas y correcciones. Ninguna plantilla tiene todavía el sello «Probado»: todas se publican como «Sin probar».
 
