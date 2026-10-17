@@ -12,6 +12,16 @@ El campo `version` de `package.json` siempre coincide con la última versión pu
 
 ## [Sin publicar]
 
+## [1.9.7] - 2026-10-16
+
+### Cambiado
+- El sitio y sus proyectos hermanos se enlazan con el dominio propio `sergio-velandia.dev`: Moss en `/Moss/`, Moss Nexus en `/Moss-Nexus/` y el portafolio en `/mi-portafolio/`. Afecta al pie de página, la invitación a Nexus, las fichas de Proyectos, la ruta de n8n y las guías que enlazan plantillas. Las direcciones antiguas de `github.io` siguen redirigiendo.
+- El correo de contacto de las páginas legales pasa a ser `contacto@sergio-velandia.dev` (fecha de actualización: 16/10/2026).
+- El README usa el dominio y el correo nuevos, explica por qué el `base` de Vite sigue siendo `/Moss/` y anota como fase futura los metadatos para compartir y buscadores.
+
+### Añadido
+- Prueba de guarda: falla si vuelve a aparecer una URL de `sergio-velandia.github.io` en el código o el contenido.
+
 ## [1.9.6] - 2026-10-16
 
 ### Añadido
@@ -202,7 +212,8 @@ Primera versión completa.
 - Páginas legales: términos, privacidad y protección de datos.
 - Despliegue automático en GitHub Pages con cada push a `main`.
 
-[Sin publicar]: https://github.com/Sergio-Velandia/Moss/compare/v1.9.6...HEAD
+[Sin publicar]: https://github.com/Sergio-Velandia/Moss/compare/v1.9.7...HEAD
+[1.9.7]: https://github.com/Sergio-Velandia/Moss/compare/v1.9.6...v1.9.7
 [1.9.6]: https://github.com/Sergio-Velandia/Moss/compare/v1.9.5...v1.9.6
 [1.9.5]: https://github.com/Sergio-Velandia/Moss/compare/v1.9.4...v1.9.5
 [1.9.4]: https://github.com/Sergio-Velandia/Moss/compare/v1.9.3...v1.9.4
