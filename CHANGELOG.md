@@ -12,6 +12,12 @@ El campo `version` de `package.json` siempre coincide con la última versión pu
 
 ## [Sin publicar]
 
+## [1.12.4] - 2026-10-18
+
+### Cambiado
+- Inicio presenta también **Rutas** (la primera, como puerta de entrada para quien no sabe por dónde empezar) y **Proyectos**, que no aparecían. Con seis secciones y siete elementos en «Recién plantado», las dos columnas del escritorio quedan parejas.
+- «El ritmo de crecimiento» se cuenta por semanas mientras el jardín tenga menos de tres meses: por meses era una sola barra. Al llegar al tercer mes vuelve solo a contar por meses. La tabla de datos y el resumen cambian de «mes» a «semana» con él.
+
 ## [1.12.3] - 2026-10-18
 
 ### Corregido
@@ -269,7 +275,8 @@ Primera versión completa.
 - Páginas legales: términos, privacidad y protección de datos.
 - Despliegue automático en GitHub Pages con cada push a `main`.
 
-[Sin publicar]: https://github.com/Sergio-Velandia/Moss/compare/v1.12.3...HEAD
+[Sin publicar]: https://github.com/Sergio-Velandia/Moss/compare/v1.12.4...HEAD
+[1.12.4]: https://github.com/Sergio-Velandia/Moss/compare/v1.12.3...v1.12.4
 [1.12.3]: https://github.com/Sergio-Velandia/Moss/compare/v1.12.2...v1.12.3
 [1.12.2]: https://github.com/Sergio-Velandia/Moss/compare/v1.12.1...v1.12.2
 [1.12.1]: https://github.com/Sergio-Velandia/Moss/compare/v1.12.0...v1.12.1
