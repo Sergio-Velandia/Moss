@@ -12,6 +12,15 @@ El campo `version` de `package.json` siempre coincide con la última versión pu
 
 ## [Sin publicar]
 
+## [1.12.3] - 2026-10-18
+
+### Corregido
+- Las fichas de Proyectos ya no muestran versiones caducadas: Moss Nexus pasa a v0.7.5 y el portafolio a v1.0.1, con estado «En mantenimiento». La ficha de Moss toma su versión de `package.json` en el build (`version: auto`), así que no vuelve a quedarse atrás.
+- El contenido de las fichas también se puso al día: cuatro de las 14 plantillas de Nexus ya tienen el sello «Probado», el portafolio ya tiene CHANGELOG y tag, y el Roadmap de Moss deja de pedir categorías que ya existen. La fecha de revisión pasa al 18 de octubre de 2026.
+
+### Añadido
+- La página de Proyectos y las tres fichas enlazan la ruta «Del repo a producción», que cuenta cómo se publicaron.
+
 ## [1.12.2] - 2026-10-18
 
 ### Corregido
@@ -260,7 +269,8 @@ Primera versión completa.
 - Páginas legales: términos, privacidad y protección de datos.
 - Despliegue automático en GitHub Pages con cada push a `main`.
 
-[Sin publicar]: https://github.com/Sergio-Velandia/Moss/compare/v1.12.2...HEAD
+[Sin publicar]: https://github.com/Sergio-Velandia/Moss/compare/v1.12.3...HEAD
+[1.12.3]: https://github.com/Sergio-Velandia/Moss/compare/v1.12.2...v1.12.3
 [1.12.2]: https://github.com/Sergio-Velandia/Moss/compare/v1.12.1...v1.12.2
 [1.12.1]: https://github.com/Sergio-Velandia/Moss/compare/v1.12.0...v1.12.1
 [1.12.0]: https://github.com/Sergio-Velandia/Moss/compare/v1.11.0...v1.12.0
