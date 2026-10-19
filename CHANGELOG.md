@@ -12,6 +12,12 @@ El campo `version` de `package.json` siempre coincide con la última versión pu
 
 ## [Sin publicar]
 
+## [1.12.6] - 2026-10-18
+
+### Cambiado
+- El Laboratorio pasa de 11 categorías, varias con una sola demo, a cinco: **Piezas Tailwind**, **Retos Tailwind**, **Interfaz** (botones, acordeón, animaciones, skeleton y tarjeta tilt), **Automatización** y **Datos** (CSV y factura). Una prueba impide que vuelva a haber categorías de una sola demo.
+- La categoría «Despliegue» del Manual se muestra como **Publicar y mantener**, porque ahí viven también el README, la fase legal y el mantenimiento. La carpeta y las URLs de sus guías no cambian.
+
 ## [1.12.5] - 2026-10-18
 
 ### Cambiado
@@ -282,7 +288,8 @@ Primera versión completa.
 - Páginas legales: términos, privacidad y protección de datos.
 - Despliegue automático en GitHub Pages con cada push a `main`.
 
-[Sin publicar]: https://github.com/Sergio-Velandia/Moss/compare/v1.12.5...HEAD
+[Sin publicar]: https://github.com/Sergio-Velandia/Moss/compare/v1.12.6...HEAD
+[1.12.6]: https://github.com/Sergio-Velandia/Moss/compare/v1.12.5...v1.12.6
 [1.12.5]: https://github.com/Sergio-Velandia/Moss/compare/v1.12.4...v1.12.5
 [1.12.4]: https://github.com/Sergio-Velandia/Moss/compare/v1.12.3...v1.12.4
 [1.12.3]: https://github.com/Sergio-Velandia/Moss/compare/v1.12.2...v1.12.3
