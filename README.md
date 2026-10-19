@@ -214,7 +214,7 @@ Crea `content/projects/<slug>.md`; la página aparece en `/proyectos/<slug>` y e
 ```md
 status: activo          # activo | mantenimiento | pausado
 theme: moss             # moss | nexus | portafolio: paleta de su tarjeta y sus botones
-version: 1.6.0          # versión del proyecto que describe la página
+version: 0.7.5          # versión del proyecto que describe la página («auto» en la ficha de Moss: sale de package.json)
 reviewedAt: 2026-10-12  # última vez que se contrastó con el código
 repo: https://github.com/…
 site: https://…
