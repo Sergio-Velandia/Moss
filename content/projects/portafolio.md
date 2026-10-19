@@ -2,23 +2,23 @@
 title: Portafolio
 description: Mi portafolio profesional en una sola página, en español e inglés, con animaciones con propósito y un formulario sin backend.
 type: project
-status: activo
+status: mantenimiento
 theme: portafolio
-version: 1.0.0
-reviewedAt: 2026-10-12
+version: 1.0.1
+reviewedAt: 2026-10-18
 repo: https://github.com/Sergio-Velandia/mi-portafolio
 site: https://sergio-velandia.dev/mi-portafolio/
 tags: [arquitectura, portafolio, i18n, animación, decisiones, sitio estático]
 technologies: [React, JavaScript, Vite, EmailJS]
 createdAt: 2026-10-12
-related: [journal/accesibilidad-que-no-se-ve, lab/fade-in-list, manual/n8n/webhook-basico]
+related: [route/publicar-y-mantener-un-sitio, journal/accesibilidad-que-no-se-ve, lab/fade-in-list, manual/n8n/webhook-basico]
 ---
 
 ## Ficha
 
 Una sola página que presenta mi perfil, mis proyectos y mi experiencia, pensada para que alguien que contrata la recorra en pocos minutos, en español o en inglés.
 
-**Problema que resuelve:** un CV en PDF no muestra cómo trabajo. El portafolio enseña los proyectos con capturas, explica una automatización real con n8n de forma visual y deja escribirme sin salir de la página. Su recorrido y contenido están en el [README](https://github.com/Sergio-Velandia/mi-portafolio#readme). La versión documentada es la de su `package.json`: el repositorio aún no publica tags ni CHANGELOG.
+**Problema que resuelve:** un CV en PDF no muestra cómo trabajo. El portafolio enseña los proyectos con capturas, explica una automatización real con n8n de forma visual y deja escribirme sin salir de la página. Su recorrido y contenido están en el [README](https://github.com/Sergio-Velandia/mi-portafolio#readme). La versión documentada es la de su `package.json`, que coincide con su CHANGELOG y su tag `v1.0.1`.
 
 ## Arquitectura
 
@@ -81,4 +81,5 @@ Pendientes visibles hoy en el código, sin fechas:
 
 - La sección de experiencia existe, pero está comentada en `App.jsx`.
 - El script de publicación manual (`npm run deploy`) sigue en `package.json`, aunque el despliegue ya es automático.
-- El proyecto no tiene pruebas automáticas ni CHANGELOG.
+- El proyecto no tiene pruebas automáticas.
+- Falta su fase legal: página de privacidad para el formulario de contacto y archivo `LICENSE` (ver [La fase legal en un proyecto personal](/manual/despliegue/fase-legal-en-un-proyecto-personal)).

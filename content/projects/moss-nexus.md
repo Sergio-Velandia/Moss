@@ -4,14 +4,14 @@ description: Librería estática de flujos de n8n ya armados y explicados, con u
 type: project
 status: activo
 theme: nexus
-version: 0.7.0
-reviewedAt: 2026-10-12
+version: 0.7.5
+reviewedAt: 2026-10-18
 repo: https://github.com/Sergio-Velandia/Moss-Nexus
 site: https://sergio-velandia.dev/Moss-Nexus/
 tags: [arquitectura, n8n, plantillas, decisiones, sin backend, sitio estático]
 technologies: [React, TypeScript, Vite, n8n]
 createdAt: 2026-10-12
-related: [manual/n8n/entender-webhooks-y-triggers, manual/n8n/orquestacion-y-manejo-de-errores, manual/apis/idempotencia-en-pagos-y-webhooks, journal/migrando-scripts-a-n8n]
+related: [route/publicar-y-mantener-un-sitio, manual/n8n/entender-webhooks-y-triggers, manual/n8n/orquestacion-y-manejo-de-errores, manual/apis/idempotencia-en-pagos-y-webhooks, journal/migrando-scripts-a-n8n]
 ---
 
 ## Ficha
@@ -20,7 +20,7 @@ Moss Nexus es el sitio hermano de Moss: una galería de plantillas de n8n que se
 
 **Problema que resuelve:** mucha gente sabe qué quiere automatizar, pero se paraliza con webhooks, JSON, tokens y credenciales antes de terminar su primer flujo. Nexus entrega el flujo completo, qué hace cada paso y qué se necesita antes de empezar. La lista de plantillas y cómo se usa el sitio están en el [README](https://github.com/Sergio-Velandia/Moss-Nexus#readme) y en el propio [sitio](https://sergio-velandia.dev/Moss-Nexus/).
 
-**Estado real (v0.7.0):** terminadas las fases de estructura, primeros flujos, catálogo de 14 plantillas, legal y repaso. Desde aquí la librería solo se actualiza con plantillas sueltas y correcciones. Ninguna plantilla tiene todavía el sello «Probado»: todas se publican como «Sin probar».
+**Estado real (v0.7.5):** terminadas las fases de estructura, primeros flujos, catálogo de 14 plantillas, legal y repaso. Desde aquí la librería solo se actualiza con plantillas sueltas y correcciones. Cuatro de las 14 plantillas tienen el sello «Probado», con la fecha y la versión de n8n de la prueba (agenda del día, facturas a Drive, leads a Sheets con aviso en Slack y reporte diario de ventas); las demás se publican como «Sin probar».
 
 ## Arquitectura
 
@@ -92,7 +92,7 @@ El índice se arma solo: agregar una plantilla es agregar una carpeta, sin tocar
 
 Sin fechas:
 
-- Probar las plantillas en una instancia real de n8n y añadir el sello «Probado» a las que pasen.
+- Probar las 10 plantillas que faltan en una instancia real de n8n y añadir el sello «Probado» a las que pasen.
 - Añadir la imagen `og.png` que esperan los metadatos para compartir enlaces; hoy esa URL responde 404.
 - Seguir sumando plantillas sueltas, cada una en su propia versión MINOR.
 - Idea por evaluar: una prueba que compare los nodos de `diagram.json` con los de `workflow.json`, para que el mapa no se desactualice.

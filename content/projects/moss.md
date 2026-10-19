@@ -4,14 +4,14 @@ description: Jardín digital estático donde documento, pruebo y conecto lo que 
 type: project
 status: activo
 theme: moss
-version: 1.6.0
-reviewedAt: 2026-10-12
+version: auto
+reviewedAt: 2026-10-18
 repo: https://github.com/Sergio-Velandia/Moss
 site: https://sergio-velandia.dev/Moss/
 tags: [arquitectura, jardín-digital, decisiones, sin backend, sitio estático]
 technologies: [React, TypeScript, Vite, Markdown]
 createdAt: 2026-10-12
-related: [journal/por-que-moss-no-usa-base-de-datos, journal/como-funciona-la-busqueda-del-herbario, journal/la-naturaleza-de-moss, manual/react/estructura-de-proyecto]
+related: [route/publicar-y-mantener-un-sitio, journal/por-que-moss-no-usa-base-de-datos, journal/como-funciona-la-busqueda-del-herbario, journal/la-naturaleza-de-moss, manual/react/estructura-de-proyecto]
 ---
 
 ## Ficha
@@ -87,7 +87,8 @@ Todo lo que el sitio sabe se decide al compilar. Vite lee los archivos con `impo
 Sin fechas; en el orden en que me parecen más útiles:
 
 - Cargar el texto de cada documento solo al abrirlo. Hoy todo el contenido viaja en el JavaScript inicial y ese archivo crece con cada guía.
-- Más categorías en el Manual (Git, CSS, despliegue).
+- Más guías de CSS y una categoría de pruebas en el Manual.
+- Metadatos para compartir: Open Graph, `canonical`, `sitemap.xml` y `robots.txt` (ver [Que se vea bien al compartirlo](/manual/despliegue/que-se-vea-bien-al-compartirlo)).
 - Traducir también el contenido, por ejemplo con archivos `.en.md` junto a los originales.
 - Un feed RSS de la Bitácora.
 - Un estado de error en la demo del botón con estados.
