@@ -12,6 +12,12 @@ El campo `version` de `package.json` siempre coincide con la última versión pu
 
 ## [Sin publicar]
 
+## [1.12.1] - 2026-10-18
+
+### Corregido
+- Las miniaturas del Laboratorio ya no aplastan las demos que se adaptan al ancho (tarjetas, factura, simulador de n8n, generador de payloads): la demo se pinta a un ancho de escritorio y se reduce entera, y si es más alta que la caja se alinea arriba en lugar de cortarse.
+- El simulador de flujo n8n decide sus dos columnas por el ancho de su caja (container queries de Tailwind 4) y no por el de la ventana.
+
 ## [1.12.0] - 2026-10-18
 
 ### Añadido
@@ -248,7 +254,8 @@ Primera versión completa.
 - Páginas legales: términos, privacidad y protección de datos.
 - Despliegue automático en GitHub Pages con cada push a `main`.
 
-[Sin publicar]: https://github.com/Sergio-Velandia/Moss/compare/v1.12.0...HEAD
+[Sin publicar]: https://github.com/Sergio-Velandia/Moss/compare/v1.12.1...HEAD
+[1.12.1]: https://github.com/Sergio-Velandia/Moss/compare/v1.12.0...v1.12.1
 [1.12.0]: https://github.com/Sergio-Velandia/Moss/compare/v1.11.0...v1.12.0
 [1.11.0]: https://github.com/Sergio-Velandia/Moss/compare/v1.10.0...v1.11.0
 [1.10.0]: https://github.com/Sergio-Velandia/Moss/compare/v1.9.8...v1.10.0
