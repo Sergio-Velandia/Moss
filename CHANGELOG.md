@@ -12,6 +12,12 @@ El campo `version` de `package.json` siempre coincide con la última versión pu
 
 ## [Sin publicar]
 
+## [1.12.2] - 2026-10-18
+
+### Corregido
+- Las categorías del Manual se muestran con su nombre real (APIs, CSS, JavaScript, n8n, SQL…) en los filtros, las tarjetas, cada guía, el Herbario y «Recién plantado» de Inicio. Antes salían del nombre de la carpeta con mayúscula inicial forzada por CSS («Apis», «Css», «N8n»), y en Inicio, en minúscula. El filtro «Todas» también empieza con mayúscula.
+- Las URLs no cambian: la carpeta sigue en la dirección y una prueba comprueba que cada guía se encuentra a partir de su URL, y otra que toda carpeta nueva tenga su nombre escrito a mano.
+
 ## [1.12.1] - 2026-10-18
 
 ### Corregido
@@ -254,7 +260,8 @@ Primera versión completa.
 - Páginas legales: términos, privacidad y protección de datos.
 - Despliegue automático en GitHub Pages con cada push a `main`.
 
-[Sin publicar]: https://github.com/Sergio-Velandia/Moss/compare/v1.12.1...HEAD
+[Sin publicar]: https://github.com/Sergio-Velandia/Moss/compare/v1.12.2...HEAD
+[1.12.2]: https://github.com/Sergio-Velandia/Moss/compare/v1.12.1...v1.12.2
 [1.12.1]: https://github.com/Sergio-Velandia/Moss/compare/v1.12.0...v1.12.1
 [1.12.0]: https://github.com/Sergio-Velandia/Moss/compare/v1.11.0...v1.12.0
 [1.11.0]: https://github.com/Sergio-Velandia/Moss/compare/v1.10.0...v1.11.0
