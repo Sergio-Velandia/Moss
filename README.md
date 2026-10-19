@@ -26,7 +26,7 @@ Mi "segundo cerebro" técnico: una biblioteca personal y visual donde guardo, do
 | n8n, de cero a producción | Intermedio | 11, empieza instalando n8n, con dos flujos fáciles de Moss Nexus para practicar, y cierra con la invitación a Nexus |
 | Frontend con React y Tailwind | Intermedio | 7 |
 | Datos y reportes con SQL | Intermedio | 8 |
-| Del repo a producción: publicar y mantener un proyecto web | Inicial | 6 de 11 pasos publicados; el resto se suma a medida que salen sus guías |
+| Del repo a producción: publicar y mantener un proyecto web | Inicial | 11 pasos y un proyecto final (13 lecturas), con la evidencia real de Moss, Moss Nexus y el portafolio |
 
 Cada paso se marca como hecho y el progreso se guarda **solo en el navegador** (`moss-route-progress`, descrito en la privacidad). Dentro de cada guía o demo que forma parte de una ruta aparece en qué paso estás y cuál viene después. El tiempo estimado suma el tiempo de lectura real de cada documento y 5 minutos por demo.
 
@@ -75,7 +75,7 @@ Los **retos** reproducen un error real con un interruptor «Sin arreglo / Con ar
 
 Las **piezas** son componentes que ya uso en Moss y Moss Nexus, en versión limpia para copiar: muestran sus variantes, funcionan en los dos temas y traen notas de accesibilidad y movimiento, dónde se usan de verdad y el manual o la bitácora que las explica. Solo animan `transform` y `opacity`. Pendientes de próximos lotes: formularios, avisos y estados vacíos; navegación, pestañas y acordeón; modal, skeleton e interruptor de tema. El chip que se puede quitar (×) queda pendiente hasta que lo use en alguna app.
 
-**Manual (24 guías)**
+**Manual (32 guías)**
 
 Las guías marcadas con ★ parten de un problema real de empresa: duplicados en el CRM, reportes que nadie quiere hacer, cobros dobles, exportaciones que Excel rompe…
 
@@ -84,6 +84,14 @@ Las guías marcadas con ★ parten de un problema real de empresa: duplicados en
 | CSS | Capas CSS y tokens en Tailwind 4 |
 | Despliegue | Una SPA en GitHub Pages sin 404 |
 | Despliegue | Dominio propio para GitHub Pages con Cloudflare DNS y correo |
+| Despliegue | Correo con tu dominio usando Cloudflare Email Routing |
+| Despliegue | Migrar a un dominio nuevo sin romper nada |
+| Despliegue | La fase legal en un proyecto personal |
+| Despliegue | Que se vea bien al compartirlo: Open Graph, canonical, sitemap y robots |
+| Despliegue | Mantener vivo un proyecto publicado |
+| Despliegue | Proyecto final: publica tu propio sitio de principio a fin |
+| Git | Git con intención: commits que cuentan qué cambió |
+| Git | Un README que se lee |
 | APIs | Conectar la API de Gemini de forma segura |
 | APIs | ★ Idempotencia en pagos y webhooks |
 | APIs | ★ Paginación y límites de tasa en APIs de terceros |
@@ -377,7 +385,7 @@ El historial de versiones está en [CHANGELOG.md](CHANGELOG.md), con [Versionado
 Ideas para seguir creciendo:
 
 - Estado de error en el botón con estados.
-- Más categorías en el Manual (Git, pruebas).
+- Más categorías en el Manual (pruebas).
 - Traducir también el contenido al inglés (por ejemplo, con archivos `.en.md` junto a los originales).
 - Feed RSS de la Bitácora.
 - Capturas de pantalla en este README.
