@@ -12,6 +12,11 @@ El campo `version` de `package.json` siempre coincide con la última versión pu
 
 ## [Sin publicar]
 
+## [1.12.8] - 2026-10-18
+
+### Cambiado
+- El Herbario, sin búsqueda ni filtros, muestra los cuatro elementos más recientes de cada sección y un botón «Ver los N de…» que filtra por esa sección, en lugar de volcar los 70 elementos del jardín. La página pasa de unos 7000 a unos 2900 píxeles de alto en escritorio. Con una búsqueda, un tipo o una tecnología, se sigue mostrando todo lo que coincide.
+
 ## [1.12.7] - 2026-10-18
 
 ### Añadido
@@ -293,7 +298,8 @@ Primera versión completa.
 - Páginas legales: términos, privacidad y protección de datos.
 - Despliegue automático en GitHub Pages con cada push a `main`.
 
-[Sin publicar]: https://github.com/Sergio-Velandia/Moss/compare/v1.12.7...HEAD
+[Sin publicar]: https://github.com/Sergio-Velandia/Moss/compare/v1.12.8...HEAD
+[1.12.8]: https://github.com/Sergio-Velandia/Moss/compare/v1.12.7...v1.12.8
 [1.12.7]: https://github.com/Sergio-Velandia/Moss/compare/v1.12.6...v1.12.7
 [1.12.6]: https://github.com/Sergio-Velandia/Moss/compare/v1.12.5...v1.12.6
 [1.12.5]: https://github.com/Sergio-Velandia/Moss/compare/v1.12.4...v1.12.5
