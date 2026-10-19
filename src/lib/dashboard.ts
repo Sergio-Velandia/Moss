@@ -124,6 +124,64 @@ export function monthKey(iso: string): number | null {
   return Number(m[1]) * 12 + month - 1
 }
 
+/** Lunes (00:00, hora local) de la semana de una fecha */
+function mondayOf(d: Date): Date {
+  const monday = new Date(d.getFullYear(), d.getMonth(), d.getDate())
+  monday.setDate(monday.getDate() - ((monday.getDay() + 6) % 7))
+  return monday
+}
+
+function parseIsoDate(iso: string): Date | null {
+  const m = /^(\d{4})-(\d{2})-(\d{2})/.exec(iso)
+  if (!m) return null
+  const d = new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3]))
+  return Number.isNaN(d.getTime()) || d.getMonth() !== Number(m[2]) - 1 ? null : d
+}
+
+/**
+ * Elementos plantados por semana (de lunes a domingo), desde la primera hasta la actual
+ * (como mucho las últimas `maxWeeks`). Sirve mientras el jardín es joven: con un solo mes,
+ * el gráfico por meses sería una única barra.
+ */
+export function byWeek(items: readonly GardenItem[], now = new Date(), maxWeeks = 12, lang: Lang = 'es'): MonthStat[] {
+  const current = mondayOf(now)
+  const counts = new Map<string, number>()
+  let first: Date | null = null
+
+  for (const item of items) {
+    const d = parseIsoDate(item.createdAt)
+    // Fechas inválidas o futuras no cuentan
+    if (!d || d > now) continue
+    const monday = mondayOf(d)
+    const key = isoDay(monday)
+    counts.set(key, (counts.get(key) ?? 0) + 1)
+    if (!first || monday < first) first = monday
+  }
+  if (!first) return []
+
+  const oldest = new Date(current)
+  oldest.setDate(oldest.getDate() - 7 * (maxWeeks - 1))
+  const weeks: MonthStat[] = []
+  for (const d = first < oldest ? oldest : new Date(first); d <= current; d.setDate(d.getDate() + 7)) {
+    const key = isoDay(d)
+    const day = d.getDate()
+    const month = d.getMonth()
+    weeks.push({
+      key,
+      label: `${day} ${monthShort[lang][month]}`,
+      fullLabel:
+        lang === 'es'
+          ? `semana del ${day} de ${monthLong.es[month]} de ${d.getFullYear()}`
+          : `week of ${monthLong.en[month]} ${day}, ${d.getFullYear()}`,
+      count: counts.get(key) ?? 0,
+      isCurrent: key === isoDay(current),
+    })
+  }
+  return weeks
+}
+
+const isoDay = (d: Date) => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`
+
 // Listas propias en vez de Intl: según la versión de ICU, "es" abrevia septiembre como "sep" o "sept"
 const monthShort: Record<Lang, string[]> = {
   es: ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'],

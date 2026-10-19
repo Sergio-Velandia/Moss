@@ -3,6 +3,7 @@ import {
   MIN_REAL_ITEMS,
   byMonth,
   byTechnology,
+  byWeek,
   byType,
   createMockItems,
   getGardenItems,
@@ -34,6 +35,33 @@ describe('monthKey', () => {
     expect(monthKey('2026-13-01')).toBeNull()
     expect(monthKey('10/01/2026')).toBeNull()
     expect(monthKey('')).toBeNull()
+  })
+})
+
+describe('byWeek', () => {
+  // Domingo 18 de octubre de 2026: la semana actual empieza el lunes 12
+  const sunday = new Date(2026, 9, 18, 20, 0)
+
+  it('agrupa de lunes a domingo e incluye las semanas vacías', () => {
+    const weeks = byWeek([item('2026-09-30'), item('2026-10-08'), item('2026-10-12'), item('2026-10-18')], sunday)
+    expect(weeks.map((w) => [w.key, w.count])).toEqual([
+      ['2026-09-28', 1],
+      ['2026-10-05', 1],
+      ['2026-10-12', 2],
+    ])
+    expect(weeks.at(-1)?.isCurrent).toBe(true)
+    expect(weeks[0].label).toBe('28 sep')
+    expect(weeks[0].fullLabel).toBe('semana del 28 de septiembre de 2026')
+  })
+
+  it('muestra como mucho las últimas semanas pedidas', () => {
+    const weeks = byWeek([item('2026-01-05'), item('2026-10-13')], sunday, 4)
+    expect(weeks.map((w) => w.key)).toEqual(['2026-09-21', '2026-09-28', '2026-10-05', '2026-10-12'])
+  })
+
+  it('ignora fechas futuras e inválidas, y habla inglés', () => {
+    expect(byWeek([item('2026-10-30'), item('sin fecha'), item('2026-02-30')], sunday)).toEqual([])
+    expect(byWeek([item('2026-10-14')], sunday, 12, 'en')[0].fullLabel).toBe('week of October 12, 2026')
   })
 })
 

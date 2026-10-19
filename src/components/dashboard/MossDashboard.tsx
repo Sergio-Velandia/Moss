@@ -22,6 +22,7 @@ import {
 } from 'recharts'
 import {
   byMonth,
+  byWeek,
   byTechnology,
   byType,
   type GardenItem,
@@ -56,11 +57,15 @@ const TEXT = {
     items: (n: number) => plural(n, 'elemento', 'elementos'),
     noSprouts: 'todavía sin brotes nuevos',
     inMonths: (total: number, months: number) => ` · ${total} en ${plural(months, 'mes', 'meses')}`,
+    inWeeks: (total: number, weeks: number) => ` · ${total} en ${plural(weeks, 'semana', 'semanas')}`,
     nothing: 'Aún no hay nada plantado.',
     table: 'Ver datos como tabla',
     currentMonth: ' (mes actual)',
+    currentWeek: ' (semana actual)',
     growthCaption: 'Elementos plantados por mes',
     growthHeaders: ['Mes', 'Elementos'] as [string, string],
+    growthCaptionWeeks: 'Elementos plantados por semana',
+    growthHeadersWeeks: ['Semana', 'Elementos'] as [string, string],
     topTech: (tech: string, count: number, total: number) => `${tech} aparece en ${count} de ${plural(total, 'elemento', 'elementos')}`,
     noTechs: 'Aún no hay tecnologías registradas.',
     fewTechs: 'Hacen falta al menos tres tecnologías para dibujar la huella.',
@@ -80,11 +85,15 @@ const TEXT = {
     items: (n: number) => plural(n, 'item', 'items'),
     noSprouts: 'no new sprouts yet',
     inMonths: (total: number, months: number) => ` · ${total} in ${plural(months, 'month', 'months')}`,
+    inWeeks: (total: number, weeks: number) => ` · ${total} in ${plural(weeks, 'week', 'weeks')}`,
     nothing: 'Nothing has been planted yet.',
     table: 'View data as a table',
     currentMonth: ' (current month)',
+    currentWeek: ' (current week)',
     growthCaption: 'Items planted per month',
     growthHeaders: ['Month', 'Items'] as [string, string],
+    growthCaptionWeeks: 'Items planted per week',
+    growthHeadersWeeks: ['Week', 'Items'] as [string, string],
     topTech: (tech: string, count: number, total: number) => `${tech} appears in ${count} of ${plural(total, 'item', 'items')}`,
     noTechs: 'No technologies recorded yet.',
     fewTechs: 'At least three technologies are needed to draw the footprint.',
@@ -105,13 +114,17 @@ export default function MossDashboard({ items }: { items: GardenItem[] }) {
   // Si el sistema pide menos movimiento, recharts tampoco anima
   const animate = !useReducedMotion()
   const lang = useLang()
-  const months = useMemo(() => byMonth(items, undefined, 12, lang), [items, lang])
+  // Mientras el jardín tenga menos de tres meses, el ritmo se cuenta por semanas: un solo mes sería una sola barra
+  const growth = useMemo(() => {
+    const months = byMonth(items, undefined, 12, lang)
+    return months.length >= 3 ? { periods: months, weekly: false } : { periods: byWeek(items, undefined, 12, lang), weekly: true }
+  }, [items, lang])
   const technologies = useMemo(() => byTechnology(items), [items])
   const types = useMemo(() => byType(items), [items])
 
   return (
     <div className={dashboardGridClass}>
-      <GrowthCard months={months} animate={animate} />
+      <GrowthCard months={growth.periods} weekly={growth.weekly} animate={animate} />
       <EcosystemCard technologies={technologies} total={items.length} animate={animate} />
       <DistributionCard types={types} total={items.length} animate={animate} />
     </div>
@@ -170,7 +183,7 @@ function DataTable({ caption, headers, rows }: { caption: string; headers: [stri
 
 // ——— 1. Barras: el ritmo de crecimiento ———
 
-function GrowthCard({ months, animate }: { months: MonthStat[]; animate: boolean }) {
+function GrowthCard({ months, weekly, animate }: { months: MonthStat[]; weekly: boolean; animate: boolean }) {
   const t = useT(TEXT)
   const current = months.at(-1)
   const total = months.reduce((sum, m) => sum + m.count, 0)
@@ -182,7 +195,7 @@ function GrowthCard({ months, animate }: { months: MonthStat[]; animate: boolean
   const summary = current ? (
     <p>
       {capitalize(current.fullLabel)}: {current.count === 0 ? t.noSprouts : t.sprouts(current.count)}
-      {months.length > 1 && t.inMonths(total, months.length)}
+      {months.length > 1 && (weekly ? t.inWeeks(total, months.length) : t.inMonths(total, months.length))}
     </p>
   ) : (
     <p>{t.nothing}</p>
@@ -195,9 +208,9 @@ function GrowthCard({ months, animate }: { months: MonthStat[]; animate: boolean
       summary={summary}
       footer={
         <DataTable
-          caption={t.growthCaption}
-          headers={t.growthHeaders}
-          rows={months.map((m) => [`${capitalize(m.fullLabel)}${m.isCurrent ? t.currentMonth : ''}`, String(m.count)])}
+          caption={weekly ? t.growthCaptionWeeks : t.growthCaption}
+          headers={weekly ? t.growthHeadersWeeks : t.growthHeaders}
+          rows={months.map((m) => [`${capitalize(m.fullLabel)}${m.isCurrent ? (weekly ? t.currentWeek : t.currentMonth) : ''}`, String(m.count)])}
         />
       }
     >
