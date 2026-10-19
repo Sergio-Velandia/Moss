@@ -12,6 +12,13 @@ El campo `version` de `package.json` siempre coincide con la última versión pu
 
 ## [Sin publicar]
 
+## [1.12.5] - 2026-10-18
+
+### Cambiado
+- El Manual agrupa las guías por categoría, con un encabezado y el número de guías de cada una, en lugar de una sola lista de 32 tarjetas ordenada por fecha. El filtro por categoría sigue funcionando igual.
+- Cada tarjeta muestra el tiempo de lectura y, si la guía forma parte de una ruta, cuál. La fecha solo aparece cuando la guía se actualizó después de publicarse.
+- Una línea bajo la introducción lleva a las Rutas para quien no sabe por dónde empezar.
+
 ## [1.12.4] - 2026-10-18
 
 ### Cambiado
@@ -275,7 +282,8 @@ Primera versión completa.
 - Páginas legales: términos, privacidad y protección de datos.
 - Despliegue automático en GitHub Pages con cada push a `main`.
 
-[Sin publicar]: https://github.com/Sergio-Velandia/Moss/compare/v1.12.4...HEAD
+[Sin publicar]: https://github.com/Sergio-Velandia/Moss/compare/v1.12.5...HEAD
+[1.12.5]: https://github.com/Sergio-Velandia/Moss/compare/v1.12.4...v1.12.5
 [1.12.4]: https://github.com/Sergio-Velandia/Moss/compare/v1.12.3...v1.12.4
 [1.12.3]: https://github.com/Sergio-Velandia/Moss/compare/v1.12.2...v1.12.3
 [1.12.2]: https://github.com/Sergio-Velandia/Moss/compare/v1.12.1...v1.12.2
