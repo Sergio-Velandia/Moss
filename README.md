@@ -49,7 +49,7 @@ Cada página sigue la misma plantilla, en este orden: **Ficha, Arquitectura, Flu
 
 ## Qué hay dentro
 
-**Laboratorio (14 demos)**
+**Laboratorio (17 demos)**
 
 | Demo | Categoría |
 | --- | --- |
@@ -67,8 +67,13 @@ Cada página sigue la misma plantilla, en este orden: **Ficha, Arquitectura, Flu
 | Reto: la tarjeta que rompe la cuadrícula | Retos Tailwind |
 | Reto: la cabecera que no cabe (container queries) | Retos Tailwind |
 | Reto: una tarjeta, tres identidades (variables CSS) | Retos Tailwind |
+| Pieza: botones con variantes | Piezas Tailwind |
+| Pieza: tarjetas enlazadas | Piezas Tailwind |
+| Pieza: chips, etiquetas e insignias | Piezas Tailwind |
 
 Los **retos** reproducen un error real con un interruptor «Sin arreglo / Con arreglo» y explican la causa.
+
+Las **piezas** son componentes que ya uso en Moss y Moss Nexus, en versión limpia para copiar: muestran sus variantes, funcionan en los dos temas y traen notas de accesibilidad y movimiento, dónde se usan de verdad y el manual o la bitácora que las explica. Solo animan `transform` y `opacity`. Pendientes de próximos lotes: formularios, avisos y estados vacíos; navegación, pestañas y acordeón; modal, skeleton e interruptor de tema. El chip que se puede quitar (×) queda pendiente hasta que lo use en alguna app.
 
 **Manual (24 guías)**
 
@@ -158,12 +163,17 @@ export const meta: LabMeta = {
   createdAt: '2026-10-10',
   usage: 'Cómo se usa.',
   dependencies: ['lucide-react'], // opcional
+  notes: ['Accesibilidad y movimiento.'], // opcional
+  usedIn: [{ label: 'Moss: inicio', url: 'https://sergio-velandia.dev/Moss/' }], // opcional
+  related: ['manual/css/capas-y-tokens-en-tailwind-4'], // opcional: ids del jardín
 }
 
 export default function MiDemo() {
   return <button>Hola</button>
 }
 ```
+
+Las piezas de la categoría **Piezas Tailwind** deben traer `notes`, `usedIn` y al menos un `related` a un manual o artículo: las pruebas lo exigen, igual que que cada `related` exista y que `usedIn` apunte a `sergio-velandia.dev`. Para los enlaces a Moss Nexus, usa `site.nexusUrl`.
 
 ### Un documento al Manual
 
