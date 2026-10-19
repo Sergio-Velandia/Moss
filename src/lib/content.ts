@@ -125,7 +125,7 @@ export function parseReferences(entries: string[]): Reference[] {
 export const MANUAL_CATEGORY_NAMES: Record<string, string> = {
   apis: 'APIs',
   css: 'CSS',
-  despliegue: 'Despliegue',
+  despliegue: 'Publicar y mantener',
   git: 'Git',
   javascript: 'JavaScript',
   n8n: 'n8n',
