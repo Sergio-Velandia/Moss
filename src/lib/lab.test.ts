@@ -25,6 +25,13 @@ describe('demos del Laboratorio', () => {
     }
   })
 
+  it('las categorías agrupan: ninguna tiene una sola demo', () => {
+    const counts = new Map<string, number>()
+    for (const e of labEntries) counts.set(e.category, (counts.get(e.category) ?? 0) + 1)
+    const alone = [...counts].filter(([, n]) => n < 2).map(([c]) => c)
+    expect(alone).toEqual([])
+  })
+
   it('las Piezas Tailwind traen notas, uso real y un manual o bitácora que las explique', () => {
     const pieces = labEntries.filter((e) => e.category === 'Piezas Tailwind')
     for (const e of pieces) {

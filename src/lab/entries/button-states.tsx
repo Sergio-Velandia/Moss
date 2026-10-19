@@ -6,7 +6,7 @@ export const meta: LabMeta = {
   title: 'Botón con estados',
   description: 'Botón con estados normal, cargando y éxito, con feedback visual.',
   technology: 'React',
-  category: 'Botones',
+  category: 'Interfaz',
   tags: ['botón', 'estados', 'feedback', 'loading'],
   createdAt: '2026-10-09',
   usage: 'Sustituye el setTimeout por tu petición real (fetch, mutación, etc.).',

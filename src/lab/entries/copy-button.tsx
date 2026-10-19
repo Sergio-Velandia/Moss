@@ -6,7 +6,7 @@ export const meta: LabMeta = {
   title: 'Botón de copiar al portapapeles',
   description: 'Copia un texto con un clic y confirma con un icono y un aviso para lectores de pantalla.',
   technology: 'React',
-  category: 'Botones',
+  category: 'Interfaz',
   tags: ['botón', 'portapapeles', 'clipboard', 'copiar', 'feedback', 'accesibilidad'],
   createdAt: '2026-10-10',
   usage:

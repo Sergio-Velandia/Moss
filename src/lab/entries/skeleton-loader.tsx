@@ -4,7 +4,7 @@ export const meta: LabMeta = {
   title: 'Skeleton loader',
   description: 'Esqueleto de tarjeta con pulso suave mientras carga el contenido.',
   technology: 'React',
-  category: 'Loaders',
+  category: 'Interfaz',
   tags: ['loader', 'skeleton', 'tailwind', 'estado de carga'],
   createdAt: '2026-10-10',
   usage: 'Muestra <SkeletonCard /> mientras `loading` sea true y reemplázalo por el contenido real.',

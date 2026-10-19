@@ -7,7 +7,7 @@ export const meta: LabMeta = {
   title: 'Animación de entrada escalonada',
   description: 'Lista cuyos elementos aparecen uno tras otro con un fundido suave hacia arriba.',
   technology: 'React',
-  category: 'Animaciones',
+  category: 'Interfaz',
   tags: ['animación', 'entrada', 'fade', 'motion', 'lista', 'escalonada'],
   createdAt: '2026-10-10',
   usage: 'Cambia el delay (i * 0.08) para acelerar o frenar la secuencia. Respeta el movimiento reducido del sistema.',

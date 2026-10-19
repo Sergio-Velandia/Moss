@@ -6,7 +6,7 @@ export const meta: LabMeta = {
   title: 'Resumen de factura con IVA',
   description: 'Líneas de factura con cantidades e IVA por producto (19 %, 5 % o exento), calculadas en pesos enteros y mostradas con Intl.',
   technology: 'React',
-  category: 'Facturación',
+  category: 'Datos',
   tags: ['factura', 'iva', 'dinero', 'intl', 'cop', 'redondeo', 'negocio'],
   createdAt: '2026-10-12',
   usage:

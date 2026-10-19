@@ -6,7 +6,7 @@ export const meta: LabMeta = {
   title: 'Tarjeta tilt 3D',
   description: 'Tarjeta que se inclina siguiendo el cursor, con perspectiva y vuelta suave.',
   technology: 'React',
-  category: 'Tarjetas',
+  category: 'Interfaz',
   tags: ['tilt', '3d', 'hover', 'card', 'animación', 'accesibilidad'],
   createdAt: '2026-10-10',
   usage:

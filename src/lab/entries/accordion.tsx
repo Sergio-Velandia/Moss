@@ -7,7 +7,7 @@ export const meta: LabMeta = {
   title: 'Acordeón accesible',
   description: 'Preguntas que se despliegan con animación de altura, navegables con teclado y lector de pantalla.',
   technology: 'React',
-  category: 'Navegación',
+  category: 'Interfaz',
   tags: ['acordeón', 'faq', 'desplegable', 'accesibilidad', 'aria', 'motion'],
   createdAt: '2026-10-10',
   usage:
