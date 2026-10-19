@@ -12,6 +12,23 @@ El campo `version` de `package.json` siempre coincide con la última versión pu
 
 ## [Sin publicar]
 
+## [1.12.0] - 2026-10-18
+
+### Añadido
+- Ocho guías nuevas del Manual que completan la ruta «Del repo a producción». Cada una abre con el porqué, lo explica con una imagen sencilla, muestra «Así lo hice yo» con commits, archivos y páginas reales de Moss, Moss Nexus y el portafolio, y termina con una lista de comprobación:
+  - **Git con intención** (categoría nueva **Git**): commits convencionales, cuándo dividir un cambio y ramas cortas.
+  - **Un README que se lee**: qué va arriba y el antes y el después del README del portafolio.
+  - **Correo con tu dominio**: Email Routing, registros MX y SPF, una regla por dirección, catch-all apagado y recibir frente a enviar.
+  - **Migrar a un dominio nuevo sin romper nada**: inventario, qué no cambiar, prueba de guarda y servicios con lista de dominios permitidos.
+  - **La fase legal en un proyecto personal**: auditoría, privacidad, términos, licencia y la Ley 1581 de 2012, sin asesoría jurídica.
+  - **Que se vea bien al compartirlo**: Open Graph, canonical, sitemap y robots.txt en una subruta, con el estado real (y lo que falta) de los tres proyectos.
+  - **Mantener vivo un proyecto publicado**: revisión mensual, renovación del dominio y cuándo pasar a mantenimiento.
+  - **Proyecto final: publica tu propio sitio de principio a fin**, con un criterio de «terminado» en cada paso.
+
+### Cambiado
+- La ruta «Del repo a producción» ya no tiene pasos «Próximamente»: pasa de 6 a 13 lecturas. La ficha de Moss sale de la lista y queda enlazada desde el proyecto final.
+- La guía de dominio propio enlaza a la nueva guía de correo.
+
 ## [1.11.0] - 2026-10-18
 
 ### Cambiado
@@ -231,7 +248,8 @@ Primera versión completa.
 - Páginas legales: términos, privacidad y protección de datos.
 - Despliegue automático en GitHub Pages con cada push a `main`.
 
-[Sin publicar]: https://github.com/Sergio-Velandia/Moss/compare/v1.11.0...HEAD
+[Sin publicar]: https://github.com/Sergio-Velandia/Moss/compare/v1.12.0...HEAD
+[1.12.0]: https://github.com/Sergio-Velandia/Moss/compare/v1.11.0...v1.12.0
 [1.11.0]: https://github.com/Sergio-Velandia/Moss/compare/v1.10.0...v1.11.0
 [1.10.0]: https://github.com/Sergio-Velandia/Moss/compare/v1.9.8...v1.10.0
 [1.9.8]: https://github.com/Sergio-Velandia/Moss/compare/v1.9.7...v1.9.8
