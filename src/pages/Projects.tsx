@@ -14,6 +14,8 @@ const TEXT = {
     version: (v: string) => `v${v}`,
     action: 'Ver cómo está hecho',
     techs: 'Tecnologías',
+    published: 'Los tres viven en el mismo dominio y se publicaron igual.',
+    route: 'Cómo los publiqué, paso a paso',
   },
   en: {
     title: 'Projects',
@@ -22,6 +24,8 @@ const TEXT = {
     version: (v: string) => `v${v}`,
     action: 'See how it’s built',
     techs: 'Technologies',
+    published: 'All three live on the same domain and were published the same way.',
+    route: 'How I published them, step by step',
   },
 }
 
@@ -79,6 +83,13 @@ export default function Projects() {
           })}
         </ul>
       )}
+
+      <p className="mt-8 text-sm text-ink-soft">
+        {t.published}{' '}
+        <Link to="/rutas/publicar-y-mantener-un-sitio" className="inline-flex min-h-11 items-center gap-1 font-medium text-sage-deep underline underline-offset-4 hover:no-underline">
+          {t.route} →
+        </Link>
+      </p>
     </section>
   )
 }
