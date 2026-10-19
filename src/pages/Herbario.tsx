@@ -9,6 +9,8 @@ import { useDocumentTitle } from '../lib/useDocumentTitle'
 const TYPES: ItemType[] = ['route', 'lab', 'manual', 'journal', 'project']
 /** Etiquetas visibles antes de pulsar "Ver todas" */
 const VISIBLE_TAGS = 16
+/** Sin búsqueda ni filtros, cada sección muestra solo sus elementos más recientes */
+const PREVIEW = 4
 
 const TEXT = {
   es: {
@@ -27,6 +29,8 @@ const TEXT = {
     usedIn: (n: number) => `en ${n} elementos`,
     results: (n: number, q: string) => `${n} resultado${n === 1 ? '' : 's'} para “${q}”`,
     total: (n: number) => `${n} elementos en el jardín`,
+    overview: (n: number) => `${n} elementos en el jardín. Aquí ves los más recientes de cada sección; busca o filtra para verlos todos.`,
+    seeSection: (n: number, section: string) => `Ver los ${n} de ${section}`,
     empty: 'No encontré nada. Prueba con otras palabras o quita algún filtro.',
   },
   en: {
@@ -45,6 +49,8 @@ const TEXT = {
     usedIn: (n: number) => `in ${n} items`,
     results: (n: number, q: string) => `${n} result${n === 1 ? '' : 's'} for “${q}”`,
     total: (n: number) => `${n} items in the garden`,
+    overview: (n: number) => `${n} items in the garden. These are the most recent in each section; search or filter to see them all.`,
+    seeSection: (n: number, section: string) => `See all ${n} in ${section}`,
     empty: 'Nothing found. Try other words or remove a filter.',
   },
 }
@@ -96,6 +102,8 @@ export default function Herbario() {
   )
 
   const tags = showAllTags ? tagCounts : tagCounts.slice(0, VISIBLE_TAGS)
+  // Sin búsqueda ni filtros es un vistazo: volcar los ~70 elementos de golpe abruma
+  const overview = !q.trim() && !type && !tech
 
   return (
     <section>
@@ -177,7 +185,7 @@ export default function Herbario() {
       )}
 
       <p className="mt-8 text-sm text-ink-soft" aria-live="polite">
-        {q.trim() ? t.results(results.length, q.trim()) : t.total(results.length)}
+        {q.trim() ? t.results(results.length, q.trim()) : overview ? t.overview(results.length) : t.total(results.length)}
       </p>
 
       {results.length === 0 ? (
@@ -187,11 +195,12 @@ export default function Herbario() {
           {TYPES.map((x) => {
             const group = results.filter((i) => i.type === x)
             if (group.length === 0) return null
+            const shown = overview ? group.slice(0, PREVIEW) : group
             return (
               <div key={x}>
                 <h2 className="text-sm font-medium uppercase tracking-wide text-ink-soft">{sectionNames[lang][x]}</h2>
                 <ul className="mt-2 divide-y divide-cream-deep rounded-2xl border border-surface/70 bg-surface/50">
-                  {group.map((i) => (
+                  {shown.map((i) => (
                     <li key={i.id}>
                       <Link to={i.url} className="block px-5 py-4 transition hover:bg-sage/10">
                         <div className="flex flex-wrap items-center gap-2">
@@ -210,6 +219,15 @@ export default function Herbario() {
                     </li>
                   ))}
                 </ul>
+                {shown.length < group.length && (
+                  <button
+                    type="button"
+                    onClick={() => setParam('tipo', x)}
+                    className="mt-2 inline-flex min-h-11 items-center gap-1 rounded-lg px-2 text-sm font-medium text-sage-deep transition hover:bg-sage/20"
+                  >
+                    {t.seeSection(group.length, sectionNames[lang][x])} →
+                  </button>
+                )}
               </div>
             )
           })}
