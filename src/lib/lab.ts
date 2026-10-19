@@ -2,6 +2,11 @@ import type { ComponentType } from 'react'
 
 export type Technology = 'React' | 'CSS' | 'HTML' | 'JavaScript'
 
+export interface LabLink {
+  label: string
+  url: string
+}
+
 export interface LabMeta {
   title: string
   description: string
@@ -13,6 +18,12 @@ export interface LabMeta {
   updatedAt?: string
   usage: string
   dependencies?: string[]
+  /** Notas de accesibilidad y movimiento que no caben en «Cómo usarlo» */
+  notes?: string[]
+  /** Dónde se usa esta pieza en una app real (sergio-velandia.dev/…) */
+  usedIn?: LabLink[]
+  /** Ids del jardín que la explican o la complementan (manual/…, journal/…, lab/…) */
+  related?: string[]
 }
 
 export interface LabEntry extends LabMeta {

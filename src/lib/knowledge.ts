@@ -29,7 +29,7 @@ export const knowledgeItems: KnowledgeItem[] = [
     category: e.category,
     createdAt: e.createdAt,
     url: `/laboratorio/${e.slug}`,
-    body: `${e.usage}\n${e.source}`,
+    body: [e.usage, ...(e.notes ?? []), e.source].join('\n'),
   })),
   ...[...manualDocs, ...journalPosts, ...projectDocs, ...routeDocs].map<KnowledgeItem>((d) => ({
     id: d.id,

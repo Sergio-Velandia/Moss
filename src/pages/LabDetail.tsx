@@ -1,6 +1,7 @@
 import { Link, useParams } from 'react-router-dom'
-import { ArrowLeft } from 'lucide-react'
+import { ArrowLeft, ArrowUpRight } from 'lucide-react'
 import CodeBlock from '../components/code/CodeBlock'
+import Related from '../components/content/Related'
 import RouteNav from '../components/routes/RouteNav'
 import SpanishNote from '../components/content/SpanishNote'
 import { formatDate } from '../lib/format'
@@ -15,6 +16,9 @@ const TEXT = {
     preview: 'Vista previa',
     code: 'Código',
     usage: 'Cómo usarlo',
+    notes: 'Notas',
+    usedIn: 'Dónde lo uso',
+    newTab: ' (se abre en una pestaña nueva)',
     deps: 'Dependencias:',
     created: (d: string) => `Creado el ${d}`,
   },
@@ -25,6 +29,9 @@ const TEXT = {
     preview: 'Preview',
     code: 'Code',
     usage: 'How to use it',
+    notes: 'Notes',
+    usedIn: 'Where I use it',
+    newTab: ' (opens in a new tab)',
     deps: 'Dependencies:',
     created: (d: string) => `Created on ${d}`,
   },
@@ -82,6 +89,38 @@ export default function LabDetail() {
       <h2 className="mt-8 text-sm font-medium uppercase tracking-wide text-ink-soft">{t.usage}</h2>
       <p className="mt-2 text-ink-soft" lang="es">{entry.usage}</p>
 
+      {entry.notes && entry.notes.length > 0 && (
+        <>
+          <h2 className="mt-8 text-sm font-medium uppercase tracking-wide text-ink-soft">{t.notes}</h2>
+          <ul className="mt-2 list-disc space-y-1.5 pl-5 text-ink-soft marker:text-sage-deep" lang="es">
+            {entry.notes.map((n) => (
+              <li key={n}>{n}</li>
+            ))}
+          </ul>
+        </>
+      )}
+
+      {entry.usedIn && entry.usedIn.length > 0 && (
+        <>
+          <h2 className="mt-8 text-sm font-medium uppercase tracking-wide text-ink-soft">{t.usedIn}</h2>
+          <ul className="mt-2 flex flex-wrap gap-2" lang="es">
+            {entry.usedIn.map((u) => (
+              <li key={u.url}>
+                <a
+                  href={u.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex min-h-11 items-center gap-1.5 rounded-xl bg-surface/70 px-3 text-sm text-ink transition-colors hover:bg-surface hover:text-sage-deep"
+                >
+                  {u.label} <ArrowUpRight size={14} aria-hidden />
+                  <span className="sr-only">{t.newTab}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
+
       {entry.dependencies && (
         <p className="mt-4 text-sm text-ink-soft">
           {t.deps} {entry.dependencies.map((d) => (
@@ -93,6 +132,7 @@ export default function LabDetail() {
       <p className="mt-6 text-xs text-ink-soft">{t.created(formatDate(entry.createdAt, lang))}</p>
 
       <RouteNav id={`lab/${entry.slug}`} />
+      {entry.related && <Related ids={entry.related} />}
     </article>
   )
 }

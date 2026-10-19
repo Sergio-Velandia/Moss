@@ -1,6 +1,7 @@
 import { createElement } from 'react'
 import { renderToString } from 'react-dom/server'
 import { describe, expect, it } from 'vitest'
+import { knowledgeItems } from './knowledge'
 import { labEntries } from './lab'
 
 describe('demos del Laboratorio', () => {
@@ -13,6 +14,23 @@ describe('demos del Laboratorio', () => {
       expect(e.title, e.slug).not.toBe('')
       expect(e.description, e.slug).not.toBe('')
       expect(e.createdAt, e.slug).toMatch(/^\d{4}-\d{2}-\d{2}$/)
+    }
+  })
+
+  it('los relacionados existen y «Dónde lo uso» apunta a las apps reales', () => {
+    const ids = new Set(knowledgeItems.map((i) => i.id))
+    for (const e of labEntries) {
+      for (const r of e.related ?? []) expect(ids.has(r), `${e.slug} → ${r}`).toBe(true)
+      for (const u of e.usedIn ?? []) expect(u.url, e.slug).toMatch(/^https:\/\/sergio-velandia\.dev\//)
+    }
+  })
+
+  it('las Piezas Tailwind traen notas, uso real y un manual o bitácora que las explique', () => {
+    const pieces = labEntries.filter((e) => e.category === 'Piezas Tailwind')
+    for (const e of pieces) {
+      expect(e.notes?.length, e.slug).toBeGreaterThan(0)
+      expect(e.usedIn?.length, e.slug).toBeGreaterThan(0)
+      expect(e.related?.some((r) => r.startsWith('manual/') || r.startsWith('journal/')), e.slug).toBe(true)
     }
   })
 })
