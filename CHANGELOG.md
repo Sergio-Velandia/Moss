@@ -12,6 +12,15 @@ El campo `version` de `package.json` siempre coincide con la última versión pu
 
 ## [Sin publicar]
 
+## [1.10.0] - 2026-10-18
+
+### Añadido
+- Colección **Piezas Tailwind** en el Laboratorio, primer lote: componentes que ya uso en Moss y Moss Nexus, en versión limpia para copiar, con sus variantes en vivo y en los dos temas.
+  - **Botones:** primario, secundario, fantasma, deshabilitado y cargando. La carga usa `aria-disabled` para no perder el foco del teclado y anuncia el resultado en una región `status`.
+  - **Tarjetas enlazadas:** la de contenido de Moss, la que cambia de identidad con una variable con alcance y la de Moss Nexus con brillo que sigue al puntero (solo con ratón).
+  - **Chips, etiquetas e insignias:** chips de filtro con `aria-pressed`, etiquetas, chip con contador e insignias «Probado» y «Ejemplo».
+- Las entradas del Laboratorio pueden traer **Notas** (accesibilidad y movimiento), **Dónde lo uso** (enlaces a las apps reales) y **Relacionado** (manuales, artículos y demos), con pruebas que comprueban que esos enlaces existen. El chip que se puede quitar (×) queda pendiente: todavía no lo uso en ninguna app.
+
 ## [1.9.8] - 2026-10-16
 
 ### Añadido
@@ -217,7 +226,8 @@ Primera versión completa.
 - Páginas legales: términos, privacidad y protección de datos.
 - Despliegue automático en GitHub Pages con cada push a `main`.
 
-[Sin publicar]: https://github.com/Sergio-Velandia/Moss/compare/v1.9.8...HEAD
+[Sin publicar]: https://github.com/Sergio-Velandia/Moss/compare/v1.10.0...HEAD
+[1.10.0]: https://github.com/Sergio-Velandia/Moss/compare/v1.9.8...v1.10.0
 [1.9.8]: https://github.com/Sergio-Velandia/Moss/compare/v1.9.7...v1.9.8
 [1.9.7]: https://github.com/Sergio-Velandia/Moss/compare/v1.9.6...v1.9.7
 [1.9.6]: https://github.com/Sergio-Velandia/Moss/compare/v1.9.5...v1.9.6
