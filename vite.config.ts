@@ -47,7 +47,11 @@ function staticRoutes(): Plugin {
 }
 
 // https://vite.dev/config/
+// La versión de Moss sale de package.json: la ficha del proyecto la muestra sin copiarla a mano
+const { version } = JSON.parse(readFileSync(new URL('./package.json', import.meta.url), 'utf8')) as { version: string }
+
 export default defineConfig(({ command, isPreview }) => ({
+  define: { __APP_VERSION__: JSON.stringify(version) },
   plugins: [react(), tailwindcss(), staticRoutes()],
   // GitHub Pages sirve el sitio en /Moss/ (el nombre del repositorio). En desarrollo se usa la raíz.
   // `vite preview` también cuenta como "serve": sin isPreview, buscaría los assets fuera de /Moss/.

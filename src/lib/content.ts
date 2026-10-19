@@ -203,7 +203,8 @@ function parseDoc(path: string, raw: string): Doc | null {
     ...(type === 'project' && {
       project: {
         status: asString(data.status),
-        version: asString(data.version),
+        // `version: auto` usa la de este repositorio (solo tiene sentido en la ficha de Moss)
+        version: data.version === 'auto' ? __APP_VERSION__ : asString(data.version),
         reviewedAt: asString(data.reviewedAt),
         repo: asString(data.repo),
         site: asString(data.site),
