@@ -5,7 +5,7 @@ type: manual
 tags: [git, commits, conventional commits, ramas, historial, buenas prácticas]
 technologies: [Git, GitHub]
 createdAt: 2026-10-18
-related: [route/publicar-y-mantener-un-sitio, journal/versionar-despues]
+related: [route/publicar-y-mantener-un-sitio, journal/versionar-despues, manual/git/un-readme-que-se-lee]
 references: [Conventional Commits 1.0.0 en español | https://www.conventionalcommits.org/es/v1.0.0/, Pro Git: qué es una rama | https://git-scm.com/book/es/v2/Ramificaciones-en-Git-%C2%BFQu%C3%A9-es-una-rama%3F]
 ---
 

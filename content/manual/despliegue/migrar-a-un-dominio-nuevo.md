@@ -5,7 +5,7 @@ type: manual
 tags: [migración, dominio propio, redirección 301, canonical, pruebas de guarda, emailjs]
 technologies: [GitHub Pages, Vite, Vitest]
 createdAt: 2026-10-18
-related: [route/publicar-y-mantener-un-sitio, manual/despliegue/dominio-propio-github-pages-cloudflare, manual/despliegue/correo-con-tu-dominio]
+related: [route/publicar-y-mantener-un-sitio, manual/despliegue/dominio-propio-github-pages-cloudflare, manual/despliegue/correo-con-tu-dominio, manual/despliegue/que-se-vea-bien-al-compartirlo]
 references: [Google: mover un sitio con cambios de URL | https://developers.google.com/search/docs/crawling-indexing/site-move-with-url-changes, Google: URL canónicas | https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls, GitHub: dominios propios en GitHub Pages | https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/about-custom-domains-and-github-pages]
 ---
 

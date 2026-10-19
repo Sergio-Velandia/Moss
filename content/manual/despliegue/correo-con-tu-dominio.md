@@ -5,7 +5,7 @@ type: manual
 tags: [correo, email routing, cloudflare, dns, mx, spf, dominio propio]
 technologies: [Cloudflare]
 createdAt: 2026-10-18
-related: [route/publicar-y-mantener-un-sitio, manual/despliegue/dominio-propio-github-pages-cloudflare]
+related: [route/publicar-y-mantener-un-sitio, manual/despliegue/dominio-propio-github-pages-cloudflare, manual/despliegue/migrar-a-un-dominio-nuevo]
 references: [Cloudflare: empezar a enrutar correos | https://developers.cloudflare.com/email-service/get-started/route-emails/, Cloudflare: reglas, direcciones y catch-all | https://developers.cloudflare.com/email-service/configuration/email-routing-addresses/, MDN: DNS | https://developer.mozilla.org/en-US/docs/Glossary/DNS, RFC 7208: SPF | https://datatracker.ietf.org/doc/html/rfc7208]
 ---
 

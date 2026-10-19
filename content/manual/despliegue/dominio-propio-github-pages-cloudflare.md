@@ -5,6 +5,7 @@ type: manual
 tags: [dominio propio, github pages, cloudflare, dns, https, email routing, despliegue]
 technologies: [GitHub Pages, Cloudflare]
 createdAt: 2026-10-16
+updatedAt: 2026-10-18
 related: [manual/despliegue/spa-en-github-pages-sin-404, project/moss, project/moss-nexus]
 references: [GitHub: dominios propios en GitHub Pages | https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/about-custom-domains-and-github-pages, GitHub: gestionar un dominio propio | https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site, GitHub: verificar el dominio | https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/verifying-your-custom-domain-for-github-pages, GitHub: HTTPS en GitHub Pages | https://docs.github.com/en/pages/getting-started-with-github-pages/securing-your-github-pages-site-with-https, Cloudflare: estado del proxy | https://developers.cloudflare.com/dns/proxy-status/, Cloudflare: Email Routing | https://developers.cloudflare.com/email-service/get-started/route-emails/, Google Registry: dominios .dev | https://get.dev/]
 ---
@@ -102,6 +103,8 @@ Cuando el DNS esté bien, GitHub pide un certificado TLS y muestra una marca jun
 Con un dominio `.dev` no hay alternativa: todo `.dev` está en la lista de precarga HSTS de los navegadores, así que **solo funciona con HTTPS**. Hasta que GitHub tenga el certificado, el navegador no abrirá el sitio.
 
 ### 6. Recibe correo con Email Routing
+
+Este es el resumen; la guía [Correo con tu dominio](/manual/despliegue/correo-con-tu-dominio) lo explica a fondo, con los registros MX y SPF, el catch-all y la diferencia entre recibir y enviar.
 
 1. En Cloudflare, ve a **Compute → Email Service → Email Routing** y añade (*onboard*) tu dominio. Cloudflare crea solo los registros MX y los TXT de SPF y DKIM que necesita.
 2. En **Destination addresses**, añade el buzón donde quieres recibir los mensajes. Cloudflare te envía un correo de confirmación: ábrelo y pulsa **Verify email address**.

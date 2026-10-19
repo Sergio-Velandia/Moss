@@ -5,7 +5,7 @@ type: manual
 tags: [mantenimiento, dependencias, enlaces rotos, renovación, auditoría, semver]
 technologies: [npm, GitHub, GitHub Pages]
 createdAt: 2026-10-18
-related: [route/publicar-y-mantener-un-sitio, journal/versionar-despues, manual/javascript/verificar-la-interfaz-con-capturas]
+related: [route/publicar-y-mantener-un-sitio, journal/versionar-despues, manual/javascript/verificar-la-interfaz-con-capturas, manual/despliegue/proyecto-final-publica-tu-sitio]
 references: [npm outdated | https://docs.npmjs.com/cli/v10/commands/npm-outdated, npm audit | https://docs.npmjs.com/cli/v10/commands/npm-audit, GitHub: HTTPS en GitHub Pages | https://docs.github.com/en/pages/getting-started-with-github-pages/securing-your-github-pages-site-with-https, Versionado Semántico | https://semver.org/lang/es/]
 ---
 
