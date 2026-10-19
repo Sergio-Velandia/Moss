@@ -12,6 +12,11 @@ El campo `version` de `package.json` siempre coincide con la última versión pu
 
 ## [Sin publicar]
 
+## [1.12.7] - 2026-10-18
+
+### Añadido
+- Artículo de la Bitácora «Lo que encontré al revisar mi propio jardín»: escribir la ruta de publicación obligó a revisar Moss con los mismos criterios, y aparecieron datos caducados en Proyectos, un `capitalize` de CSS que escondía errores (y una guía que dejó de abrir al quitarlo), una prueba de guarda que atrapó a su autor y lo que solo se ve desde fuera.
+
 ## [1.12.6] - 2026-10-18
 
 ### Cambiado
@@ -288,7 +293,8 @@ Primera versión completa.
 - Páginas legales: términos, privacidad y protección de datos.
 - Despliegue automático en GitHub Pages con cada push a `main`.
 
-[Sin publicar]: https://github.com/Sergio-Velandia/Moss/compare/v1.12.6...HEAD
+[Sin publicar]: https://github.com/Sergio-Velandia/Moss/compare/v1.12.7...HEAD
+[1.12.7]: https://github.com/Sergio-Velandia/Moss/compare/v1.12.6...v1.12.7
 [1.12.6]: https://github.com/Sergio-Velandia/Moss/compare/v1.12.5...v1.12.6
 [1.12.5]: https://github.com/Sergio-Velandia/Moss/compare/v1.12.4...v1.12.5
 [1.12.4]: https://github.com/Sergio-Velandia/Moss/compare/v1.12.3...v1.12.4
