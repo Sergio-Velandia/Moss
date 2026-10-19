@@ -1,7 +1,7 @@
 import { lazy, Suspense, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { motion } from 'motion/react'
-import { BookOpen, FlaskConical, Feather, Search } from 'lucide-react'
+import { BookOpen, FlaskConical, Feather, FolderGit2, Route as RouteIcon, Search } from 'lucide-react'
 import { DashboardSkeleton } from '../components/dashboard/ChartCard'
 import { getGardenItems, selectItems } from '../lib/dashboard'
 import { sectionNames, useLang, useT } from '../lib/i18n'
@@ -12,8 +12,16 @@ import { useDocumentTitle } from '../lib/useDocumentTitle'
 const MossDashboard = lazy(() => import('../components/dashboard/MossDashboard'))
 const garden = selectItems(getGardenItems())
 
-const pillarIcons = { lab: FlaskConical, manual: BookOpen, journal: Feather, herbario: Search }
-const pillarRoutes = { lab: '/laboratorio', manual: '/manual', journal: '/bitacora', herbario: '/herbario' }
+// Rutas va primero: es la mejor puerta de entrada para quien llega por primera vez
+const pillarIcons = { routes: RouteIcon, lab: FlaskConical, manual: BookOpen, journal: Feather, projects: FolderGit2, herbario: Search }
+const pillarRoutes = {
+  routes: '/rutas',
+  lab: '/laboratorio',
+  manual: '/manual',
+  journal: '/bitacora',
+  projects: '/proyectos',
+  herbario: '/herbario',
+}
 
 const TEXT = {
   es: {
@@ -22,9 +30,11 @@ const TEXT = {
     placeholder: 'Busca animaciones, SQL, webhooks…',
     searchLabel: 'Buscar en el jardín',
     pillars: {
+      routes: ['Rutas', 'Recorridos de principio a fin. Si no sabes por dónde empezar, empieza aquí.'],
       lab: ['El Laboratorio', 'Componentes y snippets con vista previa en vivo.'],
       manual: ['El Manual', 'Documentación y lógica que cuesta reconstruir.'],
       journal: ['La Bitácora', 'Aprendizajes, decisiones y reflexiones técnicas.'],
+      projects: ['Proyectos', 'Cómo están hechos Moss, Moss Nexus y el portafolio.'],
       herbario: ['El Herbario', 'Búsqueda global para encontrarlo todo rápido.'],
     },
     recent: 'Recién plantado',
@@ -37,9 +47,11 @@ const TEXT = {
     placeholder: 'Search animations, SQL, webhooks…',
     searchLabel: 'Search the garden',
     pillars: {
+      routes: ['Routes', 'End-to-end paths. If you don’t know where to start, start here.'],
       lab: ['The Lab', 'Components and snippets with a live preview.'],
       manual: ['The Manual', 'Documentation and logic that’s hard to rebuild.'],
       journal: ['The Journal', 'Learnings, decisions and technical reflections.'],
+      projects: ['Projects', 'How Moss, Moss Nexus and the portfolio are built.'],
       herbario: ['The Herbarium', 'Global search to find everything fast.'],
     },
     recent: 'Recently planted',
@@ -54,7 +66,7 @@ export default function Home() {
   const t = useT(TEXT)
   const [q, setQ] = useState('')
   const navigate = useNavigate()
-  const recent = knowledgeItems.slice(0, 5)
+  const recent = knowledgeItems.slice(0, 7)
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault()
