@@ -12,6 +12,11 @@ El campo `version` de `package.json` siempre coincide con la última versión pu
 
 ## [Sin publicar]
 
+## [1.11.0] - 2026-10-18
+
+### Cambiado
+- La ruta «Publicar y mantener un sitio» pasa a ser **«Del repo a producción: publicar y mantener un proyecto web»** y conserva su URL (`/rutas/publicar-y-mantener-un-sitio`). Ahora presenta un recorrido de 11 pasos y un proyecto final, desde Git y versiones hasta dominio propio, correo, fase legal y mantenimiento, con la evidencia real de Moss, Moss Nexus y el portafolio. Suma la guía de dominio propio como paso; los pasos que aún no tienen guía aparecen como «Próximamente» y se irán añadiendo uno por uno.
+
 ## [1.10.0] - 2026-10-18
 
 ### Añadido
@@ -226,7 +231,8 @@ Primera versión completa.
 - Páginas legales: términos, privacidad y protección de datos.
 - Despliegue automático en GitHub Pages con cada push a `main`.
 
-[Sin publicar]: https://github.com/Sergio-Velandia/Moss/compare/v1.10.0...HEAD
+[Sin publicar]: https://github.com/Sergio-Velandia/Moss/compare/v1.11.0...HEAD
+[1.11.0]: https://github.com/Sergio-Velandia/Moss/compare/v1.10.0...v1.11.0
 [1.10.0]: https://github.com/Sergio-Velandia/Moss/compare/v1.9.8...v1.10.0
 [1.9.8]: https://github.com/Sergio-Velandia/Moss/compare/v1.9.7...v1.9.8
 [1.9.7]: https://github.com/Sergio-Velandia/Moss/compare/v1.9.6...v1.9.7

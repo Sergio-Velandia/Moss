@@ -26,7 +26,7 @@ Mi "segundo cerebro" técnico: una biblioteca personal y visual donde guardo, do
 | n8n, de cero a producción | Intermedio | 11, empieza instalando n8n, con dos flujos fáciles de Moss Nexus para practicar, y cierra con la invitación a Nexus |
 | Frontend con React y Tailwind | Intermedio | 7 |
 | Datos y reportes con SQL | Intermedio | 8 |
-| Publicar y mantener un sitio | Inicial | 5 |
+| Del repo a producción: publicar y mantener un proyecto web | Inicial | 6 de 11 pasos publicados; el resto se suma a medida que salen sus guías |
 
 Cada paso se marca como hecho y el progreso se guarda **solo en el navegador** (`moss-route-progress`, descrito en la privacidad). Dentro de cada guía o demo que forma parte de una ruta aparece en qué paso estás y cuál viene después. El tiempo estimado suma el tiempo de lectura real de cada documento y 5 minutos por demo.
 
