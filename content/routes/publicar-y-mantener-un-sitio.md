@@ -8,7 +8,7 @@ tags: [despliegue, github pages, dominio propio, versionado, calidad, mantenimie
 technologies: [Git, GitHub Actions, GitHub Pages, Cloudflare]
 createdAt: 2026-10-14
 updatedAt: 2026-10-18
-steps: [journal/versionar-despues, manual/javascript/verificar-la-interfaz-con-capturas, journal/lo-que-encontraron-las-capturas, manual/despliegue/spa-en-github-pages-sin-404, manual/despliegue/dominio-propio-github-pages-cloudflare, project/moss]
+steps: [manual/git/commits-con-intencion, journal/versionar-despues, manual/git/un-readme-que-se-lee, manual/javascript/verificar-la-interfaz-con-capturas, journal/lo-que-encontraron-las-capturas, manual/despliegue/spa-en-github-pages-sin-404, manual/despliegue/dominio-propio-github-pages-cloudflare, manual/despliegue/correo-con-tu-dominio, manual/despliegue/migrar-a-un-dominio-nuevo, manual/despliegue/fase-legal-en-un-proyecto-personal, manual/despliegue/que-se-vea-bien-al-compartirlo, manual/despliegue/mantener-vivo-un-proyecto, manual/despliegue/proyecto-final-publica-tu-sitio]
 ---
 
 ## Por qué existe esta ruta
@@ -42,21 +42,23 @@ Al terminar la ruta
 
 ## Cómo seguirla
 
-La ruta tiene **11 pasos y un proyecto final**. Los pasos que ya tienen guía o artículo aparecen abajo, en orden, y puedes marcarlos como hechos. Los demás se irán sumando, uno por uno, a medida que se publiquen.
+La ruta tiene **11 pasos y un proyecto final**. Cada guía empieza por el porqué, lo explica con una imagen sencilla, muestra la configuración real y termina con «Así lo hice yo» (los commits, archivos y páginas donde se ve aplicado) y una lista de comprobación para tu propio proyecto.
 
-| # | Paso | Estado |
+| # | Paso | Para leer |
 | --- | --- | --- |
-| 1 | Git con intención: commits convencionales, ramas y cuándo dividir un cambio | Próximamente |
-| 2 | Versiones que cuentan una historia: SemVer, CHANGELOG y tags | Disponible: [Versionar después](/bitacora/versionar-despues) (bitácora) |
-| 3 | Un README que se lee | Próximamente |
-| 4 | Calidad automática: pruebas, lint y build antes de publicar | Disponible: [Verificar la interfaz con capturas reales](/manual/javascript/verificar-la-interfaz-con-capturas) y [Lo que encontraron las capturas](/bitacora/lo-que-encontraron-las-capturas) |
-| 5 | Publicar una SPA en GitHub Pages | Disponible: [Una SPA en GitHub Pages sin 404](/manual/despliegue/spa-en-github-pages-sin-404) |
-| 6 | Dominio propio con DNS y HTTPS | Disponible: [Dominio propio para GitHub Pages con Cloudflare DNS y correo](/manual/despliegue/dominio-propio-github-pages-cloudflare) |
-| 7 | Correo con tu dominio | Próximamente (mientras tanto, la guía del paso 6 tiene una sección de correo) |
-| 8 | Migrar a un dominio nuevo sin romper nada | Próximamente |
-| 9 | La fase legal en un proyecto personal | Próximamente |
-| 10 | Que se vea bien al compartirlo | Próximamente |
-| 11 | Mantener vivo un proyecto | Próximamente |
-| 🏁 | Proyecto final: publica tu propio sitio de principio a fin | Próximamente |
+| 1 | Git con intención | [Git con intención: commits que cuentan qué cambió](/manual/git/commits-con-intencion) |
+| 2 | Versiones que cuentan una historia | [Versionar después](/bitacora/versionar-despues) (bitácora) |
+| 3 | Un README que se lee | [Un README que se lee](/manual/git/un-readme-que-se-lee) |
+| 4 | Calidad automática | [Verificar la interfaz con capturas reales](/manual/javascript/verificar-la-interfaz-con-capturas) y [Lo que encontraron las capturas](/bitacora/lo-que-encontraron-las-capturas) (bitácora) |
+| 5 | Publicar una SPA en GitHub Pages | [Una SPA en GitHub Pages sin 404](/manual/despliegue/spa-en-github-pages-sin-404) |
+| 6 | Dominio propio con DNS y HTTPS | [Dominio propio para GitHub Pages con Cloudflare DNS y correo](/manual/despliegue/dominio-propio-github-pages-cloudflare) |
+| 7 | Correo con tu dominio | [Correo con tu dominio usando Cloudflare Email Routing](/manual/despliegue/correo-con-tu-dominio) |
+| 8 | Migrar a un dominio nuevo sin romper nada | [Migrar a un dominio nuevo sin romper nada](/manual/despliegue/migrar-a-un-dominio-nuevo) |
+| 9 | La fase legal en un proyecto personal | [La fase legal en un proyecto personal](/manual/despliegue/fase-legal-en-un-proyecto-personal) |
+| 10 | Que se vea bien al compartirlo | [Que se vea bien al compartirlo](/manual/despliegue/que-se-vea-bien-al-compartirlo) |
+| 11 | Mantener vivo un proyecto | [Mantener vivo un proyecto publicado](/manual/despliegue/mantener-vivo-un-proyecto) |
+| 🏁 | Proyecto final | [Publica tu propio sitio de principio a fin](/manual/despliegue/proyecto-final-publica-tu-sitio) |
 
-La lista de abajo y el aviso de cada guía («Paso 4 de 6») cuentan solo lo ya publicado; la tabla usa el número del recorrido completo. El último paso de la lista es la ficha del proyecto Moss: ahí se ve cómo encaja todo en un sitio real.
+La lista de abajo tiene 13 entradas porque el paso 4 son dos lecturas y el proyecto final cuenta como una más; por eso el aviso de cada guía puede decir, por ejemplo, «Paso 8 de 13». Marca cada una como hecha al terminarla: tu progreso se guarda en este navegador.
+
+El proyecto final aplica los 11 pasos a un sitio tuyo y termina en la ficha de [Moss](/proyectos/moss), donde se ve todo esto en un proyecto real.
