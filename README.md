@@ -53,16 +53,16 @@ Cada página sigue la misma plantilla, en este orden: **Ficha, Arquitectura, Flu
 
 | Demo | Categoría |
 | --- | --- |
-| Acordeón accesible | Navegación |
-| Botón con estados (normal, cargando, éxito) | Botones |
-| Botón de copiar al portapapeles | Botones |
-| Animación de entrada escalonada | Animaciones |
-| Skeleton loader | Loaders |
-| Tarjeta tilt 3D | Animaciones |
+| Acordeón accesible | Interfaz |
+| Botón con estados (normal, cargando, éxito) | Interfaz |
+| Botón de copiar al portapapeles | Interfaz |
+| Animación de entrada escalonada | Interfaz |
+| Skeleton loader | Interfaz |
+| Tarjeta tilt 3D | Interfaz |
 | Generador de payloads para n8n | Automatización |
 | Simulador de flujo n8n | Automatización |
 | Reintentos con backoff y jitter | Automatización |
-| Resumen de factura con IVA | Facturación |
+| Resumen de factura con IVA | Datos |
 | Exportar a CSV que Excel abre bien | Datos |
 | Reto: la tarjeta que rompe la cuadrícula | Retos Tailwind |
 | Reto: la cabecera que no cabe (container queries) | Retos Tailwind |
@@ -82,14 +82,14 @@ Las guías marcadas con ★ parten de un problema real de empresa: duplicados en
 | Categoría | Guía |
 | --- | --- |
 | CSS | Capas CSS y tokens en Tailwind 4 |
-| Despliegue | Una SPA en GitHub Pages sin 404 |
-| Despliegue | Dominio propio para GitHub Pages con Cloudflare DNS y correo |
-| Despliegue | Correo con tu dominio usando Cloudflare Email Routing |
-| Despliegue | Migrar a un dominio nuevo sin romper nada |
-| Despliegue | La fase legal en un proyecto personal |
-| Despliegue | Que se vea bien al compartirlo: Open Graph, canonical, sitemap y robots |
-| Despliegue | Mantener vivo un proyecto publicado |
-| Despliegue | Proyecto final: publica tu propio sitio de principio a fin |
+| Publicar y mantener | Una SPA en GitHub Pages sin 404 |
+| Publicar y mantener | Dominio propio para GitHub Pages con Cloudflare DNS y correo |
+| Publicar y mantener | Correo con tu dominio usando Cloudflare Email Routing |
+| Publicar y mantener | Migrar a un dominio nuevo sin romper nada |
+| Publicar y mantener | La fase legal en un proyecto personal |
+| Publicar y mantener | Que se vea bien al compartirlo: Open Graph, canonical, sitemap y robots |
+| Publicar y mantener | Mantener vivo un proyecto publicado |
+| Publicar y mantener | Proyecto final: publica tu propio sitio de principio a fin |
 | Git | Git con intención: commits que cuentan qué cambió |
 | Git | Un README que se lee |
 | APIs | Conectar la API de Gemini de forma segura |
@@ -185,7 +185,7 @@ Las piezas de la categoría **Piezas Tailwind** deben traer `notes`, `usedIn` y 
 
 ### Un documento al Manual
 
-Crea `content/manual/<categoría>/<nombre>.md`. La carpeta es la categoría (`react`, `sql`, `apis`, `n8n`, `javascript`…).
+Crea `content/manual/<categoría>/<nombre>.md`. La carpeta es la categoría (`react`, `sql`, `apis`, `n8n`, `javascript`…) y forma parte de la URL; el nombre que se ve se escribe en `MANUAL_CATEGORY_NAMES` (`src/lib/content.ts`), y una prueba exige que toda carpeta tenga el suyo.
 
 ### Un artículo a la Bitácora
 
