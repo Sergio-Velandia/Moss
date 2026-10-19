@@ -196,7 +196,7 @@ export default function Herbario() {
                       <Link to={i.url} className="block px-5 py-4 transition hover:bg-sage/10">
                         <div className="flex flex-wrap items-center gap-2">
                           <span className="font-medium" lang="es">{i.title}</span>
-                          <span className="rounded-full bg-sage/30 px-2 py-0.5 text-xs capitalize text-sage-deep" lang="es">
+                          <span className="rounded-full bg-sage/30 px-2 py-0.5 text-xs text-sage-deep" lang="es">
                             {i.category}
                           </span>
                           {i.technologies.map((x) => (

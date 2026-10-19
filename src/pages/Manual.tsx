@@ -12,7 +12,7 @@ const TEXT = {
     title: 'El Manual',
     intro: 'Documentación técnica, configuraciones y guías que cuesta reconstruir.',
     category: 'Categoría',
-    all: 'todas',
+    all: 'Todas',
     empty: 'Aún no hay documentos en esta categoría. 🌱',
     updated: (d: string) => `Actualizado el ${d}`,
   },
@@ -20,7 +20,7 @@ const TEXT = {
     title: 'The Manual',
     intro: 'Technical documentation, configurations and guides that are hard to rebuild.',
     category: 'Category',
-    all: 'all',
+    all: 'All',
     empty: 'There are no documents in this category yet. 🌱',
     updated: (d: string) => `Updated on ${d}`,
   },
@@ -44,7 +44,7 @@ export default function Manual() {
             key={c}
             onClick={() => setCategory(c)}
             aria-pressed={category === c}
-            className={`rounded-full px-3 py-1 pointer-coarse:py-2 text-xs capitalize transition ${
+            className={`rounded-full px-3 py-1 pointer-coarse:py-2 text-xs transition ${
               category === c ? 'bg-accent text-on-accent' : 'bg-surface/60 text-ink-soft hover:bg-sage/20'
             }`}
           >
@@ -63,7 +63,7 @@ export default function Manual() {
                 to={d.url}
                 className="flex h-full flex-col rounded-2xl border border-surface/70 bg-surface/50 p-5 shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:shadow-md"
               >
-                <span className="w-fit rounded-full bg-sage/30 px-2 py-0.5 text-xs capitalize text-sage-deep">
+                <span className="w-fit rounded-full bg-sage/30 px-2 py-0.5 text-xs text-sage-deep">
                   {d.category}
                 </span>
                 <h2 className="mt-3 font-medium" lang="es">{d.title}</h2>

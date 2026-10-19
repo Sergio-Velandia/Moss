@@ -56,7 +56,7 @@ export default function ManualDoc() {
       <p className="mt-2 max-w-xl text-ink-soft" lang="es">{doc.description}</p>
 
       <div className="mt-3 flex flex-wrap items-center gap-1.5 text-xs">
-        <span className="rounded-full bg-sage/30 px-2 py-0.5 capitalize text-sage-deep">{doc.category}</span>
+        <span className="rounded-full bg-sage/30 px-2 py-0.5 text-sage-deep">{doc.category}</span>
         {doc.technologies.filter((x) => x.toLowerCase() !== doc.category.toLowerCase()).map((x) => (
           <span key={x} className="rounded-full bg-lavender/50 px-2 py-0.5 text-lavender-deep">
             {x}

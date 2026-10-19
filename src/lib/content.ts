@@ -121,6 +121,21 @@ export function parseReferences(entries: string[]): Reference[] {
   })
 }
 
+/** Nombre visible de cada carpeta del Manual: la carpeta sigue en la URL, el nombre es lo que se lee */
+export const MANUAL_CATEGORY_NAMES: Record<string, string> = {
+  apis: 'APIs',
+  css: 'CSS',
+  despliegue: 'Despliegue',
+  git: 'Git',
+  javascript: 'JavaScript',
+  n8n: 'n8n',
+  react: 'React',
+  sql: 'SQL',
+}
+
+export const manualCategoryName = (folder: string): string =>
+  MANUAL_CATEGORY_NAMES[folder] ?? folder.charAt(0).toUpperCase() + folder.slice(1)
+
 function parseDoc(path: string, raw: string): Doc | null {
   // /content/manual/react/estructura.md → ['manual', 'react', 'estructura.md']
   const parts = path.replace(/^\/content\//, '').split('/')
@@ -135,9 +150,9 @@ function parseDoc(path: string, raw: string): Doc | null {
 
   if (root === 'manual' && parts.length === 3) {
     type = 'manual'
-    category = parts[1]
-    id = `manual/${category}/${slug}`
-    url = `/manual/${category}/${slug}`
+    category = manualCategoryName(parts[1])
+    id = `manual/${parts[1]}/${slug}`
+    url = `/manual/${parts[1]}/${slug}`
   } else if (root === 'journal' && parts.length === 2) {
     type = 'journal'
     category = asString(data.category, 'General')
@@ -257,14 +272,14 @@ const allDocs: Doc[] = Object.entries(files)
 
 export const manualDocs = allDocs.filter((d) => d.type === 'manual')
 export const journalPosts = allDocs.filter((d) => d.type === 'journal')
-export const manualCategories = [...new Set(manualDocs.map((d) => d.category))].sort()
+export const manualCategories = [...new Set(manualDocs.map((d) => d.category))].sort((a, b) => a.localeCompare(b, 'es'))
 // Los proyectos se listan por nombre: su fecha de creación no dice nada de su importancia
 export const projectDocs = allDocs
   .filter((d) => d.type === 'project')
   .sort((a, b) => a.title.localeCompare(b.title, 'es'))
 
-export const getManualDoc = (category: string, slug: string) =>
-  manualDocs.find((d) => d.category === category && d.slug === slug)
+/** Busca por la carpeta de la URL, no por el nombre visible de la categoría */
+export const getManualDoc = (folder: string, slug: string) => manualDocs.find((d) => d.id === `manual/${folder}/${slug}`)
 export const getJournalPost = (slug: string) => journalPosts.find((d) => d.slug === slug)
 export const getProject = (slug: string) => projectDocs.find((d) => d.slug === slug)
 

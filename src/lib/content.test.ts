@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { journalPosts, manualDocs, parseReferences } from './content'
+import { MANUAL_CATEGORY_NAMES, getManualDoc, journalPosts, manualDocs, parseReferences } from './content'
 import { parseFrontmatter } from './frontmatter'
 import { knowledgeItems } from './knowledge'
 
@@ -28,6 +28,20 @@ describe('referencias oficiales', () => {
 })
 
 describe('contenido del jardín', () => {
+  it('cada guía se encuentra a partir de su URL', () => {
+    for (const d of manualDocs) {
+      const [, , folder, slug] = d.url.split('/')
+      expect(getManualDoc(folder, slug)?.id, d.url).toBe(d.id)
+    }
+  })
+
+  it('cada carpeta del Manual tiene un nombre visible escrito a mano', () => {
+    for (const d of manualDocs) {
+      const folder = d.id.split('/')[1]
+      expect(MANUAL_CATEGORY_NAMES[folder], folder).toBe(d.category)
+    }
+  })
+
   it('todos los documentos tienen título y descripción', () => {
     for (const d of [...manualDocs, ...journalPosts]) {
       expect(d.title, d.id).not.toBe(d.slug)
