@@ -99,8 +99,14 @@ export default function Lab() {
                 to={`/laboratorio/${e.slug}`}
                 className="flex h-full flex-col rounded-2xl border border-surface/70 bg-surface/50 p-5 shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:shadow-md"
               >
-                <div className="flex h-56 items-center justify-center overflow-hidden rounded-xl bg-cream-deep/60 p-3">
-                  <div className="pointer-events-none origin-center scale-[0.7]" aria-hidden inert>
+                {/* La demo se pinta a un ancho de escritorio (1/0,55 de la caja) y se reduce entera:
+                    así las que se adaptan al ancho no se aplastan dentro de la miniatura */}
+                <div className="relative h-56 overflow-hidden rounded-xl bg-cream-deep/60">
+                  <div
+                    className="pointer-events-none absolute left-0 top-0 flex h-[181.818%] w-[181.818%] origin-top-left scale-[0.55] items-center-safe justify-center p-6"
+                    aria-hidden
+                    inert
+                  >
                     <e.Demo />
                   </div>
                 </div>
