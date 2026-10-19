@@ -133,121 +133,124 @@ export default function N8nFlowSimulator() {
   const selectedNode = nodes.find((n) => n.id === selected)!
 
   return (
-    <div className="grid w-full max-w-3xl gap-4 text-left lg:grid-cols-[1fr_17rem]">
-      {/* Canvas */}
-      <div className="flex min-w-0 flex-col rounded-2xl bg-surface/70 p-4 shadow-sm">
-        <div className="flex flex-wrap items-center justify-between gap-2">
-          <p className="text-xs font-medium uppercase tracking-wide text-ink-soft">Flujo: nuevo contacto</p>
-          <div className="flex gap-2">
-            <button
-              type="button"
-              onClick={reset}
-              className="inline-flex min-h-9 items-center gap-1.5 rounded-lg px-3 text-xs text-ink-soft transition hover:bg-cream-deep hover:text-ink"
-            >
-              <RotateCcw size={14} aria-hidden /> Reiniciar
-            </button>
-            <button
-              type="button"
-              onClick={run}
-              disabled={running}
-              className="inline-flex min-h-9 items-center gap-1.5 rounded-lg bg-accent px-3 text-xs font-medium text-on-accent shadow-sm transition hover:brightness-110 active:scale-95 disabled:opacity-60"
-            >
-              {running ? <Loader2 size={14} className="animate-spin" aria-hidden /> : <Play size={14} aria-hidden />}
-              {running ? 'Ejecutando…' : 'Ejecutar flujo'}
-            </button>
-          </div>
-        </div>
-
-        {/* Fondo de puntos, como el lienzo del editor de n8n */}
-        <div className="mt-3 flex flex-col items-center rounded-xl bg-cream-deep/60 bg-[radial-gradient(var(--c-sage)_1px,transparent_1px)] bg-size-[16px_16px] p-5 sm:flex-row sm:items-stretch">
-          {nodes.map((node, i) => {
-            const status = statuses[node.id]
-            const StatusIcon = statusIcon[status]
-            const Icon = node.icon
-            const isSelected = selected === node.id
-            const prev = nodes[i - 1]
-            return (
-              <div key={node.id} className="contents">
-                {prev && <Connector from={statuses[prev.id]} to={status} />}
-                <motion.button
-                  type="button"
-                  onClick={() => setSelected(node.id)}
-                  aria-pressed={isSelected}
-                  aria-controls={panelId}
-                  aria-label={`${node.name}, ${statusLabel[status]}`}
-                  whileHover={{ y: -2 }}
-                  whileTap={{ scale: 0.96 }}
-                  className={`relative flex w-40 shrink-0 flex-col items-center gap-1.5 rounded-2xl border-2 bg-surface px-2 py-4 sm:w-28 shadow-sm transition-colors ${
-                    statusStyle[status]
-                  } ${isSelected ? 'ring-2 ring-sage-deep ring-offset-2 ring-offset-cream-deep' : ''}`}
-                >
-                  <Icon size={24} aria-hidden className="text-ink" />
-                  <span className="text-sm font-medium text-ink">{node.name}</span>
-                  <span className="text-[11px] text-ink-soft">{node.kind}</span>
-                  <span className="mt-1 inline-flex items-center gap-1 text-xs font-medium">
-                    <StatusIcon size={14} aria-hidden className={status === 'loading' ? 'animate-spin' : ''} />
-                    {statusLabel[status]}
-                  </span>
-                </motion.button>
-              </div>
-            )
-          })}
-        </div>
-
-        <h3 className="mt-4 text-xs font-medium uppercase tracking-wide text-ink-soft">Registro de ejecución</h3>
-        <ol aria-live="polite" className="mt-1.5 min-h-16 space-y-1 font-mono text-xs text-ink-soft">
-          {log.map((line, i) => (
-            <li key={i}>{line}</li>
-          ))}
-        </ol>
-      </div>
-
-      {/* Panel lateral */}
-      <aside
-        id={panelId}
-        aria-label={`Configuración de ${selectedNode.name}`}
-        className="overflow-hidden rounded-2xl bg-surface/70 p-4 shadow-sm"
-      >
-        <AnimatePresence mode="wait" initial={false}>
-          <motion.div
-            key={selected}
-            initial={{ opacity: 0, x: 12 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -12 }}
-            transition={{ duration: 0.18 }}
-          >
-            <p className="text-xs text-ink-soft">{selectedNode.kind}</p>
-            <h3 className="text-base font-semibold">{selectedNode.name}</h3>
-
-            <NodeConfig
-              id={selected}
-              priority={priority}
-              onPriority={setPriority}
-              failHttp={failHttp}
-              onFailHttp={setFailHttp}
-              disabled={running}
-            />
-
-            <p className="mt-4 text-xs font-medium text-ink-soft">Forzar estado</p>
-            <div role="group" aria-label="Estado del nodo" className="mt-1.5 grid grid-cols-2 gap-1.5">
-              {(Object.keys(statusLabel) as Status[]).map((s) => (
-                <button
-                  key={s}
-                  type="button"
-                  aria-pressed={statuses[selected] === s}
-                  disabled={running}
-                  onClick={() => setStatus(selected, s)}
-                  className={`min-h-9 rounded-lg border px-2 text-xs font-medium transition disabled:opacity-50 ${
-                    statuses[selected] === s ? `${statusStyle[s]} bg-surface` : 'border-transparent text-ink-soft hover:bg-cream-deep'
-                  }`}
-                >
-                  {statusLabel[s]}
-                </button>
-              ))}
+    // Decide las columnas por el ancho de su caja, no de la ventana: así también cabe en la miniatura del Laboratorio
+    <div className="@container w-full max-w-3xl">
+      <div className="grid gap-4 text-left @3xl:grid-cols-[1fr_17rem]">
+        {/* Canvas */}
+        <div className="flex min-w-0 flex-col rounded-2xl bg-surface/70 p-4 shadow-sm">
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <p className="text-xs font-medium uppercase tracking-wide text-ink-soft">Flujo: nuevo contacto</p>
+            <div className="flex gap-2">
+              <button
+                type="button"
+                onClick={reset}
+                className="inline-flex min-h-9 items-center gap-1.5 rounded-lg px-3 text-xs text-ink-soft transition hover:bg-cream-deep hover:text-ink"
+              >
+                <RotateCcw size={14} aria-hidden /> Reiniciar
+              </button>
+              <button
+                type="button"
+                onClick={run}
+                disabled={running}
+                className="inline-flex min-h-9 items-center gap-1.5 rounded-lg bg-accent px-3 text-xs font-medium text-on-accent shadow-sm transition hover:brightness-110 active:scale-95 disabled:opacity-60"
+              >
+                {running ? <Loader2 size={14} className="animate-spin" aria-hidden /> : <Play size={14} aria-hidden />}
+                {running ? 'Ejecutando…' : 'Ejecutar flujo'}
+              </button>
             </div>
-          </motion.div>
-        </AnimatePresence>
-      </aside>
+          </div>
+
+          {/* Fondo de puntos, como el lienzo del editor de n8n */}
+          <div className="mt-3 flex flex-col items-center rounded-xl bg-cream-deep/60 bg-[radial-gradient(var(--c-sage)_1px,transparent_1px)] bg-size-[16px_16px] p-5 sm:flex-row sm:items-stretch">
+            {nodes.map((node, i) => {
+              const status = statuses[node.id]
+              const StatusIcon = statusIcon[status]
+              const Icon = node.icon
+              const isSelected = selected === node.id
+              const prev = nodes[i - 1]
+              return (
+                <div key={node.id} className="contents">
+                  {prev && <Connector from={statuses[prev.id]} to={status} />}
+                  <motion.button
+                    type="button"
+                    onClick={() => setSelected(node.id)}
+                    aria-pressed={isSelected}
+                    aria-controls={panelId}
+                    aria-label={`${node.name}, ${statusLabel[status]}`}
+                    whileHover={{ y: -2 }}
+                    whileTap={{ scale: 0.96 }}
+                    className={`relative flex w-40 shrink-0 flex-col items-center gap-1.5 rounded-2xl border-2 bg-surface px-2 py-4 sm:w-28 shadow-sm transition-colors ${
+                      statusStyle[status]
+                    } ${isSelected ? 'ring-2 ring-sage-deep ring-offset-2 ring-offset-cream-deep' : ''}`}
+                  >
+                    <Icon size={24} aria-hidden className="text-ink" />
+                    <span className="text-sm font-medium text-ink">{node.name}</span>
+                    <span className="text-[11px] text-ink-soft">{node.kind}</span>
+                    <span className="mt-1 inline-flex items-center gap-1 text-xs font-medium">
+                      <StatusIcon size={14} aria-hidden className={status === 'loading' ? 'animate-spin' : ''} />
+                      {statusLabel[status]}
+                    </span>
+                  </motion.button>
+                </div>
+              )
+            })}
+          </div>
+
+          <h3 className="mt-4 text-xs font-medium uppercase tracking-wide text-ink-soft">Registro de ejecución</h3>
+          <ol aria-live="polite" className="mt-1.5 min-h-16 space-y-1 font-mono text-xs text-ink-soft">
+            {log.map((line, i) => (
+              <li key={i}>{line}</li>
+            ))}
+          </ol>
+        </div>
+
+        {/* Panel lateral */}
+        <aside
+          id={panelId}
+          aria-label={`Configuración de ${selectedNode.name}`}
+          className="overflow-hidden rounded-2xl bg-surface/70 p-4 shadow-sm"
+        >
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div
+              key={selected}
+              initial={{ opacity: 0, x: 12 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -12 }}
+              transition={{ duration: 0.18 }}
+            >
+              <p className="text-xs text-ink-soft">{selectedNode.kind}</p>
+              <h3 className="text-base font-semibold">{selectedNode.name}</h3>
+
+              <NodeConfig
+                id={selected}
+                priority={priority}
+                onPriority={setPriority}
+                failHttp={failHttp}
+                onFailHttp={setFailHttp}
+                disabled={running}
+              />
+
+              <p className="mt-4 text-xs font-medium text-ink-soft">Forzar estado</p>
+              <div role="group" aria-label="Estado del nodo" className="mt-1.5 grid grid-cols-2 gap-1.5">
+                {(Object.keys(statusLabel) as Status[]).map((s) => (
+                  <button
+                    key={s}
+                    type="button"
+                    aria-pressed={statuses[selected] === s}
+                    disabled={running}
+                    onClick={() => setStatus(selected, s)}
+                    className={`min-h-9 rounded-lg border px-2 text-xs font-medium transition disabled:opacity-50 ${
+                      statuses[selected] === s ? `${statusStyle[s]} bg-surface` : 'border-transparent text-ink-soft hover:bg-cream-deep'
+                    }`}
+                  >
+                    {statusLabel[s]}
+                  </button>
+                ))}
+              </div>
+            </motion.div>
+          </AnimatePresence>
+        </aside>
+      </div>
     </div>
   )
 }
