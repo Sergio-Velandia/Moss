@@ -54,7 +54,7 @@ export default function Layout() {
     { to: '/herbario', label: sections.herbario },
     { to: '/proyectos', label: sections.project },
   ]
-  const { pathname } = useLocation()
+  const { pathname, hash } = useLocation()
   const [menuOpen, setMenuOpen] = useState(false)
   const mainRef = useRef<HTMLElement>(null)
   const firstRender = useRef(true)
@@ -72,6 +72,34 @@ export default function Layout() {
       mainRef.current?.focus({ preventScroll: true })
     }
   }, [pathname])
+
+  // Enlaces con #sección (por ejemplo, desde Moss Nexus): el contenido se dibuja después de cargar, y algunas páginas
+  // llegan en un archivo aparte, así que el navegador no encuentra la sección a tiempo. La buscamos unos segundos y bajamos.
+  // Como lo de arriba puede seguir creciendo un momento (diagramas, fuentes), se reajusta un par de veces,
+  // salvo que la persona ya haya empezado a moverse por la página.
+  useEffect(() => {
+    if (!hash) return
+    const id = decodeURIComponent(hash.slice(1))
+    const started = performance.now()
+    let frame = 0
+    const timers: number[] = []
+    const stop = () => timers.forEach((t) => window.clearTimeout(t))
+    const userMoves = ['wheel', 'touchstart', 'keydown'] as const
+    const go = () => document.getElementById(id)?.scrollIntoView({ block: 'start' })
+    const find = () => {
+      if (document.getElementById(id)) {
+        go()
+        timers.push(window.setTimeout(go, 400), window.setTimeout(go, 1200))
+      } else if (performance.now() - started < 3000) frame = requestAnimationFrame(find)
+    }
+    frame = requestAnimationFrame(find)
+    userMoves.forEach((e) => window.addEventListener(e, stop, { once: true, passive: true }))
+    return () => {
+      cancelAnimationFrame(frame)
+      stop()
+      userMoves.forEach((e) => window.removeEventListener(e, stop))
+    }
+  }, [pathname, hash])
 
   // Escape cierra el menú móvil
   useEffect(() => {
