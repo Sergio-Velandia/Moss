@@ -4,7 +4,7 @@ Mi "segundo cerebro" técnico: una biblioteca personal y visual donde guardo, do
 
 > El conocimiento técnico no debería quedarse enterrado; debería ser fácil de encontrar, entender, probar, conectar y reutilizar.
 
-**Autor:** Sergio Andres Ramirez Velandia · [Portafolio](https://sergio-velandia.dev/mi-portafolio/) · [contacto@sergio-velandia.dev](mailto:contacto@sergio-velandia.dev)
+**Autor:** Sergio Andres Ramirez Velandia · [Portafolio](https://sergio-velandia.dev/mi-portafolio/) · [contacto@sergio-velandia.dev](mailto:contacto@sergio-velandia.dev) · [Propón una idea](https://sergio-velandia.dev/Moss/propon-una-idea)
 
 **View** https://sergio-velandia.dev/Moss/
 
@@ -46,6 +46,16 @@ Cada página sigue la misma plantilla, en este orden: **Ficha, Arquitectura, Flu
 - Solo esos dos elementos usan el estilo de Nexus: sus tokens viven aislados en la clase `.nexus` de `src/index.css`, copiados del repositorio de Nexus, y sus fuentes (Inter y JetBrains Mono) se cargan solo en `/nexus`. El resto de Moss no cambia.
 - La URL está en una sola constante, `site.nexusUrl` en `src/data/site.ts`; una prueba impide repetirla en el código.
 - Nexus es un proyecto independiente, sin relación oficial con n8n GmbH.
+
+## Propón una idea
+
+[`/propon-una-idea`](https://sergio-velandia.dev/Moss/propon-una-idea) tiene dos formularios en pestañas: **Propón una idea** (una guía, una ruta, un experimento, un flujo de n8n u otra cosa) y **Habla conmigo** (`?formulario=habla-conmigo`). Si alguien elige «Un flujo de n8n», el formulario le enlaza el de Moss Nexus.
+
+- Los campos son datos en `src/lib/contact-form.ts`, con sus textos en español e inglés; ahí viven también la validación, el armado del correo (siempre en español, con el asunto empezando por `[Moss]`) y el envío.
+- El envío usa la API REST de **EmailJS** con `fetch`, sin su SDK. Sus tres identificadores (`site.emailjs` en `src/data/site.ts`) son públicos por diseño: viajan al navegador. La plantilla y el correo de destino se configuran en EmailJS, y es la misma que usa Moss Nexus, con las variables `tipo`, `nombre`, `correo` (como Reply-To), `asunto` y `mensaje`. Si falta algún identificador, el formulario avisa de que el envío no está activo.
+- Contra el spam: un campo trampa oculto (`sitio_web`) y una espera de 60 segundos entre dos envíos de la misma visita.
+- Accesibilidad: pestañas con el patrón ARIA (flechas del teclado), errores junto a cada campo con `aria-invalid` y `aria-describedby`, foco en el primer error y estados anunciados en una región `aria-live`.
+- Lo que pasa con los datos está en la [privacidad](https://sergio-velandia.dev/Moss/privacidad#formularios), y la cláusula de propuestas, en la sección 9 de los términos.
 
 ## Qué hay dentro
 
@@ -328,7 +338,7 @@ El botón de la cabecera alterna entre los dos temas. Sin elección manual, Moss
 
 `/terminos`, `/privacidad` y `/proteccion-de-datos` se escriben en `content/legal/*.md` y leen sus datos de `src/data/site.ts` (nombre, correo, portafolio, país) mediante las variables `{{owner}}`, `{{email}}`, `{{portfolio}}`, `{{repo}}` y `{{country}}`.
 
-> Los textos son un borrador base redactado a partir de lo que Moss hace hoy (sin cuentas, formularios, cookies ni analítica); **no son asesoría legal**. Si añades analítica, cookies o formularios, actualiza antes la política de privacidad.
+> Los textos son un borrador base redactado a partir de lo que Moss hace hoy (sin cuentas, cookies ni analítica, y con un formulario de contacto que envía por EmailJS); **no son asesoría legal**. Si añades analítica, cookies u otros formularios, actualiza antes la política de privacidad.
 
 ## Despliegue en GitHub Pages
 
@@ -375,7 +385,7 @@ src/
 
 ## Seguridad
 
-Este repositorio es público. No se guardan claves reales: usa variables de entorno (`.env`, ignorado por Git) y valores ficticios en los ejemplos. Ver `.env.example`. Ten en cuenta que en Vite cualquier variable `VITE_*` acaba dentro del JavaScript publicado, así que nunca debe contener secretos. Las demos son componentes locales preparados; Moss no ejecuta código arbitrario.
+Este repositorio es público. No se guardan claves reales: usa variables de entorno (`.env`, ignorado por Git) y valores ficticios en los ejemplos. Ver `.env.example`. Ten en cuenta que en Vite cualquier variable `VITE_*` acaba dentro del JavaScript publicado, así que nunca debe contener secretos. Los identificadores de EmailJS de `site.ts` no son secretos: EmailJS los diseña para ir en el navegador. Las demos son componentes locales preparados; Moss no ejecuta código arbitrario.
 
 ## Estado
 
