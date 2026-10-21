@@ -12,7 +12,20 @@ El campo `version` de `package.json` siempre coincide con la última versión pu
 
 ## [Sin publicar]
 
-## [1.12.9] - 2026-10-18
+## [1.13.0] - 2026-10-21
+
+### Añadido
+- Sección **Propón una idea** (`/propon-una-idea`), con dos formularios en pestañas: «Propón una idea» (una guía, una ruta, un experimento, un flujo de n8n u otra cosa, con la opción de publicar la idea en Moss sin datos personales) y «Habla conmigo» (`?formulario=habla-conmigo`). Envían un correo por la API REST de EmailJS, sin dependencias nuevas y con la misma plantilla que Moss Nexus; el asunto empieza por `[Moss]`. Si se elige «Un flujo de n8n», enlaza el formulario de Moss Nexus.
+- Interfaz en español e inglés, pestañas con el patrón ARIA (flechas del teclado), errores junto a cada campo, foco en el primer error, estados anunciados, campo trampa contra bots y una espera de 60 segundos entre dos envíos de la misma visita.
+- Enlace a la sección en el menú (escritorio y móvil), en el pie de página y en los textos legales donde se invita a escribir.
+
+### Cambiado
+- Privacidad, protección de datos y términos incluyen los formularios: qué datos se piden, para qué, que viajan por EmailJS (con servidores que pueden estar fuera de Colombia), cuánto se guardan, los plazos de respuesta de la Ley 1581 de 2012 y una cláusula nueva, «Propuestas y mensajes». Fecha de actualización: 20 de octubre de 2026.
+
+### Corregido
+- La fecha de la versión 1.12.9 en este CHANGELOG (se publicó el 19 de octubre de 2026, no el 18).
+
+## [1.12.9] - 2026-10-19
 
 ### Cambiado
 - La guía «Orquestación y manejo de errores en n8n» se actualiza para n8n 2.x a partir de una prueba real en 2.43.5. El flujo de alertas con Error Trigger **no necesita publicarse** (como dice la documentación oficial), pero el flujo vigilado **sí**, y probar con «Execute» no dispara alertas. Suma la ruta exacta del ajuste (⋯ → Settings → Error Workflow), la marca «[crítico]» en el nombre de los flujos importantes, cómo probar sin esperar un fallo real (y despublicar el flujo de prueba), las alertas por Slack y Gmail, un registro en Google Sheets que nunca apaga los avisos y una sección de limitaciones. Enlaza las guías de Slack y de OAuth2 de Google y conserva su URL y sus encabezados.
@@ -306,7 +319,8 @@ Primera versión completa.
 - Páginas legales: términos, privacidad y protección de datos.
 - Despliegue automático en GitHub Pages con cada push a `main`.
 
-[Sin publicar]: https://github.com/Sergio-Velandia/Moss/compare/v1.12.9...HEAD
+[Sin publicar]: https://github.com/Sergio-Velandia/Moss/compare/v1.13.0...HEAD
+[1.13.0]: https://github.com/Sergio-Velandia/Moss/compare/v1.12.9...v1.13.0
 [1.12.9]: https://github.com/Sergio-Velandia/Moss/compare/v1.12.8...v1.12.9
 [1.12.8]: https://github.com/Sergio-Velandia/Moss/compare/v1.12.7...v1.12.8
 [1.12.7]: https://github.com/Sergio-Velandia/Moss/compare/v1.12.6...v1.12.7
