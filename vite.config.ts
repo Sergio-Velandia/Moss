@@ -8,7 +8,7 @@ import { defineConfig, type Plugin } from 'vite'
  * Rutas que GitHub Pages debe servir con código 200. Para el resto, el workflow copia index.html como
  * 404.html: la página se ve bien, pero responde 404. Añade aquí las rutas pensadas para compartirse.
  */
-export const STATIC_ROUTES = ['nexus', 'proyectos', 'rutas']
+export const STATIC_ROUTES = ['nexus', 'proyectos', 'rutas', 'propon-una-idea']
 
 /** Carpetas de contenido cuyas páginas responden 200, con la ruta bajo la que se publican */
 const CONTENT_ROUTES: Record<string, string> = { projects: 'proyectos', routes: 'rutas' }

@@ -20,6 +20,7 @@ const Projects = lazy(() => import('./pages/Projects'))
 const ProjectDoc = lazy(() => import('./pages/ProjectDoc'))
 const RoutesIndex = lazy(() => import('./pages/Routes'))
 const RouteDoc = lazy(() => import('./pages/RouteDoc'))
+const Propose = lazy(() => import('./pages/Propose'))
 
 export default function App() {
   return (
@@ -41,6 +42,7 @@ export default function App() {
             <Route path="rutas/:slug" element={<RouteDoc />} />
             <Route path="proyectos" element={<Projects />} />
             <Route path="proyectos/:slug" element={<ProjectDoc />} />
+            <Route path="propon-una-idea" element={<Propose />} />
             <Route path="terminos" element={<Legal slug="terminos" />} />
             <Route path="privacidad" element={<Legal slug="privacidad" />} />
             <Route path="proteccion-de-datos" element={<Legal slug="proteccion-de-datos" />} />
