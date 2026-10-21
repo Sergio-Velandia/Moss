@@ -21,6 +21,8 @@ const TEXT = {
     legal: 'Información legal',
     code: 'Código en GitHub',
     portfolio: 'Mi portafolio',
+    propose: 'Propón una idea',
+    proposeShort: 'Propón',
     newTab: ' (se abre en una pestaña nueva)',
     legalTitles: {} as Record<string, string>,
   },
@@ -35,6 +37,8 @@ const TEXT = {
     legal: 'Legal information',
     code: 'Code on GitHub',
     portfolio: 'My portfolio',
+    propose: 'Suggest an idea',
+    proposeShort: 'Suggest',
     newTab: ' (opens in a new tab)',
     // Los textos legales están en español; en inglés solo se traduce el nombre del enlace
     legalTitles: { terminos: 'Terms and conditions', privacidad: 'Privacy policy', 'proteccion-de-datos': 'Data protection' } as Record<string, string>,
@@ -53,6 +57,7 @@ export default function Layout() {
     { to: '/bitacora', label: sections.journal },
     { to: '/herbario', label: sections.herbario },
     { to: '/proyectos', label: sections.project },
+    { to: '/propon-una-idea', label: t.propose, short: t.proposeShort },
   ]
   const { pathname, hash } = useLocation()
   const [menuOpen, setMenuOpen] = useState(false)
@@ -136,7 +141,15 @@ export default function Layout() {
             <nav aria-label={t.nav} className="hidden items-center gap-1 text-sm lg:flex">
               {links.map((l) => (
                 <NavLink key={l.to} to={l.to} end={l.end} className={linkClass}>
-                  {l.label}
+                  {/* En la barra de escritorio no cabe el nombre completo: se ve corto y se lee entero */}
+                  {l.short ? (
+                    <>
+                      <span aria-hidden>{l.short}</span>
+                      <span className="sr-only">{l.label}</span>
+                    </>
+                  ) : (
+                    l.label
+                  )}
                 </NavLink>
               ))}
               <NexusNavLink variant="header" />
@@ -196,6 +209,9 @@ export default function Layout() {
               {t.legalTitles[p.slug] ?? p.title}
             </Link>
           ))}
+          <Link to="/propon-una-idea" className="inline-block py-1.5 underline-offset-2 hover:text-sage-deep hover:underline">
+            {t.propose}
+          </Link>
           <a
             href={site.repoUrl}
             target="_blank"
