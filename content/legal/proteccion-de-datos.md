@@ -15,9 +15,9 @@ En Colombia, el tratamiento de datos personales está regulado por la Ley 1581 d
 
 ## Datos que se tratan y para qué
 
-El Sitio no recopila datos personales de sus visitantes (consulta la [Política de privacidad](/privacidad)).
+El Sitio no recopila datos personales de sus visitantes mientras navegan (consulta la [Política de privacidad](/privacidad)).
 
-Si me escribes por correo electrónico, trataré tu nombre, tu dirección de correo y el contenido de tu mensaje únicamente para responderte. No los compartiré con terceros ni los usaré para otros fines, y los conservaré solo el tiempo necesario para atender tu consulta.
+Si me escribes por correo electrónico o desde los formularios de [Propón una idea](/propon-una-idea), trataré tu nombre, tu dirección de correo y el contenido de tu mensaje únicamente para responderte y dar seguimiento a tu propuesta. Los formularios piden tu autorización expresa antes de enviar. Si además marcas la casilla de publicación, la idea (sin tus datos ni los de tu negocio) puede publicarse en Moss. No compartiré tus datos con terceros ni los usaré para otros fines, y los conservaré solo el tiempo necesario para atender tu consulta. Los mensajes de los formularios viajan por el servicio EmailJS, como se explica en la [sección de formularios de la privacidad](/privacidad#formularios).
 
 ## Tus derechos como titular
 
@@ -32,11 +32,11 @@ Como titular de datos personales puedes:
 
 ## Cómo ejercer tus derechos
 
-Escribe a {{email}} indicando tu nombre, un medio para responderte y tu solicitud. Atenderé las consultas y reclamos dentro de los plazos que fija la ley (10 días hábiles para consultas y 15 para reclamos, prorrogables en los casos que la norma prevé).
+Escribe a {{email}} o desde el formulario [Habla conmigo](/propon-una-idea?formulario=habla-conmigo), indicando tu nombre, un medio para responderte y tu solicitud. Atenderé las consultas en un máximo de 10 días hábiles y los reclamos en un máximo de 15 días hábiles, prorrogables en los casos que la ley prevé.
 
 ## Seguridad
 
-El Sitio es estático y no mantiene una base de datos de usuarios. Aun así, aplico medidas razonables para proteger la información que me envíes por correo.
+El Sitio es estático y no mantiene una base de datos de usuarios. Los formularios no guardan nada en el Sitio: envían el mensaje a mi buzón a través de EmailJS, por una conexión cifrada (HTTPS), y descartan los envíos de bots con un campo oculto. Aplico medidas razonables para proteger la información que me envíes por correo o por los formularios.
 
 ## Vigencia y cambios
 

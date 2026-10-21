@@ -39,6 +39,12 @@ El Sitio puede enlazar a páginas de terceros. No controlo su contenido ni sus p
 
 El Sitio puede no estar disponible en ciertos momentos, y su contenido puede cambiar o desaparecer sin previo aviso. Puedo actualizar estos términos; la fecha de la última actualización aparece al inicio de esta página y el uso continuado del Sitio implica aceptar la versión vigente.
 
-## 9. Ley aplicable y contacto
+## 9. Propuestas y mensajes
+
+Enviar una propuesta o un mensaje desde [Propón una idea](/propon-una-idea) no crea una relación comercial ni me obliga a crear el contenido que propones, publicarlo o responder en un plazo concreto. Si quieres que te ayude con un proyecto, las condiciones se acuerdan aparte, por escrito.
+
+Si marcas la casilla de publicación, autorizas que la idea que describes se use para crear contenido público de Moss, bajo la licencia del proyecto y sin tus datos ni los de tu negocio. Si no la marcas, la idea no se publica. Cómo se tratan tus datos se explica en la [política de privacidad](/privacidad#formularios).
+
+## 10. Ley aplicable y contacto
 
 Estos términos se rigen por las leyes de {{country}}. Para cualquier duda o reclamo, escríbeme a {{email}}.
