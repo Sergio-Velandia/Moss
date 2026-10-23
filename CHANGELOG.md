@@ -12,6 +12,19 @@ El campo `version` de `package.json` siempre coincide con la última versión pu
 
 ## [Sin publicar]
 
+### Añadido
+- Ruta **CSS y Tailwind, de las bases a interfaces reales** (nivel inicial): 9 pasos con lo que ya existe (la guía de capas y tokens, los 3 retos, las piezas y demos del Laboratorio y tres artículos), y las 8 guías que faltan marcadas «Próximamente» con lo que cubrirá cada una. Es ruta hermana de «Frontend con React y Tailwind».
+- `ROADMAP.md`, con los pendientes ordenados: metadatos para compartir, guías anunciadas en las rutas, lotes del Laboratorio, rendimiento y tareas de los proyectos hermanos.
+- Enlace a la licencia MIT en el pie, y el campo `license` en `package.json`.
+- El Laboratorio anuncia qué lotes de Piezas Tailwind vienen después.
+
+### Cambiado
+- Proyectos usa los mismos estados que el ECOSISTEMA: en desarrollo, estable, en mantenimiento y pausado. Moss y Moss Nexus pasan a **estable**; el portafolio sigue en mantenimiento.
+- La ficha de Moss Nexus pasa a la **v1.0.0**: 13 plantillas, 9 con el sello «Probado» y 4 «Sin probar», y suma lo que enseñaron las pruebas (registrar antes de avisar, casos trampa, el trigger de Gmail y la IA intercambiable).
+- La ruta de n8n suma la guía de Slack como paso 7, la paginación de APIs y dos artículos (el webhook que llega dos veces y la migración de scripts a n8n), y enlaza las **9 plantillas probadas** de Moss Nexus, cada una con los pasos que necesita.
+- Cada pieza suelta está ahora en la ruta que le corresponde: fetch y debounce en Frontend, el artículo del reporte en Datos y dos artículos en Del repo a producción. Quedan como independientes las que hablan de Moss en sí.
+- La privacidad dice que los mensajes del formulario llegan por EmailJS y a qué correo escribir para consultar, corregir o borrar tus datos. Fecha de actualización: 22 de octubre de 2026.
+
 ### Corregido
 - Manual, Laboratorio, Bitácora, Herbario y las páginas legales respondían 404 en GitHub Pages (se veían gracias a `404.html`, pero los buscadores no las indexaban). Ahora el build crea una página por ruta, con su título y su descripción, y todas responden 200.
 
