@@ -16,6 +16,8 @@ const TEXT = {
     category: 'Categoría',
     all: 'Todas',
     empty: 'No hay entradas con esos filtros todavía. 🌱',
+    nextLabel: 'Próximamente en Piezas Tailwind:',
+    next: 'campos de formulario con validación, avisos y estados vacíos; navegación, pestañas y acordeón; modal, skeleton e interruptor de tema. Saldrán por lotes, cada pieza sacada de una app real.',
   },
   en: {
     title: 'The Lab',
@@ -24,6 +26,8 @@ const TEXT = {
     category: 'Category',
     all: 'All',
     empty: 'No entries match those filters yet. 🌱',
+    nextLabel: 'Coming soon in Tailwind Pieces:',
+    next: 'form fields with validation, notices and empty states; navigation, tabs and accordion; modal, skeleton and theme toggle. They will ship in batches, each piece taken from a real app.',
   },
 }
 
@@ -76,6 +80,9 @@ export default function Lab() {
     <section>
       <h1 className="text-3xl font-semibold tracking-tight">{t.title}</h1>
       <p className="mt-3 max-w-xl text-ink-soft">{t.intro}</p>
+      <p className="mt-2 max-w-2xl text-sm text-ink-soft">
+        <span className="font-medium text-sage-deep">{t.nextLabel}</span> {t.next}
+      </p>
 
       <div className="mt-6 space-y-2">
         <Chips label={t.tech} allLabel={t.all} options={techs} value={tech} onChange={setTech} />
