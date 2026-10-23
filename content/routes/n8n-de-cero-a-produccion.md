@@ -9,7 +9,7 @@ tags: [n8n, automatización, webhooks, ruta]
 technologies: [n8n, JavaScript]
 createdAt: 2026-10-14
 updatedAt: 2026-10-22
-steps: [manual/n8n/instalar-n8n, manual/n8n/webhook-basico, lab/n8n-payload-builder, manual/n8n/entender-webhooks-y-triggers, lab/n8n-flow-simulator, manual/n8n/oauth2-de-google-en-n8n, manual/n8n/slack-en-n8n, manual/n8n/sincronizar-formulario-con-crm, manual/n8n/reporte-diario-automatico, manual/apis/idempotencia-en-pagos-y-webhooks, lab/retry-backoff, manual/n8n/orquestacion-y-manejo-de-errores]
+steps: [manual/n8n/instalar-n8n, manual/n8n/webhook-basico, lab/n8n-payload-builder, manual/n8n/entender-webhooks-y-triggers, lab/n8n-flow-simulator, manual/n8n/oauth2-de-google-en-n8n, manual/n8n/slack-en-n8n, manual/n8n/sincronizar-formulario-con-crm, manual/n8n/reporte-diario-automatico, manual/apis/idempotencia-en-pagos-y-webhooks, journal/cuando-un-webhook-llega-dos-veces, lab/retry-backoff, manual/apis/paginacion-y-limites-de-tasa, manual/n8n/orquestacion-y-manejo-de-errores, journal/migrando-scripts-a-n8n]
 ---
 
 ## Para quién es
@@ -40,7 +40,7 @@ Al terminar la ruta
 
 Los pasos alternan **guías** (el porqué y el cómo) con **demos** donde lo pruebas en el navegador. Marca cada paso como hecho al terminarlo: tu progreso se guarda en este navegador, y desde cualquier guía de la ruta verás qué viene después.
 
-La ruta termina donde empieza el trabajo real: en Moss Nexus hay flujos ya armados que aplican estas mismas ideas.
+Entre las guías hay dos artículos de la Bitácora: uno cuenta qué pasa cuando un webhook llega dos veces, y el último, qué cambió al pasar scripts sueltos a flujos de n8n. La ruta termina donde empieza el trabajo real: en Moss Nexus hay flujos ya armados que aplican estas mismas ideas.
 
 ## Practica con las plantillas probadas de Moss Nexus
 
@@ -54,7 +54,7 @@ Desde el paso 6 ya puedes correr flujos reales. Moss Nexus tiene **9 plantillas 
 | [Leads del formulario a Sheets con aviso en Slack](https://sergio-velandia.dev/Moss-Nexus/plantillas/leads-formulario-a-sheets/) | Fácil | Pasos 6 y 7: Sheets y el bot de Slack |
 | [Cobranza de facturas vencidas](https://sergio-velandia.dev/Moss-Nexus/plantillas/cobranza-facturas-vencidas/) | Media | Pasos 6 y 9: Sheets, Gmail y un Schedule |
 | [Onboarding de empleados](https://sergio-velandia.dev/Moss-Nexus/plantillas/onboarding-empleado/) | Media | Pasos 6 y 7: formulario, Sheets, Calendar, Gmail y Slack |
-| [Alertas cuando falla cualquier flujo](https://sergio-velandia.dev/Moss-Nexus/plantillas/alertas-de-errores-n8n/) | Media | Paso 12, con los pasos 6 y 7 para el correo y Slack |
+| [Alertas cuando falla cualquier flujo](https://sergio-velandia.dev/Moss-Nexus/plantillas/alertas-de-errores-n8n/) | Media | Paso 14, con los pasos 6 y 7 para el correo y Slack |
 | [Resumen diario de correos con IA](https://sergio-velandia.dev/Moss-Nexus/plantillas/resumen-correos-con-ia/) | Avanzada | Pasos 6 y 7, más una clave de Gemini ([cómo usarla sin exponerla](/manual/apis/conectar-gemini)) |
 | [Tickets de soporte clasificados con IA](https://sergio-velandia.dev/Moss-Nexus/plantillas/tickets-soporte-con-ia/) | Avanzada | Pasos 6 y 7, más una clave de Gemini |
 
