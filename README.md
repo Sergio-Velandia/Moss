@@ -1,21 +1,25 @@
 # 🌱 Moss — Digital Garden
 
-Mi "segundo cerebro" técnico: una biblioteca personal y visual donde guardo, documento, pruebo y reutilizo snippets, componentes, guías y artículos.
+Mi "segundo cerebro" técnico: una biblioteca personal y visual donde guardo, documento, pruebo y reutilizo snippets, componentes, guías y artículos. Cada guía nace de algo que hice de verdad en mis proyectos (Moss, Moss Nexus y mi portafolio), y las rutas ordenan todo en recorridos de principio a fin.
 
 > El conocimiento técnico no debería quedarse enterrado; debería ser fácil de encontrar, entender, probar, conectar y reutilizar.
 
 **Autor:** Sergio Andres Ramirez Velandia · [Portafolio](https://sergio-velandia.dev/mi-portafolio/) · [contacto@sergio-velandia.dev](mailto:contacto@sergio-velandia.dev) · [Propón una idea](https://sergio-velandia.dev/Moss/propon-una-idea)
 
-**View** https://sergio-velandia.dev/Moss/
+🌐 **En vivo:** https://sergio-velandia.dev/Moss/ · **Estado:** estable · **Pendientes:** [ROADMAP.md](ROADMAP.md)
 
-## Los cuatro pilares
+## Secciones
 
-| Pilar | Ruta | Qué es |
+| Sección | Ruta | Qué es |
 | --- | --- | --- |
-| **El Laboratorio** | `/laboratorio` | Componentes y snippets con vista previa en vivo y código copiable |
-| **El Manual** | `/manual` | Documentación, configuraciones y guías |
+| **Rutas** | `/rutas` | Recorridos ordenados de guías, demos y artículos; el mejor punto de partida |
+| **El Laboratorio** | `/laboratorio` | Componentes, Piezas Tailwind y retos con vista previa en vivo y código copiable |
+| **El Manual** | `/manual` | Documentación, configuraciones y guías, agrupadas por categoría |
 | **La Bitácora** | `/bitacora` | Blog técnico: aprendizajes, decisiones y errores |
 | **El Herbario** | `/herbario` | Búsqueda global sobre todo el contenido |
+| **Proyectos** | `/proyectos` | Cómo están hechos Moss, Moss Nexus y el portafolio por dentro |
+| **Moss Nexus** | `/nexus` | El sitio hermano, con flujos de n8n listos para copiar |
+| **Propón una idea** | `/propon-una-idea` | Formularios para proponer contenido o escribirme |
 
 ## Rutas
 
@@ -41,7 +45,9 @@ Cada página sigue la misma plantilla, en este orden: **Ficha, Arquitectura, Flu
 
 ## Moss Nexus
 
-[Moss Nexus](https://sergio-velandia.dev/Moss-Nexus/) es el sitio hermano: una librería de flujos de n8n ya armados, explicados y listos para copiar. En Moss se aprende el porqué; en Nexus se copia el flujo y se usa.
+[Moss Nexus](https://sergio-velandia.dev/Moss-Nexus/) es el sitio hermano: una librería de flujos de n8n ya armados, explicados y listos para copiar. En Moss se aprende el porqué; en Nexus se copia el flujo y se usa. Nexus es **estable desde la v1.0.0**: 13 plantillas, 9 con el sello «Probado» en una instancia real de n8n y 4 marcadas «Sin probar».
+
+- La ruta «n8n, de cero a producción» enlaza las 9 plantillas probadas, cada una con los pasos que necesita, y las guías de OAuth2 de Google, Slack y manejo de errores nacieron de esas pruebas.
 
 - La página `/nexus` lo presenta y la cabecera (y el menú móvil) tiene un acceso con su marca.
 - Solo esos dos elementos usan el estilo de Nexus: sus tokens viven aislados en la clase `.nexus` de `src/index.css`, copiados del repositorio de Nexus, y sus fuentes (Inter y JetBrains Mono) se cargan solo en `/nexus`. El resto de Moss no cambia.
@@ -391,11 +397,11 @@ Este repositorio es público. No se guardan claves reales: usa variables de ento
 
 ## Estado
 
-✅ **Estable desde la versión 1.0:** Laboratorio, Manual, Bitácora, Herbario, tema claro/oscuro, accesibilidad, adaptación a móvil, páginas legales y pruebas automáticas.
+✅ **Estable desde la versión 1.0.** Desde entonces creció con rutas de aprendizaje, la sección Proyectos, Piezas Tailwind en el Laboratorio, un dominio propio, un formulario de contacto, páginas que responden 200 y metadatos para compartir. Desde aquí crece con contenido nuevo: guías, piezas y lotes, cada uno en su versión.
 
 El historial de versiones está en [CHANGELOG.md](CHANGELOG.md), con [Versionado Semántico](https://semver.org/lang/es/): MINOR para funciones o lotes de contenido nuevos, PATCH para correcciones y documentación, y MAJOR si cambian rutas existentes. La versión de `package.json` coincide siempre con la última del CHANGELOG, y cada versión se marca con un tag `vX.Y.Z`.
 
-Lo que falta (guías anunciadas en las rutas, lotes del Laboratorio, metadatos para compartir, rendimiento y tareas de los proyectos hermanos) está ordenado en [ROADMAP.md](ROADMAP.md).
+Lo que falta (guías anunciadas en las rutas, lotes del Laboratorio, el `robots.txt` del dominio, rendimiento y tareas de los proyectos hermanos) está ordenado en [ROADMAP.md](ROADMAP.md), y en el sitio se ve como «Próximamente».
 
 ## Licencia
 
