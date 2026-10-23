@@ -4,8 +4,8 @@ description: Librería estática de flujos de n8n ya armados y explicados, con u
 type: project
 status: estable
 theme: nexus
-version: 0.7.5
-reviewedAt: 2026-10-18
+version: 1.0.0
+reviewedAt: 2026-10-22
 repo: https://github.com/Sergio-Velandia/Moss-Nexus
 site: https://sergio-velandia.dev/Moss-Nexus/
 tags: [arquitectura, n8n, plantillas, decisiones, sin backend, sitio estático]
@@ -20,7 +20,7 @@ Moss Nexus es el sitio hermano de Moss: una galería de plantillas de n8n que se
 
 **Problema que resuelve:** mucha gente sabe qué quiere automatizar, pero se paraliza con webhooks, JSON, tokens y credenciales antes de terminar su primer flujo. Nexus entrega el flujo completo, qué hace cada paso y qué se necesita antes de empezar. La lista de plantillas y cómo se usa el sitio están en el [README](https://github.com/Sergio-Velandia/Moss-Nexus#readme) y en el propio [sitio](https://sergio-velandia.dev/Moss-Nexus/).
 
-**Estado real (v0.7.5):** terminadas las fases de estructura, primeros flujos, catálogo de 14 plantillas, legal y repaso. Desde aquí la librería solo se actualiza con plantillas sueltas y correcciones. Cuatro de las 14 plantillas tienen el sello «Probado», con la fecha y la versión de n8n de la prueba (agenda del día, facturas a Drive, leads a Sheets con aviso en Slack y reporte diario de ventas); las demás se publican como «Sin probar».
+**Estado real (v1.0.0, estable):** 13 plantillas de n8n en español. **9 tienen el sello «Probado»**, con la fecha y la versión de n8n (2.43.5) de una prueba real con datos ficticios y casos trampa, y **4 se muestran como «Sin probar»** de forma visible, con un filtro «Solo probadas» en el catálogo. Tiene un formulario «Propón un flujo» para recibir ideas. Desde aquí crece con plantillas nuevas y nuevos sellos, con versionado SemVer normal.
 
 ## Arquitectura
 
@@ -76,9 +76,9 @@ El índice se arma solo: agregar una plantilla es agregar una carpeta, sin tocar
 - **Decisión:** una carpeta por plantilla y un índice automático con `import.meta.glob`. **En vez de:** registrar cada plantilla a mano en una lista o un CMS. **Porque:** agregar una plantilla nunca exige cambiar componentes; es una regla escrita del proyecto.
 - **Decisión:** el mapa se dibuja desde un `diagram.json` propio, con layout automático. **En vez de:** dibujarlo directamente desde `workflow.json` o escribir coordenadas a mano. **Porque:** el flujo de n8n trae detalles técnicos que no ayudan a entender, y un layout calculado no se rompe al cambiar un nodo. El costo es que mapa y flujo son dos archivos que pueden dejar de coincidir.
 - **Decisión:** el `workflow.json` se carga aparte y se pide al abrir el detalle. **En vez de:** incluir todos los flujos en el bundle. **Porque:** la galería solo necesita la ficha y el mapa; el flujo completo solo hace falta en la página que lo copia.
-- **Decisión:** una plantilla inválida se omite y las pruebas fallan. **En vez de:** dejar que el sitio falle. **Porque:** un error en una plantilla no debe tumbar las otras trece, pero tampoco puede pasar desapercibido.
+- **Decisión:** una plantilla inválida se omite y las pruebas fallan. **En vez de:** dejar que el sitio falle. **Porque:** un error en una plantilla no debe tumbar las demás, pero tampoco puede pasar desapercibido.
 - **Decisión:** pruebas que impiden publicar workflows con credenciales, datos fijados (`pinData`) o el id de la instancia. **En vez de:** revisar cada exportación a mano. **Porque:** los `workflow.json` se publican tal cual en el repositorio y cualquiera puede descargarlos; un descuido expondría datos.
-- **Decisión:** el sello «Probado» es opcional y solo se añade con la fecha y la versión de n8n de una prueba real. **En vez de:** presentar todas las plantillas como probadas. **Porque:** el sitio no debe prometer más de lo verificado; por eso hoy las 14 aparecen como «Sin probar».
+- **Decisión:** el sello «Probado» es opcional y solo se añade con la fecha y la versión de n8n de una prueba real. **En vez de:** presentar todas las plantillas como probadas. **Porque:** el sitio no debe prometer más de lo verificado. Por eso las 4 plantillas que aún no se probaron se ven como «Sin probar», y una prueba falla si una plantilla sin sello dice en sus textos que está probada.
 - **Decisión:** un `index.html` por ruta y por plantilla, con su título y descripción, más un `sitemap.xml`. **En vez de:** depender solo del `404.html` de GitHub Pages. **Porque:** así cada página responde 200, se puede indexar y se ve bien al compartirla.
 
 ## Lecciones
@@ -86,13 +86,16 @@ El índice se arma solo: agregar una plantilla es agregar una carpeta, sin tocar
 - **No prometer en la interfaz lo que los datos no respaldan.** Los primeros textos decían que todas las plantillas estaban probadas, y no era así. Ahora el sello solo aparece con fecha y versión reales, y las cifras se calculan desde los datos.
 - **El mapa hay que diseñarlo para el flujo más largo y para el móvil.** Las etiquetas se salían, el mapa se encogía hasta quedar ilegible y los caminos en paralelo no cabían en pantallas angostas.
 - **Las rutas de una SPA en Pages responden 404.** Generar una página por ruta debería haber estado desde la primera fase.
+- **Registrar primero, avisar después.** Un aviso de Slack o Gmail que fallaba dejaba registros sin hacer. Una auditoría de las 13 plantillas corrigió el orden en las que lo tenían al revés: el registro va antes, y el aviso no puede impedirlo.
+- **Probar con casos trampa.** Fines de semana, fechas pasadas, bandejas vacías e instrucciones escondidas para la IA encontraron errores que el caso feliz nunca mostró. Cada prueba dejó correcciones reales, documentadas en «Problemas frecuentes» y «Limitaciones».
+- **El trigger de Gmail engaña al probar.** Con «Execute» trae un solo correo; para probar varios hay que publicar el flujo.
+- **La IA, intercambiable.** Las plantillas con IA usan un Basic LLM Chain con Gemini por defecto: cambiar de proveedor es cambiar el sub-nodo del modelo, y el prompt trata el correo como datos, nunca como instrucciones.
 - **Lo que haría distinto:** validar `diagram.json` contra `workflow.json`, que son dos descripciones del mismo flujo escritas por separado.
 
 ## Roadmap
 
 Sin fechas:
 
-- Probar las 10 plantillas que faltan en una instancia real de n8n y añadir el sello «Probado» a las que pasen.
-- Añadir la imagen `og.png` que esperan los metadatos para compartir enlaces; hoy esa URL responde 404.
+- Probar las 4 plantillas que siguen «Sin probar» (aprobación de gastos, pagos con Stripe, leads a HubSpot y WhatsApp a Sheets) y sellar las que pasen.
 - Seguir sumando plantillas sueltas, cada una en su propia versión MINOR.
 - Idea por evaluar: una prueba que compare los nodos de `diagram.json` con los de `workflow.json`, para que el mapa no se desactualice.
