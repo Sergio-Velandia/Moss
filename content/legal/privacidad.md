@@ -39,6 +39,8 @@ En [Propón una idea](/propon-una-idea) hay dos formularios: «Propón una idea�
 
 **Cómo viajan:** al pulsar «Enviar», tu navegador manda el contenido del formulario al servicio [EmailJS](https://www.emailjs.com/legal/privacy-policy/), que lo convierte en un correo y lo entrega en mi buzón. EmailJS trata esos datos y los datos técnicos de la conexión (como la dirección IP) según su política de privacidad, y puede hacerlo en servidores fuera de Colombia. Antes de pulsar «Enviar», nada sale de tu navegador.
 
+**A dónde llegan:** los mensajes llegan a mi correo a través de EmailJS. Para consultar, corregir o borrar tus datos, escríbeme a {{email}}.
+
 **Cuánto tiempo:** conservo el mensaje mientras sea necesario para responderte y dar seguimiento a tu propuesta. Puedes pedirme que lo borre cuando quieras.
 
 El formulario no usa cookies ni guarda nada en tu navegador. Incluye un campo oculto para frenar a los bots: si llega con texto, el mensaje se descarta.

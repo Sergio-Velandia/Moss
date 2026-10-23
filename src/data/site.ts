@@ -10,7 +10,7 @@ export const site = {
   ownerName: 'Sergio Andres Ramirez Velandia',
   contactEmail: 'contacto@sergio-velandia.dev',
   country: 'Colombia',
-  legalUpdatedAt: '2026-10-20',
+  legalUpdatedAt: '2026-10-22',
   /**
    * Formularios de «Propón una idea» (API REST de EmailJS). Los tres valores son públicos por diseño de EmailJS:
    * viajan al navegador. El destino se configura en la plantilla de EmailJS. Si falta alguno, el formulario
