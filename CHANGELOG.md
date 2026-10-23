@@ -12,6 +12,9 @@ El campo `version` de `package.json` siempre coincide con la última versión pu
 
 ## [Sin publicar]
 
+### Corregido
+- Manual, Laboratorio, Bitácora, Herbario y las páginas legales respondían 404 en GitHub Pages (se veían gracias a `404.html`, pero los buscadores no las indexaban). Ahora el build crea una página por ruta, con su título y su descripción, y todas responden 200.
+
 ## [1.13.0] - 2026-10-21
 
 ### Añadido

@@ -356,7 +356,7 @@ Cómo está preparado el proyecto para vivir en la subruta `/Moss/`:
 - **`src/App.tsx`** pasa `basename={import.meta.env.BASE_URL}` al `BrowserRouter`, así que las rutas y los enlaces internos (también los de Markdown) incluyen la subruta solos.
 - **`index.html`** referencia los archivos de `public/` con `%BASE_URL%` (por ejemplo `%BASE_URL%favicon.svg`). Haz lo mismo con cualquier recurso nuevo de `public/`; dentro de componentes usa `import.meta.env.BASE_URL`.
 - **Recargar una ruta interna** (`/Moss/manual/...`) funciona porque el workflow copia `index.html` como `404.html`: GitHub Pages lo sirve y React Router resuelve la ruta en el navegador. Esas páginas responden con código HTTP 404 aunque se vean bien.
-- **Rutas que responden 200.** Las rutas pensadas para compartirse están en `STATIC_ROUTES` (`vite.config.ts`): el build copia `index.html` en `<ruta>/index.html` y GitHub Pages las sirve con código 200. Hoy `/nexus`, `/proyectos` y `/rutas`, más una por cada `content/projects/<slug>.md` y `content/routes/<slug>.md` publicado, que el build detecta solo. Las pruebas comprueban que existan en el router.
+- **Todas las páginas responden 200.** Tras el build, `scripts/static-pages.ts` crea un `<ruta>/index.html` por cada sección (`STATIC_ROUTES` en `vite.config.ts`), cada documento del Manual, la Bitácora, Rutas, Proyectos y páginas legales, y cada demo del Laboratorio, con su propio `<title>` y su descripción. Así GitHub Pages las sirve con código 200 y los buscadores las pueden indexar; el `404.html` queda solo para direcciones que no existen. Las pruebas comprueban que las secciones existan en el router y que cada página tenga título.
 
 Para revisar el build igual que en producción:
 
