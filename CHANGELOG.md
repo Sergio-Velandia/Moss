@@ -12,6 +12,20 @@ El campo `version` de `package.json` siempre coincide con la última versión pu
 
 ## [Sin publicar]
 
+## [1.14.0] - 2026-10-22
+
+**Cierre de ciclo.** Moss queda estable y listo para crecer solo con contenido nuevo. Lo que trajeron estas semanas, desde la v1.9.0:
+
+- **Dominio propio** (v1.9.7): Moss, Moss Nexus y el portafolio en `sergio-velandia.dev`, con correo `contacto@` y una prueba que impide volver a las URLs de `github.io`.
+- **Rutas de aprendizaje** (v1.9.0 a esta versión): cinco rutas, entre ellas «Del repo a producción» con 8 guías nuevas (v1.12.0) y ahora «CSS y Tailwind».
+- **Laboratorio Tailwind** (v1.10.0): el primer lote de Piezas Tailwind (botones, tarjetas y chips) con notas de accesibilidad y uso real.
+- **Guías de n8n** probadas con Moss Nexus: instalar n8n, OAuth2 de Google, Slack y manejo de errores para n8n 2.x.
+- **Formulario de contacto** (v1.13.0): «Propón una idea» y «Habla conmigo», con EmailJS y la fase legal actualizada.
+- **Moss Nexus v1.0.0**: estable, con 9 plantillas probadas que la ruta de n8n enlaza.
+- **Revisión del sitio** (v1.12.1 a v1.12.9 y esta versión): miniaturas, categorías, Inicio, Manual agrupado, Herbario más ligero, páginas que responden 200 y metadatos para compartir.
+
+Lo que falta está en `ROADMAP.md`.
+
 ### Añadido
 - Ruta **CSS y Tailwind, de las bases a interfaces reales** (nivel inicial): 9 pasos con lo que ya existe (la guía de capas y tokens, los 3 retos, las piezas y demos del Laboratorio y tres artículos), y las 8 guías que faltan marcadas «Próximamente» con lo que cubrirá cada una. Es ruta hermana de «Frontend con React y Tailwind».
 - `ROADMAP.md`, con los pendientes ordenados: metadatos para compartir, guías anunciadas en las rutas, lotes del Laboratorio, rendimiento y tareas de los proyectos hermanos.
@@ -336,7 +350,8 @@ Primera versión completa.
 - Páginas legales: términos, privacidad y protección de datos.
 - Despliegue automático en GitHub Pages con cada push a `main`.
 
-[Sin publicar]: https://github.com/Sergio-Velandia/Moss/compare/v1.13.0...HEAD
+[Sin publicar]: https://github.com/Sergio-Velandia/Moss/compare/v1.14.0...HEAD
+[1.14.0]: https://github.com/Sergio-Velandia/Moss/compare/v1.13.0...v1.14.0
 [1.13.0]: https://github.com/Sergio-Velandia/Moss/compare/v1.12.9...v1.13.0
 [1.12.9]: https://github.com/Sergio-Velandia/Moss/compare/v1.12.8...v1.12.9
 [1.12.8]: https://github.com/Sergio-Velandia/Moss/compare/v1.12.7...v1.12.8
