@@ -24,6 +24,7 @@ Mi "segundo cerebro" técnico: una biblioteca personal y visual donde guardo, do
 | Ruta | Nivel | Pasos |
 | --- | --- | --- |
 | n8n, de cero a producción | Intermedio | 15, empieza instalando n8n, suma Slack junto a Google y enlaza las 9 plantillas probadas de Moss Nexus para practicar |
+| CSS y Tailwind, de las bases a interfaces reales | Inicial | 17 lecturas y demos en 9 pasos; 8 guías todavía «Próximamente» |
 | Frontend con React y Tailwind | Intermedio | 9 |
 | Datos y reportes con SQL | Intermedio | 9 |
 | Del repo a producción: publicar y mantener un proyecto web | Inicial | 11 pasos y un proyecto final (15 lecturas), con la evidencia real de Moss, Moss Nexus y el portafolio |

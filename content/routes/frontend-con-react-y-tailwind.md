@@ -3,7 +3,7 @@ title: Frontend con React y Tailwind
 description: Organizar un proyecto, traducir la interfaz, pedir datos y escuchar eventos sin romper nada, dominar las capas y los tokens de Tailwind 4, resolver tres errores reales y verificar el resultado en un navegador.
 type: route
 level: intermedio
-order: 2
+order: 3
 tags: [react, tailwind, css, frontend, ruta]
 technologies: [React, CSS, Tailwind]
 createdAt: 2026-10-14
@@ -14,6 +14,8 @@ steps: [manual/react/estructura-de-proyecto, manual/react/interfaz-bilingue-sin-
 ## Para quién es
 
 Para quien ya hace componentes con React y usa Tailwind, y quiere dejar de pelearse con lo que "debería funcionar y no funciona": la regla que no se aplica, la tarjeta que desborda en móvil, la paleta que no se puede cambiar.
+
+Si todavía estás con las bases de CSS (la caja, grid, los temas, los estados de un botón), empieza por la ruta hermana [CSS y Tailwind, de las bases a interfaces reales](/rutas/css-y-tailwind).
 
 ## Qué vas a poder hacer al terminar
 

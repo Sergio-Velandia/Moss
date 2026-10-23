@@ -3,7 +3,7 @@ title: Del repo a producción: publicar y mantener un proyecto web
 description: Lo que viene después de «funciona en mi computador»: versionar, comprobar, publicar en GitHub Pages, darle un dominio propio con HTTPS y correo, cumplir lo legal y mantenerlo vivo. Todo hecho de verdad en Moss, Moss Nexus y el portafolio.
 type: route
 level: inicial
-order: 4
+order: 5
 tags: [despliegue, github pages, dominio propio, versionado, calidad, mantenimiento, ruta]
 technologies: [Git, GitHub Actions, GitHub Pages, Cloudflare]
 createdAt: 2026-10-14

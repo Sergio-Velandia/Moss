@@ -3,7 +3,7 @@ title: Datos y reportes con SQL
 description: Agrupar, limpiar duplicados, comparar meses, exportar a Excel sin romper tildes y calcular dinero sin errores de redondeo.
 type: route
 level: intermedio
-order: 3
+order: 4
 tags: [sql, datos, reportes, excel, ruta]
 technologies: [SQL, MySQL, JavaScript]
 createdAt: 2026-10-14

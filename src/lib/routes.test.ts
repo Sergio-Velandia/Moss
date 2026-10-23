@@ -10,9 +10,10 @@ const existing = new Set(knowledgeItems.map((i) => i.id))
 const raw = import.meta.glob<string>(['/src/**/*.{ts,tsx}', '!/src/**/*.test.ts'], { eager: true, query: '?raw', import: 'default' })
 
 describe('rutas publicadas', () => {
-  it('son cuatro, en su orden, y todas cumplen las reglas', () => {
+  it('son cinco, en su orden, y todas cumplen las reglas', () => {
     expect(routeDocs.map((r) => r.slug)).toEqual([
       'n8n-de-cero-a-produccion',
+      'css-y-tailwind',
       'frontend-con-react-y-tailwind',
       'datos-y-reportes-con-sql',
       'publicar-y-mantener-un-sitio',
@@ -58,7 +59,7 @@ describe('validateRoute', () => {
 describe('posición dentro de una ruta', () => {
   it('una pieza puede estar en varias rutas, con su anterior y su siguiente', () => {
     const positions = routesContaining('manual/javascript/verificar-la-interfaz-con-capturas')
-    expect(positions.map((p) => p.route.slug).sort()).toEqual(['frontend-con-react-y-tailwind', 'publicar-y-mantener-un-sitio'])
+    expect(positions.map((p) => p.route.slug).sort()).toEqual(['css-y-tailwind', 'frontend-con-react-y-tailwind', 'publicar-y-mantener-un-sitio'])
     const first = routesContaining('manual/n8n/instalar-n8n')[0]
     expect(first.index).toBe(0)
     expect(first.previous).toBeUndefined()
@@ -105,7 +106,7 @@ describe('progreso guardado', () => {
 
 describe('integración', () => {
   it('el Herbario indexa las rutas y el tablero no las cuenta', () => {
-    expect(knowledgeItems.filter((i) => i.type === 'route')).toHaveLength(4)
+    expect(knowledgeItems.filter((i) => i.type === 'route')).toHaveLength(5)
     expect(getGardenItems().some((i) => i.id.startsWith('route/'))).toBe(false)
   })
 
