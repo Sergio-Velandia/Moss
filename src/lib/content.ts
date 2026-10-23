@@ -16,7 +16,8 @@ export interface Reference {
 }
 
 /** Estados posibles de un proyecto documentado */
-export const PROJECT_STATUSES = ['activo', 'mantenimiento', 'pausado'] as const
+/** Los mismos estados que el ECOSISTEMA de los proyectos, más «pausado» */
+export const PROJECT_STATUSES = ['desarrollo', 'estable', 'mantenimiento', 'pausado'] as const
 export type ProjectStatus = (typeof PROJECT_STATUSES)[number]
 
 /** Identidad visual de la tarjeta y los botones del proyecto (clases .pt-* en index.css) */

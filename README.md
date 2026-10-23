@@ -223,7 +223,7 @@ steps: [manual/n8n/webhook-basico, lab/n8n-payload-builder, …]
 Crea `content/projects/<slug>.md`; la página aparece en `/proyectos/<slug>` y el build le da una ruta que responde 200. Además del frontmatter común, lleva:
 
 ```md
-status: activo          # activo | mantenimiento | pausado
+status: estable         # desarrollo | estable | mantenimiento | pausado (los del ECOSISTEMA)
 theme: moss             # moss | nexus | portafolio: paleta de su tarjeta y sus botones
 version: 0.7.5          # versión del proyecto que describe la página («auto» en la ficha de Moss: sale de package.json)
 reviewedAt: 2026-10-12  # última vez que se contrastó con el código

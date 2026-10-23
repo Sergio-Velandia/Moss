@@ -110,3 +110,15 @@ describe('integración', () => {
     expect(appSource).toContain('path="proyectos/:slug"')
   })
 })
+
+describe('estados de proyecto', () => {
+  it('son los del ECOSISTEMA y cada uno tiene nombre en los dos idiomas', async () => {
+    const { PROJECT_STATUSES } = await import('./content')
+    const { statusLabels } = await import('./projects')
+    expect([...PROJECT_STATUSES]).toEqual(['desarrollo', 'estable', 'mantenimiento', 'pausado'])
+    for (const s of PROJECT_STATUSES) {
+      expect(statusLabels.es[s], s).toBeTruthy()
+      expect(statusLabels.en[s], s).toBeTruthy()
+    }
+  })
+})

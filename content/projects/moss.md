@@ -2,7 +2,7 @@
 title: Moss
 description: Jardín digital estático donde documento, pruebo y conecto lo que aprendo, sin backend ni base de datos.
 type: project
-status: activo
+status: estable
 theme: moss
 version: auto
 reviewedAt: 2026-10-18
