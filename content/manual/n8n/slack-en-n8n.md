@@ -17,6 +17,8 @@ El nodo de Slack de n8n pide una credencial **Slack API** con un *Access Token*.
 
 Esta guía crea esa app desde un **manifiesto**, con solo los permisos que necesita un flujo que publica avisos, y conecta su **token de bot** (`xoxb-`) a n8n. Está escrita a partir de una prueba real de la plantilla de leads en n8n 2.43.5 autoalojado con Docker, el 15/10/2026, con datos ficticios. Sirve igual para el resto de plantillas de Nexus que usan Slack.
 
+Es el paso 7 de la ruta [n8n, de cero a producción](/rutas/n8n-de-cero-a-produccion), justo después de conectar Google: cinco de las nueve plantillas probadas de Nexus avisan por Slack.
+
 Si tu plantilla también usa Google Sheets, como la de leads, conecta Google con la guía [Conectar Gmail, Google Calendar, Google Drive y Google Sheets a n8n con OAuth2](/manual/n8n/oauth2-de-google-en-n8n).
 
 ## Las piezas y cómo se relacionan
