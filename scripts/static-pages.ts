@@ -14,6 +14,12 @@ export interface StaticPage {
   description: string
 }
 
+/** Dirección pública del sitio: la base de canonical, og:url y el sitemap */
+export const SITE_URL = 'https://sergio-velandia.dev/Moss/'
+
+/** URL canónica de una página, con barra final (así la sirve GitHub Pages) */
+export const pageUrl = (path: string) => (path ? `${SITE_URL}${path}/` : SITE_URL)
+
 /** Mismo formato que useDocumentTitle: «Título · Moss», y el nombre completo en el inicio */
 export const pageTitle = (title?: string) => (title ? `${title} · Moss` : 'Moss — Digital Garden')
 
@@ -82,12 +88,28 @@ export const allPages = (root: string): StaticPage[] => [...SECTION_PAGES, ...co
 
 const escapeHtml = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
 
-/** Copia de index.html con el título y la descripción de la página */
+/** Copia de index.html con el título, la descripción y la URL de la página en las etiquetas para buscadores y redes */
 export function renderPage(html: string, page: StaticPage): string {
   const title = escapeHtml(pageTitle(page.title))
-  let out = html.replace(/<title>[^<]*<\/title>/, `<title>${title}</title>`)
+  const url = pageUrl(page.path)
+  let out = html
+    .replace(/<title>[^<]*<\/title>/, `<title>${title}</title>`)
+    .replace(/(<link rel="canonical" href=")[^"]*/, `$1${url}`)
+    .replace(/(<meta property="og:url" content=")[^"]*/, `$1${url}`)
+    .replace(/(<meta property="og:title" content=")[^"]*/, `$1${title}`)
+    .replace(/(<meta name="twitter:title" content=")[^"]*/, `$1${title}`)
   if (page.description) {
-    out = out.replace(/(<meta name="description" content=")[^"]*/, `$1${escapeHtml(page.description)}`)
+    const description = escapeHtml(page.description)
+    out = out
+      .replace(/(<meta name="description" content=")[^"]*/, `$1${description}`)
+      .replace(/(<meta property="og:description" content=")[^"]*/, `$1${description}`)
+      .replace(/(<meta name="twitter:description" content=")[^"]*/, `$1${description}`)
   }
   return out
+}
+
+/** sitemap.xml con el inicio y todas las páginas, para que los buscadores las encuentren */
+export function renderSitemap(pages: StaticPage[]): string {
+  const urls = ['', ...pages.map((p) => p.path)].map((path) => `  <url><loc>${pageUrl(path)}</loc></url>`)
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join('\n')}\n</urlset>\n`
 }
