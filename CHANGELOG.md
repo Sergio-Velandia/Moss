@@ -17,6 +17,7 @@ El campo `version` de `package.json` siempre coincide con la última versión pu
 - `ROADMAP.md`, con los pendientes ordenados: metadatos para compartir, guías anunciadas en las rutas, lotes del Laboratorio, rendimiento y tareas de los proyectos hermanos.
 - Enlace a la licencia MIT en el pie, y el campo `license` en `package.json`.
 - El Laboratorio anuncia qué lotes de Piezas Tailwind vienen después.
+- **Metadatos para compartir y buscadores:** `canonical`, Open Graph y Twitter Card con el dominio del sitio, una imagen de vista previa propia de 1200×630 y `sitemap.xml` con todas las páginas. Cada página generada lleva su propia URL canónica, su título y su descripción.
 
 ### Cambiado
 - Proyectos usa los mismos estados que el ECOSISTEMA: en desarrollo, estable, en mantenimiento y pausado. Moss y Moss Nexus pasan a **estable**; el portafolio sigue en mantenimiento.
