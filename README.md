@@ -394,14 +394,7 @@ Este repositorio es público. No se guardan claves reales: usa variables de ento
 
 El historial de versiones está en [CHANGELOG.md](CHANGELOG.md), con [Versionado Semántico](https://semver.org/lang/es/): MINOR para funciones o lotes de contenido nuevos, PATCH para correcciones y documentación, y MAJOR si cambian rutas existentes. La versión de `package.json` coincide siempre con la última del CHANGELOG, y cada versión se marca con un tag `vX.Y.Z`.
 
-Ideas para seguir creciendo:
-
-- Estado de error en el botón con estados.
-- Más categorías en el Manual (pruebas).
-- Traducir también el contenido al inglés (por ejemplo, con archivos `.en.md` junto a los originales).
-- Feed RSS de la Bitácora.
-- Capturas de pantalla en este README.
-- **Fase futura (MINOR): metadatos para compartir y buscadores.** Ahora que el dominio es fijo: Open Graph y Twitter Card con imagen, `canonical` por página, `robots.txt` y `sitemap.xml`.
+Lo que falta (guías anunciadas en las rutas, lotes del Laboratorio, metadatos para compartir, rendimiento y tareas de los proyectos hermanos) está ordenado en [ROADMAP.md](ROADMAP.md).
 
 ## Licencia
 
