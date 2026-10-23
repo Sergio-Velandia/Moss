@@ -20,6 +20,7 @@ const TEXT = {
     tagline: 'Moss — Digital Garden · conocimiento que crece contigo',
     legal: 'Información legal',
     code: 'Código en GitHub',
+    license: 'Licencia MIT',
     portfolio: 'Mi portafolio',
     propose: 'Propón una idea',
     proposeShort: 'Propón',
@@ -36,6 +37,7 @@ const TEXT = {
     tagline: 'Moss — Digital Garden · knowledge that grows with you',
     legal: 'Legal information',
     code: 'Code on GitHub',
+    license: 'MIT license',
     portfolio: 'My portfolio',
     propose: 'Suggest an idea',
     proposeShort: 'Suggest',
@@ -219,6 +221,14 @@ export default function Layout() {
             className="inline-block py-1.5 underline-offset-2 hover:text-sage-deep hover:underline"
           >
             {t.code}<span className="sr-only">{t.newTab}</span>
+          </a>
+          <a
+            href={`${site.repoUrl}/blob/main/LICENSE`}
+            target="_blank"
+            rel="noreferrer noopener"
+            className="inline-block py-1.5 underline-offset-2 hover:text-sage-deep hover:underline"
+          >
+            {t.license}<span className="sr-only">{t.newTab}</span>
           </a>
           <a
             href={site.portfolioUrl}
