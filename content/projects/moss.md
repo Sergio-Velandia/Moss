@@ -18,7 +18,7 @@ related: [route/publicar-y-mantener-un-sitio, journal/por-que-moss-no-usa-base-d
 
 Moss es mi "segundo cerebro" técnico publicado como sitio: demos que se pueden probar, guías, artículos y un buscador sobre todo ello. Es un sitio estático; cada pieza de contenido es un archivo del repositorio.
 
-**Problema que resuelve:** el conocimiento técnico se pierde entre notas sueltas, pestañas y proyectos viejos. Moss lo junta en un lugar donde se puede encontrar, probar el código en vivo y ver cómo se conecta una pieza con otra. Cómo se instala y qué contiene está en el [README](https://github.com/Sergio-Velandia/Moss#readme); esta página cuenta cómo está hecho por dentro.
+**Problema que resuelve:** el conocimiento técnico se pierde entre notas sueltas, pestañas y proyectos viejos. Moss lo junta en un lugar donde se puede encontrar, probar el código en vivo y ver cómo se conecta una pieza con otra. Cómo se instala y cómo se le añade contenido está en el [README](https://github.com/Sergio-Velandia/Moss#readme); esta página cuenta cómo está hecho por dentro.
 
 ## Arquitectura
 
@@ -88,7 +88,6 @@ Sin fechas; en el orden en que me parecen más útiles:
 
 - Cargar el texto de cada documento solo al abrirlo. Hoy todo el contenido viaja en el JavaScript inicial y ese archivo crece con cada guía.
 - Más guías de CSS y una categoría de pruebas en el Manual.
-- Metadatos para compartir: Open Graph, `canonical`, `sitemap.xml` y `robots.txt` (ver [Que se vea bien al compartirlo](/manual/despliegue/que-se-vea-bien-al-compartirlo)).
 - Traducir también el contenido, por ejemplo con archivos `.en.md` junto a los originales.
 - Un feed RSS de la Bitácora.
 - Un estado de error en la demo del botón con estados.

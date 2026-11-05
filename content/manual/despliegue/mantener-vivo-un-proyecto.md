@@ -5,6 +5,7 @@ type: manual
 tags: [mantenimiento, dependencias, enlaces rotos, renovación, auditoría, semver]
 technologies: [npm, GitHub, GitHub Pages]
 createdAt: 2026-10-18
+updatedAt: 2026-11-05
 related: [route/publicar-y-mantener-un-sitio, journal/versionar-despues, manual/javascript/verificar-la-interfaz-con-capturas, manual/despliegue/proyecto-final-publica-tu-sitio]
 references: [npm outdated | https://docs.npmjs.com/cli/v10/commands/npm-outdated, npm audit | https://docs.npmjs.com/cli/v10/commands/npm-audit, GitHub: HTTPS en GitHub Pages | https://docs.github.com/en/pages/getting-started-with-github-pages/securing-your-github-pages-site-with-https, Versionado Semántico | https://semver.org/lang/es/]
 ---
@@ -81,7 +82,7 @@ Un proyecto pasa a mantenimiento cuando ya cumple su propósito y no tienes plan
 ## Así lo hice yo
 
 - **Contenido que caducó sin avisar:** la ficha de Moss en Proyectos dice versión 1.6.0, revisada el 12/10/2026, mientras Moss ya va por la 1.11.0. Es justo el tipo de dato que la revisión mensual tiene que encontrar. Las fichas tienen un campo `reviewedAt` obligatorio, validado por una prueba ([`4cf6e43`](https://github.com/Sergio-Velandia/Moss/commit/4cf6e43)), para que al menos se vea cuándo se revisaron por última vez.
-- **Una imagen que no existe:** Moss Nexus declara `og.png` como imagen para compartir, pero la URL responde 404. Apareció al revisar los enlaces y está anotado como pendiente.
+- **Una imagen que no existe:** Moss Nexus declara `og.png` como imagen para compartir, pero la URL respondía 404. Apareció al revisar los enlaces, quedó anotado como pendiente y hoy ya responde.
 - **Corregir lo que alguien reporta:** el índice lateral de las guías de Moss se cortaba en pantallas bajas; se corrigió como PATCH ([`ad2b68a`](https://github.com/Sergio-Velandia/Moss/commit/ad2b68a), versión 1.9.5).
 - **Contenido que se actualiza con la realidad:** la guía de OAuth2 de Google se amplió cuando una plantilla nueva de Nexus necesitó Drive y Sheets ([`0c55db3`](https://github.com/Sergio-Velandia/Moss/commit/0c55db3), versión 1.9.3).
 - **Un proyecto en mantenimiento:** el portafolio está en mantenimiento. Su último cambio fue un PATCH, la 1.0.1, por el dominio propio ([`f70e543`](https://github.com/Sergio-Velandia/mi-portafolio/commit/f70e543)).

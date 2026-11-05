@@ -7,8 +7,8 @@ Reglas que siguen vigentes: un cambio por versión cuando es pequeño (PATCH), c
 ## 1. En curso (ciclo de cierre)
 
 - [x] **Metadatos para compartir y buscadores.** Páginas por ruta que responden 200, Open Graph, Twitter Card, `canonical` y `og:url` por página, `sitemap.xml` e imagen de vista previa propia (1200×630).
-- [ ] **`robots.txt` en el repositorio raíz** `Sergio-Velandia.github.io`, no en Moss: tiene que estar en la raíz del dominio y puede señalar el sitemap de cada proyecto (`https://sergio-velandia.dev/Moss/sitemap.xml`). Hoy `sergio-velandia.dev/robots.txt` responde 404.
-- [ ] **Registrar los sitemaps en Google Search Console** cuando exista el `robots.txt`.
+- [x] **`robots.txt` en la raíz del dominio:** `sergio-velandia.dev/robots.txt` responde 200 y señala los sitemaps de Moss, Moss Nexus y el portafolio. Vive en el repositorio raíz `Sergio-Velandia.github.io`, no en Moss.
+- [ ] **Registrar los sitemaps en Google Search Console.**
 
 ## 2. Contenido que las rutas ya anuncian
 

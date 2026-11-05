@@ -5,6 +5,7 @@ type: manual
 tags: [readme, documentación, github, presentación, buenas prácticas]
 technologies: [GitHub, Markdown]
 createdAt: 2026-10-18
+updatedAt: 2026-11-05
 related: [route/publicar-y-mantener-un-sitio, manual/git/commits-con-intencion, journal/documentar-proyectos-sin-repetir-el-readme]
 references: [GitHub: acerca de los README | https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes, Keep a Changelog en español | https://keepachangelog.com/es-ES/1.1.0/]
 ---
@@ -72,7 +73,7 @@ El README de mi portafolio es el mejor antes y después que tengo:
 
 En el historial también se ve cómo **no** mantenerlo: varios commits seguidos llamados «Update README.md» ([`e4eb3f3`](https://github.com/Sergio-Velandia/mi-portafolio/commit/e4eb3f3), [`47e18db`](https://github.com/Sergio-Velandia/mi-portafolio/commit/47e18db), [`717c1a1`](https://github.com/Sergio-Velandia/mi-portafolio/commit/717c1a1)) que no dicen qué cambió. Y cómo sí: [`436e66d` «docs: actualiza urls y correo del readme al dominio propio»](https://github.com/Sergio-Velandia/mi-portafolio/commit/436e66d), en la misma tanda que el cambio de dominio.
 
-En Moss, el README lleva una tabla de cada sección (rutas, laboratorio, manual), las instrucciones para añadir contenido y una lista de ideas pendientes, entre ellas la fase futura de metadatos para compartir. Puedes verlo en [el repositorio de Moss](https://github.com/Sergio-Velandia/Moss#readme).
+En Moss, el README lleva una tabla de cada sección, los comandos y las instrucciones para añadir contenido, plegadas. La versión y los pendientes los enlaza: viven en `CHANGELOG.md` y `ROADMAP.md`. Llegó a medir 16 pantallas porque copiaba los listados del sitio, y los recorté: cada cifra repetida era algo más que actualizar. Puedes verlo en [el repositorio de Moss](https://github.com/Sergio-Velandia/Moss#readme).
 
 ## Errores que cometí (o que casi cometo)
 

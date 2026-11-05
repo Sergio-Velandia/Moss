@@ -5,6 +5,7 @@ type: manual
 tags: [seo, open graph, twitter card, canonical, sitemap, robots, social preview]
 technologies: [GitHub Pages, Vite, HTML]
 createdAt: 2026-10-18
+updatedAt: 2026-11-05
 related: [route/publicar-y-mantener-un-sitio, manual/despliegue/migrar-a-un-dominio-nuevo, manual/despliegue/spa-en-github-pages-sin-404]
 references: [Protocolo Open Graph | https://ogp.me/, Google: URL canónicas | https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls, Google: introducción a los sitemaps | https://developers.google.com/search/docs/crawling-indexing/sitemaps/overview, Protocolo de sitemaps | https://www.sitemaps.org/protocol.html, Google: introducción a robots.txt | https://developers.google.com/search/docs/crawling-indexing/robots/intro, GitHub: vista previa social del repositorio | https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/customizing-your-repositorys-social-media-preview]
 ---
@@ -64,21 +65,20 @@ Aquí GitHub Pages con dominio propio tiene una trampa:
 
 El enlace a un repositorio también se comparte. En el repositorio, ve a **Settings → General → Social preview** y sube una imagen PNG, JPG o GIF de menos de 1 MB. GitHub recomienda al menos 640 × 320 píxeles, y 1280 × 640 para que se vea mejor.
 
-## Así lo hice yo (y lo que falta)
+## Así lo hice yo
 
 | | Moss | Moss Nexus | Portafolio |
 | --- | --- | --- | --- |
-| `canonical` y `og:url` | **No tiene** | Sí, uno por página | Sí |
-| Imagen Open Graph | **No tiene** | Declarada, pero `og.png` responde 404 | Sí: `Preview.png` |
-| Twitter Card | **No tiene** | Sí | Sí |
-| Una página por ruta | Copias de `index.html` para que algunas rutas respondan 200, sin etiquetas propias | Sí, todas, cada una con sus etiquetas | Es una sola página |
-| `sitemap.xml` | **No tiene** | Sí, se genera en el build | Sí, a mano |
+| `canonical` y `og:url` | Sí, uno por página | Sí, uno por página | Sí |
+| Imagen Open Graph | Sí: `og.png` | Sí: `og.png` | Sí: `Preview.png` |
+| Twitter Card | Sí | Sí | Sí |
+| Una página por ruta | Sí, todas, cada una con sus etiquetas | Sí, todas, cada una con sus etiquetas | Es una sola página |
+| `sitemap.xml` | Sí, se genera en el build | Sí, se genera en el build | Sí, a mano |
 | Social preview en GitHub | Sí | Sí | Sí |
 
-- **Moss Nexus** genera en el build un `index.html` por ruta y el sitemap ([`ee85c1f`](https://github.com/Sergio-Velandia/Moss-Nexus/commit/ee85c1f), con el script [`static-pages.ts`](https://github.com/Sergio-Velandia/Moss-Nexus/blob/main/scripts/static-pages.ts)). Por eso [una plantilla](https://sergio-velandia.dev/Moss-Nexus/plantillas/agenda-diaria-calendar/) se comparte con su propio título y su propia URL canónica. Su imagen `og.png`, en cambio, todavía no existe: las tarjetas salen sin foto. Está anotado como pendiente.
-- **El portafolio** tiene `canonical`, Open Graph completo con imagen y un [`sitemap.xml`](https://sergio-velandia.dev/mi-portafolio/sitemap.xml) ([`0869986`](https://github.com/Sergio-Velandia/mi-portafolio/commit/0869986)).
-- **Moss no tiene ninguna de estas etiquetas todavía.** Está anotado como fase futura en [su README](https://github.com/Sergio-Velandia/Moss#estado), junto con `robots.txt` y `sitemap.xml`.
-- **Ningún proyecto tiene `robots.txt`:** `sergio-velandia.dev/robots.txt` responde 404. Tiene que ir en el repositorio raíz, no en cada proyecto.
+- **Moss Nexus** genera en el build un `index.html` por ruta y el sitemap ([`ee85c1f`](https://github.com/Sergio-Velandia/Moss-Nexus/commit/ee85c1f), con el script [`static-pages.ts`](https://github.com/Sergio-Velandia/Moss-Nexus/blob/main/scripts/static-pages.ts)). Por eso [una plantilla](https://sergio-velandia.dev/Moss-Nexus/plantillas/agenda-diaria-calendar/) se comparte con su propio título y su propia URL canónica.- **El portafolio** tiene `canonical`, Open Graph completo con imagen y un [`sitemap.xml`](https://sergio-velandia.dev/mi-portafolio/sitemap.xml) ([`0869986`](https://github.com/Sergio-Velandia/mi-portafolio/commit/0869986)).
+- **Moss** hace lo mismo con su propio [`static-pages.ts`](https://github.com/Sergio-Velandia/Moss/blob/main/scripts/static-pages.ts): cada página generada lleva su URL canónica, su título y su descripción, y el build escribe [`sitemap.xml`](https://sergio-velandia.dev/Moss/sitemap.xml).
+- **El `robots.txt` es uno solo:** [`sergio-velandia.dev/robots.txt`](https://sergio-velandia.dev/robots.txt) vive en el repositorio raíz y señala los sitemaps de los tres proyectos.
 
 ## Lo que hay que vigilar
 
