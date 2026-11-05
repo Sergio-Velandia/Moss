@@ -12,6 +12,16 @@ El campo `version` de `package.json` siempre coincide con la última versión pu
 
 ## [Sin publicar]
 
+## [1.16.1] - 2026-11-05
+
+### Cambiado
+- El **README** pasa a decir solo lo que no está en otro lugar: los listados de contenido, las rutas y las explicaciones que ya cuentan el sitio, el CHANGELOG y el ROADMAP salen, y quedan sus enlaces. Los comandos suben justo después de las secciones, y «Cómo añadir contenido» se pliega por temas.
+
+### Corregido
+- README: la versión de Node.js (Vitest y `jsdom` exigen 22.13 o superior), el ejemplo de demo con una categoría que las pruebas rechazaban, los ids de `related` que faltaban (`route/` y `project/`) y la frase que decía que las rutas internas responden 404.
+- La guía «Que se vea bien al compartirlo», la de «Un README que se lee», la de «Mantener vivo un proyecto» y la ficha de Moss daban por pendientes los metadatos de Moss, su `robots.txt` o la imagen de Moss Nexus, que ya existen.
+- `ROADMAP.md`: el `robots.txt` del dominio ya responde y señala los tres sitemaps.
+
 ## [1.16.0] - 2026-11-05
 
 ### Añadido
@@ -368,7 +378,8 @@ Primera versión completa.
 - Páginas legales: términos, privacidad y protección de datos.
 - Despliegue automático en GitHub Pages con cada push a `main`.
 
-[Sin publicar]: https://github.com/Sergio-Velandia/Moss/compare/v1.16.0...HEAD
+[Sin publicar]: https://github.com/Sergio-Velandia/Moss/compare/v1.16.1...HEAD
+[1.16.1]: https://github.com/Sergio-Velandia/Moss/compare/v1.16.0...v1.16.1
 [1.16.0]: https://github.com/Sergio-Velandia/Moss/compare/v1.15.0...v1.16.0
 [1.15.0]: https://github.com/Sergio-Velandia/Moss/compare/v1.14.0...v1.15.0
 [1.14.0]: https://github.com/Sergio-Velandia/Moss/compare/v1.13.0...v1.14.0
