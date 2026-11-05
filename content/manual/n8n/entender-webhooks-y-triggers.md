@@ -5,6 +5,7 @@ type: manual
 tags: [webhook, trigger, http, seguridad, validación, automatización]
 technologies: [n8n, JavaScript]
 createdAt: 2026-10-11
+updatedAt: 2026-11-05
 related: [manual/n8n/webhook-basico, lab/n8n-payload-builder, manual/n8n/orquestacion-y-manejo-de-errores, manual/apis/idempotencia-en-pagos-y-webhooks]
 references: [Nodo Webhook | https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.webhook/, Nodo Respond to Webhook | https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.respondtowebhook/, Nodo Code | https://docs.n8n.io/code/code-node/, Configurar la URL del webhook | https://docs.n8n.io/hosting/configuration/configuration-examples/webhook-url/, Variables de entorno de endpoints | https://docs.n8n.io/hosting/configuration/environment-variables/endpoints/]
 ---
@@ -36,12 +37,18 @@ La URL del nodo solo sirve si la otra aplicación puede alcanzarla. Depende de d
 - **Servidor propio.** n8n suele ir detrás de un proxy inverso (Nginx, Caddy, Traefik) que termina el HTTPS. Define la variable `WEBHOOK_URL` con la dirección pública; si no, n8n construye las URLs con `localhost` y el nodo muestra direcciones que nadie puede llamar.
 - **En local, para desarrollar.** `localhost` no es accesible desde fuera. Usa un túnel (Cloudflare Tunnel, ngrok) que publique temporalmente tu puerto `5678` y pon la URL del túnel en `WEBHOOK_URL`.
 
+Si instalaste n8n con [Primeros pasos de Moss Nexus](https://sergio-velandia.dev/Moss-Nexus/primeros-pasos/), agrega la variable en la sección `environment` de tu `docker-compose.yml`, sin cambiar lo demás:
+
+```yaml
+    environment:
+      # …las variables que ya tienes
+      - WEBHOOK_URL=https://n8n.example.com/
+```
+
+Después aplica el cambio. Docker recrea el contenedor con la misma versión de n8n, y tus datos siguen en el volumen:
+
 ```bash
-# Ejemplo con Docker y una URL pública ya preparada
-docker run -it --rm -p 5678:5678 \
-  -e WEBHOOK_URL="https://n8n.example.com/" \
-  -v n8n_data:/home/node/.n8n \
-  docker.n8n.io/n8nio/n8n
+docker compose up -d
 ```
 
 > Un túnel convierte tu máquina en un servidor público mientras está abierto. Ciérralo al terminar y protege el webhook (ver más abajo) aunque sea "solo para probar".

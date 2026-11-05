@@ -12,6 +12,12 @@ El campo `version` de `package.json` siempre coincide con la última versión pu
 
 ## [Sin publicar]
 
+## [1.16.2] - 2026-11-05
+
+### Cambiado
+- La instalación de n8n ahora tiene una sola fuente de verdad: [Primeros pasos de Moss Nexus](https://sergio-velandia.dev/Moss-Nexus/primeros-pasos/). La guía `instalar-n8n` conserva su URL, pasa a llamarse «Elegir dónde correr n8n: Cloud, Docker o npm» y se queda con el porqué: qué camino elegir y por qué importan la versión fija, el volumen, la zona horaria y la clave de cifrado. Salen los comandos de instalación, la comprobación, el día a día y sus errores frecuentes, y entra un aviso para quien instaló con la versión anterior, porque Docker Compose crea otro volumen.
+- Las guías de OAuth2 de Google y de Slack enlazan a Primeros pasos en lugar de repetir un `docker run` sin versión. La de webhooks explica cómo agregar `WEBHOOK_URL` al `docker-compose.yml`. La ruta «n8n, de cero a producción» cuenta que la instalación se hace en Moss Nexus.
+
 ## [1.16.1] - 2026-11-05
 
 ### Cambiado

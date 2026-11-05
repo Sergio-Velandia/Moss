@@ -8,13 +8,13 @@ nexus: true
 tags: [n8n, automatización, webhooks, ruta]
 technologies: [n8n, JavaScript]
 createdAt: 2026-10-14
-updatedAt: 2026-10-22
+updatedAt: 2026-11-05
 steps: [manual/n8n/instalar-n8n, manual/n8n/webhook-basico, lab/n8n-payload-builder, manual/n8n/entender-webhooks-y-triggers, lab/n8n-flow-simulator, manual/n8n/oauth2-de-google-en-n8n, manual/n8n/slack-en-n8n, manual/n8n/sincronizar-formulario-con-crm, manual/n8n/reporte-diario-automatico, manual/apis/idempotencia-en-pagos-y-webhooks, journal/cuando-un-webhook-llega-dos-veces, lab/retry-backoff, manual/apis/paginacion-y-limites-de-tasa, manual/n8n/orquestacion-y-manejo-de-errores, journal/migrando-scripts-a-n8n]
 ---
 
 ## Para quién es
 
-Para quien sabe qué quiere automatizar (un formulario que llegue al CRM, un reporte que se envíe solo) y quiere entender **cómo hacerlo bien**, no solo que funcione una vez. No hace falta haber usado n8n antes: el primer paso te ayuda a elegir entre n8n Cloud y Docker y a dejarlo instalado. Sí ayuda saber leer un poco de JSON.
+Para quien sabe qué quiere automatizar (un formulario que llegue al CRM, un reporte que se envíe solo) y quiere entender **cómo hacerlo bien**, no solo que funcione una vez. No hace falta haber usado n8n antes: el primer paso te ayuda a elegir entre n8n Cloud y Docker y te lleva a Moss Nexus para dejarlo instalado. Sí ayuda saber leer un poco de JSON.
 
 ## Qué vas a poder hacer al terminar
 

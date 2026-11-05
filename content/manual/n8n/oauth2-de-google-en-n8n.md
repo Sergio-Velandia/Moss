@@ -5,7 +5,7 @@ type: manual
 tags: [oauth2, google cloud, gmail, google calendar, google drive, google sheets, credenciales, docker, seguridad]
 technologies: [n8n, Google Cloud]
 createdAt: 2026-10-15
-updatedAt: 2026-10-16
+updatedAt: 2026-11-05
 related: [route/n8n-de-cero-a-produccion, manual/n8n/reporte-diario-automatico, manual/n8n/orquestacion-y-manejo-de-errores]
 references: [n8n: OAuth2 de Google para un servicio | https://docs.n8n.io/integrations/builtin/credentials/google/oauth-single-service/, n8n: credenciales de Google | https://docs.n8n.io/integrations/builtin/credentials/google/, Google: empezar con Google Auth Platform | https://support.google.com/cloud/answer/15544987, Google: OAuth 2.0 para las APIs de Google | https://developers.google.com/identity/protocols/oauth2, Google: permisos de la API de Gmail | https://developers.google.com/workspace/gmail/api/auth/scopes, Google: permisos de la API de Calendar | https://developers.google.com/workspace/calendar/api/auth, Google: permisos de la API de Drive | https://developers.google.com/workspace/drive/api/guides/api-specific-auth, Google: permisos de la API de Sheets | https://developers.google.com/workspace/sheets/api/scopes]
 ---
@@ -59,15 +59,7 @@ Por eso la *OAuth Redirect URL* es lo más delicado: Google solo devuelve el có
 ## Antes de empezar
 
 - Una cuenta de Google (aquí, Gmail personal).
-- n8n en marcha (si aún no lo tienes, sigue [Instalar n8n](/manual/n8n/instalar-n8n)). En Docker, con la zona horaria de tu ciudad: la plantilla de agenda se dispara a las 7:00 y lee los eventos «de hoy», y la de facturas registra la fecha de cada correo.
-
-```bash
-docker run -it --rm --name n8n -p 5678:5678 \
-  -e GENERIC_TIMEZONE="America/Bogota" -e TZ="America/Bogota" \
-  -v n8n_data:/home/node/.n8n \
-  docker.n8n.io/n8nio/n8n
-```
-
+- n8n en marcha (si aún no lo tienes, sigue [Primeros pasos de Moss Nexus](https://sergio-velandia.dev/Moss-Nexus/primeros-pasos/)). En Docker, con la zona horaria de tu ciudad: la plantilla de agenda se dispara a las 7:00 y lee los eventos «de hoy», y la de facturas registra la fecha de cada correo.
 - El flujo importado en n8n, para tener a mano los nodos que piden la credencial:
   - **Agenda del día:** «Eventos de hoy» (Google Calendar) y «Enviar por Gmail».
   - **Facturas:** el Gmail Trigger, «Subir a Drive» (Google Drive) y «Registrar factura» (Google Sheets).

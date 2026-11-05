@@ -5,6 +5,7 @@ type: manual
 tags: [slack, bot, token, credenciales, manifiesto, permisos, seguridad, docker]
 technologies: [n8n, Slack]
 createdAt: 2026-10-15
+updatedAt: 2026-11-05
 related: [manual/n8n/oauth2-de-google-en-n8n, manual/n8n/orquestacion-y-manejo-de-errores, manual/n8n/reporte-diario-automatico, route/n8n-de-cero-a-produccion]
 references: [n8n: credencial de Slack | https://docs.n8n.io/integrations/builtin/credentials/slack/, n8n: nodo de Slack | https://docs.n8n.io/integrations/builtin/app-nodes/n8n-nodes-base.slack/, Slack: configurar apps con un manifiesto | https://docs.slack.dev/app-manifests/configuring-apps-with-app-manifests, Slack: tipos de token | https://docs.slack.dev/authentication/tokens, Slack: permiso chat:write | https://docs.slack.dev/reference/scopes/chat.write, Slack: permiso channels:read | https://docs.slack.dev/reference/scopes/channels.read, Slack: permiso groups:read | https://docs.slack.dev/reference/scopes/groups.read, Slack: método chat.postMessage | https://docs.slack.dev/reference/methods/chat.postMessage]
 ---
@@ -52,15 +53,7 @@ Nodo Slack :: n8n llama a chat.postMessage con el token xoxb-
 ## Antes de empezar
 
 - Un espacio de trabajo de Slack donde puedas instalar apps. Si es de una empresa, puede que un administrador tenga que aprobar la instalación.
-- n8n en marcha (si aún no lo tienes, sigue [Instalar n8n](/manual/n8n/instalar-n8n)), por ejemplo en Docker:
-
-```bash
-docker run -it --rm --name n8n -p 5678:5678 \
-  -e GENERIC_TIMEZONE="America/Bogota" -e TZ="America/Bogota" \
-  -v n8n_data:/home/node/.n8n \
-  docker.n8n.io/n8nio/n8n
-```
-
+- n8n en marcha (si aún no lo tienes, sigue [Primeros pasos de Moss Nexus](https://sergio-velandia.dev/Moss-Nexus/primeros-pasos/)).
 - El flujo importado en n8n, para tener a mano el nodo de Slack que pide la credencial.
 - El canal donde llegarán los avisos ya creado (en esta guía, `#ventas`).
 
