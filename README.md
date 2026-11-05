@@ -1,189 +1,48 @@
 # 🌱 Moss — Digital Garden
 
-Mi "segundo cerebro" técnico: una biblioteca personal y visual donde guardo, documento, pruebo y reutilizo snippets, componentes, guías y artículos. Cada guía nace de algo que hice de verdad en mis proyectos (Moss, Moss Nexus y mi portafolio), y las rutas ordenan todo en recorridos de principio a fin.
+Mi "segundo cerebro" técnico: una biblioteca personal y visual donde guardo, documento, pruebo y reutilizo snippets, componentes, guías y artículos. Cada guía nace de algo que hice de verdad en mis proyectos, y las rutas ordenan todo en recorridos de principio a fin.
 
 > El conocimiento técnico no debería quedarse enterrado; debería ser fácil de encontrar, entender, probar, conectar y reutilizar.
 
-**Autor:** Sergio Andres Ramirez Velandia · [Portafolio](https://sergio-velandia.dev/mi-portafolio/) · [contacto@sergio-velandia.dev](mailto:contacto@sergio-velandia.dev) · [Propón una idea](https://sergio-velandia.dev/Moss/propon-una-idea)
+🌐 **En vivo:** https://sergio-velandia.dev/Moss/ · **Estado:** estable · [Cambios](CHANGELOG.md) · [Pendientes](ROADMAP.md)
 
-🌐 **En vivo:** https://sergio-velandia.dev/Moss/ · **Estado:** estable · **Pendientes:** [ROADMAP.md](ROADMAP.md)
+**Autor:** Sergio Andres Ramirez Velandia · [Portafolio](https://sergio-velandia.dev/mi-portafolio/) · [contacto@sergio-velandia.dev](mailto:contacto@sergio-velandia.dev) · [Propón una idea](https://sergio-velandia.dev/Moss/propon-una-idea)
 
 ## Secciones
 
-| Sección | Ruta | Qué es |
-| --- | --- | --- |
-| **Rutas** | `/rutas` | Recorridos ordenados de guías, demos y artículos; el mejor punto de partida |
-| **El Laboratorio** | `/laboratorio` | Componentes, Piezas Tailwind y retos con vista previa en vivo y código copiable |
-| **El Manual** | `/manual` | Documentación, configuraciones y guías, agrupadas por categoría |
-| **La Bitácora** | `/bitacora` | Blog técnico: aprendizajes, decisiones y errores |
-| **El Herbario** | `/herbario` | Búsqueda global sobre todo el contenido |
-| **Proyectos** | `/proyectos` | Cómo están hechos mis proyectos por dentro |
-| **Moss Nexus** | `/nexus` | El sitio hermano, con flujos de n8n listos para copiar |
-| **Propón una idea** | `/propon-una-idea` | Formularios para proponer contenido o escribirme |
-
-## Rutas
-
-`/rutas` reúne guías, demos, retos y artículos de un mismo tema en un recorrido ordenado, para aprenderlo de principio a fin:
-
-| Ruta | Nivel | Pasos |
-| --- | --- | --- |
-| n8n, de cero a producción | Intermedio | 15, empieza instalando n8n, suma Slack junto a Google y enlaza las 9 plantillas probadas de Moss Nexus para practicar |
-| CSS y Tailwind, de las bases a interfaces reales | Inicial | 17 lecturas y demos en 9 pasos; 8 guías todavía «Próximamente» |
-| Frontend con React y Tailwind | Intermedio | 9 |
-| Datos y reportes con SQL | Intermedio | 9 |
-| Del repo a producción: publicar y mantener un proyecto web | Inicial | 11 pasos y un proyecto final (15 lecturas), con la evidencia real de Moss, Moss Nexus y el portafolio |
-
-Cada paso se marca como hecho y el progreso se guarda **solo en el navegador** (`moss-route-progress`, descrito en la privacidad). Dentro de cada guía o demo que forma parte de una ruta aparece en qué paso estás y cuál viene después. El tiempo estimado suma el tiempo de lectura real de cada documento y 5 minutos por demo.
-
-## Proyectos
-
-`/proyectos` documenta mis proyectos como un ingeniero explica su trabajo: cómo están armados por dentro, cómo viajan los datos, qué decisiones tomé (con la alternativa descartada) y qué aprendí. No repite los README: los enlaza. Hoy: Moss, Moss Nexus, Moss Taste y el portafolio.
-
-Cada proyecto se ve con su propia identidad: Moss en salvia, Moss Nexus en musgo y coral, Moss Taste en berenjena sobre su fondo claro, y el portafolio en grafito con un único acento dorado, tomados de los estilos de cada repositorio. La usan solo las tarjetas del índice y los botones de la ficha (clases `.pt-*` en `src/index.css`); al pasar el cursor, la tarjeta tiñe su borde y enciende un resplandor de su color sin levantarse.
-
-Cada página sigue la misma plantilla, en este orden: **Ficha, Arquitectura, Flujo de datos, Decisiones, Lecciones y Roadmap**, más los relacionados. La ficha muestra «Documentado en vX.Y.Z» y «Última revisión», que salen del frontmatter; si alguno falta, las pruebas fallan.
-
-## Moss Nexus
-
-[Moss Nexus](https://sergio-velandia.dev/Moss-Nexus/) es el sitio hermano: una librería de flujos de n8n ya armados, explicados y listos para copiar. En Moss se aprende el porqué; en Nexus se copia el flujo y se usa. Nexus es **estable desde la v1.0.0**: 13 plantillas, 9 con el sello «Probado» en una instancia real de n8n y 4 marcadas «Sin probar».
-
-- La ruta «n8n, de cero a producción» enlaza las 9 plantillas probadas, cada una con los pasos que necesita, y las guías de OAuth2 de Google, Slack y manejo de errores nacieron de esas pruebas.
-
-- La página `/nexus` lo presenta y la cabecera (y el menú móvil) tiene un acceso con su marca.
-- Solo esos dos elementos usan el estilo de Nexus: sus tokens viven aislados en la clase `.nexus` de `src/index.css`, copiados del repositorio de Nexus, y sus fuentes (Inter y JetBrains Mono) se cargan solo en `/nexus`. El resto de Moss no cambia.
-- La URL está en una sola constante, `site.nexusUrl` en `src/data/site.ts`; una prueba impide repetirla en el código.
-- Nexus es un proyecto independiente, sin relación oficial con n8n GmbH.
-
-## Pantalla de entrada
-
-Quien llega de afuera ve 2,6 s de animación: unos 70 granos se juntan en el brote de Moss, el nombre se condensa de la neblina y todo se difumina hasta dejar ver la página. Es de la misma familia que las de Moss Taste y Moss Nexus.
-
-- Vive en `index.html`, sin React (`src/styles/entrada.css` y sus tokens `--c-entrada-*`), así que el build la lleva a todas las páginas y no retrasa nada: es una capa fija que se quita sola, y un toque o una tecla la saltan.
-- **Cuándo no aparece:** al recargar, al volver atrás, al navegar dentro del sitio, con movimiento reducido o si la dirección trae `#sección`, porque esa persona ya sabe qué viene a leer. Venir de un proyecto hermano sí cuenta como llegar de afuera.
-- **No guarda nada en el navegador:** decide con el tipo de navegación y el referente. El lema sale en inglés leyendo `?lang=` o la clave `moss-lang`, que ya existía. La política de privacidad no cambia.
-- Solo anima `transform` y `opacity`, y nunca dura más de 3 s. El difuminado es una copia ya borrosa del nombre que aparece y se va. Lo comprueban `src/styles/entrada.test.ts` y `scripts/entrada-css.test.ts`.
-
-## Propón una idea
-
-[`/propon-una-idea`](https://sergio-velandia.dev/Moss/propon-una-idea) tiene dos formularios en pestañas: **Propón una idea** (una guía, una ruta, un experimento, un flujo de n8n u otra cosa) y **Habla conmigo** (`?formulario=habla-conmigo`). Si alguien elige «Un flujo de n8n», el formulario le enlaza el de Moss Nexus.
-
-- Los campos son datos en `src/lib/contact-form.ts`, con sus textos en español e inglés; ahí viven también la validación, el armado del correo (siempre en español, con el asunto empezando por `[Moss]`) y el envío.
-- El envío usa la API REST de **EmailJS** con `fetch`, sin su SDK. Sus tres identificadores (`site.emailjs` en `src/data/site.ts`) son públicos por diseño: viajan al navegador. La plantilla y el correo de destino se configuran en EmailJS, y es la misma que usa Moss Nexus, con las variables `tipo`, `nombre`, `correo` (como Reply-To), `asunto` y `mensaje`. Si falta algún identificador, el formulario avisa de que el envío no está activo.
-- Contra el spam: un campo trampa oculto (`sitio_web`) y una espera de 60 segundos entre dos envíos de la misma visita.
-- Accesibilidad: pestañas con el patrón ARIA (flechas del teclado), errores junto a cada campo con `aria-invalid` y `aria-describedby`, foco en el primer error y estados anunciados en una región `aria-live`.
-- Lo que pasa con los datos está en la [privacidad](https://sergio-velandia.dev/Moss/privacidad#formularios), y la cláusula de propuestas, en la sección 9 de los términos.
-
-## Qué hay dentro
-
-**Laboratorio (17 demos)**
-
-| Demo | Categoría |
+| Sección | Qué es |
 | --- | --- |
-| Acordeón accesible | Interfaz |
-| Botón con estados (normal, cargando, éxito) | Interfaz |
-| Botón de copiar al portapapeles | Interfaz |
-| Animación de entrada escalonada | Interfaz |
-| Skeleton loader | Interfaz |
-| Tarjeta tilt 3D | Interfaz |
-| Generador de payloads para n8n | Automatización |
-| Simulador de flujo n8n | Automatización |
-| Reintentos con backoff y jitter | Automatización |
-| Resumen de factura con IVA | Datos |
-| Exportar a CSV que Excel abre bien | Datos |
-| Reto: la tarjeta que rompe la cuadrícula | Retos Tailwind |
-| Reto: la cabecera que no cabe (container queries) | Retos Tailwind |
-| Reto: una tarjeta, tres identidades (variables CSS) | Retos Tailwind |
-| Pieza: botones con variantes | Piezas Tailwind |
-| Pieza: tarjetas enlazadas | Piezas Tailwind |
-| Pieza: chips, etiquetas e insignias | Piezas Tailwind |
-
-Los **retos** reproducen un error real con un interruptor «Sin arreglo / Con arreglo» y explican la causa.
-
-Las **piezas** son componentes que ya uso en Moss y Moss Nexus, en versión limpia para copiar: muestran sus variantes, funcionan en los dos temas y traen notas de accesibilidad y movimiento, dónde se usan de verdad y el manual o la bitácora que las explica. Solo animan `transform` y `opacity`. Pendientes de próximos lotes: formularios, avisos y estados vacíos; navegación, pestañas y acordeón; modal, skeleton e interruptor de tema. El chip que se puede quitar (×) queda pendiente hasta que lo use en alguna app.
-
-**Manual (32 guías)**
-
-Las guías marcadas con ★ parten de un problema real de empresa: duplicados en el CRM, reportes que nadie quiere hacer, cobros dobles, exportaciones que Excel rompe…
-
-| Categoría | Guía |
-| --- | --- |
-| CSS | Capas CSS y tokens en Tailwind 4 |
-| Publicar y mantener | Una SPA en GitHub Pages sin 404 |
-| Publicar y mantener | Dominio propio para GitHub Pages con Cloudflare DNS y correo |
-| Publicar y mantener | Correo con tu dominio usando Cloudflare Email Routing |
-| Publicar y mantener | Migrar a un dominio nuevo sin romper nada |
-| Publicar y mantener | La fase legal en un proyecto personal |
-| Publicar y mantener | Que se vea bien al compartirlo: Open Graph, canonical, sitemap y robots |
-| Publicar y mantener | Mantener vivo un proyecto publicado |
-| Publicar y mantener | Proyecto final: publica tu propio sitio de principio a fin |
-| Git | Git con intención: commits que cuentan qué cambió |
-| Git | Un README que se lee |
-| APIs | Conectar la API de Gemini de forma segura |
-| APIs | ★ Idempotencia en pagos y webhooks |
-| APIs | ★ Paginación y límites de tasa en APIs de terceros |
-| JavaScript | Debounce y throttle |
-| JavaScript | Fetch con manejo de errores y tiempo límite |
-| JavaScript | ★ Exportar CSV que Excel abre bien |
-| JavaScript | ★ Dinero y fechas sin errores con Intl |
-| JavaScript | Verificar la interfaz con capturas reales |
-| n8n | Instalar n8n en tu equipo con Docker o empezar en n8n Cloud |
-| n8n | Webhook básico |
-| n8n | Entender webhooks y triggers |
-| n8n | Conectar Gmail, Google Calendar, Google Drive y Google Sheets a n8n con OAuth2 |
-| n8n | Orquestación y manejo de errores |
-| n8n | Conectar Slack a n8n con un bot (token xoxb) |
-| n8n | ★ Reporte diario automático por correo o Slack |
-| n8n | ★ Sincronizar un formulario con el CRM sin duplicados |
-| React | Estructura de proyecto |
-| React | Interfaz bilingüe sin librerías |
-| SQL | Agrupar con GROUP BY |
-| SQL | ★ Detectar y fusionar clientes duplicados |
-| SQL | ★ Reporte de ventas mensual con variación |
-
-**Bitácora (16 artículos)**
-
-| Artículo | Categoría |
-| --- | --- |
-| Por qué Moss no usa base de datos | Arquitectura |
-| Cómo funciona la búsqueda del Herbario | Arquitectura |
-| La accesibilidad que no se ve | Aprendizajes |
-| Un botón también tiene estados | Aprendizajes |
-| Apuntes sobre la tarjeta tilt 3D | Aprendizajes |
-| La naturaleza de Moss | Filosofía |
-| Migrando scripts sueltos a flujos de n8n | Arquitectura |
-| El reporte que nadie quería hacer | Aprendizajes |
-| Datos sucios, el problema silencioso | Arquitectura |
-| Cuando un webhook llega dos veces | Arquitectura |
-| Lo que encontraron las capturas | Aprendizajes |
-| Versionar después | Aprendizajes |
-| Documentar proyectos sin repetir el README | Arquitectura |
-| Rutas con lo que ya existe | Arquitectura |
-| Lo que encontré al revisar mi propio jardín | Aprendizajes |
-| Un recetario que nunca asume cero | Aprendizajes |
-
-## Stack
-
-React 19 · Vite · TypeScript · Tailwind CSS 4 · React Router · Motion · Recharts · Lucide · react-markdown · Shiki · MiniSearch · Vitest · oxlint.
-
-El contenido vive en archivos del repositorio, versionados con Git. Sin base de datos ni backend.
+| [**Rutas**](https://sergio-velandia.dev/Moss/rutas) | Recorridos ordenados de guías, demos y artículos; el mejor punto de partida |
+| [**El Laboratorio**](https://sergio-velandia.dev/Moss/laboratorio) | Componentes, Piezas Tailwind y retos con vista previa en vivo y código copiable |
+| [**El Manual**](https://sergio-velandia.dev/Moss/manual) | Documentación, configuraciones y guías, agrupadas por categoría |
+| [**La Bitácora**](https://sergio-velandia.dev/Moss/bitacora) | Blog técnico: aprendizajes, decisiones y errores |
+| [**El Herbario**](https://sergio-velandia.dev/Moss/herbario) | Búsqueda global sobre todo el contenido |
+| [**Proyectos**](https://sergio-velandia.dev/Moss/proyectos) | Cómo están hechos mis proyectos por dentro |
+| [**Moss Nexus**](https://sergio-velandia.dev/Moss/nexus) | El sitio hermano, con flujos de n8n listos para copiar. Proyecto independiente, sin relación oficial con n8n GmbH |
+| [**Propón una idea**](https://sergio-velandia.dev/Moss/propon-una-idea) | Formularios para proponer contenido o escribirme |
 
 ## Empezar
 
-Requisitos: Node.js 20 o superior.
+Requisitos: Node.js 22.13 o superior en la rama 22, o 24 en adelante. El despliegue usa la 22.
 
 ```bash
 npm install
 npm run dev      # servidor de desarrollo en http://localhost:5173
 npm run build    # comprobación de tipos + build de producción en dist/
 npm run preview  # sirve dist/ para revisar el build
-npm run test     # pruebas (búsqueda y contenido)
+npm run test     # pruebas de datos, contenido y comportamiento
 npm run lint
 npm run check:publish   # falla si site.ts aún tiene datos sin rellenar
 ```
 
+**Stack:** React · Vite · TypeScript · Tailwind CSS · React Router · Motion · Recharts · Lucide · react-markdown · Shiki · MiniSearch · Vitest · oxlint. El contenido vive en archivos del repositorio, versionados con Git. Sin base de datos ni backend.
+
+Cómo está armado por dentro, con sus decisiones y lo que aprendí, está en [su ficha de Proyectos](https://sergio-velandia.dev/Moss/proyectos/moss).
+
 ## Cómo añadir contenido
 
-### Una demo al Laboratorio
+<details>
+<summary><strong>Una demo al Laboratorio</strong></summary>
 
 Crea un archivo en `src/lab/entries/`, por ejemplo `mi-demo.tsx`. Exporta `meta` y el componente por defecto. El código que se muestra en la web es el propio archivo.
 
@@ -194,7 +53,7 @@ export const meta: LabMeta = {
   title: 'Mi demo',
   description: 'Qué hace, en una frase.',
   technology: 'React', // React | CSS | HTML | JavaScript
-  category: 'Botones',
+  category: 'Interfaz', // una categoría con una sola demo no pasa las pruebas
   tags: ['botón', 'hover'],
   createdAt: '2026-10-10',
   usage: 'Cómo se usa.',
@@ -211,15 +70,19 @@ export default function MiDemo() {
 
 Las piezas de la categoría **Piezas Tailwind** deben traer `notes`, `usedIn` y al menos un `related` a un manual o artículo: las pruebas lo exigen, igual que que cada `related` exista y que `usedIn` apunte a `sergio-velandia.dev`. Para los enlaces a Moss Nexus, usa `site.nexusUrl`.
 
-### Un documento al Manual
+</details>
 
-Crea `content/manual/<categoría>/<nombre>.md`. La carpeta es la categoría (`react`, `sql`, `apis`, `n8n`, `javascript`…) y forma parte de la URL; el nombre que se ve se escribe en `MANUAL_CATEGORY_NAMES` (`src/lib/content.ts`), y una prueba exige que toda carpeta tenga el suyo.
+<details>
+<summary><strong>Un documento al Manual o un artículo a la Bitácora</strong></summary>
 
-### Un artículo a la Bitácora
+**Manual:** crea `content/manual/<categoría>/<nombre>.md`. La carpeta es la categoría y forma parte de la URL; el nombre que se ve se escribe en `MANUAL_CATEGORY_NAMES` (`src/lib/content.ts`), y una prueba exige que toda carpeta tenga el suyo.
 
-Crea `content/journal/<nombre>.md`.
+**Bitácora:** crea `content/journal/<nombre>.md`.
 
-### Una ruta
+</details>
+
+<details>
+<summary><strong>Una ruta</strong></summary>
 
 Crea `content/routes/<slug>.md`; aparece en `/rutas/<slug>` y el build le da una ruta que responde 200:
 
@@ -235,13 +98,16 @@ steps: [manual/n8n/webhook-basico, lab/n8n-payload-builder, …]
 
 `validateRoute` exige al menos 4 pasos que existan, sin repetir, y que mezclen al menos dos secciones. El cuerpo del Markdown explica para quién es la ruta y qué se sabe hacer al terminar.
 
-### Un proyecto
+</details>
+
+<details>
+<summary><strong>Un proyecto</strong></summary>
 
 Crea `content/projects/<slug>.md`; la página aparece en `/proyectos/<slug>` y el build le da una ruta que responde 200. Además del frontmatter común, lleva:
 
 ```md
 status: estable         # desarrollo | estable | mantenimiento | pausado (los del ECOSISTEMA)
-theme: moss             # moss | nexus | portafolio: paleta de su tarjeta y sus botones
+theme: moss             # uno de PROJECT_THEMES (src/lib/content.ts)
 version: 0.7.5          # versión del proyecto que describe la página («auto» en la ficha de Moss: sale de package.json)
 reviewedAt: 2026-10-12  # última vez que se contrastó con el código
 repo: https://github.com/…
@@ -250,7 +116,12 @@ site: https://…
 
 `validateProject` (`src/lib/content.ts`) exige esos campos, las secciones `## Ficha`, `## Arquitectura`, `## Flujo de datos`, `## Decisiones`, `## Lecciones` y `## Roadmap` en ese orden, un diagrama en Arquitectura y en Flujo de datos, y al menos cuatro decisiones escritas como `- **Decisión:** … **En vez de:** … **Porque:** …`. Al revisar una página contra el código, actualiza `reviewedAt` (y `version` si cambió).
 
-### Metadatos (frontmatter)
+Un proyecto con identidad nueva suma su tema a `PROJECT_THEMES`, su clase `.pt-*` en `src/index.css` y su marca en `ProjectMark.tsx`. Esa identidad la usan solo las tarjetas del índice y los botones de la ficha.
+
+</details>
+
+<details>
+<summary><strong>Metadatos (frontmatter)</strong></summary>
 
 ```md
 ---
@@ -268,11 +139,16 @@ references: [Nodo Webhook | https://docs.n8n.io/integrations/builtin/core-nodes/
 ---
 ```
 
-Los ids de `related` son `lab/<archivo>`, `manual/<categoría>/<archivo>` o `journal/<archivo>`. Una prueba automática avisa si alguno apunta a algo que no existe.
+Los ids de `related` son `lab/<archivo>`, `manual/<categoría>/<archivo>`, `journal/<archivo>`, `route/<slug>` o `project/<slug>`. Una prueba automática avisa si alguno apunta a algo que no existe.
 
 `references` llena el cuadro **"Leer la documentación oficial"** al final de cada guía del Manual: cada elemento es `Título | https://…` (solo se aceptan enlaces https, y el título no puede llevar comas). Una prueba exige que todas las guías del Manual tengan al menos una referencia.
 
-### Imágenes
+> El parser de frontmatter es mínimo a propósito: admite texto, `true/false` y listas en una línea `[a, b]`. No admite listas multilínea ni comas dentro de un elemento de la lista.
+
+</details>
+
+<details>
+<summary><strong>Imágenes</strong></summary>
 
 Guarda la imagen en `content/images/` con sus dimensiones al final del nombre y cítala desde cualquier documento:
 
@@ -282,7 +158,10 @@ Guarda la imagen en `content/images/` con sus dimensiones al final del nombre y 
 
 El sufijo `-<ancho>x<alto>` da al `<img>` sus dimensiones, así la página no salta al cargar; se carga de forma diferida y Vite le pone hash. Usa WebP. Las pruebas exigen que cada imagen citada exista, tenga un texto alternativo real y que no queden imágenes sin usar.
 
-### Diagramas dentro del Markdown
+</details>
+
+<details>
+<summary><strong>Diagramas dentro del Markdown</strong></summary>
 
 Un bloque de código con el lenguaje `flow` o `mindmap` se dibuja como diagrama (HTML y CSS con los colores del tema, sin librerías) en lugar de mostrarse como código. Para un lector de pantalla son listas: pasos en orden o ramas con sus hijos.
 
@@ -308,73 +187,34 @@ Debounce y throttle
 
 Los nodos aparecen uno tras otro la primera vez que el diagrama entra en pantalla, y de golpe si el sistema pide menos movimiento. Una prueba exige al menos un diagrama por guía del Manual.
 
-> El parser de frontmatter es mínimo a propósito: admite texto, `true/false` y listas en una línea `[a, b]`. No admite listas multilínea ni comas dentro de un elemento de la lista.
+</details>
 
-## Búsqueda
+## Notas para mantenerlo
 
-El Herbario indexa título, descripción, etiquetas, tecnologías y contenido completo (incluido el código de las demos). "Explorar por etiqueta" muestra primero las 16 etiquetas más usadas, con cuántos elementos tiene cada una, y el resto se despliega con "Ver todas". Ignora tildes y palabras vacías ("de", "para"…), tolera pequeñas erratas y exige todas las palabras de la consulta; si no hay resultados, acepta cualquiera. El índice se construye en el navegador la primera vez que se busca. Los filtros viven en la URL (`?q=…&tipo=…&tec=…`), así que una búsqueda se puede compartir.
+- **Rutas.** El progreso se guarda solo en el navegador (`moss-route-progress`, descrito en la privacidad). El tiempo estimado suma el tiempo de lectura de cada documento y `LAB_MINUTES` por demo.
+- **Moss Nexus.** Sus tokens viven aislados en la clase `.nexus` de `src/index.css`, copiados de su repositorio, y sus fuentes se cargan solo en `/nexus`. La URL está en una sola constante, `site.nexusUrl` en `src/data/site.ts`; una prueba impide repetirla en el código.
+- **Pantalla de entrada.** Vive en `index.html`, sin React, con `src/styles/entrada.css` y los tokens `--c-entrada-*`, así que el build la lleva a todas las páginas. No guarda nada en el navegador. `src/styles/entrada.test.ts` y `scripts/entrada-css.test.ts` comprueban cuándo aparece, su duración máxima, que solo anime `transform` y `opacity`, y su contraste.
+- **Formularios.** Los campos, sus textos, la validación, el correo y el envío están en `src/lib/contact-form.ts`. El envío usa la API REST de EmailJS con `fetch`, sin su SDK. Sus tres identificadores (`site.emailjs`) son públicos por diseño: viajan al navegador. La plantilla y el correo de destino se configuran en EmailJS, y es la misma que usa Moss Nexus, con las variables `tipo`, `nombre`, `correo` (como Reply-To), `asunto` y `mensaje`. Si falta un identificador, el formulario avisa de que el envío no está activo.
+- **Tablero del Inicio.** `getGardenItems()` en `src/lib/dashboard.ts` reúne demos y documentos, y las cifras salen de funciones puras con pruebas. Si una tecnología aparece con varios nombres, añade el alias en `technologyAliases` (clave en minúsculas → nombre visible). Con menos de `MIN_REAL_ITEMS` elementos reales, el tablero muestra datos de ejemplo, editables en `mockSeed`, y una nota que lo indica. Las series usan los tokens `--c-chart-*`.
+- **Idioma.** Se traduce la interfaz, no el contenido. Cada componente tiene su objeto `TEXT = { es: {...}, en: {...} }` y lo lee con `const t = useT(TEXT)`. Cómo funciona: [Interfaz bilingüe sin librerías](https://sergio-velandia.dev/Moss/manual/react/interfaz-bilingue-sin-librerias).
+- **Tema.** Los colores son tokens en `src/index.css`: para cambiar la paleta basta con editar las variables de `:root` y `:root[data-theme="dark"]`.
+- **Páginas legales.** Se escriben en `content/legal/*.md` y leen sus datos de `src/data/site.ts` con las variables `{{owner}}`, `{{email}}`, `{{portfolio}}`, `{{repo}}` y `{{country}}`.
 
-## Dashboard del Inicio
+> Los textos legales son un borrador base redactado a partir de lo que Moss hace hoy; **no son asesoría legal**. Si añades analítica, cookies u otros formularios, actualiza antes la política de privacidad.
 
-La columna "Signos vitales del jardín" del Inicio resume el contenido en tres gráficos: el ritmo de crecimiento (elementos por mes, con los meses vacíos a 0 y como mucho los últimos 12), el ecosistema (las 7 tecnologías más mencionadas) y la distribución entre Laboratorio, Manual y Bitácora.
+## Despliegue
 
-- **De dónde salen los datos.** `getGardenItems()` en `src/lib/dashboard.ts` reúne las demos (`technology` de su `meta`) y los documentos (`technologies` y `createdAt` del frontmatter), sin borradores en la web publicada. Los proyectos no cuentan: el tablero mide lo plantado, y las fichas de proyecto describen repositorios. Las agregaciones (`byMonth`, `byTechnology`, `byType`) son funciones puras con pruebas en `dashboard.test.ts`; todas las cifras de las tarjetas salen de ellas.
-- **Añadir o unificar tecnologías.** No hay que registrar nada: basta con escribirla en el frontmatter. Si aparece con varios nombres (`react`, `React.js`), añade el alias en `technologyAliases` (clave en minúsculas → nombre visible).
-- **Datos de ejemplo.** Con menos de `MIN_REAL_ITEMS` (10) elementos reales, el tablero muestra `MOCK_ITEMS` y una nota que lo indica. Se editan en `mockSeed`: cada fila es `[meses atrás, día, tipo, título, tecnologías]`, así que el ejemplo siempre termina en el mes actual.
-- **Colores.** Las series usan los tokens `--c-chart-1`, `--c-chart-2` y `--c-chart-3` de `src/index.css` (contraste ≥ 3:1 en ambos temas).
-- **Accesibilidad.** Cada tarjeta es una `<figure>` con su frase resumen y un desplegable "Ver datos como tabla". Las barras y el radar se recorren con el teclado (Tab y flechas).
-
-## Idioma
-
-El selector **ES / EN** de la cabecera cambia la interfaz entre español (por defecto) e inglés. La elección se guarda en el navegador (`moss-lang`), `?lang=en` en la URL abre la página directamente en inglés (útil para compartir) y `<html lang>` se actualiza para lectores de pantalla.
-
-- Se traduce la **interfaz**: navegación, páginas, filtros, el tablero del Inicio, los avisos y las etiquetas de accesibilidad. El contenido (Markdown, demos y textos legales) sigue en español; en inglés, las páginas de contenido muestran el aviso "This content is written in Spanish" y ese contenido va marcado con `lang="es"`.
-- Sin librerías: `src/lib/i18n.ts` guarda el idioma igual que `theme.ts` guarda el tema. Cada componente tiene su objeto `TEXT = { es: {...}, en: {...} }` y lo lee con `const t = useT(TEXT)`.
-
-## Tema claro y oscuro
-
-El botón de la cabecera alterna entre los dos temas. Sin elección manual, Moss sigue el tema del sistema; la elección se guarda en el navegador (`moss-theme`) y se aplica antes de pintar para evitar el parpadeo. Los colores son tokens en `src/index.css`: para cambiar la paleta basta con editar las variables de `:root` y `:root[data-theme="dark"]`.
-
-## Accesibilidad y móvil
-
-- Navegación por teclado completa, enlace "Saltar al contenido", foco visible y foco movido al contenido al cambiar de página.
-- Menú con `aria-expanded`, cierre con Escape y botones de al menos 44 px en pantallas táctiles. Se usa por debajo de 1024 px; desde ahí la navegación completa cabe en la cabecera.
-- Cada página fija su propio título.
-- Respeta `prefers-reduced-motion` (animaciones de entrada y tarjeta tilt).
-- Contraste de colores comprobado contra WCAG 2.2 AA en ambos temas.
-- El contenido Markdown no ejecuta HTML crudo.
-
-## Rendimiento
-
-- El Herbario, los artículos y las páginas legales se cargan bajo demanda (lazy loading): el renderizador de Markdown y el buscador solo se descargan al visitarlas.
-- El dashboard del Inicio (Recharts) va en su propio chunk y se carga con un esqueleto de las mismas medidas.
-- La página de Nexus y sus fuentes se descargan solo al visitarla.
-- El resaltado de código con Shiki carga cada lenguaje por separado.
-
-## Páginas legales
-
-`/terminos`, `/privacidad` y `/proteccion-de-datos` se escriben en `content/legal/*.md` y leen sus datos de `src/data/site.ts` (nombre, correo, portafolio, país) mediante las variables `{{owner}}`, `{{email}}`, `{{portfolio}}`, `{{repo}}` y `{{country}}`.
-
-> Los textos son un borrador base redactado a partir de lo que Moss hace hoy (sin cuentas, cookies ni analítica, y con un formulario de contacto que envía por EmailJS); **no son asesoría legal**. Si añades analítica, cookies u otros formularios, actualiza antes la política de privacidad.
-
-## Despliegue en GitHub Pages
-
-🌐 **En línea:** https://sergio-velandia.dev/Moss/
-
-El sitio usa el dominio propio `sergio-velandia.dev`, configurado en el repositorio raíz `Sergio-Velandia.github.io`: los proyectos lo heredan con su misma ruta, así que el `base` de Vite sigue siendo `/Moss/`. Las direcciones antiguas de `github.io` redirigen solas al dominio nuevo.
-
-El despliegue es automático: cada push a `main` ejecuta el workflow [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml), que comprueba `site.ts`, pasa las pruebas y el lint, genera el build y lo publica en GitHub Pages. También se puede lanzar a mano desde la pestaña **Actions** (*Run workflow*). Si algún paso falla, no se publica nada y la versión anterior sigue en línea.
+Cada push a `main` ejecuta [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml), que comprueba `site.ts`, pasa las pruebas y el lint, genera el build y lo publica en GitHub Pages. También se puede lanzar a mano desde la pestaña **Actions**. Si algún paso falla, no se publica nada y la versión anterior sigue en línea.
 
 **Configuración única en GitHub:** *Settings → Pages → Build and deployment → Source: **GitHub Actions***.
 
-Cómo está preparado el proyecto para vivir en la subruta `/Moss/`:
+El dominio propio está configurado en el repositorio raíz `Sergio-Velandia.github.io`, igual que el `robots.txt`. Los proyectos heredan el dominio con su misma ruta, así que el `base` de Vite sigue siendo `/Moss/`. Si tocas esto:
 
-- **`vite.config.ts`** usa `base: '/Moss/'` al hacer el build (en desarrollo sigue en la raíz `/`). Si renombras el repositorio, cambia este valor.
-- **`src/App.tsx`** pasa `basename={import.meta.env.BASE_URL}` al `BrowserRouter`, así que las rutas y los enlaces internos (también los de Markdown) incluyen la subruta solos.
-- **`index.html`** referencia los archivos de `public/` con `%BASE_URL%` (por ejemplo `%BASE_URL%favicon.svg`). Haz lo mismo con cualquier recurso nuevo de `public/`; dentro de componentes usa `import.meta.env.BASE_URL`.
-- **Recargar una ruta interna** (`/Moss/manual/...`) funciona porque el workflow copia `index.html` como `404.html`: GitHub Pages lo sirve y React Router resuelve la ruta en el navegador. Esas páginas responden con código HTTP 404 aunque se vean bien.
-- **Todas las páginas responden 200.** Tras el build, `scripts/static-pages.ts` crea un `<ruta>/index.html` por cada sección (`STATIC_ROUTES` en `vite.config.ts`), cada documento del Manual, la Bitácora, Rutas, Proyectos y páginas legales, y cada demo del Laboratorio, con su propio `<title>` y su descripción. Así GitHub Pages las sirve con código 200 y los buscadores las pueden indexar; el `404.html` queda solo para direcciones que no existen. Las pruebas comprueban que las secciones existan en el router y que cada página tenga título.
-- **Para compartir y para buscadores.** `index.html` declara `canonical`, Open Graph y Twitter Card con `https://sergio-velandia.dev/Moss/` y la imagen `public/og.png` (1200×630). En cada página generada, el build cambia `canonical`, `og:url`, los títulos y las descripciones, y escribe `sitemap.xml` con todas las URLs. Las pruebas comprueban las etiquetas, que la imagen exista y mida lo que declaran, y el sitemap. El `robots.txt` no va aquí: tiene que estar en la raíz del dominio (repositorio `Sergio-Velandia.github.io`), ver [ROADMAP.md](ROADMAP.md).
+- **Si renombras el repositorio,** cambia `base` en `vite.config.ts`.
+- **Un recurso nuevo de `public/`** se referencia con `%BASE_URL%` en `index.html` y con `import.meta.env.BASE_URL` en los componentes.
+- **Una sección nueva** se suma a `STATIC_ROUTES` en `vite.config.ts`, para que `scripts/static-pages.ts` le cree su página con código 200, su título, su descripción y sus metadatos para compartir. Las pruebas comprueban que las secciones existan en el router y que cada página tenga título.
+
+Cómo y por qué: [Una SPA en GitHub Pages sin 404](https://sergio-velandia.dev/Moss/manual/despliegue/spa-en-github-pages-sin-404) y [Que se vea bien al compartirlo](https://sergio-velandia.dev/Moss/manual/despliegue/que-se-vea-bien-al-compartirlo).
 
 Para revisar el build igual que en producción:
 
@@ -382,36 +222,9 @@ Para revisar el build igual que en producción:
 npm run build && npm run preview   # abre http://localhost:4173/Moss/
 ```
 
-## Estructura
-
-```
-content/
-├── manual/<categoría>/*.md
-├── journal/*.md
-├── projects/*.md
-├── routes/*.md
-└── legal/*.md
-public/            # favicon e imágenes estáticas
-scripts/           # check-site.mjs: comprobación antes de publicar
-src/
-├── components/    # layout, code, content, dashboard, nexus
-├── lab/entries/   # demos del Laboratorio
-├── data/          # site.ts: autor, contacto, portafolio, repositorio y URL de Nexus
-├── lib/           # lab, content, knowledge, search, frontmatter, theme, legal
-└── pages/
-```
-
 ## Seguridad
 
-Este repositorio es público. No se guardan claves reales: usa variables de entorno (`.env`, ignorado por Git) y valores ficticios en los ejemplos. Ver `.env.example`. Ten en cuenta que en Vite cualquier variable `VITE_*` acaba dentro del JavaScript publicado, así que nunca debe contener secretos. Los identificadores de EmailJS de `site.ts` no son secretos: EmailJS los diseña para ir en el navegador. Las demos son componentes locales preparados; Moss no ejecuta código arbitrario.
-
-## Estado
-
-✅ **Estable desde la versión 1.0.** Desde entonces creció con rutas de aprendizaje, la sección Proyectos, Piezas Tailwind en el Laboratorio, un dominio propio, un formulario de contacto, páginas que responden 200 y metadatos para compartir. Desde aquí crece con contenido nuevo: guías, piezas y lotes, cada uno en su versión.
-
-El historial de versiones está en [CHANGELOG.md](CHANGELOG.md), con [Versionado Semántico](https://semver.org/lang/es/): MINOR para funciones o lotes de contenido nuevos, PATCH para correcciones y documentación, y MAJOR si cambian rutas existentes. La versión de `package.json` coincide siempre con la última del CHANGELOG, y cada versión se marca con un tag `vX.Y.Z`.
-
-Lo que falta (guías anunciadas en las rutas, lotes del Laboratorio, el `robots.txt` del dominio, rendimiento y tareas de los proyectos hermanos) está ordenado en [ROADMAP.md](ROADMAP.md), y en el sitio se ve como «Próximamente».
+Este repositorio es público. No se guardan claves reales: usa variables de entorno (`.env`, ignorado por Git) y valores ficticios en los ejemplos. Ver `.env.example`. Ten en cuenta que en Vite cualquier variable `VITE_*` acaba dentro del JavaScript publicado, así que nunca debe contener secretos. Las demos son componentes locales preparados; Moss no ejecuta código arbitrario.
 
 ## Licencia
 
