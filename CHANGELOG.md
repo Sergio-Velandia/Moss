@@ -12,6 +12,15 @@ El campo `version` de `package.json` siempre coincide con la última versión pu
 
 ## [Sin publicar]
 
+## [1.16.0] - 2026-11-05
+
+### Añadido
+- Ficha de **Moss Taste** en Proyectos (v1.1.0, estable): arquitectura, flujo de datos, decisiones, lecciones y roadmap, con su identidad en berenjena sobre su fondo claro.
+- Artículo de la Bitácora **«Un recetario que nunca asume cero»**: construir Moss Taste enseñó que lo difícil no era la cuenta, sino decir con honestidad lo que el número no sabe.
+
+### Cambiado
+- Inicio y Proyectos hablan de «mis proyectos» en lugar de nombrar cada uno.
+
 ## [1.15.0] - 2026-11-05
 
 ### Añadido
@@ -359,7 +368,8 @@ Primera versión completa.
 - Páginas legales: términos, privacidad y protección de datos.
 - Despliegue automático en GitHub Pages con cada push a `main`.
 
-[Sin publicar]: https://github.com/Sergio-Velandia/Moss/compare/v1.15.0...HEAD
+[Sin publicar]: https://github.com/Sergio-Velandia/Moss/compare/v1.16.0...HEAD
+[1.16.0]: https://github.com/Sergio-Velandia/Moss/compare/v1.15.0...v1.16.0
 [1.15.0]: https://github.com/Sergio-Velandia/Moss/compare/v1.14.0...v1.15.0
 [1.14.0]: https://github.com/Sergio-Velandia/Moss/compare/v1.13.0...v1.14.0
 [1.13.0]: https://github.com/Sergio-Velandia/Moss/compare/v1.12.9...v1.13.0
