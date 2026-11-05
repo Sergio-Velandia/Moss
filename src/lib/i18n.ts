@@ -9,11 +9,6 @@ export type Lang = 'es' | 'en'
 const KEY = 'moss-lang'
 const listeners = new Set<() => void>()
 
-const descriptions: Record<Lang, string> = {
-  es: 'Moss — Digital Garden: mi biblioteca personal de componentes, documentación y aprendizajes técnicos.',
-  en: 'Moss — Digital Garden: my personal library of components, documentation and technical learnings.',
-}
-
 const isLang = (v: unknown): v is Lang => v === 'es' || v === 'en'
 
 /** Orden: ?lang= en la URL (enlace compartido), elección guardada y, por defecto, español. */
@@ -35,7 +30,6 @@ function initialLang(): Lang {
 
 function apply(lang: Lang) {
   document.documentElement.lang = lang
-  document.querySelector('meta[name="description"]')?.setAttribute('content', descriptions[lang])
 }
 
 let current: Lang = typeof window === 'undefined' ? 'es' : initialLang()
