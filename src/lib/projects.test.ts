@@ -10,11 +10,12 @@ import { knowledgeItems } from './knowledge'
 const appSource = import.meta.glob<string>('/src/App.tsx', { eager: true, query: '?raw', import: 'default' })['/src/App.tsx']
 
 describe('proyectos documentados', () => {
-  it('existen los tres y todos cumplen la plantilla', () => {
-    expect(projectDocs.map((p) => p.slug).sort()).toEqual(['moss', 'moss-nexus', 'portafolio'])
+  it('existen los cuatro y todos cumplen la plantilla', () => {
+    expect(projectDocs.map((p) => p.slug).sort()).toEqual(['moss', 'moss-nexus', 'moss-taste', 'portafolio'])
     expect(Object.fromEntries(projectDocs.map((p) => [p.slug, p.project!.theme]))).toEqual({
       moss: 'moss',
       'moss-nexus': 'nexus',
+      'moss-taste': 'taste',
       portafolio: 'portafolio',
     })
     for (const p of projectDocs) expect(validateProject(p), p.id).toEqual([])
@@ -98,7 +99,7 @@ describe('validateProject', () => {
 describe('integración', () => {
   it('el Herbario los indexa como proyectos', () => {
     const projects = knowledgeItems.filter((i) => i.type === 'project')
-    expect(projects.map((i) => i.url).sort()).toEqual(['/proyectos/moss', '/proyectos/moss-nexus', '/proyectos/portafolio'])
+    expect(projects.map((i) => i.url).sort()).toEqual(['/proyectos/moss', '/proyectos/moss-nexus', '/proyectos/moss-taste', '/proyectos/portafolio'])
   })
 
   it('el tablero del Inicio no los cuenta', () => {
