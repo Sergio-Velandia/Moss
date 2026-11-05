@@ -17,7 +17,7 @@ Mi "segundo cerebro" técnico: una biblioteca personal y visual donde guardo, do
 | **El Manual** | `/manual` | Documentación, configuraciones y guías, agrupadas por categoría |
 | **La Bitácora** | `/bitacora` | Blog técnico: aprendizajes, decisiones y errores |
 | **El Herbario** | `/herbario` | Búsqueda global sobre todo el contenido |
-| **Proyectos** | `/proyectos` | Cómo están hechos Moss, Moss Nexus y el portafolio por dentro |
+| **Proyectos** | `/proyectos` | Cómo están hechos mis proyectos por dentro |
 | **Moss Nexus** | `/nexus` | El sitio hermano, con flujos de n8n listos para copiar |
 | **Propón una idea** | `/propon-una-idea` | Formularios para proponer contenido o escribirme |
 
@@ -37,9 +37,9 @@ Cada paso se marca como hecho y el progreso se guarda **solo en el navegador** (
 
 ## Proyectos
 
-`/proyectos` documenta mis proyectos como un ingeniero explica su trabajo: cómo están armados por dentro, cómo viajan los datos, qué decisiones tomé (con la alternativa descartada) y qué aprendí. No repite los README: los enlaza. Hoy: Moss, Moss Nexus y el portafolio.
+`/proyectos` documenta mis proyectos como un ingeniero explica su trabajo: cómo están armados por dentro, cómo viajan los datos, qué decisiones tomé (con la alternativa descartada) y qué aprendí. No repite los README: los enlaza. Hoy: Moss, Moss Nexus, Moss Taste y el portafolio.
 
-Cada proyecto se ve con su propia identidad: Moss en salvia, Moss Nexus en musgo y coral, y el portafolio en grafito con un único acento dorado, tomados de los estilos de cada repositorio. La usan solo las tarjetas del índice y los botones de la ficha (clases `.pt-*` en `src/index.css`); al pasar el cursor, la tarjeta tiñe su borde y enciende un resplandor de su color sin levantarse.
+Cada proyecto se ve con su propia identidad: Moss en salvia, Moss Nexus en musgo y coral, Moss Taste en berenjena sobre su fondo claro, y el portafolio en grafito con un único acento dorado, tomados de los estilos de cada repositorio. La usan solo las tarjetas del índice y los botones de la ficha (clases `.pt-*` en `src/index.css`); al pasar el cursor, la tarjeta tiñe su borde y enciende un resplandor de su color sin levantarse.
 
 Cada página sigue la misma plantilla, en este orden: **Ficha, Arquitectura, Flujo de datos, Decisiones, Lecciones y Roadmap**, más los relacionados. La ficha muestra «Documentado en vX.Y.Z» y «Última revisión», que salen del frontmatter; si alguno falta, las pruebas fallan.
 
@@ -140,7 +140,7 @@ Las guías marcadas con ★ parten de un problema real de empresa: duplicados en
 | SQL | ★ Detectar y fusionar clientes duplicados |
 | SQL | ★ Reporte de ventas mensual con variación |
 
-**Bitácora (15 artículos)**
+**Bitácora (16 artículos)**
 
 | Artículo | Categoría |
 | --- | --- |
@@ -159,6 +159,7 @@ Las guías marcadas con ★ parten de un problema real de empresa: duplicados en
 | Documentar proyectos sin repetir el README | Arquitectura |
 | Rutas con lo que ya existe | Arquitectura |
 | Lo que encontré al revisar mi propio jardín | Aprendizajes |
+| Un recetario que nunca asume cero | Aprendizajes |
 
 ## Stack
 
