@@ -37,6 +37,78 @@
     </script>
   </head>
   <body>
+    <template id="plantilla-entrada">
+      <div class="entrada" aria-hidden="true">
+        <span class="entrada-vapor"></span>
+        <span class="entrada-vapor"></span>
+        <span class="entrada-vapor"></span>
+        <div class="entrada-centro">
+          <div class="entrada-marca">
+            <div class="entrada-granos"></div>
+            <svg class="entrada-silueta" viewBox="0 0 512 512" fill="currentColor">
+              <path d="M15 23L40 23L64 24L89 26L113 30L137 35L160 43L182 54L202 69L218 87L228 109L233 133L234 158L231 182L223 205L210 227L220 249L229 272L236 295L241 319L246 343L254 329L262 306L273 284L286 263L285 241L279 217L278 192L281 168L288 145L301 124L319 107L340 95L362 86L386 79L410 74L435 71L459 69L484 69L508 71L512 94L512 119L511 143L508 168L504 192L498 215L489 238L476 259L461 278L440 292L417 300L393 303L368 303L344 298L322 288L304 282L293 304L283 326L275 349L268 373L263 397L260 421L258 446L257 470L246 489L232 473L231 449L230 424L228 400L225 375L222 351L217 327L212 303L204 279L196 257L180 247L156 255L132 258L108 257L84 251L62 240L43 224L29 204L18 182L11 159L6 135L3 110L1 86L0 61L0 37Z" />
+            </svg>
+          </div>
+          <div class="entrada-nombre"><span class="entrada-nitida">Moss</span><span class="entrada-difusa">Moss</span></div>
+          <span class="entrada-linea"></span>
+          <span class="entrada-lema">Jardín digital</span>
+        </div>
+      </div>
+    </template>
+    <script>
+      // Pantalla de entrada: solo al llegar de afuera, sin guardar nada. Ni al recargar, ni con movimiento reducido,
+      // ni a quien viene a una sección concreta (#): esa persona ya sabe qué viene a leer.
+      (function () {
+        try {
+          var nav = performance.getEntriesByType("navigation")[0];
+          if (nav && nav.type !== "navigate") return;
+          if (document.referrer.indexOf(location.origin + "%BASE_URL%") === 0) return;
+          if (location.hash) return;
+          if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+          var entrada = document.getElementById("plantilla-entrada").content.firstElementChild.cloneNode(true);
+          var granos = entrada.querySelector(".entrada-granos");
+          // Puntos repartidos dentro de la silueta del favicon (viewBox de 512): x, y, x, y…
+          var puntos = [18,24,492,228,234,474,222,204,372,84,36,210,174,54,354,300,510,90,222,342,330,186,84,114,132,258,432,156,228,120,144,174,402,234,6,132,276,282,96,36,306,120,258,408,444,72,204,270,444,288,504,162,156,114,84,174,282,222,372,144,36,78,336,246,78,246,276,336,174,228,282,168,468,120,192,156,444,204,120,78,378,192,414,108,114,210,396,282,48,144,210,78,120,138,450,246,234,300,138,36,54,42,0,60,18,174,318,282,78,72,348,114,252,366,468,174,336,150,228,162,180,192,192,114,504,126,72,210,234,438,480,72,6,96,414,186,366,228,300,252];
+          for (var i = 0; i < puntos.length / 2; i++) {
+            var g = document.createElement("span");
+            var angulo = i * 2.39996;
+            var lejos = 40 + (i % 5) * 9;
+            g.className = "entrada-grano";
+            g.style.cssText =
+              "--x:" + (puntos[i * 2] - 256) * 0.25 + "px;--y:" + (puntos[i * 2 + 1] - 256) * 0.25 + "px;--d:" + (i % 7) * 40 + "ms;" +
+              "--sx:" + Math.cos(angulo) * lejos + "vmax;--sy:" + Math.sin(angulo) * lejos + "vmax";
+            granos.appendChild(g);
+          }
+
+          // El mismo orden que src/lib/i18n.ts, solo leyendo: ?lang= y luego la elección que ya estaba guardada
+          var idioma = new URLSearchParams(location.search).get("lang");
+          if (!idioma) {
+            try {
+              idioma = localStorage.getItem("moss-lang");
+            } catch (e) {}
+          }
+          if (idioma === "en") entrada.querySelector(".entrada-lema").textContent = "Digital garden";
+
+          var color = document.querySelector("meta[name=theme-color]");
+          var colorAntes = color.getAttribute("content");
+          var quitar = function () {
+            entrada.remove();
+            color.setAttribute("content", colorAntes);
+            removeEventListener("pointerdown", quitar);
+            removeEventListener("keydown", quitar);
+          };
+          entrada.addEventListener("animationend", function (e) {
+            if (e.target === entrada) quitar();
+          });
+          addEventListener("pointerdown", quitar);
+          addEventListener("keydown", quitar);
+          setTimeout(quitar, 3000);
+          color.setAttribute("content", "#141a13");
+          document.body.prepend(entrada);
+        } catch (e) {}
+      })();
+    </script>
     <div id="root"></div>
     <noscript><p style="padding:1rem;font-family:system-ui,sans-serif">Moss necesita JavaScript activado para funcionar.</p></noscript>
     <script type="module" src="/src/main.tsx"></script>

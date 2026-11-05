@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
+@import "./styles/entrada.css";
 
 /* Moss — design tokens (salvia / crema / lavanda, pastel).
    Los valores cambian según el tema; las utilidades de Tailwind leen estas variables. */
@@ -23,6 +24,14 @@
   --c-chart-3: #b5704a;
   --glow-1: rgb(156 175 136 / 0.25);
   --glow-2: rgb(200 191 231 / 0.3);
+  /* Pantalla de entrada: es igual en los dos temas */
+  --c-entrada-fondo: #4f6b42;
+  --c-entrada-medio: #2c3d26;
+  --c-entrada-borde: #141a13;
+  --c-entrada-texto: #faf7ef;
+  --c-entrada-lema: #e9efe0;
+  --c-entrada-grano: #d5e4c5;
+  --c-entrada-vapor: rgb(233 239 224 / 0.16);
 }
 
 :root[data-theme="dark"] {

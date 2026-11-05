@@ -1,0 +1,270 @@
+/*
+ * Pantalla de entrada: los granos se juntan en el brote de Moss, el nombre se condensa de la neblina y todo se difumina.
+ * La crea el script en línea de index.html. Dura 2,6 s (nunca más de 3: lo verifica entrada.test.ts)
+ * y solo anima transform y opacity. El difuminado es una copia ya borrosa del nombre que aparece y se va.
+ */
+.entrada {
+  --entrada-duracion: 2600ms;
+  --entrada-curva: cubic-bezier(0.16, 1, 0.3, 1);
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  color: var(--c-entrada-texto);
+  background: radial-gradient(110% 85% at 50% 42%, var(--c-entrada-fondo) 0%, var(--c-entrada-medio) 55%, var(--c-entrada-borde) 100%);
+  animation: entrada-salida var(--entrada-duracion) linear both;
+  user-select: none;
+}
+
+.entrada-vapor {
+  position: absolute;
+  bottom: -30vmax;
+  left: calc(50% - 35vmax);
+  width: 70vmax;
+  height: 70vmax;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, var(--c-entrada-vapor), transparent);
+  animation: entrada-vapor var(--entrada-duracion) var(--entrada-curva) both;
+}
+
+.entrada-vapor:nth-child(2) {
+  left: calc(50% - 62vmax);
+  animation-delay: 120ms;
+  animation-duration: 2400ms;
+}
+
+.entrada-vapor:nth-child(3) {
+  left: calc(50% - 8vmax);
+  animation-delay: 240ms;
+  animation-duration: 2300ms;
+}
+
+.entrada-centro {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 1.25rem;
+  padding: 1rem;
+  text-align: center;
+}
+
+/* 128 px: el script calcula la posición de cada grano para este tamaño. */
+.entrada-marca {
+  position: relative;
+  width: 128px;
+  height: 128px;
+}
+
+.entrada-granos {
+  position: absolute;
+  inset: 0;
+}
+
+.entrada-grano {
+  position: absolute;
+  top: calc(50% - 2.5px);
+  left: calc(50% - 2.5px);
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--c-entrada-grano);
+  animation: entrada-grano 1500ms var(--entrada-curva) var(--d) both;
+}
+
+.entrada-silueta {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  color: var(--c-entrada-grano);
+  animation: entrada-silueta var(--entrada-duracion) linear both;
+}
+
+.entrada-nombre {
+  position: relative;
+  font-family: var(--font-sans);
+  font-size: clamp(3.2rem, 11vw, 6.5rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  white-space: nowrap;
+}
+
+.entrada-nitida {
+  display: block;
+  animation: entrada-nitida var(--entrada-duracion) linear both;
+}
+
+.entrada-difusa {
+  position: absolute;
+  inset: 0;
+  filter: blur(14px);
+  animation: entrada-difusa var(--entrada-duracion) linear both;
+}
+
+.entrada-linea {
+  width: 3.5rem;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--c-entrada-grano);
+  animation: entrada-linea var(--entrada-duracion) linear both;
+}
+
+.entrada-lema {
+  font-family: var(--font-sans);
+  font-size: clamp(1.05rem, 0.9rem + 0.8vw, 1.5rem);
+  color: var(--c-entrada-lema);
+  animation: entrada-lema var(--entrada-duracion) linear both;
+}
+
+@keyframes entrada-salida {
+  0%,
+  76% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes entrada-vapor {
+  0% {
+    opacity: 0;
+    transform: translateY(12vh) scale(0.7);
+  }
+  35% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.5;
+    transform: translateY(-70vh) scale(1.5);
+  }
+}
+
+@keyframes entrada-grano {
+  0% {
+    opacity: 0;
+    transform: translate(var(--sx), var(--sy)) scale(0.5);
+  }
+  12% {
+    opacity: 1;
+  }
+  62% {
+    opacity: 1;
+    transform: translate(var(--x), var(--y)) scale(1);
+  }
+  82% {
+    opacity: 1;
+    transform: translate(var(--x), var(--y)) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--x), var(--y)) scale(0.6);
+  }
+}
+
+@keyframes entrada-silueta {
+  0%,
+  34% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  50%,
+  70% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  84%,
+  100% {
+    opacity: 0;
+    transform: scale(1.04);
+  }
+}
+
+@keyframes entrada-nitida {
+  0%,
+  26% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  44%,
+  72% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  84%,
+  100% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+}
+
+@keyframes entrada-difusa {
+  0%,
+  20% {
+    opacity: 0;
+    transform: scale(1.14);
+  }
+  34% {
+    opacity: 0.95;
+    transform: scale(1.04);
+  }
+  48%,
+  68% {
+    opacity: 0;
+    transform: scale(1);
+  }
+  80% {
+    opacity: 0.9;
+    transform: scale(1.05);
+  }
+  94%,
+  100% {
+    opacity: 0;
+    transform: scale(1.14);
+  }
+}
+
+@keyframes entrada-linea {
+  0%,
+  42% {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  58%,
+  70% {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+  82%,
+  100% {
+    opacity: 0;
+    transform: scaleX(1);
+  }
+}
+
+@keyframes entrada-lema {
+  0%,
+  46% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  60%,
+  70% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  82%,
+  100% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+}
+
+@media print {
+  .entrada {
+    display: none;
+  }
+}
