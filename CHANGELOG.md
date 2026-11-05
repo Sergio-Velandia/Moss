@@ -12,6 +12,8 @@ El campo `version` de `package.json` siempre coincide con la última versión pu
 
 ## [Sin publicar]
 
+## [1.15.0] - 2026-11-05
+
 ### Añadido
 - **Pantalla de entrada** de 2,6 s, de la misma familia que la de Moss Taste: los granos se juntan en el brote de Moss, el nombre se condensa de la neblina y todo se difumina. Aparece solo al llegar de afuera; no al recargar, al navegar dentro del sitio, con movimiento reducido ni si la dirección trae `#sección`. Un toque o una tecla la saltan, el lema sigue el idioma y no guarda nada en el navegador.
 - `jsdom`, solo para las pruebas.
@@ -357,7 +359,8 @@ Primera versión completa.
 - Páginas legales: términos, privacidad y protección de datos.
 - Despliegue automático en GitHub Pages con cada push a `main`.
 
-[Sin publicar]: https://github.com/Sergio-Velandia/Moss/compare/v1.14.0...HEAD
+[Sin publicar]: https://github.com/Sergio-Velandia/Moss/compare/v1.15.0...HEAD
+[1.15.0]: https://github.com/Sergio-Velandia/Moss/compare/v1.14.0...v1.15.0
 [1.14.0]: https://github.com/Sergio-Velandia/Moss/compare/v1.13.0...v1.14.0
 [1.13.0]: https://github.com/Sergio-Velandia/Moss/compare/v1.12.9...v1.13.0
 [1.12.9]: https://github.com/Sergio-Velandia/Moss/compare/v1.12.8...v1.12.9
