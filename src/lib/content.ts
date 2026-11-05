@@ -21,7 +21,7 @@ export const PROJECT_STATUSES = ['desarrollo', 'estable', 'mantenimiento', 'paus
 export type ProjectStatus = (typeof PROJECT_STATUSES)[number]
 
 /** Identidad visual de la tarjeta y los botones del proyecto (clases .pt-* en index.css) */
-export const PROJECT_THEMES = ['moss', 'nexus', 'portafolio'] as const
+export const PROJECT_THEMES = ['moss', 'nexus', 'portafolio', 'taste'] as const
 export type ProjectTheme = (typeof PROJECT_THEMES)[number]
 
 /** Niveles de una ruta de aprendizaje */

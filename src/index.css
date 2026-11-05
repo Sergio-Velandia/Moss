@@ -291,6 +291,35 @@ body {
   --pt-btn2-ink-hover: var(--nx-moss);
 }
 /* El portafolio es oscuro en ambos temas: es su identidad. Oro solo en bordes, texto y acentos, nunca de relleno. */
+/* Moss Taste: su tema claro y su berenjena, también con Moss en oscuro. Sin sus fuentes: serif del sistema en los títulos */
+.pt-taste {
+  --pt-bg: #faf7f2;
+  --pt-ink: #2a2320;
+  --pt-ink-soft: #5e5550;
+  --pt-accent: #6b3a8c;
+  --pt-border: #e6ded3;
+  --pt-border-hover: rgb(107 58 140 / 0.55);
+  --pt-glow: rgb(107 58 140 / 0.14);
+  --pt-chip-bg: #efe6f5;
+  --pt-chip-ink: #6b3a8c;
+  --pt-radius-btn: 0.75rem;
+  --pt-font-display: ui-serif, Georgia, "Times New Roman", serif;
+  /* Botón principal: relleno berenjena */
+  --pt-btn-bg: #6b3a8c;
+  --pt-btn-ink: #ffffff;
+  --pt-btn-border: transparent;
+  --pt-btn-bg-hover: #5a2f78;
+  --pt-btn-ink-hover: #ffffff;
+  --pt-btn-border-hover: transparent;
+  --pt-btn-shadow: none;
+  /* Botón secundario */
+  --pt-btn2-bg: #faf7f2;
+  --pt-btn2-ink: #2a2320;
+  --pt-btn2-border: #e6ded3;
+  --pt-btn2-border-hover: #6b3a8c;
+  --pt-btn2-ink-hover: #6b3a8c;
+}
+
 .pt-portafolio {
   --pt-bg: #101009;
   --pt-ink: #f5f2ec;

@@ -14,7 +14,7 @@ const TEXT = {
     version: (v: string) => `v${v}`,
     action: 'Ver cómo está hecho',
     techs: 'Tecnologías',
-    published: 'Los tres viven en el mismo dominio y se publicaron igual.',
+    published: 'Todos viven en el mismo dominio y se publicaron igual.',
     route: 'Cómo los publiqué, paso a paso',
   },
   en: {
@@ -24,7 +24,7 @@ const TEXT = {
     version: (v: string) => `v${v}`,
     action: 'See how it’s built',
     techs: 'Technologies',
-    published: 'All three live on the same domain and were published the same way.',
+    published: 'They all live on the same domain and were published the same way.',
     route: 'How I published them, step by step',
   },
 }
