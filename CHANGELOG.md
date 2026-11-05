@@ -12,6 +12,13 @@ El campo `version` de `package.json` siempre coincide con la última versión pu
 
 ## [Sin publicar]
 
+### Añadido
+- **Pantalla de entrada** de 2,6 s, de la misma familia que la de Moss Taste: los granos se juntan en el brote de Moss, el nombre se condensa de la neblina y todo se difumina. Aparece solo al llegar de afuera; no al recargar, al navegar dentro del sitio, con movimiento reducido ni si la dirección trae `#sección`. Un toque o una tecla la saltan, el lema sigue el idioma y no guarda nada en el navegador.
+- `jsdom`, solo para las pruebas.
+
+### Corregido
+- Al cargar, la app reemplazaba la descripción propia de cada página por una general, y los buscadores que ejecutan JavaScript podían quedarse con esa. Ahora cada página conserva la suya.
+
 ## [1.14.0] - 2026-10-22
 
 **Cierre de ciclo.** Moss queda estable y listo para crecer solo con contenido nuevo. Lo que trajeron estas semanas, desde la v1.9.0:

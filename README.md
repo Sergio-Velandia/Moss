@@ -54,6 +54,15 @@ Cada página sigue la misma plantilla, en este orden: **Ficha, Arquitectura, Flu
 - La URL está en una sola constante, `site.nexusUrl` en `src/data/site.ts`; una prueba impide repetirla en el código.
 - Nexus es un proyecto independiente, sin relación oficial con n8n GmbH.
 
+## Pantalla de entrada
+
+Quien llega de afuera ve 2,6 s de animación: unos 70 granos se juntan en el brote de Moss, el nombre se condensa de la neblina y todo se difumina hasta dejar ver la página. Es de la misma familia que las de Moss Taste y Moss Nexus.
+
+- Vive en `index.html`, sin React (`src/styles/entrada.css` y sus tokens `--c-entrada-*`), así que el build la lleva a todas las páginas y no retrasa nada: es una capa fija que se quita sola, y un toque o una tecla la saltan.
+- **Cuándo no aparece:** al recargar, al volver atrás, al navegar dentro del sitio, con movimiento reducido o si la dirección trae `#sección`, porque esa persona ya sabe qué viene a leer. Venir de un proyecto hermano sí cuenta como llegar de afuera.
+- **No guarda nada en el navegador:** decide con el tipo de navegación y el referente. El lema sale en inglés leyendo `?lang=` o la clave `moss-lang`, que ya existía. La política de privacidad no cambia.
+- Solo anima `transform` y `opacity`, y nunca dura más de 3 s. El difuminado es una copia ya borrosa del nombre que aparece y se va. Lo comprueban `src/styles/entrada.test.ts` y `scripts/entrada-css.test.ts`.
+
 ## Propón una idea
 
 [`/propon-una-idea`](https://sergio-velandia.dev/Moss/propon-una-idea) tiene dos formularios en pestañas: **Propón una idea** (una guía, una ruta, un experimento, un flujo de n8n u otra cosa) y **Habla conmigo** (`?formulario=habla-conmigo`). Si alguien elige «Un flujo de n8n», el formulario le enlaza el de Moss Nexus.
