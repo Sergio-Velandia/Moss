@@ -13,6 +13,10 @@ export interface StaticPage {
   path: string
   title: string
   description: string
+  /** Imagen propia para compartir, relativa a public/ (por ejemplo og/mi-entrada.png); sin ella, la del sitio */
+  image?: string
+  /** Texto alternativo de esa imagen */
+  imageAlt?: string
 }
 
 /** Dirección pública del sitio: la base de canonical, og:url y el sitemap */
@@ -46,10 +50,16 @@ const CONTENT: { folder: string; prefix: string; nested?: boolean }[] = [
 ]
 
 /** Lee title, description y draft del frontmatter de un Markdown de Moss (una línea por campo) */
-export function readFrontmatter(raw: string): { title?: string; description?: string; draft: boolean } {
+export function readFrontmatter(raw: string): { title?: string; description?: string; image?: string; imageAlt?: string; draft: boolean } {
   const block = /^---\r?\n([\s\S]*?)\r?\n---/.exec(raw)?.[1] ?? ''
   const field = (name: string) => new RegExp(`^${name}:\\s*(.+)$`, 'm').exec(block)?.[1].trim()
-  return { title: field('title'), description: field('description'), draft: field('draft') === 'true' }
+  return {
+    title: field('title'),
+    description: field('description'),
+    image: field('image'),
+    imageAlt: field('imageAlt'),
+    draft: field('draft') === 'true',
+  }
 }
 
 const markdownFiles = (dir: string, nested: boolean): string[] => {
@@ -68,7 +78,9 @@ export function contentPages(root: string): StaticPage[] {
       const meta = readFrontmatter(readFileSync(resolve(dir, file), 'utf8'))
       if (meta.draft || !meta.title) return []
       const slug = file.replace(/\.md$/, '')
-      return [{ path: prefix ? `${prefix}/${slug}` : slug, title: meta.title, description: meta.description ?? '' }]
+      const page: StaticPage = { path: prefix ? `${prefix}/${slug}` : slug, title: meta.title, description: meta.description ?? '' }
+      if (meta.image) Object.assign(page, { image: meta.image, imageAlt: meta.imageAlt ?? '' })
+      return [page]
     })
   })
   const labDir = resolve(root, 'src', 'lab', 'entries')
@@ -105,6 +117,14 @@ export function renderPage(html: string, page: StaticPage): string {
       .replace(/(<meta name="description" content=")[^"]*/, `$1${description}`)
       .replace(/(<meta property="og:description" content=")[^"]*/, `$1${description}`)
       .replace(/(<meta name="twitter:description" content=")[^"]*/, `$1${description}`)
+  }
+  if (page.image) {
+    // La misma medida que declara index.html (1200×630): las pruebas exigen que la imagen la cumpla
+    const image = `${SITE_URL}${page.image}`
+    out = out
+      .replace(/(<meta property="og:image" content=")[^"]*/, `$1${image}`)
+      .replace(/(<meta name="twitter:image" content=")[^"]*/, `$1${image}`)
+      .replace(/(<meta property="og:image:alt" content=")[^"]*/, `$1${escapeHtml(page.imageAlt ?? '')}`)
   }
   return out
 }

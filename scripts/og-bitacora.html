@@ -1,0 +1,144 @@
+<!doctype html>
+<!--
+  Fuente de las imágenes para compartir de la Bitácora (public/og/<slug>.png, 1200×630).
+  Los datos de cada tarjeta van en TARJETAS, y se elige una con ?t=<slug>. Para regenerarla, abre este
+  archivo con ese parámetro en un navegador de 1200×630 y captura la página; las pruebas comprueban
+  que el PNG exista y mida eso. Misma familia visual que public/og.png: crema, salvia y lavanda.
+-->
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<title>Tarjeta de la Bitácora</title>
+<style>
+  @font-face {
+    font-family: "Inter Card";
+    src: url("../node_modules/@fontsource-variable/inter/files/inter-latin-wght-normal.woff2") format("woff2");
+    font-weight: 100 900;
+  }
+  @font-face {
+    font-family: "Inter Card";
+    src: url("../node_modules/@fontsource-variable/inter/files/inter-latin-ext-wght-normal.woff2") format("woff2");
+    font-weight: 100 900;
+    unicode-range: U+0100-024F, U+1E00-1EFF;
+  }
+  :root {
+    --bg: #faf7ef;
+    --ink: #2f3a2c;
+    --ink-soft: #5b6657;
+    --sage: #9caf88;
+    --sage-deep: #476140;
+    --lavender: #c8bfe7;
+    --lavender-deep: #5d4d8f;
+    --bad: #a23b2a;
+    --bad-bg: #f6e2dc;
+    --ok-bg: #e3ecd9;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html, body { width: 1200px; height: 630px; overflow: hidden; }
+  body {
+    font-family: "Inter Card", system-ui, sans-serif;
+    color: var(--ink);
+    background:
+      radial-gradient(40rem 26rem at 100% 0%, rgb(200 191 231 / 0.45), transparent 70%),
+      radial-gradient(36rem 24rem at 0% 100%, rgb(156 175 136 / 0.28), transparent 70%),
+      var(--bg);
+    display: grid;
+    grid-template-columns: 1fr 470px;
+    gap: 40px;
+    padding: 64px 72px 56px;
+  }
+  .izq { display: flex; flex-direction: column; }
+  .marca { display: flex; align-items: center; gap: 16px; font-size: 30px; font-weight: 600; color: var(--sage-deep); }
+  .marca svg { width: 60px; height: 60px; padding: 14px; border-radius: 16px; background: rgb(156 175 136 / 0.35); }
+  .chips { display: flex; gap: 10px; margin-top: 34px; }
+  .chip { font-size: 19px; font-weight: 600; padding: 6px 14px; border-radius: 999px; background: rgb(156 175 136 / 0.32); color: var(--sage-deep); }
+  .chip.l { background: rgb(200 191 231 / 0.6); color: var(--lavender-deep); }
+  h1 { margin-top: 22px; font-size: 62px; line-height: 1.04; letter-spacing: -0.025em; font-weight: 700; text-wrap: balance; }
+  .sintoma { margin-top: 22px; font-size: 25px; line-height: 1.4; color: var(--ink-soft); max-width: 30ch; }
+  .pie { margin-top: auto; font-size: 22px; font-weight: 600; color: var(--ink-soft); }
+  .der { display: flex; flex-direction: column; justify-content: center; gap: 22px; }
+  .caja { background: #fff; border-radius: 22px; padding: 20px 22px 22px; box-shadow: 0 10px 30px -12px rgb(47 58 44 / 0.25); }
+  .caja h2 { font-size: 17px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft); }
+  .fila { display: flex; align-items: center; gap: 8px; margin-top: 14px; }
+  .nodo { flex: 1; min-width: 0; font-size: 18px; font-weight: 600; line-height: 1.2; padding: 10px 10px; border-radius: 12px; background: #f3efe4; text-align: center; }
+  .nodo.ok { background: var(--ok-bg); color: var(--sage-deep); }
+  .nodo.mal { background: var(--bad-bg); color: var(--bad); }
+  .flecha { flex: none; width: 18px; height: 2px; background: #b9b2a0; position: relative; }
+  .flecha::after { content: ""; position: absolute; right: -1px; top: -4px; border: 5px solid transparent; border-left-color: #b9b2a0; border-right: 0; }
+</style>
+</head>
+<body>
+<div class="izq">
+  <div class="marca">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <!-- El ícono Sprout de lucide, el mismo de la cabecera de Moss -->
+      <path d="M14 9.536V7a4 4 0 0 1 4-4h1.5a.5.5 0 0 1 .5.5V5a4 4 0 0 1-4 4 4 4 0 0 0-4 4c0 2 1 3 1 5a5 5 0 0 1-1 3" /><path d="M4 9a5 5 0 0 1 8 4 5 5 0 0 1-8-4" /><path d="M5 21h14" />
+    </svg>
+    Moss · Bitácora
+  </div>
+  <div class="chips" id="chips"></div>
+  <h1 id="titulo"></h1>
+  <p class="sintoma" id="sintoma"></p>
+  <p class="pie">sergio-velandia.dev/Moss</p>
+</div>
+<div class="der" id="flujos"></div>
+<script>
+  // Cada nodo: [texto, estado], con estado '' (neutro), 'ok' o 'mal'
+  const TARJETAS = {
+    'registrar-primero-avisar-despues': {
+      titulo: 'Registrar primero, avisar después',
+      sintoma: 'Falla un aviso de Slack y el registro nunca se escribe.',
+      flujos: [
+        ['Antes', [['Preparar', ''], ['Aviso falla', 'mal'], ['Registro no llega', 'mal']]],
+        ['Después', [['Preparar', ''], ['Registro', 'ok'], ['Avisos', '']]],
+      ],
+    },
+    'mi-filtro-era-correcto-y-estaba-mal': {
+      titulo: 'Mi filtro era correcto y estaba mal',
+      sintoma: 'Los logos subían a Drive como facturas, y quitar las imágenes perdía las capturas.',
+      flujos: [
+        ['Solo por tipo', [['logo.png', ''], ['Pasa', 'mal'], ['Drive', '']]],
+        ['Solo documentos', [['captura.png', ''], ['Se pierde', 'mal'], ['Nada', '']]],
+        ['Tipo, peso y nombre', [['captura.png', ''], ['Pasa', 'ok'], ['logo.png fuera', 'ok']]],
+      ],
+    },
+    'las-credenciales-que-caducan-solas': {
+      titulo: 'Las credenciales que caducan solas',
+      sintoma: 'Funciona la primera semana y después pide volver a conectar la cuenta.',
+      flujos: [
+        ['En Testing', [['Día 1', 'ok'], ['Días 2 a 6', 'ok'], ['Día 7: caduca', 'mal']]],
+        ['En producción', [['Día 1', 'ok'], ['Día 7', 'ok'], ['Sigue', 'ok']]],
+      ],
+    },
+    'el-flujo-de-errores-que-no-se-disparaba': {
+      titulo: 'El flujo de errores que no se disparaba',
+      sintoma: 'Ejecutas a mano un flujo que falla y la alerta nunca llega.',
+      flujos: [
+        ['A mano', [['Execute', ''], ['Falla', 'mal'], ['Sin alerta', 'mal']]],
+        ['Automático', [['Cada minuto', ''], ['Falla', 'mal'], ['Alerta llega', 'ok']]],
+      ],
+    },
+    'no-te-cases-con-un-modelo': {
+      titulo: 'No te cases con un modelo',
+      sintoma: 'El modelo se retira y el flujo de IA deja de funcionar sin que cambies nada.',
+      flujos: [
+        ['Nombre fijo', [['Modelo exacto', ''], ['Se retira', 'mal'], ['Falla', 'mal']]],
+        ['Alias latest', [['Sub-nodo', ''], ['Modelo vigente', 'ok'], ['Sigue', 'ok']]],
+      ],
+    },
+  }
+
+  const slug = new URLSearchParams(location.search).get('t') ?? Object.keys(TARJETAS)[0]
+  const t = TARJETAS[slug]
+  document.getElementById('titulo').textContent = t.titulo
+  document.getElementById('sintoma').textContent = t.sintoma
+  document.getElementById('chips').innerHTML = '<span class="chip">Moss Nexus</span><span class="chip l">n8n</span>'
+  document.getElementById('flujos').innerHTML = t.flujos
+    .map(([nombre, nodos]) => {
+      const fila = nodos.map(([texto, estado]) => `<span class="nodo ${estado}">${texto}</span>`).join('<span class="flecha"></span>')
+      return `<div class="caja"><h2>${nombre}</h2><div class="fila">${fila}</div></div>`
+    })
+    .join('')
+</script>
+</body>
+</html>

@@ -98,6 +98,27 @@ describe('metadatos para compartir', () => {
     expect(pageUrl('')).toBe(SITE_URL)
   })
 
+  it('una página con imagen propia la usa en Open Graph y Twitter, con su texto alternativo', () => {
+    const out = renderPage(index, { path: 'bitacora/x', title: 'X', description: 'Y', image: 'og/x.png', imageAlt: 'Una «tarjeta» & más' })
+    expect(out).toContain(`<meta property="og:image" content="${SITE_URL}og/x.png" />`)
+    expect(out).toContain(`<meta name="twitter:image" content="${SITE_URL}og/x.png" />`)
+    expect(out).toContain('<meta property="og:image:alt" content="Una «tarjeta» &amp; más" />')
+    // Sin imagen propia, la del sitio
+    expect(renderPage(index, { path: 'bitacora/z', title: 'Z', description: '' })).toContain(`content="${SITE_URL}og.png"`)
+  })
+
+  it('cada imagen propia existe, es un PNG de 1200×630, pesa menos de 1 MB y tiene texto alternativo', () => {
+    const conImagen = pages.filter((p) => p.image)
+    for (const p of conImagen) {
+      expect(p.image, p.path).toMatch(/^og\/[a-z0-9-]+\.png$/)
+      expect((p.imageAlt ?? '').length, `${p.path}: imageAlt`).toBeGreaterThan(20)
+      const png = readFileSync(resolve(root, 'public', p.image!))
+      expect(png.subarray(1, 4).toString(), p.path).toBe('PNG')
+      expect([png.readUInt32BE(16), png.readUInt32BE(20)], p.path).toEqual([1200, 630])
+      expect(png.length, p.path).toBeLessThan(1024 * 1024)
+    }
+  })
+
   it('el sitemap lista el inicio y cada página con su URL canónica', () => {
     const xml = renderSitemap(pages)
     expect(xml).toMatch(/^<\?xml version="1.0" encoding="UTF-8"\?>/)
