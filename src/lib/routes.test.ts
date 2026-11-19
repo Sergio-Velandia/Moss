@@ -10,13 +10,14 @@ const existing = new Set(knowledgeItems.map((i) => i.id))
 const raw = import.meta.glob<string>(['/src/**/*.{ts,tsx}', '!/src/**/*.test.ts'], { eager: true, query: '?raw', import: 'default' })
 
 describe('rutas publicadas', () => {
-  it('son cinco, en su orden, y todas cumplen las reglas', () => {
+  it('son seis, en su orden, y todas cumplen las reglas', () => {
     expect(routeDocs.map((r) => r.slug)).toEqual([
       'n8n-de-cero-a-produccion',
       'css-y-tailwind',
       'frontend-con-react-y-tailwind',
       'datos-y-reportes-con-sql',
       'publicar-y-mantener-un-sitio',
+      'firebase-sin-backend',
     ])
     for (const r of routeDocs) expect(validateRoute(r, existing), r.id).toEqual([])
   })
@@ -106,7 +107,7 @@ describe('progreso guardado', () => {
 
 describe('integración', () => {
   it('el Herbario indexa las rutas y el tablero no las cuenta', () => {
-    expect(knowledgeItems.filter((i) => i.type === 'route')).toHaveLength(5)
+    expect(knowledgeItems.filter((i) => i.type === 'route')).toHaveLength(6)
     expect(getGardenItems().some((i) => i.id.startsWith('route/'))).toBe(false)
   })
 
