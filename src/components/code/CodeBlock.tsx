@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Check, ChevronDown, ChevronUp, Copy } from 'lucide-react'
 import { useT } from '../../lib/i18n'
 
 const TEXT = {
-  es: { copy: 'Copiar', copied: '¡Copiado!', collapse: 'Contraer', expand: (n: number) => `Ver todo (${n} líneas)` },
-  en: { copy: 'Copy', copied: 'Copied!', collapse: 'Collapse', expand: (n: number) => `Show all (${n} lines)` },
+  es: { copy: 'Copiar', copied: '¡Copiado!', collapse: 'Contraer', expand: (n: number) => `Ver todo (${n} líneas)`, region: (l: string) => `Código ${l}` },
+  en: { copy: 'Copy', copied: 'Copied!', collapse: 'Collapse', expand: (n: number) => `Show all (${n} lines)`, region: (l: string) => `${l} code` },
 }
 interface Props {
   code: string
@@ -18,6 +18,10 @@ export default function CodeBlock({ code, lang = 'tsx', collapsedLines = 14 }: P
   const [html, setHtml] = useState<string | null>(null)
   const [copied, setCopied] = useState(false)
   const [expanded, setExpanded] = useState(false)
+  // Si el código no cabe (una línea larga en móvil, o contraído), el bloque tiene scroll y debe poder
+  // enfocarse para desplazarlo con el teclado. Si cabe, no suma una parada al tabulador.
+  const scroller = useRef<HTMLDivElement>(null)
+  const [scrollable, setScrollable] = useState(false)
 
   const lineCount = code.split('\n').length
   const collapsible = lineCount > collapsedLines
@@ -37,6 +41,16 @@ export default function CodeBlock({ code, lang = 'tsx', collapsedLines = 14 }: P
       cancelled = true
     }
   }, [code, lang])
+
+  useEffect(() => {
+    const el = scroller.current
+    if (!el || typeof ResizeObserver === 'undefined') return
+    const medir = () => setScrollable(el.scrollWidth > el.clientWidth + 1 || el.scrollHeight > el.clientHeight + 1)
+    medir()
+    const observador = new ResizeObserver(medir)
+    observador.observe(el)
+    return () => observador.disconnect()
+  }, [html, expanded])
 
   const copy = async () => {
     try {
@@ -63,6 +77,8 @@ export default function CodeBlock({ code, lang = 'tsx', collapsedLines = 14 }: P
       </div>
 
       <div
+        ref={scroller}
+        {...(scrollable ? { tabIndex: 0, role: 'region', 'aria-label': t.region(lang) } : {})}
         className="overflow-auto text-sm transition-[max-height] duration-300 [&_pre]:!bg-transparent [&_pre]:p-4 [&_pre]:font-mono"
         style={{ maxHeight: collapsible && !expanded ? `${collapsedLines * 1.5 + 2}em` : '200em' }}
       >
