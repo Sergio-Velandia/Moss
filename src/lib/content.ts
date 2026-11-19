@@ -127,6 +127,7 @@ export const MANUAL_CATEGORY_NAMES: Record<string, string> = {
   apis: 'APIs',
   css: 'CSS',
   despliegue: 'Publicar y mantener',
+  firebase: 'Firebase',
   git: 'Git',
   javascript: 'JavaScript',
   n8n: 'n8n',
