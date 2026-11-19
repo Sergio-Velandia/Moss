@@ -48,8 +48,10 @@ El lote 1 (botones, tarjetas y chips) está publicado. Se anuncian en la portada
 
 - [ ] **Moss Nexus:** corregir en su CHANGELOG la frase de la v1.0.0 que dice que el proyecto «pasa a mantenimiento». Nexus es estable: crece con plantillas.
 - [ ] **Moss Nexus:** probar las 4 plantillas «Sin probar» y sellar las que pasen. Cuando cambie el número, actualizar su ficha en Proyectos y la ruta de n8n.
-- [ ] **Portafolio:** actualizar la mención de Moss y Nexus (dice «14 plantillas» y «aún no probadas»), y hacer su fase legal (privacidad del formulario y archivo `LICENSE`).
-- [ ] **ECOSISTEMA.md:** Moss y Nexus estables con su versión, URLs del dominio propio y las reglas para proyectos nuevos (subdominios, dominios autorizados de Firebase Auth, EmailJS con dominio permitido).
+- [ ] **Moss Nexus:** la plantilla `leads-a-hubspot-sin-duplicados` enlaza `Moss/manual/n8n/webhook-basico`, que se unió a «Entender webhooks y triggers» en la v1.17.0. La redirección la cubre, pero conviene apuntarla al destino.
+- [x] **Portafolio:** la mención de Nexus («14 plantillas», «aún no probadas») y su fase legal se hicieron en su v1.1.0.
+- [ ] **Portafolio:** mostrar las versiones actuales de Moss, Nexus y Taste (su propio ROADMAP lo anota), y crear el tag `v1.2.3`: su `package.json` y su CHANGELOG ya están en esa versión, pero el último tag es `v1.2.2`.
+- [ ] **ECOSISTEMA.md:** versiones al día (dice Nexus v1.0.0 y Moss Taste v0.9.0), el hub de la raíz del dominio como proyecto, y las reglas para proyectos nuevos (subdominios, dominios autorizados de Firebase Auth, EmailJS con dominio permitido).
 
 ## 6. Ideas sin fecha
 

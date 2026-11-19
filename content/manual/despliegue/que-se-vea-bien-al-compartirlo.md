@@ -1,6 +1,6 @@
 ---
 title: Que se vea bien al compartirlo: Open Graph, canonical, sitemap y robots
-description: Las etiquetas que deciden cómo se ve tu enlace en redes y chats, la URL canónica, el sitemap y el robots.txt, con el caso especial de una SPA en una subruta de GitHub Pages y el estado real de mis tres proyectos.
+description: Las etiquetas que deciden cómo se ve tu enlace en redes y chats, la URL canónica, el sitemap y el robots.txt, con el caso especial de una SPA en una subruta de GitHub Pages y el estado real de Moss, Moss Nexus y el portafolio.
 type: manual
 tags: [seo, open graph, twitter card, canonical, sitemap, robots, social preview]
 technologies: [GitHub Pages, Vite, HTML]

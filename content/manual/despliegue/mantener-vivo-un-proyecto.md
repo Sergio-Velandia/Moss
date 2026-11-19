@@ -85,7 +85,7 @@ Un proyecto pasa a mantenimiento cuando ya cumple su propósito y no tienes plan
 - **Una imagen que no existe:** Moss Nexus declara `og.png` como imagen para compartir, pero la URL respondía 404. Apareció al revisar los enlaces, quedó anotado como pendiente y hoy ya responde.
 - **Corregir lo que alguien reporta:** el índice lateral de las guías de Moss se cortaba en pantallas bajas; se corrigió como PATCH ([`ad2b68a`](https://github.com/Sergio-Velandia/Moss/commit/ad2b68a), versión 1.9.5).
 - **Contenido que se actualiza con la realidad:** la guía de OAuth2 de Google se amplió cuando una plantilla nueva de Nexus necesitó Drive y Sheets ([`0c55db3`](https://github.com/Sergio-Velandia/Moss/commit/0c55db3), versión 1.9.3).
-- **Un proyecto en mantenimiento:** el portafolio está en mantenimiento. Su último cambio fue un PATCH, la 1.0.1, por el dominio propio ([`f70e543`](https://github.com/Sergio-Velandia/mi-portafolio/commit/f70e543)).
+- **Un proyecto en mantenimiento, y dónde no lo cumplí:** el portafolio está en mantenimiento y su último cambio es un PATCH, la 1.2.3 (una página 404 propia). Pero antes salieron dos MINOR, la 1.1.0 (fase legal y pruebas) y la 1.2.0 (Moss Taste y la pantalla de entrada), cuando ya estaba en mantenimiento. Según la tabla de arriba, mientras crecía debió marcarse como estable.
 - **La renovación del dominio:** la fecha de vencimiento de `sergio-velandia.dev` la anoté; no la publico aquí.
 
 ## Errores que cometí (o que casi cometo)
