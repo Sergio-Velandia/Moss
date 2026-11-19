@@ -12,6 +12,23 @@ El campo `version` de `package.json` siempre coincide con la última versión pu
 
 ## [Sin publicar]
 
+## [1.19.0] - 2026-11-18
+
+**Ruta nueva: Firebase sin backend.** El Manual no tenía ninguna guía de Firebase, y es lo más difícil que construí. Todo sale del código de Moss Taste, en el plan gratuito.
+
+### Añadido
+- Categoría **Firebase** en el Manual, con cinco guías:
+  - **Cuentas con Firebase Authentication: correo y Google**: los errores traducidos al español, recuperar la contraseña sin revelar quién tiene cuenta, la configuración que no es un secreto, y el caso que nadie cuenta: existir en Authentication no es estar registrado.
+  - **Reglas de Firestore que de verdad protegen**: mínimo privilegio, tipo y tamaño de cada campo, fechas del servidor, listas sin ciclos, y por qué cada `exists()` y `get()` cuesta una lectura.
+  - **Topes cuando las reglas no saben contar**: el contador que solo sube o baja de a 1, en la misma escritura que crea o borra el documento.
+  - **Probar las reglas, y probar las pruebas**: el emulador, `@firebase/rules-unit-testing`, la prueba de control y debilitar una regla a propósito para ver que alguna prueba falla.
+  - **Lo que el panel sí ve**: por qué «solo tú lo ves» sería falso y qué declarar en la política.
+- Ruta **«Firebase sin backend: cuentas, reglas y datos de verdad»** (nivel avanzado): las cinco guías, la fase legal y el artículo de Moss Taste.
+
+### Cambiado
+- La ficha de Moss Taste enlaza la ruta.
+- `ROADMAP.md` anota el ejercicio de debilitar las reglas de Moss Taste, con un hueco probable: ninguna prueba de las notas envía una fecha inventada.
+
 ## [1.18.0] - 2026-11-18
 
 **La Bitácora mira a Moss Nexus.** De 16 entradas, nueve contaban cómo se construyó Moss. Llegan cinco sobre lo que enseñaron las plantillas de Nexus, cada una con el síntoma primero, el flujo antes y después, las dos formas de arreglarlo, cómo se probó y lo que no se probó.
@@ -417,7 +434,8 @@ Primera versión completa.
 - Páginas legales: términos, privacidad y protección de datos.
 - Despliegue automático en GitHub Pages con cada push a `main`.
 
-[Sin publicar]: https://github.com/Sergio-Velandia/Moss/compare/v1.18.0...HEAD
+[Sin publicar]: https://github.com/Sergio-Velandia/Moss/compare/v1.19.0...HEAD
+[1.19.0]: https://github.com/Sergio-Velandia/Moss/compare/v1.18.0...v1.19.0
 [1.18.0]: https://github.com/Sergio-Velandia/Moss/compare/v1.17.0...v1.18.0
 [1.17.0]: https://github.com/Sergio-Velandia/Moss/compare/v1.16.2...v1.17.0
 [1.16.2]: https://github.com/Sergio-Velandia/Moss/compare/v1.16.1...v1.16.2
