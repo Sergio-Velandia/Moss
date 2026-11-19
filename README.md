@@ -191,6 +191,7 @@ Los nodos aparecen uno tras otro la primera vez que el diagrama entra en pantall
 
 ## Notas para mantenerlo
 
+- **Retirar o unir una guía.** Su URL no puede quedar en 404: añade la entrada `id viejo → id nuevo` a `REDIRECTS` en `src/data/redirects.ts`, borra el archivo y cambia los enlaces internos al destino. El build crea en la URL vieja una página que lleva al destino (con `noindex` y `canonical`), la deja fuera del sitemap, y el progreso guardado de las rutas pasa al id nuevo. Las pruebas fallan si el origen sigue existiendo, si el destino no existe o si algún `related` apunta a una guía retirada.
 - **Rutas.** El progreso se guarda solo en el navegador (`moss-route-progress`, descrito en la privacidad). El tiempo estimado suma el tiempo de lectura de cada documento y `LAB_MINUTES` por demo.
 - **Moss Nexus.** Sus tokens viven aislados en la clase `.nexus` de `src/index.css`, copiados de su repositorio, y sus fuentes se cargan solo en `/nexus`. La URL está en una sola constante, `site.nexusUrl` en `src/data/site.ts`; una prueba impide repetirla en el código.
 - **Pantalla de entrada.** Vive en `index.html`, sin React, con `src/styles/entrada.css` y los tokens `--c-entrada-*`, así que el build la lleva a todas las páginas. No guarda nada en el navegador. `src/styles/entrada.test.ts` y `scripts/entrada-css.test.ts` comprueban cuándo aparece, su duración máxima, que solo anime `transform` y `opacity`, y su contraste.
