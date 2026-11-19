@@ -12,6 +12,24 @@ El campo `version` de `package.json` siempre coincide con la última versión pu
 
 ## [Sin publicar]
 
+## [1.17.0] - 2026-11-18
+
+**El jardín al día.** Antes de plantar contenido nuevo, lo que ya hay vuelve a ser cierto.
+
+### Añadido
+- Ficha del **hub de sergio-velandia.dev** en Proyectos (v0.2.0, en desarrollo): sus tres capas (HTML base, el gesto CSS y la escena 3D opcional), por qué la puerta del dominio no tiene framework ni compilación y qué pasa si three.js no carga. Con su identidad: el oro y grafito del portafolio, esquinas rectas y su favicon como marca.
+- **Redirecciones para guías retiradas**, desde un solo mapa (`src/data/redirects.ts`): el build crea en la URL vieja una página que lleva a la nueva, con `noindex`, `canonical` y el `#ancla` intacto, y la deja fuera del sitemap; la app redirige si se llega navegando, y el progreso guardado de las rutas pasa al id nuevo.
+
+### Cambiado
+- «Webhook básico en n8n» se une a **«Entender webhooks y triggers en n8n»**, que ahora empieza por el primer webhook: los cuatro pasos para crearlo, la prueba con `curl`, las opciones de *Respond* y los 404 de cada URL. Su dirección lleva a la guía nueva, y la ruta de n8n pasa a 14 lecturas.
+- «Dominio propio para GitHub Pages con Cloudflare DNS» deja el correo a su guía, «Correo con tu dominio», que es el paso siguiente de la ruta, en lugar de repetirla en resumen. Ninguna URL cambia.
+
+### Corregido
+- Las fichas de Proyectos decían versiones viejas: Moss Nexus pasa a la **v1.2.0** (con Primeros pasos), Moss Taste a la **v1.1.1** y el portafolio a la **v1.2.3**. La del portafolio decía que no tenía pruebas ni fase legal, y las tiene desde su v1.1.0.
+- El índice de Proyectos decía que todos se publicaron igual; con el hub, que no tiene build, lo que comparten es el dominio y GitHub Pages.
+- «Mantener vivo un proyecto» daba la 1.0.1 como último cambio del portafolio; ahora cuenta que publicó dos MINOR estando en mantenimiento.
+- `ROADMAP.md`: tacha lo que el portafolio ya hizo y anota lo pendiente en los proyectos hermanos.
+
 ## [1.16.2] - 2026-11-05
 
 ### Cambiado
@@ -384,7 +402,9 @@ Primera versión completa.
 - Páginas legales: términos, privacidad y protección de datos.
 - Despliegue automático en GitHub Pages con cada push a `main`.
 
-[Sin publicar]: https://github.com/Sergio-Velandia/Moss/compare/v1.16.1...HEAD
+[Sin publicar]: https://github.com/Sergio-Velandia/Moss/compare/v1.17.0...HEAD
+[1.17.0]: https://github.com/Sergio-Velandia/Moss/compare/v1.16.2...v1.17.0
+[1.16.2]: https://github.com/Sergio-Velandia/Moss/compare/v1.16.1...v1.16.2
 [1.16.1]: https://github.com/Sergio-Velandia/Moss/compare/v1.16.0...v1.16.1
 [1.16.0]: https://github.com/Sergio-Velandia/Moss/compare/v1.15.0...v1.16.0
 [1.15.0]: https://github.com/Sergio-Velandia/Moss/compare/v1.14.0...v1.15.0
