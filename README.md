@@ -134,10 +134,14 @@ technologies: [React, SQL]
 createdAt: 2026-10-10
 updatedAt: 2026-10-10   # opcional
 draft: true             # opcional: oculto en la web publicada, visible en desarrollo
+image: og/mi-articulo.png    # opcional: imagen propia para compartir, en public/ (PNG de 1200×630)
+imageAlt: Qué muestra la imagen   # obligatorio si hay image
 related: [lab/tilt-card, manual/sql/agrupar-con-group-by, journal/mi-articulo]
 references: [Nodo Webhook | https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.webhook/]
 ---
 ```
+
+Las tarjetas de la Bitácora salen de `scripts/og-bitacora.html`: se suma la entrada a su lista `TARJETAS`, se abre con `?t=<slug>` en un navegador de 1200×630 y se guarda la captura en `public/og/<slug>.png`. Las pruebas exigen que exista, que mida eso y que tenga texto alternativo.
 
 Los ids de `related` son `lab/<archivo>`, `manual/<categoría>/<archivo>`, `journal/<archivo>`, `route/<slug>` o `project/<slug>`. Una prueba automática avisa si alguno apunta a algo que no existe.
 
