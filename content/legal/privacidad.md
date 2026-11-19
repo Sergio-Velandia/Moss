@@ -21,7 +21,7 @@ El Sitio guarda en el almacenamiento local de tu navegador, como mucho, tres dat
 
 - **`moss-theme`**: el tema que eliges con el botón de la cabecera (`light` o `dark`). Si no eliges nada, el Sitio sigue el tema de tu sistema.
 - **`moss-lang`**: el idioma de la interfaz que eliges con el selector ES/EN (`es` o `en`).
-- **`moss-route-progress`**: los pasos que marcas como hechos en las Rutas de aprendizaje, para que al volver veas por dónde ibas. Contiene solo los identificadores de esos pasos (por ejemplo, `manual/n8n/webhook-basico`).
+- **`moss-route-progress`**: los pasos que marcas como hechos en las Rutas de aprendizaje, para que al volver veas por dónde ibas. Contiene solo los identificadores de esos pasos (por ejemplo, `manual/n8n/instalar-n8n`).
 
 Sirven únicamente para recordar tus elecciones en ese navegador. No se envían a ningún servidor, no te identifican y no se comparten con nadie. Puedes borrarlos desde los ajustes de tu navegador, y el progreso de cada ruta también con el botón «Reiniciar progreso».
 

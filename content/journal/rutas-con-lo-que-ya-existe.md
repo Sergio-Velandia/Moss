@@ -20,7 +20,7 @@ El problema es que todo eso ya estaba escrito. Moss tenía una guía de webhooks
 Una ruta en Moss no tiene contenido propio, salvo una introducción corta: para quién es y qué se sabe hacer al terminar. Lo demás es una **lista ordenada de piezas que ya existen**:
 
 ```md
-steps: [manual/n8n/webhook-basico, lab/n8n-payload-builder, manual/n8n/entender-webhooks-y-triggers, …]
+steps: [manual/n8n/instalar-n8n, manual/n8n/entender-webhooks-y-triggers, lab/n8n-payload-builder, …]
 ```
 
 Cada id apunta a una guía, una demo, un reto o un artículo publicado. La ruta no copia nada: ordena y conecta.

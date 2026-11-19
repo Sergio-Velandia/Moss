@@ -1,12 +1,12 @@
 ---
 title: Entender webhooks y triggers en n8n
-description: Cómo exponer un webhook público, capturar peticiones GET y POST desde otra aplicación y validar los datos de entrada antes de usarlos.
+description: Del primer webhook, creado y probado con curl, a uno listo para producción, accesible desde Internet, protegido y que valida los datos antes de usarlos.
 type: manual
 tags: [webhook, trigger, http, seguridad, validación, automatización]
 technologies: [n8n, JavaScript]
 createdAt: 2026-10-11
-updatedAt: 2026-11-05
-related: [manual/n8n/webhook-basico, lab/n8n-payload-builder, manual/n8n/orquestacion-y-manejo-de-errores, manual/apis/idempotencia-en-pagos-y-webhooks]
+updatedAt: 2026-11-18
+related: [lab/n8n-payload-builder, manual/n8n/orquestacion-y-manejo-de-errores, manual/apis/idempotencia-en-pagos-y-webhooks, manual/n8n/sincronizar-formulario-con-crm]
 references: [Nodo Webhook | https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.webhook/, Nodo Respond to Webhook | https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.respondtowebhook/, Nodo Code | https://docs.n8n.io/code/code-node/, Configurar la URL del webhook | https://docs.n8n.io/hosting/configuration/configuration-examples/webhook-url/, Variables de entorno de endpoints | https://docs.n8n.io/hosting/configuration/environment-variables/endpoints/]
 ---
 
@@ -14,7 +14,7 @@ references: [Nodo Webhook | https://docs.n8n.io/integrations/builtin/core-nodes/
 
 Un flujo de n8n no hace nada hasta que algo lo dispara. Ese "algo" es un **trigger**: un nodo que espera un evento y arranca la ejecución. Cuando el evento viene de fuera (un formulario, una app móvil, otro servicio que avisa de un pago), el trigger que necesito es el **Webhook**: una URL que, al recibir una petición HTTP, inicia el flujo con los datos de esa petición.
 
-Esta guía amplía el [webhook básico](/manual/n8n/webhook-basico) con tres cosas: hacer que la URL sea accesible desde Internet, entender qué datos llegan y validarlos antes de confiar en ellos.
+Esta guía va del primer webhook a uno listo para producción: crearlo y probarlo, hacer que la URL sea accesible desde Internet, entender qué datos llegan y validarlos antes de confiar en ellos.
 
 ## Triggers: el punto de partida
 
@@ -28,6 +28,40 @@ Todo flujo empieza en un trigger. Los más comunes:
 | **Triggers de apps** (Gmail, Telegram, GitHub…) | El servicio notifica un evento propio. Muchos usan un webhook por debajo. |
 
 Un flujo solo reacciona a sus triggers automáticos (Schedule, Webhook, apps) cuando está **activado**. Mientras está desactivado, solo se ejecuta a mano desde el editor.
+
+## Tu primer webhook
+
+1. Crea un flujo nuevo y añade el nodo **Webhook** como disparador.
+2. Elige el método HTTP (por ejemplo `POST`) y un *path*, como `nuevo-contacto`.
+3. En **Respond** decide cuándo contestar: de inmediato, al terminar el flujo o con un nodo *Respond to Webhook* (más abajo, en [Responder al emisor](#responder-al-emisor)).
+4. Conecta los nodos que procesarán los datos.
+
+```flow
+# Del emisor a tu flujo
+Aplicación externa :: envía un POST con JSON
+Webhook :: Test URL o Production URL
+Tus nodos :: leen los datos en $json.body
++ Respuesta :: según la opción Respond
+```
+
+En palabras: la aplicación externa envía una petición `POST` con un JSON a la URL del nodo Webhook. El nodo arranca el flujo, los nodos siguientes leen los datos en `$json.body` y el emisor recibe la respuesta que elegiste en *Respond*.
+
+El nodo muestra dos direcciones, y la diferencia importa:
+
+| URL | Cuándo funciona |
+| --- | --- |
+| **Test URL** (`/webhook-test/...`) | Solo mientras pulsas *Listen for test event* en el editor, y para una sola petición. Muestra los datos en pantalla. |
+| **Production URL** (`/webhook/...`) | Solo cuando el flujo está **activado**. Es la que debe usar la aplicación externa. |
+
+Para probarlo, pulsa *Listen for test event* y envía una petición desde la terminal:
+
+```bash
+curl -X POST "https://tu-n8n.example.com/webhook-test/nuevo-contacto" \
+  -H "Content-Type: application/json" \
+  -d '{"nombre": "Ada", "correo": "ada@example.com"}'
+```
+
+Los datos del cuerpo llegan en `body`, y en un nodo posterior los lees con expresiones como `{{ $json.body.nombre }}`. Si n8n corre en tu equipo, la dirección empieza por `http://localhost:5678`: sirve para probar desde la misma máquina, pero no desde otra aplicación.
 
 ## Exponer el webhook a Internet
 
@@ -53,7 +87,7 @@ docker compose up -d
 
 > Un túnel convierte tu máquina en un servidor público mientras está abierto. Ciérralo al terminar y protege el webhook (ver más abajo) aunque sea "solo para probar".
 
-Recuerda la diferencia de URLs: la **Test URL** (`/webhook-test/...`) escucha una sola petición mientras pulsas *Listen for test event*; la **Production URL** (`/webhook/...`) funciona siempre que el flujo esté activado. La aplicación externa debe usar la de producción.
+Una vez expuesta, la aplicación externa usa la **Production URL**, con el flujo activado: la Test URL solo escucha mientras el editor está esperando.
 
 ## Capturar GET y POST
 
@@ -165,7 +199,15 @@ Code :: valida y deja solo los campos esperados
 
 ## Responder al emisor
 
-En *Respond* elige **Using 'Respond to Webhook' Node** si quieres decidir la respuesta según la validación:
+La opción *Respond* del nodo Webhook decide cuándo contesta n8n:
+
+| Opción | Cuándo responde | Para qué sirve |
+| --- | --- | --- |
+| **Immediately** | Apenas llega la petición | Emisores que cortan pronto la conexión; el flujo sigue después |
+| **When Last Node Finishes** | Al terminar el flujo, con los datos del último nodo | Flujos cortos cuyo resultado le sirve al emisor |
+| **Using 'Respond to Webhook' Node** | Cuando el flujo llega a ese nodo | Decidir el código y el cuerpo según lo que pasó |
+
+Elige **Using 'Respond to Webhook' Node** si quieres decidir la respuesta según la validación:
 
 - Rama válida → *Respond to Webhook* con código `200` o `201`.
 - Rama inválida → *Respond to Webhook* con código `400`, *Respond With: JSON* y como cuerpo la expresión `{{ JSON.stringify({ errores: $json.errores }) }}`.
@@ -174,6 +216,8 @@ Así la aplicación externa sabe qué falló sin tener que mirar n8n. Si el proc
 
 ## Errores frecuentes
 
+- **404 en la Production URL.** El flujo no está activado.
+- **404 en la Test URL.** No pulsaste *Listen for test event* antes de enviar la petición, o ya recibió una: escucha una sola vez por clic.
 - **La URL muestra `localhost`.** Falta `WEBHOOK_URL` en una instalación propia.
 - **Funciona en pruebas y no en producción.** La app externa usa la Test URL, o el flujo no está activado.
 - **El cuerpo llega como texto.** El emisor no envía `Content-Type: application/json`.

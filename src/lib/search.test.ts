@@ -21,8 +21,9 @@ describe('búsqueda global del Herbario', () => {
     expect(ids('consulta SQL para agrupar')[0]).toBe('manual/sql/agrupar-con-group-by')
   })
 
-  it('encuentra el documento de n8n por "webhook de n8n"', () => {
-    expect(ids('webhook de n8n')[0]).toBe('manual/n8n/webhook-basico')
+  it('encuentra la guía de n8n por "webhook de n8n" (la demo del generador de payloads también vale)', () => {
+    expect(ids('webhook de n8n').slice(0, 2)).toContain('manual/n8n/entender-webhooks-y-triggers')
+    expect(ids('webhook de n8n').find((id) => id.startsWith('manual/'))).toBe('manual/n8n/entender-webhooks-y-triggers')
   })
 
   it('encuentra la estructura de React por "estructura de proyecto React"', () => {

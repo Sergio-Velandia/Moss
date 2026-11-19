@@ -63,8 +63,8 @@ describe('posición dentro de una ruta', () => {
     const first = routesContaining('manual/n8n/instalar-n8n')[0]
     expect(first.index).toBe(0)
     expect(first.previous).toBeUndefined()
-    expect(first.next?.id).toBe('manual/n8n/webhook-basico')
-    const second = routesContaining('manual/n8n/webhook-basico')[0]
+    expect(first.next?.id).toBe('manual/n8n/entender-webhooks-y-triggers')
+    const second = routesContaining('manual/n8n/entender-webhooks-y-triggers')[0]
     expect(second.previous?.id).toBe('manual/n8n/instalar-n8n')
     expect(second.next?.id).toBe('lab/n8n-payload-builder')
     const last = routesContaining('journal/migrando-scripts-a-n8n')[0]

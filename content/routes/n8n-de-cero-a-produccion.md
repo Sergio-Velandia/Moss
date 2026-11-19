@@ -8,8 +8,8 @@ nexus: true
 tags: [n8n, automatización, webhooks, ruta]
 technologies: [n8n, JavaScript]
 createdAt: 2026-10-14
-updatedAt: 2026-11-05
-steps: [manual/n8n/instalar-n8n, manual/n8n/webhook-basico, lab/n8n-payload-builder, manual/n8n/entender-webhooks-y-triggers, lab/n8n-flow-simulator, manual/n8n/oauth2-de-google-en-n8n, manual/n8n/slack-en-n8n, manual/n8n/sincronizar-formulario-con-crm, manual/n8n/reporte-diario-automatico, manual/apis/idempotencia-en-pagos-y-webhooks, journal/cuando-un-webhook-llega-dos-veces, lab/retry-backoff, manual/apis/paginacion-y-limites-de-tasa, manual/n8n/orquestacion-y-manejo-de-errores, journal/migrando-scripts-a-n8n]
+updatedAt: 2026-11-18
+steps: [manual/n8n/instalar-n8n, manual/n8n/entender-webhooks-y-triggers, lab/n8n-payload-builder, lab/n8n-flow-simulator, manual/n8n/oauth2-de-google-en-n8n, manual/n8n/slack-en-n8n, manual/n8n/sincronizar-formulario-con-crm, manual/n8n/reporte-diario-automatico, manual/apis/idempotencia-en-pagos-y-webhooks, journal/cuando-un-webhook-llega-dos-veces, lab/retry-backoff, manual/apis/paginacion-y-limites-de-tasa, manual/n8n/orquestacion-y-manejo-de-errores, journal/migrando-scripts-a-n8n]
 ---
 
 ## Para quién es
@@ -44,28 +44,28 @@ Entre las guías hay dos artículos de la Bitácora: uno cuenta qué pasa cuando
 
 ## Practica con las plantillas probadas de Moss Nexus
 
-Desde el paso 6 ya puedes correr flujos reales. Moss Nexus tiene **9 plantillas con el sello «Probado»**: se probaron en una instancia real de n8n (2.43.5) con datos ficticios y casos trampa. Cada una se copia y se pega en n8n; la tabla dice qué pasos de esta ruta necesitas antes.
+Desde el paso 5 ya puedes correr flujos reales. Moss Nexus tiene **9 plantillas con el sello «Probado»**: se probaron en una instancia real de n8n (2.43.5) con datos ficticios y casos trampa. Cada una se copia y se pega en n8n; la tabla dice qué pasos de esta ruta necesitas antes.
 
 | Plantilla | Nivel | Qué necesitas de la ruta |
 | --- | --- | --- |
-| [Agenda del día por correo](https://sergio-velandia.dev/Moss-Nexus/plantillas/agenda-diaria-calendar/) | Fácil | Paso 6: credenciales de Google Calendar y Gmail |
-| [Reporte diario de ventas](https://sergio-velandia.dev/Moss-Nexus/plantillas/reporte-diario-ventas/) | Fácil | Paso 6 (Sheets y Gmail); el paso 9 explica la misma idea |
-| [Facturas de proveedores de Gmail a Drive](https://sergio-velandia.dev/Moss-Nexus/plantillas/facturas-gmail-a-drive/) | Fácil | Paso 6: Gmail, Drive y Sheets |
-| [Leads del formulario a Sheets con aviso en Slack](https://sergio-velandia.dev/Moss-Nexus/plantillas/leads-formulario-a-sheets/) | Fácil | Pasos 6 y 7: Sheets y el bot de Slack |
-| [Cobranza de facturas vencidas](https://sergio-velandia.dev/Moss-Nexus/plantillas/cobranza-facturas-vencidas/) | Media | Pasos 6 y 9: Sheets, Gmail y un Schedule |
-| [Onboarding de empleados](https://sergio-velandia.dev/Moss-Nexus/plantillas/onboarding-empleado/) | Media | Pasos 6 y 7: formulario, Sheets, Calendar, Gmail y Slack |
-| [Alertas cuando falla cualquier flujo](https://sergio-velandia.dev/Moss-Nexus/plantillas/alertas-de-errores-n8n/) | Media | Paso 14, con los pasos 6 y 7 para el correo y Slack |
-| [Resumen diario de correos con IA](https://sergio-velandia.dev/Moss-Nexus/plantillas/resumen-correos-con-ia/) | Avanzada | Pasos 6 y 7, más una clave de Gemini ([cómo usarla sin exponerla](/manual/apis/conectar-gemini)) |
-| [Tickets de soporte clasificados con IA](https://sergio-velandia.dev/Moss-Nexus/plantillas/tickets-soporte-con-ia/) | Avanzada | Pasos 6 y 7, más una clave de Gemini |
+| [Agenda del día por correo](https://sergio-velandia.dev/Moss-Nexus/plantillas/agenda-diaria-calendar/) | Fácil | Paso 5: credenciales de Google Calendar y Gmail |
+| [Reporte diario de ventas](https://sergio-velandia.dev/Moss-Nexus/plantillas/reporte-diario-ventas/) | Fácil | Paso 5 (Sheets y Gmail); el paso 8 explica la misma idea |
+| [Facturas de proveedores de Gmail a Drive](https://sergio-velandia.dev/Moss-Nexus/plantillas/facturas-gmail-a-drive/) | Fácil | Paso 5: Gmail, Drive y Sheets |
+| [Leads del formulario a Sheets con aviso en Slack](https://sergio-velandia.dev/Moss-Nexus/plantillas/leads-formulario-a-sheets/) | Fácil | Pasos 5 y 6: Sheets y el bot de Slack |
+| [Cobranza de facturas vencidas](https://sergio-velandia.dev/Moss-Nexus/plantillas/cobranza-facturas-vencidas/) | Media | Pasos 5 y 8: Sheets, Gmail y un Schedule |
+| [Onboarding de empleados](https://sergio-velandia.dev/Moss-Nexus/plantillas/onboarding-empleado/) | Media | Pasos 5 y 6: formulario, Sheets, Calendar, Gmail y Slack |
+| [Alertas cuando falla cualquier flujo](https://sergio-velandia.dev/Moss-Nexus/plantillas/alertas-de-errores-n8n/) | Media | Paso 13, con los pasos 5 y 6 para el correo y Slack |
+| [Resumen diario de correos con IA](https://sergio-velandia.dev/Moss-Nexus/plantillas/resumen-correos-con-ia/) | Avanzada | Pasos 5 y 6, más una clave de Gemini ([cómo usarla sin exponerla](/manual/apis/conectar-gemini)) |
+| [Tickets de soporte clasificados con IA](https://sergio-velandia.dev/Moss-Nexus/plantillas/tickets-soporte-con-ia/) | Avanzada | Pasos 5 y 6, más una clave de Gemini |
 
 ```flow
-# Del paso 6 a tu primer flujo real
-Paso 6 :: cliente OAuth y credenciales de Google
+# Del paso 5 a tu primer flujo real
+Paso 5 :: cliente OAuth y credenciales de Google
 Moss Nexus :: copia la plantilla y pégala en n8n
 Credenciales :: elige las tuyas en cada nodo
 + Prueba el flujo :: el resultado llega a tu correo, tu hoja o tu canal
 ```
 
-En palabras: después de crear las credenciales del paso 6 (y el bot del paso 7 si la plantilla usa Slack), copias la plantilla desde Moss Nexus, la pegas en n8n, eliges tus credenciales en cada nodo y la pruebas.
+En palabras: después de crear las credenciales del paso 5 (y el bot del paso 6 si la plantilla usa Slack), copias la plantilla desde Moss Nexus, la pegas en n8n, eliges tus credenciales en cada nodo y la pruebas.
 
-Si quieres empezar por lo más sencillo, las dos primeras arrancan con un Schedule Trigger y arman el mensaje en un nodo Code, como explica el paso 9, [Reporte diario automático](/manual/n8n/reporte-diario-automatico). Nexus tiene además 4 plantillas que todavía no se probaron: el sitio las marca como «Sin probar».
+Si quieres empezar por lo más sencillo, las dos primeras arrancan con un Schedule Trigger y arman el mensaje en un nodo Code, como explica el paso 8, [Reporte diario automático](/manual/n8n/reporte-diario-automatico). Nexus tiene además 4 plantillas que todavía no se probaron: el sitio las marca como «Sin probar».

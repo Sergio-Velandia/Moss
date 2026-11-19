@@ -93,7 +93,7 @@ type: route
 level: intermedio      # inicial | intermedio | avanzado
 order: 1               # posición en el índice
 nexus: true            # opcional: cierra con la invitación a Moss Nexus
-steps: [manual/n8n/webhook-basico, lab/n8n-payload-builder, …]
+steps: [manual/n8n/instalar-n8n, manual/n8n/entender-webhooks-y-triggers, …]
 ```
 
 `validateRoute` exige al menos 4 pasos que existan, sin repetir, y que mezclen al menos dos secciones. El cuerpo del Markdown explica para quién es la ruta y qué se sabe hacer al terminar.

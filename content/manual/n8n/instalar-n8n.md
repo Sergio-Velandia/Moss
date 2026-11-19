@@ -5,8 +5,8 @@ type: manual
 tags: [n8n cloud, autoalojado, docker, versión fija, volumen, zona horaria, clave de cifrado, primeros pasos]
 technologies: [n8n, Docker]
 createdAt: 2026-10-16
-updatedAt: 2026-11-05
-related: [route/n8n-de-cero-a-produccion, manual/n8n/webhook-basico, manual/n8n/oauth2-de-google-en-n8n]
+updatedAt: 2026-11-18
+related: [route/n8n-de-cero-a-produccion, manual/n8n/entender-webhooks-y-triggers, manual/n8n/oauth2-de-google-en-n8n]
 references: [Moss Nexus: Primeros pasos | https://sergio-velandia.dev/Moss-Nexus/primeros-pasos/, n8n: elegir entre Cloud y autoalojado | https://docs.n8n.io/choose-n8n/, n8n: instalar con Docker | https://docs.n8n.io/hosting/installation/docker/, n8n: instalar con npm | https://docs.n8n.io/hosting/installation/npm/, n8n: zona horaria e idioma | https://docs.n8n.io/hosting/configuration/environment-variables/timezone-localization/, n8n Cloud | https://docs.n8n.io/manage-cloud/overview/, Docker Desktop | https://docs.docker.com/desktop/]
 ---
 
@@ -33,7 +33,7 @@ Dónde corre n8n
   - obsoleto desde n8n 3.0
 ```
 
-- **¿Quieres empezar ya, sin instalar nada?** Usa **n8n Cloud**: crea una cuenta en [n8n.io](https://n8n.io/), abre tu espacio de trabajo y sigue con [Webhook básico en n8n](/manual/n8n/webhook-basico). Cuando acabe la prueba gratuita necesitarás un plan de pago.
+- **¿Quieres empezar ya, sin instalar nada?** Usa **n8n Cloud**: crea una cuenta en [n8n.io](https://n8n.io/), abre tu espacio de trabajo y sigue con [Entender webhooks y triggers en n8n](/manual/n8n/entender-webhooks-y-triggers). Cuando acabe la prueba gratuita necesitarás un plan de pago.
 - **¿Quieres que sea gratis y tener el control?** Usa **Docker**, la *Community edition* autoalojada. Es el camino que se usó para probar las plantillas de Moss Nexus. Para instalarlo, sigue [Primeros pasos](https://sergio-velandia.dev/Moss-Nexus/primeros-pasos/).
 - **¿Y npm?** Sirve para probar un rato, pero n8n lo marca como **obsoleto a partir de la versión 3.0** y pide una versión concreta de Node.js (entre la 20.19 y la 24.x). Para algo que vas a seguir usando, mejor Docker.
 
@@ -74,4 +74,4 @@ Reutilizar ese volumen con una clave nueva tampoco es la solución: n8n no arran
 
 Si algo falla al instalar, Primeros pasos explica los tropiezos más comunes, con su síntoma, su causa y qué hacer.
 
-Con n8n abierto en el navegador, sigue con el paso 2 de la ruta: [Webhook básico en n8n](/manual/n8n/webhook-basico).
+Con n8n abierto en el navegador, sigue con el paso 2 de la ruta: [Entender webhooks y triggers en n8n](/manual/n8n/entender-webhooks-y-triggers), que empieza por tu primer webhook.
