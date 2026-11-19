@@ -1,5 +1,7 @@
 import { describe, expect, it } from 'vitest'
+import { journalPosts, manualDocs, projectDocs, routeDocs } from '../lib/content'
 import { knowledgeItems } from '../lib/knowledge'
+import { labEntries } from '../lib/lab'
 import { parseProgress } from '../lib/progress'
 import { currentId, idToPath, redirectForPath, REDIRECTS } from './redirects'
 
@@ -16,8 +18,15 @@ describe('guías retiradas', () => {
   })
 
   it('ningún contenido sigue enlazando a una guía retirada', () => {
-    for (const item of knowledgeItems) {
-      for (const r of item.related ?? []) expect(REDIRECTS[r], `${item.id} → ${r}`).toBeUndefined()
+    const sources = [
+      ...[...manualDocs, ...journalPosts, ...projectDocs, ...routeDocs].map((d) => ({ id: d.id, ids: [...d.related, ...(d.route?.steps ?? [])], body: d.body })),
+      ...labEntries.map((e) => ({ id: `lab/${e.slug}`, ids: e.related ?? [], body: '' })),
+    ]
+    expect(sources.length).toBeGreaterThan(50)
+    for (const s of sources) {
+      for (const r of s.ids) expect(REDIRECTS[r], `${s.id} → ${r}`).toBeUndefined()
+      // Tampoco en los enlaces del texto: apuntan al destino, no a la redirección
+      for (const from of Object.keys(REDIRECTS)) expect(s.body, `${s.id} enlaza /${idToPath(from)}`).not.toContain(`](/${idToPath(from)}`)
     }
   })
 
