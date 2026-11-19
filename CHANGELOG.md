@@ -12,6 +12,21 @@ El campo `version` de `package.json` siempre coincide con la última versión pu
 
 ## [Sin publicar]
 
+## [1.18.0] - 2026-11-18
+
+**La Bitácora mira a Moss Nexus.** De 16 entradas, nueve contaban cómo se construyó Moss. Llegan cinco sobre lo que enseñaron las plantillas de Nexus, cada una con el síntoma primero, el flujo antes y después, las dos formas de arreglarlo, cómo se probó y lo que no se probó.
+
+### Añadido
+- **«Registrar primero, avisar después»**: en cuatro plantillas, un aviso que fallaba detenía el flujo antes de dejar el registro. El orden nuevo y la prueba que impide volver atrás.
+- **«Mi filtro era correcto y estaba mal»**: el filtro de facturas subía logos a Drive, y quitar las imágenes habría perdido las facturas que llegan como captura.
+- **«Las credenciales que caducan solas»**: los siete días del modo de prueba de Google, un fallo que ninguna prueba de una tarde encuentra.
+- **«El flujo de errores que no se disparaba»**: las ejecuciones manuales no disparan el flujo de errores, y probarlo bien exige un flujo que falle a propósito.
+- **«No te cases con un modelo»**: el alias «latest» y el sub-nodo intercambiable, y por qué con la versión de n8n se decide lo contrario.
+- **Imagen propia para compartir** cada entrada: los campos `image` e `imageAlt` del frontmatter cambian `og:image`, `twitter:image` y `og:image:alt` de su página. Las cinco tarjetas salen de `scripts/og-bitacora.html`, y las pruebas exigen un PNG de 1200×630 con texto alternativo.
+
+### Cambiado
+- `ROADMAP.md` anota el enlace de vuelta desde cada plantilla de Nexus a su entrada, y rehacer `og.png`, que quedó con cifras viejas.
+
 ## [1.17.0] - 2026-11-18
 
 **El jardín al día.** Antes de plantar contenido nuevo, lo que ya hay vuelve a ser cierto.
@@ -402,7 +417,8 @@ Primera versión completa.
 - Páginas legales: términos, privacidad y protección de datos.
 - Despliegue automático en GitHub Pages con cada push a `main`.
 
-[Sin publicar]: https://github.com/Sergio-Velandia/Moss/compare/v1.17.0...HEAD
+[Sin publicar]: https://github.com/Sergio-Velandia/Moss/compare/v1.18.0...HEAD
+[1.18.0]: https://github.com/Sergio-Velandia/Moss/compare/v1.17.0...v1.18.0
 [1.17.0]: https://github.com/Sergio-Velandia/Moss/compare/v1.16.2...v1.17.0
 [1.16.2]: https://github.com/Sergio-Velandia/Moss/compare/v1.16.1...v1.16.2
 [1.16.1]: https://github.com/Sergio-Velandia/Moss/compare/v1.16.0...v1.16.1
