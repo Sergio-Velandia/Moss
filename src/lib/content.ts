@@ -130,6 +130,7 @@ export const MANUAL_CATEGORY_NAMES: Record<string, string> = {
   firebase: 'Firebase',
   git: 'Git',
   javascript: 'JavaScript',
+  movimiento: 'Movimiento',
   n8n: 'n8n',
   react: 'React',
   sql: 'SQL',
