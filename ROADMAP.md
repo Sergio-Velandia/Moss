@@ -41,6 +41,12 @@ El lote 1 (botones, tarjetas y chips) está publicado. Se anuncian en la portada
 - [ ] Lote 4: modal accesible, skeleton e interruptor de tema.
 - [ ] El chip que se puede quitar (×), cuando alguna app lo use.
 
+### Movimiento y Firebase
+
+- [ ] Probar las cinco piezas de Movimiento en Firefox y en Safari. Se verificaron en Edge (Chromium): las de `animation-timeline` dependen de un soporte que llegó a Firefox el 27 de octubre de 2026.
+- [ ] Piezas para la ruta de Firebase, sin Firebase: el traductor de errores de Authentication, el contador como torniquete (qué acepta la regla al crear, borrar o «poner en 0»), los estados de la sesión (anónima, pendiente y activa), un validador de campos con `hasOnly` y `hasAll`, y la tabla de «debilitar una condición y ver qué prueba cae».
+- [ ] Ajustar la pantalla de entrada de Moss según su propia hoja de tiempos ([Dirección de secuencia](https://sergio-velandia.dev/Moss/manual/movimiento/direccion-de-secuencia/)): separar los granos del nombre y darle un reposo de verdad antes de la salida, que hoy es de 80 ms.
+
 ## 4. Rendimiento
 
 - [ ] Cargar el texto de cada documento solo al abrirlo. Hoy todo el contenido viaja en el JavaScript inicial (unos 300 kB, 95 kB con gzip) y crece con cada guía.
