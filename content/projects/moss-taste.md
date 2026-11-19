@@ -11,7 +11,7 @@ site: https://sergio-velandia.dev/Moss-Taste/
 tags: [arquitectura, recetas, firebase, cálculo, decisiones, sitio estático]
 technologies: [React, TypeScript, Vite, Firebase]
 createdAt: 2026-11-05
-related: [journal/un-recetario-que-nunca-asume-cero, route/publicar-y-mantener-un-sitio, project/moss]
+related: [journal/un-recetario-que-nunca-asume-cero, route/firebase-sin-backend, route/publicar-y-mantener-un-sitio, project/moss]
 ---
 
 ## Ficha
