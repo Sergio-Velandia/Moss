@@ -4,8 +4,8 @@ description: Librería estática de flujos de n8n ya armados y explicados, con u
 type: project
 status: estable
 theme: nexus
-version: 1.0.0
-reviewedAt: 2026-10-22
+version: 1.2.0
+reviewedAt: 2026-11-18
 repo: https://github.com/Sergio-Velandia/Moss-Nexus
 site: https://sergio-velandia.dev/Moss-Nexus/
 tags: [arquitectura, n8n, plantillas, decisiones, sin backend, sitio estático]
@@ -20,7 +20,7 @@ Moss Nexus es el sitio hermano de Moss: una galería de plantillas de n8n que se
 
 **Problema que resuelve:** mucha gente sabe qué quiere automatizar, pero se paraliza con webhooks, JSON, tokens y credenciales antes de terminar su primer flujo. Nexus entrega el flujo completo, qué hace cada paso y qué se necesita antes de empezar. La lista de plantillas y cómo se usa el sitio están en el [README](https://github.com/Sergio-Velandia/Moss-Nexus#readme) y en el propio [sitio](https://sergio-velandia.dev/Moss-Nexus/).
 
-**Estado real (v1.0.0, estable):** 13 plantillas de n8n en español. **9 tienen el sello «Probado»**, con la fecha y la versión de n8n (2.43.5) de una prueba real con datos ficticios y casos trampa, y **4 se muestran como «Sin probar»** de forma visible, con un filtro «Solo probadas» en el catálogo. Tiene un formulario «Propón un flujo» para recibir ideas. Desde aquí crece con plantillas nuevas y nuevos sellos, con versionado SemVer normal.
+**Estado real (v1.2.0, estable):** 13 plantillas de n8n en español. **9 tienen el sello «Probado»**, con la fecha y la versión de n8n (2.43.5) de una prueba real con datos ficticios y casos trampa, y **4 se muestran como «Sin probar»** de forma visible, con un filtro «Solo probadas» en el catálogo. Desde la v1.2.0 tiene una página [Primeros pasos](https://sergio-velandia.dev/Moss-Nexus/primeros-pasos/) que lleva de cero a n8n funcionando, con un `docker-compose.yml` que fija la versión, y cada ficha enlaza el tropiezo que le corresponde. Tiene un formulario «Propón un flujo» para recibir ideas. Desde aquí crece con plantillas nuevas y nuevos sellos, con versionado SemVer normal.
 
 ## Arquitectura
 
@@ -37,8 +37,8 @@ Moss Nexus
   - diagram.ts
   - search.ts
 - Interfaz :: React Router
-  - Galería
-  - Detalle
+  - Galería y Detalle
+  - Primeros pasos
   - FlowMap y FlowSteps
   - CopyFlowButton
 - Entrega :: GitHub Pages
@@ -90,12 +90,15 @@ El índice se arma solo: agregar una plantilla es agregar una carpeta, sin tocar
 - **Probar con casos trampa.** Fines de semana, fechas pasadas, bandejas vacías e instrucciones escondidas para la IA encontraron errores que el caso feliz nunca mostró. Cada prueba dejó correcciones reales, documentadas en «Problemas frecuentes» y «Limitaciones».
 - **El trigger de Gmail engaña al probar.** Con «Execute» trae un solo correo; para probar varios hay que publicar el flujo.
 - **La IA, intercambiable.** Las plantillas con IA usan un Basic LLM Chain con Gemini por defecto: cambiar de proveedor es cambiar el sub-nodo del modelo, y el prompt trata el correo como datos, nunca como instrucciones.
+- **Un sello también caduca.** El flujo de `facturas-gmail-a-drive` cambió después de su prueba, y el sello conserva la fecha anterior hasta repetirla: la fecha dice qué se probó, no que siga probado.
 - **Lo que haría distinto:** validar `diagram.json` contra `workflow.json`, que son dos descripciones del mismo flujo escritas por separado.
 
 ## Roadmap
 
-Sin fechas:
+Sin fechas, según el [ROADMAP](https://github.com/Sergio-Velandia/Moss-Nexus/blob/main/ROADMAP.md) del repositorio:
 
 - Probar las 4 plantillas que siguen «Sin probar» (aprobación de gastos, pagos con Stripe, leads a HubSpot y WhatsApp a Sheets) y sellar las que pasen.
+- Repetir la prueba corta de `facturas-gmail-a-drive`, cuyo flujo cambió después de su sello.
+- Aclarar en el CHANGELOG que Nexus es estable, no «en mantenimiento», como decía la entrada de la v1.0.0.
 - Seguir sumando plantillas sueltas, cada una en su propia versión MINOR.
 - Idea por evaluar: una prueba que compare los nodos de `diagram.json` con los de `workflow.json`, para que el mapa no se desactualice.

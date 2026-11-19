@@ -4,8 +4,8 @@ description: Recetario familiar en un sitio estático que responde con honestida
 type: project
 status: estable
 theme: taste
-version: 1.1.0
-reviewedAt: 2026-11-05
+version: 1.1.1
+reviewedAt: 2026-11-18
 repo: https://github.com/Sergio-Velandia/Moss-Taste
 site: https://sergio-velandia.dev/Moss-Taste/
 tags: [arquitectura, recetas, firebase, cálculo, decisiones, sitio estático]
@@ -20,7 +20,7 @@ Moss Taste es un recetario familiar: calcula los ingredientes y el costo en peso
 
 **Problema que resuelve:** responder dos preguntas sin adivinar: cuánto hay que comprar y cuánto va a costar. Lo usan la familia y los allegados, aunque cualquiera puede crear una cuenta. Cómo se usa está en el [README](https://github.com/Sergio-Velandia/Moss-Taste#readme) y en el propio [sitio](https://sergio-velandia.dev/Moss-Taste/).
 
-**Estado real (v1.1.0, estable):** 6 recetas publicadas con su costo. Algunos precios están pendientes o son de referencia, y el sitio lo dice. Del 26 de octubre al 4 de noviembre de 2026 sumó 184 commits y 15 versiones, con 390 pruebas de la aplicación más las de las reglas de Firestore. Funciona en el plan gratuito de Firebase y en GitHub Pages. Se construyó con Claude Code, con coautoría visible en los commits; las ilustraciones de los platos también son de IA, y el sitio las etiqueta así.
+**Estado real (v1.1.1, estable):** 6 recetas publicadas con su costo. Algunos precios están pendientes o son de referencia, y el sitio lo dice. Del 26 de octubre al 4 de noviembre de 2026 sumó 184 commits y 15 versiones, con 390 pruebas de la aplicación más las de las reglas de Firestore. Funciona en el plan gratuito de Firebase y en GitHub Pages. Se construyó con Claude Code, con coautoría visible en los commits; las ilustraciones de los platos también son de IA, y el sitio las etiqueta así.
 
 ## Arquitectura
 
@@ -85,5 +85,5 @@ Sin fechas:
 
 - Sumar recetas de a poco y completar los precios pendientes.
 - Algunas verduras llevan precio mayorista y pueden salir más caras en la tienda. El sitio lo dice; se corrige si aparece un precio mejor.
-- Decidir si hacen falta avisos con el teléfono bloqueado y App Check. Para un uso familiar no se justifican hoy.
+- Decidir si hacen falta avisos con el teléfono bloqueado y App Check. Para un uso familiar no se justifican hoy; desde la v1.1.1, el temporizador avisa antes de iniciarlo que la alarma suena solo con esa pantalla abierta.
 - Fuera de alcance a propósito: subir fotos, porque Cloud Storage exige el plan de pago.
