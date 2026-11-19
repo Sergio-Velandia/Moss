@@ -9,6 +9,7 @@ Reglas que siguen vigentes: un cambio por versión cuando es pequeño (PATCH), c
 - [x] **Metadatos para compartir y buscadores.** Páginas por ruta que responden 200, Open Graph, Twitter Card, `canonical` y `og:url` por página, `sitemap.xml` e imagen de vista previa propia (1200×630).
 - [x] **`robots.txt` en la raíz del dominio:** `sergio-velandia.dev/robots.txt` responde 200 y señala los sitemaps de Moss, Moss Nexus y el portafolio. Vive en el repositorio raíz `Sergio-Velandia.github.io`, no en Moss.
 - [ ] **Registrar los sitemaps en Google Search Console.**
+- [ ] **Rehacer `public/og.png`**, la imagen general del sitio. Dice «15 pasos» para la ruta de n8n, que desde la v1.17.0 tiene 14, y pone «correo» bajo «Dominio propio», que ahora lo deja a su propia guía. No tiene fuente en el repositorio: conviene hacerla con una plantilla HTML, como las de la Bitácora (`scripts/og-bitacora.html`).
 
 ## 2. Contenido que las rutas ya anuncian
 
@@ -45,6 +46,8 @@ El lote 1 (botones, tarjetas y chips) está publicado. Se anuncian en la portada
 - [ ] Cargar el texto de cada documento solo al abrirlo. Hoy todo el contenido viaja en el JavaScript inicial (unos 300 kB, 95 kB con gzip) y crece con cada guía.
 
 ## 5. Proyectos hermanos (fuera de este repositorio)
+
+- [ ] **Moss Nexus, enlace de vuelta:** cada plantilla que cuenta una entrada de la Bitácora debería enlazarla en sus `guias`. `onboarding-empleado`, `tickets-soporte-con-ia`, `cobranza-facturas-vencidas`, `aprobacion-de-gastos` y `facturas-gmail-a-drive` → [Registrar primero, avisar después](https://sergio-velandia.dev/Moss/bitacora/registrar-primero-avisar-despues/). `facturas-gmail-a-drive` → [Mi filtro era correcto y estaba mal](https://sergio-velandia.dev/Moss/bitacora/mi-filtro-era-correcto-y-estaba-mal/). `agenda-diaria-calendar`, `facturas-gmail-a-drive`, `cobranza-facturas-vencidas` y `aprobacion-de-gastos` → [Las credenciales que caducan solas](https://sergio-velandia.dev/Moss/bitacora/las-credenciales-que-caducan-solas/). `alertas-de-errores-n8n` → [El flujo de errores que no se disparaba](https://sergio-velandia.dev/Moss/bitacora/el-flujo-de-errores-que-no-se-disparaba/). `resumen-correos-con-ia` y `tickets-soporte-con-ia` → [No te cases con un modelo](https://sergio-velandia.dev/Moss/bitacora/no-te-cases-con-un-modelo/).
 
 - [ ] **Moss Nexus:** corregir en su CHANGELOG la frase de la v1.0.0 que dice que el proyecto «pasa a mantenimiento». Nexus es estable: crece con plantillas.
 - [ ] **Moss Nexus:** probar las 4 plantillas «Sin probar» y sellar las que pasen. Cuando cambie el número, actualizar su ficha en Proyectos y la ruta de n8n.
