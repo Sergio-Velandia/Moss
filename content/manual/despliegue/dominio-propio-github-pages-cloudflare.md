@@ -1,20 +1,20 @@
 ---
-title: Dominio propio para GitHub Pages con Cloudflare DNS y correo
-description: Poner un dominio propio a todos tus sitios de GitHub Pages con Cloudflare DNS, verificarlo, activar HTTPS y recibir correo en tu dominio con Email Routing, sin tocar el base de Vite.
+title: Dominio propio para GitHub Pages con Cloudflare DNS
+description: Poner un dominio propio a todos tus sitios de GitHub Pages con Cloudflare DNS, verificarlo antes de apuntarlo y activar HTTPS, sin tocar el base de Vite.
 type: manual
-tags: [dominio propio, github pages, cloudflare, dns, https, email routing, despliegue]
+tags: [dominio propio, github pages, cloudflare, dns, https, despliegue]
 technologies: [GitHub Pages, Cloudflare]
 createdAt: 2026-10-16
-updatedAt: 2026-10-18
-related: [manual/despliegue/spa-en-github-pages-sin-404, project/moss, project/moss-nexus]
-references: [GitHub: dominios propios en GitHub Pages | https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/about-custom-domains-and-github-pages, GitHub: gestionar un dominio propio | https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site, GitHub: verificar el dominio | https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/verifying-your-custom-domain-for-github-pages, GitHub: HTTPS en GitHub Pages | https://docs.github.com/en/pages/getting-started-with-github-pages/securing-your-github-pages-site-with-https, Cloudflare: estado del proxy | https://developers.cloudflare.com/dns/proxy-status/, Cloudflare: Email Routing | https://developers.cloudflare.com/email-service/get-started/route-emails/, Google Registry: dominios .dev | https://get.dev/]
+updatedAt: 2026-11-18
+related: [manual/despliegue/spa-en-github-pages-sin-404, manual/despliegue/correo-con-tu-dominio, project/hub, project/moss]
+references: [GitHub: dominios propios en GitHub Pages | https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/about-custom-domains-and-github-pages, GitHub: gestionar un dominio propio | https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site, GitHub: verificar el dominio | https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/verifying-your-custom-domain-for-github-pages, GitHub: HTTPS en GitHub Pages | https://docs.github.com/en/pages/getting-started-with-github-pages/securing-your-github-pages-site-with-https, Cloudflare: estado del proxy | https://developers.cloudflare.com/dns/proxy-status/, Google Registry: dominios .dev | https://get.dev/]
 ---
 
 ## Problema que resuelve
 
-Tienes varios proyectos en GitHub Pages, cada uno en `usuario.github.io/proyecto/`, y quieres que todos vivan bajo un dominio propio, con HTTPS y con un correo de contacto del mismo dominio en lugar de tu Gmail personal.
+Tienes varios proyectos en GitHub Pages, cada uno en `usuario.github.io/proyecto/`, y quieres que todos vivan bajo un dominio propio y con HTTPS.
 
-Esta guía sigue la configuración real de `sergio-velandia.dev`, el dominio de Moss, Moss Nexus y el portafolio: GitHub Pages sirve los sitios, Cloudflare gestiona el DNS y reenvía el correo. No incluye ningún código de verificación ni datos privados: donde hace falta uno, la guía te dice dónde encontrar el tuyo.
+Esta guía sigue la configuración real de `sergio-velandia.dev`, el dominio de todos mis proyectos: GitHub Pages sirve los sitios y Cloudflare gestiona el DNS. El correo con ese mismo dominio es el paso siguiente, en [Correo con tu dominio](/manual/despliegue/correo-con-tu-dominio). No incluye ningún código de verificación ni datos privados: donde hace falta uno, la guía te dice dónde encontrar el tuyo.
 
 ## Las piezas
 
@@ -25,14 +25,11 @@ Dominio propio
 - Cloudflare DNS :: dice a dónde va cada cosa
   - A del dominio hacia GitHub
   - CNAME de www
-  - MX y TXT del correo
+  - TXT de verificación
 - GitHub Pages :: sirve los sitios
   - verificación en tu perfil
   - dominio en el repo usuario.github.io
   - Enforce HTTPS
-- Email Routing :: recibe el correo
-  - contacto@ y contact@
-  - reenvío a tu buzón
 ```
 
 La pieza clave es que **el dominio se configura una sola vez, en el repositorio raíz** `usuario.github.io`. GitHub usa ese mismo dominio para todos los *project sites* de tu cuenta: `usuario.github.io/Moss/` pasa a ser `tu-dominio/Moss/` sin tocar el repositorio de Moss.
@@ -45,8 +42,7 @@ Cloudflare :: el dominio usa sus nameservers
 Verificar en GitHub :: registro TXT desde tu perfil
 Repo raíz :: Custom domain en Settings, Pages
 DNS :: registros A del dominio y CNAME de www
-Enforce HTTPS :: cuando GitHub tenga el certificado
-+ Email Routing :: MX y TXT que añade Cloudflare
++ Enforce HTTPS :: cuando GitHub tenga el certificado
 ```
 
 GitHub recomienda **verificar el dominio y añadirlo a Pages antes de crear los registros DNS**. Si haces al revés, durante ese rato otra cuenta podría publicar un sitio en tu dominio.
@@ -102,17 +98,9 @@ Cuando el DNS esté bien, GitHub pide un certificado TLS y muestra una marca jun
 
 Con un dominio `.dev` no hay alternativa: todo `.dev` está en la lista de precarga HSTS de los navegadores, así que **solo funciona con HTTPS**. Hasta que GitHub tenga el certificado, el navegador no abrirá el sitio.
 
-### 6. Recibe correo con Email Routing
+### 6. Sigue con el correo
 
-Este es el resumen; la guía [Correo con tu dominio](/manual/despliegue/correo-con-tu-dominio) lo explica a fondo, con los registros MX y SPF, el catch-all y la diferencia entre recibir y enviar.
-
-1. En Cloudflare, ve a **Compute → Email Service → Email Routing** y añade (*onboard*) tu dominio. Cloudflare crea solo los registros MX y los TXT de SPF y DKIM que necesita.
-2. En **Destination addresses**, añade el buzón donde quieres recibir los mensajes. Cloudflare te envía un correo de confirmación: ábrelo y pulsa **Verify email address**.
-3. Crea las direcciones públicas como reglas de reenvío. En `sergio-velandia.dev` hay dos: `contacto@` para los textos en español y `contact@` para los textos en inglés.
-
-El buzón de destino no aparece en ninguna parte pública: quien escribe a `contacto@` no ve a dónde llega el mensaje.
-
-Email Routing **recibe y reenvía**. Para responder *desde* `contacto@` necesitas configurar aparte un servicio de envío; si respondes desde tu buzón personal, la persona verá esa dirección.
+Con el DNS en Cloudflare ya puedes recibir correo en tu dominio con Email Routing. Sus registros MX y TXT conviven con los A y el CNAME de GitHub, así que no tocan nada de lo anterior. Cómo activarlo, con las reglas por dirección, el catch-all y la diferencia entre recibir y enviar, está en [Correo con tu dominio](/manual/despliegue/correo-con-tu-dominio), el paso siguiente de la ruta.
 
 ## Qué cambia en cada proyecto
 
@@ -136,8 +124,7 @@ Después de configurar el dominio
 ## Seguridad
 
 - **Verifica el dominio antes de apuntarlo a GitHub** y no uses registros comodín: es lo que evita que otra cuenta publique en tu dominio.
-- **No publiques tu código de verificación** ni el buzón de destino del correo. El TXT es visible para quien consulte tu DNS, pero no hace falta enseñarlo en capturas ni en el repositorio.
-- **Las direcciones públicas son las del dominio.** En el sitio, el README y los textos legales, usa `contacto@`; tu correo personal no debería aparecer.
+- **No publiques tu código de verificación.** El TXT es visible para quien consulte tu DNS, pero no hace falta enseñarlo en capturas ni en el repositorio.
 
 ## Lista de comprobación
 
@@ -148,7 +135,6 @@ Después de configurar el dominio
 - [ ] *Enforce HTTPS* está activado.
 - [ ] `http://` y `www` redirigen a `https://tu-dominio/`.
 - [ ] Cada proyecto abre en `tu-dominio/proyecto/` y las rutas internas se recargan bien.
-- [ ] Un correo de prueba a `contacto@` llega a tu buzón.
 - [ ] El código ya no usa las URLs de `github.io` ni tu correo personal.
 
 ## Errores frecuentes
@@ -157,5 +143,4 @@ Después de configurar el dominio
 - **«Certificate not yet created» o *Enforce HTTPS* desactivado durante horas.** Algún registro está en «Proxied», sobra un registro que no apunta a GitHub, o el DNS todavía no se propagó.
 - **GitHub marca el DNS como incorrecto al guardar el dominio.** Faltan los registros A, o aún no se propagaron (puede tardar hasta 24 horas). Espera y vuelve a comprobar.
 - **Un proyecto da 404 con el dominio nuevo.** El proyecto no tiene Pages activado, o su repositorio tiene su propio *Custom domain* y no hereda el del repositorio raíz.
-- **El correo no llega.** El buzón de destino no está verificado, o falta la regla de la dirección (`contacto@`). Revisa también la carpeta de spam la primera vez.
 - **La verificación de GitHub no avanza.** El TXT tiene un nombre distinto al que pide GitHub (suele faltar o sobrar el dominio al final, según cómo lo escriba el panel de DNS).

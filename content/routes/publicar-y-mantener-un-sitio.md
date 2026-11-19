@@ -51,7 +51,7 @@ La ruta tiene **11 pasos y un proyecto final**. Cada guía empieza por el porqu�
 | 3 | Un README que se lee | [Un README que se lee](/manual/git/un-readme-que-se-lee) y [Documentar proyectos sin repetir el README](/bitacora/documentar-proyectos-sin-repetir-el-readme) (bitácora) |
 | 4 | Calidad automática | [Verificar la interfaz con capturas reales](/manual/javascript/verificar-la-interfaz-con-capturas) y [Lo que encontraron las capturas](/bitacora/lo-que-encontraron-las-capturas) (bitácora) |
 | 5 | Publicar una SPA en GitHub Pages | [Una SPA en GitHub Pages sin 404](/manual/despliegue/spa-en-github-pages-sin-404) |
-| 6 | Dominio propio con DNS y HTTPS | [Dominio propio para GitHub Pages con Cloudflare DNS y correo](/manual/despliegue/dominio-propio-github-pages-cloudflare) |
+| 6 | Dominio propio con DNS y HTTPS | [Dominio propio para GitHub Pages con Cloudflare DNS](/manual/despliegue/dominio-propio-github-pages-cloudflare) |
 | 7 | Correo con tu dominio | [Correo con tu dominio usando Cloudflare Email Routing](/manual/despliegue/correo-con-tu-dominio) |
 | 8 | Migrar a un dominio nuevo sin romper nada | [Migrar a un dominio nuevo sin romper nada](/manual/despliegue/migrar-a-un-dominio-nuevo) |
 | 9 | La fase legal en un proyecto personal | [La fase legal en un proyecto personal](/manual/despliegue/fase-legal-en-un-proyecto-personal) |
