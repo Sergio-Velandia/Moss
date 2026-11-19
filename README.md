@@ -13,7 +13,7 @@ Mi "segundo cerebro" técnico: una biblioteca personal y visual donde guardo, do
 | Sección | Qué es |
 | --- | --- |
 | [**Rutas**](https://sergio-velandia.dev/Moss/rutas) | Recorridos ordenados de guías, demos y artículos; el mejor punto de partida |
-| [**El Laboratorio**](https://sergio-velandia.dev/Moss/laboratorio) | Componentes, Piezas Tailwind y retos con vista previa en vivo y código copiable |
+| [**El Laboratorio**](https://sergio-velandia.dev/Moss/laboratorio) | Componentes, Piezas Tailwind, piezas de movimiento y retos, con vista previa en vivo y código copiable |
 | [**El Manual**](https://sergio-velandia.dev/Moss/manual) | Documentación, configuraciones y guías, agrupadas por categoría |
 | [**La Bitácora**](https://sergio-velandia.dev/Moss/bitacora) | Blog técnico: aprendizajes, decisiones y errores |
 | [**El Herbario**](https://sergio-velandia.dev/Moss/herbario) | Búsqueda global sobre todo el contenido |
