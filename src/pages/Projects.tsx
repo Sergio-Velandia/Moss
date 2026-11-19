@@ -50,7 +50,7 @@ export default function Projects() {
                 {/* Cada tarjeta con la paleta de su proyecto: .pt-<tema> (y .nexus para los tokens de Nexus) */}
                 <Link
                   to={d.url}
-                  className={`pt-card pt-${theme} ${theme === 'nexus' ? 'nexus rounded-3xl' : 'rounded-2xl'} flex h-full flex-col p-5 shadow-sm`}
+                  className={`pt-card pt-${theme} ${theme === 'nexus' ? 'nexus rounded-3xl' : theme === 'hub' ? 'rounded-none' : 'rounded-2xl'} flex h-full flex-col p-5 shadow-sm`}
                 >
                   <div className="flex items-start justify-between gap-3">
                     <ProjectMark theme={theme} />

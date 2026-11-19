@@ -350,6 +350,38 @@ body {
   color-scheme: dark;
 }
 
+/* El hub: el oro y grafito del portafolio, como en sergio-velandia.dev/assets/hub.css, pero con su propio gesto:
+   esquinas rectas y el oro de relleno al activar un enlace, como su barrido con clip-path. Oscuro en ambos temas. */
+.pt-hub {
+  --pt-bg: #0a0a09;
+  --pt-ink: #f5f2ec;
+  --pt-ink-soft: #a8a49a;
+  --pt-accent: #c9a96e;
+  --pt-border: rgb(245 242 236 / 0.18);
+  --pt-border-hover: #c9a96e;
+  --pt-glow: rgb(201 169 110 / 0.1);
+  --pt-chip-bg: transparent;
+  --pt-chip-ink: #c9a96e;
+  --pt-radius-btn: 0;
+  --pt-font-display: "Syne Variable", "Syne", system-ui, sans-serif;
+  --pt-font-body: "DM Sans Variable", "DM Sans", system-ui, sans-serif;
+  /* Botón principal: contorno que se llena de oro, con el texto en grafito (8,85:1) */
+  --pt-btn-bg: #0a0a09;
+  --pt-btn-ink: #f5f2ec;
+  --pt-btn-border: rgb(245 242 236 / 0.18);
+  --pt-btn-bg-hover: #c9a96e;
+  --pt-btn-ink-hover: #0a0a09;
+  --pt-btn-border-hover: #c9a96e;
+  --pt-btn-shadow: none;
+  /* Botón secundario: fantasma */
+  --pt-btn2-bg: #0a0a09;
+  --pt-btn2-ink: #a8a49a;
+  --pt-btn2-border: rgb(245 242 236 / 0.18);
+  --pt-btn2-border-hover: #c9a96e;
+  --pt-btn2-ink-hover: #f5f2ec;
+  color-scheme: dark;
+}
+
 @layer components {
   /* Tarjeta del índice. El hover no la levanta: tiñe el borde, enciende un resplandor del color del proyecto
      y señala la acción (el botón), como hacen las tarjetas del portafolio. */
@@ -392,7 +424,7 @@ body {
     background: var(--pt-chip-bg);
     color: var(--pt-chip-ink);
   }
-  .pt-portafolio .pt-chip {
+  :is(.pt-portafolio, .pt-hub) .pt-chip {
     border: 1px solid rgb(201 169 110 / 0.35);
   }
 
@@ -440,7 +472,9 @@ body {
 
 /* Foco con el color de cada proyecto (fuera de @layer por la misma razón que en .nexus) */
 .pt-portafolio:focus-visible,
-.pt-portafolio :focus-visible {
+.pt-portafolio :focus-visible,
+.pt-hub:focus-visible,
+.pt-hub :focus-visible {
   outline-color: #c9a96e;
 }
 
