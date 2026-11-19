@@ -1,5 +1,6 @@
 import { existsSync, readdirSync, readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
+import { idToPath, REDIRECTS } from '../src/data/redirects.ts'
 
 /**
  * GitHub Pages no conoce las rutas de React Router: sin una página por ruta, cada dirección responde 404
@@ -106,6 +107,55 @@ export function renderPage(html: string, page: StaticPage): string {
       .replace(/(<meta name="twitter:description" content=")[^"]*/, `$1${description}`)
   }
   return out
+}
+
+export interface RedirectPage {
+  /** Ruta retirada, sin barras */
+  from: string
+  /** Ruta que la reemplaza, sin barras */
+  to: string
+  /** Título de la página de destino, para el enlace de respaldo */
+  title: string
+}
+
+/** Las URLs retiradas de src/data/redirects.ts, comprobadas contra las páginas que existen */
+export function redirectPages(pages: StaticPage[]): RedirectPage[] {
+  const byPath = new Map(pages.map((p) => [p.path, p]))
+  return Object.entries(REDIRECTS).map(([fromId, toId]) => {
+    const from = idToPath(fromId)
+    const to = idToPath(toId)
+    if (byPath.has(from)) throw new Error(`La ruta retirada ${from} todavía es una página: quítala de REDIRECTS o del contenido`)
+    const target = byPath.get(to)
+    if (!target) throw new Error(`La redirección de ${from} apunta a ${to}, que no existe`)
+    return { from, to, title: target.title }
+  })
+}
+
+/**
+ * Página mínima en una URL retirada. GitHub Pages no permite un 301, así que lleva al destino con un script
+ * (que conserva ?búsqueda y #ancla) y, sin JavaScript, con meta refresh. noindex y canonical le dicen al
+ * buscador cuál es la página que vale. No copia index.html: no carga la app ni la pantalla de entrada.
+ */
+export function renderRedirect(r: RedirectPage): string {
+  const url = pageUrl(r.to)
+  const title = escapeHtml(r.title)
+  return `<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>${escapeHtml(pageTitle(r.title))}</title>
+<meta name="robots" content="noindex" />
+<link rel="canonical" href="${url}" />
+<script>location.replace(${JSON.stringify(url)} + location.search + location.hash)</script>
+<meta http-equiv="refresh" content="0; url=${url}" />
+<style>body{margin:0;padding:2rem 1rem;font:1rem/1.6 system-ui,sans-serif;background:#faf7ef;color:#1f2a1c}a{color:#3d5a33}</style>
+</head>
+<body>
+<p>Esta guía ahora es parte de <a href="${url}">${title}</a>.</p>
+</body>
+</html>
+`
 }
 
 /** sitemap.xml con el inicio y todas las páginas, para que los buscadores las encuentren */

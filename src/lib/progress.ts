@@ -1,4 +1,5 @@
 import { useSyncExternalStore } from 'react'
+import { currentId } from '../data/redirects'
 
 /**
  * Progreso de las rutas de aprendizaje, guardado solo en este navegador (localStorage, clave moss-route-progress).
@@ -21,7 +22,8 @@ export function parseProgress(raw: string | null): Progress {
     if (typeof data !== 'object' || data === null || Array.isArray(data)) return {}
     const out: Progress = {}
     for (const [slug, ids] of Object.entries(data)) {
-      if (Array.isArray(ids)) out[slug] = ids.filter((x): x is string => typeof x === 'string')
+      // Un paso hecho en una guía que se retiró cuenta como hecho en la que la reemplaza
+      if (Array.isArray(ids)) out[slug] = [...new Set(ids.filter((x): x is string => typeof x === 'string').map(currentId))]
     }
     return out
   } catch {

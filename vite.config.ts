@@ -3,7 +3,7 @@ import { resolve } from 'node:path'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import { defineConfig, type Plugin } from 'vite'
-import { allPages, renderPage, renderSitemap } from './scripts/static-pages.ts'
+import { allPages, redirectPages, renderPage, renderRedirect, renderSitemap } from './scripts/static-pages.ts'
 
 /**
  * Secciones que GitHub Pages sirve con código 200. Cada una, y cada documento y demo (ver scripts/static-pages.ts),
@@ -30,6 +30,11 @@ function staticRoutes(): Plugin {
       for (const page of pages) {
         mkdirSync(resolve(outDir, page.path), { recursive: true })
         writeFileSync(resolve(outDir, page.path, 'index.html'), renderPage(html, page))
+      }
+      // Las URLs retiradas llevan a su destino y quedan fuera del sitemap (ver src/data/redirects.ts)
+      for (const r of redirectPages(pages)) {
+        mkdirSync(resolve(outDir, r.from), { recursive: true })
+        writeFileSync(resolve(outDir, r.from, 'index.html'), renderRedirect(r))
       }
       writeFileSync(resolve(outDir, 'sitemap.xml'), renderSitemap(pages))
     },

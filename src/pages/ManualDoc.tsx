@@ -1,4 +1,4 @@
-import { Link, useParams } from 'react-router-dom'
+import { Link, Navigate, useLocation, useParams } from 'react-router-dom'
 import { ArrowLeft } from 'lucide-react'
 import MarkdownView from '../components/content/MarkdownView'
 import OfficialDocs from '../components/content/OfficialDocs'
@@ -6,6 +6,7 @@ import Related from '../components/content/Related'
 import RouteNav from '../components/routes/RouteNav'
 import SpanishNote from '../components/content/SpanishNote'
 import Toc from '../components/content/Toc'
+import { redirectForPath } from '../data/redirects'
 import { getManualDoc } from '../lib/content'
 import { formatDate } from '../lib/format'
 import { sectionNames, useLang, useT } from '../lib/i18n'
@@ -31,11 +32,16 @@ const TEXT = {
 export default function ManualDoc() {
   const { category = '', slug = '' } = useParams()
   const doc = getManualDoc(category, slug)
+  const { hash } = useLocation()
   const lang = useLang()
   const t = useT(TEXT)
   useDocumentTitle(doc?.title ?? t.notFoundTitle)
 
   if (!doc) {
+    // Una guía que se unió a otra lleva a su destino (ver src/data/redirects.ts)
+    const moved = redirectForPath(`manual/${category}/${slug}`)
+    if (moved) return <Navigate to={`${moved}${hash}`} replace />
+
     return (
       <section>
         <p className="text-ink-soft">{t.notFound}</p>

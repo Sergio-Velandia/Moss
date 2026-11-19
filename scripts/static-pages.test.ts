@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { describe, expect, it } from 'vitest'
-import { allPages, pageTitle, pageUrl, readFrontmatter, renderPage, renderSitemap, SITE_URL } from './static-pages.ts'
+import { allPages, pageTitle, pageUrl, readFrontmatter, redirectPages, renderPage, renderRedirect, renderSitemap, SITE_URL } from './static-pages.ts'
 
 const root = resolve(import.meta.dirname, '..')
 const pages = allPages(root)
@@ -34,6 +34,36 @@ describe('páginas estáticas', () => {
     const out = renderPage(html, { path: 'x', title: 'A & "B"', description: 'Uso <b>' })
     expect(out).toContain(`<title>${pageTitle('A &amp; &quot;B&quot;')}</title>`)
     expect(out).toContain('content="Uso &lt;b&gt;"')
+  })
+})
+
+describe('URLs retiradas', () => {
+  const redirects = redirectPages(pages)
+
+  it('cada una lleva a una página que existe y ya no es una página ni está en el sitemap', () => {
+    expect(redirects.length).toBeGreaterThan(0)
+    const sitemap = renderSitemap(pages)
+    for (const r of redirects) {
+      expect(paths, r.from).not.toContain(r.from)
+      expect(paths, r.to).toContain(r.to)
+      expect(sitemap).not.toContain(`<loc>${pageUrl(r.from)}</loc>`)
+    }
+  })
+
+  it('su página lleva al destino, conserva el ancla y no se indexa', () => {
+    const html = renderRedirect({ from: 'manual/x/viejo', to: 'manual/x/nuevo', title: 'A & B' })
+    expect(html).toContain(`<link rel="canonical" href="${pageUrl('manual/x/nuevo')}" />`)
+    expect(html).toContain(`<meta http-equiv="refresh" content="0; url=${pageUrl('manual/x/nuevo')}" />`)
+    expect(html).toContain('<meta name="robots" content="noindex" />')
+    expect(html).toContain('location.search + location.hash')
+    expect(html).toContain('A &amp; B')
+    // No es una copia de la app: ni su JavaScript ni la pantalla de entrada
+    expect(html).not.toMatch(/plantilla-entrada|type="module"/)
+  })
+
+  it('falla si una ruta retirada sigue existiendo o su destino no existe', () => {
+    expect(() => redirectPages([{ path: 'manual/n8n/webhook-basico', title: 'x', description: '' }, ...pages])).toThrow(/todavía es una página/)
+    expect(() => redirectPages(pages.filter((p) => p.path !== redirects[0].to))).toThrow(/no existe/)
   })
 })
 
