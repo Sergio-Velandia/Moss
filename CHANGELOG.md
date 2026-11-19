@@ -12,6 +12,26 @@ El campo `version` de `package.json` siempre coincide con la última versión pu
 
 ## [Sin publicar]
 
+## [1.20.0] - 2026-11-18
+
+**Ruta nueva: Movimiento web.** La sección que faltaba, y la que más alimenta al Laboratorio: cada concepto sale como pieza en vivo, no solo como texto.
+
+### Añadido
+- Categoría **Movimiento** en el Manual, con cinco guías:
+  - **Las reglas del movimiento que no se negocian**: solo `transform` y `opacity`, movimiento reducido que no significa «sin animación», nada que dependa de que la animación ocurra, y duraciones y curvas.
+  - **Animar con el scroll sin JavaScript**: `animation-timeline` con `scroll()` y `view()`, Baseline desde el 27 de octubre de 2026 (revisado el 18 de noviembre), y sus tres trampas.
+  - **Dirección de secuencia**: la hoja de tiempos, los cuatro actos, la matemática del escalonado y mover el contenedor. Analiza la pantalla de entrada de Moss con su propia hoja.
+  - **Una nube de puntos dirigida por el scroll**: la receta del hub, con varias posiciones por punto, Fibonacci, un solo bucle y el scroll fuera de él.
+  - **Que no se caiga en un móvil flojo**: las tres capas, la relación de píxeles con tope, bajar la calidad sin oscilar y pausar lo que no se ve.
+- Categoría **Movimiento** en el Laboratorio, con cinco piezas, todas con botón para repetir y respetando el movimiento reducido: revelado al entrar con `view()`, barra de progreso con `scroll()` (con el interruptor que reproduce la trampa de `overflow: hidden`), revelado por máscara con `clip-path`, escalonado por onda y una secuencia de apertura cuyos retrasos salen de su hoja de tiempos.
+- Ruta **«Movimiento web: de las reglas a una escena dirigida por el scroll»** (nivel intermedio): las cinco guías intercaladas con sus piezas.
+
+### Corregido
+- Un bloque de código con scroll (una línea larga en móvil, o el bloque contraído) no se podía desplazar con el teclado. Ahora se puede enfocar, con nombre, solo cuando de verdad tiene scroll.
+
+### Cambiado
+- `ROADMAP.md` anota probar las piezas en Firefox y Safari, las piezas que puede tener la ruta de Firebase y ajustar la pantalla de entrada según su hoja de tiempos.
+
 ## [1.19.0] - 2026-11-18
 
 **Ruta nueva: Firebase sin backend.** El Manual no tenía ninguna guía de Firebase, y es lo más difícil que construí. Todo sale del código de Moss Taste, en el plan gratuito.
@@ -434,7 +454,8 @@ Primera versión completa.
 - Páginas legales: términos, privacidad y protección de datos.
 - Despliegue automático en GitHub Pages con cada push a `main`.
 
-[Sin publicar]: https://github.com/Sergio-Velandia/Moss/compare/v1.19.0...HEAD
+[Sin publicar]: https://github.com/Sergio-Velandia/Moss/compare/v1.20.0...HEAD
+[1.20.0]: https://github.com/Sergio-Velandia/Moss/compare/v1.19.0...v1.20.0
 [1.19.0]: https://github.com/Sergio-Velandia/Moss/compare/v1.18.0...v1.19.0
 [1.18.0]: https://github.com/Sergio-Velandia/Moss/compare/v1.17.0...v1.18.0
 [1.17.0]: https://github.com/Sergio-Velandia/Moss/compare/v1.16.2...v1.17.0
