@@ -12,6 +12,9 @@ El campo `version` de `package.json` siempre coincide con la última versión pu
 
 ## [Sin publicar]
 
+### Cambiado
+- Ficha del **hub de sergio-velandia.dev** actualizada a la v0.3.0: la portada pasa a ser un flujo de n8n que se ejecuta con el scroll, con Moss Nexus como nodo principal. Explica la capa base sin JavaScript, la escena con GSAP y `position: sticky`, las herramientas que comparan cada cifra con su fuente y por qué se retiró la escena 3D.
+
 ## [1.20.0] - 2026-11-18
 
 **Ruta nueva: Movimiento web.** La sección que faltaba, y la que más alimenta al Laboratorio: cada concepto sale como pieza en vivo, no solo como texto.
