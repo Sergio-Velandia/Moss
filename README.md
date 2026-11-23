@@ -5,8 +5,10 @@ Mi "segundo cerebro" técnico: una biblioteca personal y visual donde guardo, do
 > El conocimiento técnico no debería quedarse enterrado; debería ser fácil de encontrar, entender, probar, conectar y reutilizar.
 
 
-**Vista Previa**
-https://github.com/user-attachments/assets/dbefb90c-1c03-4b02-bccf-dd1b4f5ec7bf
+## Vista previa
+
+https://github.com/user-attachments/assets/7c648339-2e5a-4f9c-9adf-6e21c6620740
+
 
 
 
