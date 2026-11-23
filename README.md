@@ -3,11 +3,11 @@
 Mi "segundo cerebro" técnico: una biblioteca personal y visual donde guardo, documento, pruebo y reutilizo snippets, componentes, guías y artículos. Cada guía nace de algo que hice de verdad en mis proyectos, y las rutas ordenan todo en recorridos de principio a fin.
 
 > El conocimiento técnico no debería quedarse enterrado; debería ser fácil de encontrar, entender, probar, conectar y reutilizar.
-**Vista Previa**
-https://github.com/user-attachments/assets/c2f1b733-8b60-42e7-925a-0e530e068485
+
 
 🌐 **En vivo:** https://sergio-velandia.dev/Moss/ · **Estado:** estable · [Cambios](CHANGELOG.md) · [Pendientes](ROADMAP.md)
-
+**Vista Previa**
+https://github.com/user-attachments/assets/c2f1b733-8b60-42e7-925a-0e530e068485
 **Autor:** Sergio Andres Ramirez Velandia · [Portafolio](https://sergio-velandia.dev/mi-portafolio/) · [contacto@sergio-velandia.dev](mailto:contacto@sergio-velandia.dev) · [Propón una idea](https://sergio-velandia.dev/Moss/propon-una-idea)
 
 ## Secciones
