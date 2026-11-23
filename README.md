@@ -6,7 +6,9 @@ Mi "segundo cerebro" técnico: una biblioteca personal y visual donde guardo, do
 
 
 **Vista Previa**
-https://github.com/user-attachments/assets/c2f1b733-8b60-42e7-925a-0e530e068485
+https://github.com/user-attachments/assets/dbefb90c-1c03-4b02-bccf-dd1b4f5ec7bf
+
+
 
 🌐 **En vivo:** https://sergio-velandia.dev/Moss/ · **Estado:** estable · [Cambios](CHANGELOG.md) · [Pendientes](ROADMAP.md)
 
